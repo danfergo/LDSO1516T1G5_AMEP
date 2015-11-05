@@ -1,0 +1,36 @@
+<div layout-fill layout="column" layout-align="center center">
+  <md-whiteframe class="md-whiteframe-1dp">
+    <md-content layout-margin>
+      <form name="loginForm" flex-gt-md>
+        <h1 class="md-title">Login</h1>
+        <md-input-container flex>
+          <label>Email</label>
+          <input ng-model="email" type="email" name="email" ng-required="true">
+        </md-input-container>
+        <md-input-container flex>
+          <label>Palavra-passe</label>
+          <input ng-model="password" type="password" name="password" ng-required="true">
+        </md-input-container>
+        <md-input-container flex>
+
+          <md-checkbox ng-model="remember" aria-label="Manter sessão iniciada">
+            Manter sessão iniciada
+          </md-checkbox>
+        </md-input-container>
+        <md-input-container b>
+
+          <md-button style="margin-left:0; margin-right:0;"
+                     class="md-raised md-primary"
+                     ng-disabled="!loginForm.$valid"
+                     ng-click="login(email,password)"
+                     flex>Login
+          </md-button>
+        </md-input-container>
+
+
+      </form>
+
+    </md-content>
+  </md-whiteframe>
+</div>
+
