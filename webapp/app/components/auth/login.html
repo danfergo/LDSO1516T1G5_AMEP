@@ -1,8 +1,8 @@
 <div layout-fill layout="column" layout-align="center center">
-  <md-whiteframe class="md-whiteframe-1dp">
-    <md-content layout-margin>
+  <md-card class="md-whiteframe-1dp" style="width:350px">
+    <md-card-content layout-padding>
       <form name="loginForm" flex-gt-md>
-        <h1 class="md-title">Login</h1>
+        <h1 class="md-title">Iniciar sessão</h1>
         <md-input-container flex>
           <label>Email</label>
           <input ng-model="email" type="email" name="email" ng-required="true">
@@ -13,12 +13,17 @@
         </md-input-container>
         <md-input-container flex>
 
-          <md-checkbox ng-model="remember" aria-label="Manter sessão iniciada">
+          <md-switch style="margin:0;"
+            ng-model="vm.activated"
+            ng-change="vm.toggleActivation()"
+            aria-label="Enable Indicators">
             Manter sessão iniciada
-          </md-checkbox>
-        </md-input-container>
-        <md-input-container b>
+          </md-switch>
 
+
+        </md-input-container>
+        <md-input-container flex>
+          <span style="color:#f00">{{errorMessage}}</span>
           <md-button style="margin-left:0; margin-right:0;"
                      class="md-raised md-primary"
                      ng-disabled="!loginForm.$valid"
@@ -26,11 +31,12 @@
                      flex>Login
           </md-button>
         </md-input-container>
-
-
       </form>
+    </md-card-content>
+  </md-card>
 
-    </md-content>
-  </md-whiteframe>
+  <div style="padding-top:10px;">
+    <a ui-sref="signUp">Criar conta</a>
+  </div>
 </div>
 
