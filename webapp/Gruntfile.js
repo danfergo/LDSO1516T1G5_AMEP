@@ -92,23 +92,25 @@ module.exports = function (grunt) {
               options.base = [options.base];
             }
 
+            // Setup the proxy
             var middlewares = [
+              require('grunt-connect-proxy/lib/utils').proxyRequest,
               connect.static('.tmp'),
               connect().use(
-                  '/bower_components',
-                  connect.static('./bower_components')
-              ),
-              connect().use(
-                  '/app',
-                  connect.static('./app')
+                '/bower_components',
+                connect.static('./bower_components')
               ),
               connect.static(appConfig.app)
             ];
 
+            // Serve static files.
+            options.base.forEach(function (base) {
+              middlewares.push(connect.static(base));
+            });
 
             // Make directory browse-able.
-            var directory = options.directory || options.base[options.base.length - 1];
-            middlewares.push(connect.directory(directory));
+            //var directory = options.directory || options.base[options.base.length - 1];
+            //middlewares.push(connect.directory(directory));
 
             middlewares.push(function(req, res) { // 404 is handled with index.html
               var filename = './app/' + req.url
@@ -117,7 +119,6 @@ module.exports = function (grunt) {
             });
 
             return middlewares;
-
           }
         }
       },
@@ -129,8 +130,8 @@ module.exports = function (grunt) {
               connect.static('.tmp'),
               connect.static('test'),
               connect().use(
-                  '/bower_components',
-                  connect.static('./bower_components')
+                '/bower_components',
+                connect.static('./bower_components')
               ),
               connect.static(appConfig.app)
             ];
@@ -210,13 +211,13 @@ module.exports = function (grunt) {
     wiredep: {
       app: {
         src: ['<%= yeoman.app %>/index.html'],
-        ignorePath:  /\.\.\//
+        ignorePath: /\.\.\//
       },
       test: {
         devDependencies: true,
         src: '<%= karma.unit.configFile %>',
-        ignorePath:  /\.\.\//,
-        fileTypes:{
+        ignorePath: /\.\.\//,
+        fileTypes: {
           js: {
             block: /(([\s\t]*)\/{2}\s*?bower:\s*?(\S*))(\n|\r|.)*?(\/{2}\s*endbower)/gi,
             detect: {
@@ -465,7 +466,7 @@ module.exports = function (grunt) {
 
     angularFileLoader: {
       options: {
-        relative:true,
+        relative: true,
         scripts: ['app/**/*.js']
       },
       your_target: {
