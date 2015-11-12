@@ -3,10 +3,11 @@ angular.module('amep')
     Permission
       .defineRole('prossumer', function (stateParams) {
         var deferred = $q.defer();
-         Session.get(function (data) {
-          if(data.id){
+        Session.get(function (data) {
+
+          if (data.id) {
             deferred.resolve(); // Session exists , we are logged in :)
-          }else{
+          } else {
             deferred.reject();  // Error with request
           }
         }, function () {

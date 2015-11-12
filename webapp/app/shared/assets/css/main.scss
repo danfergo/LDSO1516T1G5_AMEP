@@ -1,6 +1,6 @@
 $gray: #eee;
 
-md-content.md-default-theme {
+div.md-default-theme, md-content.md-default-theme {
   background-color: $gray;
 }
 
@@ -59,3 +59,14 @@ body {
   position: relative;
   overflow: hidden;
 }
+
+.custom-messages {
+  position: relative;
+  -webkit-order: 4;
+  -ms-flex-order: 4;
+  order: 4;
+  min-height: 24px;
+  color:#f00;
+}
+
+

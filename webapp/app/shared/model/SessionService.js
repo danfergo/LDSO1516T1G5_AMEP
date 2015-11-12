@@ -1,25 +1,20 @@
-angular.module('amep-model', ['ngResource']).
-factory('Session', ['$resource','$cacheFactory', function ($resource,$cacheFactory) {
-
-
+angular.module('amep-model').
+factory('Session', ['$resource', '$cacheFactory', function ($resource, $cacheFactory) {
 
   var interceptor = {
     response: function (response) {
       $cacheFactory.get('$http').remove(response.config.url);
-      return response;
+      return response.data;
     }
   };
 
-
   var resource = $resource('/api/v1/session/', null, {
-    'get': {
-      cache: true
-    },
-    'update': {method: 'PUT'},
-    'delete': { method: 'DELETE', interceptor: interceptor }
+    'get': {cache: true},
+    'save': {method: 'POST', interceptor: interceptor},
+    'delete': {method: 'DELETE', interceptor: interceptor}
   });
 
-  resource.getSessionInCache = function(){
+  resource.getSessionInCache = function () {
     return $cacheFactory.get('$http').get('/api/v1/session');
   }
 

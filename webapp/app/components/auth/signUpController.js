@@ -1,17 +1,21 @@
 angular.module('amep-auth').
-controller('signUpController',['$scope', 'Session', '$state','$mdToast', function ($scope, Session, $state,$mdToast) {
+controller('signUpController', ['$scope', 'Prossumer', '$state', '$mdToast',function ($scope, Prossumer, $state, $mdToast) {
+  $scope.showConfirmationMessage = false;
+  $scope.email = null;
 
-  $scope.login = function (email, password){
-    $scope.errorMessage = null;
-    Session.save({email:email, password: password}, function (user) {
-      $mdToast.show(
-        $mdToast.simple()
-          .content('Bem- vindo ' + user.name +'!')
-          .hideDelay(1500)
-      );
-      $state.go('agenda');
-    },function(error){
-      $scope.errorMessage = error.data.error;
+  $scope.signUp = function (name, email, password, phone) {
+    $scope.email = angular.copy(email);
+
+    $scope.errorMessages = null;
+
+
+    Prossumer.save({name: name, email: email, password: password, phone: phone}, function () {
+      console.log($scope.email);
+      $scope.showConfirmationMessage = true;
+      console.log($scope.email);
+    }, function (error) {
+      console.log(error);
+      $scope.errorMessages = error.data;
     });
   }
 

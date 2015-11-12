@@ -1,11 +1,12 @@
 angular.module('amep-prossumer-dashboard', ['amep-model']).
 config(function ($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.when('/', '/agenda');
+  //$urlRouterProvider.when('/', '/agenda');
 
   $stateProvider.
   state('agenda', {
-    url: '/agenda',
+    parent: 'ls',
+    url: 'agenda',
     controller: 'agendaController',
     templateUrl: 'components/p_dashboard/agenda/agenda.html',
     data: {
@@ -16,7 +17,8 @@ config(function ($stateProvider, $urlRouterProvider) {
     }
   }).
   state('products', {
-    url: '/products',
+    parent: 'ls',
+    url: 'products',
     controller: 'productsController',
     templateUrl: 'components/p_dashboard/products/products.html',
     data: {

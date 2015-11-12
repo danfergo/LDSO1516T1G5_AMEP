@@ -1,4 +1,5 @@
-<div layout-fill layout="column" layout-align="center center">
+<md-content layout-fill layout="column" layout-align="center center" class="md-default-theme">
+
   <md-card class="md-whiteframe-1dp" style="width:350px">
     <md-card-content layout-padding>
       <form name="loginForm" flex-gt-md>
@@ -7,6 +8,7 @@
           <label>Email</label>
           <input ng-model="email" type="email" name="email" ng-required="true">
         </md-input-container>
+
         <md-input-container flex>
           <label>Palavra-passe</label>
           <input ng-model="password" type="password" name="password" ng-required="true">
@@ -14,9 +16,9 @@
         <md-input-container flex>
 
           <md-switch style="margin:0;"
-            ng-model="vm.activated"
-            ng-change="vm.toggleActivation()"
-            aria-label="Enable Indicators">
+                     ng-model="vm.activated"
+                     ng-change="vm.toggleActivation()"
+                     aria-label="Enable Indicators">
             Manter sessão iniciada
           </md-switch>
 
@@ -38,5 +40,5 @@
   <div style="padding-top:10px;">
     <a ui-sref="signUp">Criar conta</a>
   </div>
-</div>
+</md-content>
 

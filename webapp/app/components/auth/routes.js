@@ -9,7 +9,8 @@ controller('logoutController', ['Session', '$state', function (Session, $state) 
 config(function ($stateProvider) {
   $stateProvider.
   state('login', {
-    url: '/login',
+    parent: 'lt',
+    url: 'login',
     controller: 'loginController',
     templateUrl: 'components/auth/login.html',
     data: {
@@ -20,7 +21,8 @@ config(function ($stateProvider) {
     }
   }).
   state('signUp', {
-    url: '/signup',
+    parent: 'lt',
+    url: 'signup',
     controller: 'signUpController',
     templateUrl: 'components/auth/signUp.html',
     data: {
@@ -31,12 +33,24 @@ config(function ($stateProvider) {
     }
   }).
   state('logout', {
-    url: '/logout',
+    parent: 'lt',
+    url: 'logout',
     controller: 'logoutController',
     data: {
       permissions: {
         only: ['prossumer'],
         redirectTo: 'login'
+      }
+    }
+  }).
+  state('confirmAccount', {
+    parent: 'lt',
+    url: 'confirm-account?id&hash',
+    controller: 'confirmAccountController',
+    data: {
+      permissions: {
+        except: ['prossumer'],
+        redirectTo: 'agenda'
       }
     }
   });
