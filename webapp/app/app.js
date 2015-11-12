@@ -1,8 +1,8 @@
 angular.module('amep',
   [
     'ui.router', 'ngMaterial', 'ngMdIcons', 'permission',
-    'amep-sidebar',
-    'amep-errors', 'amep-auth', 'amep-prossumer-dashboard'
+    'amep-sidebar', 'amep-layouts',
+    'amep-errors', 'amep-auth', 'amep-prossumer-dashboard', 'amep-static',  'amep-groups'
   ]).
 run(['$rootScope', '$mdSidenav', function ($rootScope, $mdSidenav) {
   $rootScope.$mdSidenav = $mdSidenav;

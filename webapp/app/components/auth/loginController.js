@@ -1,6 +1,7 @@
 angular.module('amep-auth').
 controller('loginController', ['$scope', 'Session', '$state', '$mdToast', function ($scope, Session, $state, $mdToast) {
 
+
   $scope.login = function (email, password) {
     $scope.errorMessage = null;
     Session.save({email: email, password: password}, function (user) {
@@ -9,7 +10,7 @@ controller('loginController', ['$scope', 'Session', '$state', '$mdToast', functi
           .content('Bem-vindo ' + user.name + '!')
           .hideDelay(1500)
       );
-      $state.go('agenda');
+      $state.go('agenda', {}, {reload: true});
     }, function (error) {
       $scope.errorMessage = error.data.error;
     });
