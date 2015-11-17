@@ -7,16 +7,30 @@ controller('SidebarController', ['$scope', 'Session', '$mdSidenav', function ($s
     $scope.session = data; // Session exists , we are logged in :)
   })
 
-  $scope.menu = [
+  $scope.quickMenu = [
     {
       state: 'agenda',
       title: 'Agenda',
-      icon: 'unknown'
-    },
+      icon: 'event'
+    }
+  ];
+
+  $scope.groups = [
+    {title: 'AMEP Porto'},
+    {title: 'Amigos de Aveiro'}
+  ];
+
+
+  $scope.accountMenu = [
     {
       state: 'products',
       title: 'Meus Produtos',
-      icon: 'unknown'
+      icon: 'local_mall'
+    },
+    {
+      state: 'settings',
+      title: 'Definições',
+      icon: 'settings'
     }
   ];
 

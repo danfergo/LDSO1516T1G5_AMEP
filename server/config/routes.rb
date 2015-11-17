@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :groups, only: [:index, :create]
 
     resources :prossumers, only: [:create]
+    get '/confirm-account/', to: 'prossumers#confirm_account'
     resources :session, only: [:index, :create, :destroy]
     delete '/session/', to: 'session#delete'
 

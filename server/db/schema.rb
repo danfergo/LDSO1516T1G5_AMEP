@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151106162704) do
+ActiveRecord::Schema.define(version: 20151117161916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(version: 20151106162704) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "groups_prossumers", id: false, force: :cascade do |t|
+    t.integer "group_id"
+    t.integer "prossumer_id"
+    t.boolean "is_coordinator"
+    t.integer "state"
+  end
+
+  add_index "groups_prossumers", ["group_id"], name: "index_groups_prossumers_on_group_id", using: :btree
+  add_index "groups_prossumers", ["prossumer_id"], name: "index_groups_prossumers_on_prossumer_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "title"
@@ -39,6 +49,7 @@ ActiveRecord::Schema.define(version: 20151106162704) do
     t.datetime "updated_at",         null: false
     t.string   "salt"
     t.string   "phone"
+    t.string   "confirm_hash"
   end
 
   create_table "sessions", force: :cascade do |t|
