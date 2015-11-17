@@ -35,23 +35,12 @@ config(function ($stateProvider) {
   state('logout', {
     parent: 'lt',
     url: 'logout',
-    controller: 'logoutController',
-    data: {
-      permissions: {
-        only: ['prossumer'],
-        redirectTo: 'login'
-      }
-    }
+    controller: 'logoutController'
   }).
   state('confirmAccount', {
     parent: 'lt',
     url: 'confirm-account?id&hash',
     controller: 'confirmAccountController',
-    data: {
-      permissions: {
-        except: ['prossumer'],
-        redirectTo: 'agenda'
-      }
-    }
+    templateUrl: 'components/auth/confirmAccount.html'
   });
 });

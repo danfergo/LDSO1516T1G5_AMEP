@@ -1,12 +1,17 @@
 class Prossumer < ActiveRecord::Base
   attr_accessor :password
-  has_many  :products
+
+  has_many :products
+
+  has_many :groups_prossumers
+  has_many :groups, :through => :groups_prossumers
+
 
   EMAIL_REGEX = /\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\z/i
-  validates :name, :presence => true, :length => { :in => 3..20 }
+  validates :name, :presence => true, :length => {:in => 3..50}
   validates :email, :presence => true, :uniqueness => true, :format => EMAIL_REGEX
-  validates :password, :presence => true
-  validates_length_of :password, :in => 6..20, :on => :create
+  validates :password, :presence => true, :on => :create
+  validates_length_of :password, :in => 6..150, :on => :create
 
   before_save :encrypt_password
   after_save :clear_password
@@ -15,8 +20,10 @@ class Prossumer < ActiveRecord::Base
     if password.present?
       self.salt = BCrypt::Engine.generate_salt
       self.encrypted_password= BCrypt::Engine.hash_secret(password, salt)
+      self.confirm_hash = SecureRandom.hex #=> "91dc3bfb4de5b11d029d376634589b61"
     end
   end
+
   def clear_password
     self.password = nil
   end
@@ -27,8 +34,10 @@ class Prossumer < ActiveRecord::Base
   end
 
   def as_json(options={})
-    options[:except] ||= [:encrypted_password, :salt]
+    options[:except] ||= [:encrypted_password, :salt, :confirm_hash]
+    options[:include] ||= [:groups]
     super
   end
+
 
 end

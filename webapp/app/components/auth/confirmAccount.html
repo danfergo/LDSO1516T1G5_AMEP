@@ -1,0 +1,22 @@
+<md-content layout-fill layout="column" layout-align="center center" class="md-default-theme">
+
+  <md-card class="md-whiteframe-1dp" style="max-width:600px" ng-if="message">
+    <md-card-content layout-padding>
+      <form name="loginForm" flex-gt-md>
+        <h1 class="md-title">{{message.title}}</h1>
+        <p>{{message.text}}</p>
+        </div>
+        <br>
+        <md-button ng-if="message.action_state"
+                   style="margin:0"
+                   class="md-raised md-primary"
+                   ui-sref="{{message.action_state}}"
+                   flex>{{message.action_text}}
+        </md-button>
+
+      </form>
+    </md-card-content>
+  </md-card>
+
+</md-content>
+

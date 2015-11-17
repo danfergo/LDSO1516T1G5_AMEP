@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+</head>
+<body>
+<h1>Bem-vindo à AMEP, <%= @prossumer.name %></h1>
+
+<p>
+  Acabaste de efetuar o registo com o e-mail: <%= @prossumer.email %>.<br>
+</p>
+
+<p>
+  Agora terás de confirmar a tua conta através do link:<br>
+  <a href="http://localhost:9000/confirm-account?id=<%= @prossumer.id %>&hash=<%= @prossumer.confirm_hash %>">
+    ATIVAR CONTA
+  </a>.
+</p>
+
+<p>Até já!</p>
+</body>
+</html>
