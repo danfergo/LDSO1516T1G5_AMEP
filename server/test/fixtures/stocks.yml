@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  quantity: 1
+  unit_price_euros: 1.5
+  unit_price_ecos: 1.5
+
+two:
+  quantity: 1
+  unit_price_euros: 1.5
+  unit_price_ecos: 1.5
