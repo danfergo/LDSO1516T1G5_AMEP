@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  # resources :cycles, except: [:new, :edit]
   scope '/api/v1' do
     resources :groups, only: [:index, :create]
 
