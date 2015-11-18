@@ -15,10 +15,9 @@ controller('SidebarController', ['$scope', 'Session', '$mdSidenav', function ($s
     }
   ];
 
-  $scope.groups = [
-    {title: 'AMEP Porto'},
-    {title: 'Amigos de Aveiro'}
-  ];
+  $scope.groups = function(){
+    return $scope.session.groups ? $scope.session.groups : [];
+  }
 
 
   $scope.accountMenu = [
