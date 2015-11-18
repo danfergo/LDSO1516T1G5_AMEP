@@ -51,8 +51,8 @@ class SessionController < ApplicationController
   end
 
   def short_session
-    request.session_options = request.session_options.dup
-    request.session_options[:expire_after] = 1.minute
-    request.session_options.freeze
+    # request.session_options = request.session_options.dup
+    # request.session_options[:expire_after] = 1.minute
+    # request.session_options.freeze
   end
 end
