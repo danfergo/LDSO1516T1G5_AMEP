@@ -27,6 +27,8 @@ gem 'rails-api'
 
 gem 'bcrypt', :require => 'bcrypt'
 
+gem 'tzinfo-data'
+
 
 # https://github.com/rails/activerecord-session_store
 gem 'activerecord-session_store'
