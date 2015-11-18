@@ -1,5 +1,8 @@
 angular.module('amep-prossumer-dashboard').
-controller('productsController', ['$scope', 'Session', '$mdDialog', function ($scope, Session, $mdDialog) {
+controller('productsController', ['$scope', 'Session','Product', '$mdDialog', function ($scope, Session, Product, $mdDialog) {
+
+  $scope.session = Session.get();
+  $scope.products = Product.query();
 
   $scope.newProduct = function (event) {
     $mdDialog.show({
@@ -8,12 +11,10 @@ controller('productsController', ['$scope', 'Session', '$mdDialog', function ($s
         targetEvent: event,
         clickOutsideToClose:true
       })
-      .then(function (answer) {
-        $scope.alert = 'You said the information was "' + answer + '".';
-      }, function () {
-        $scope.alert = 'You cancelled the dialog.';
+      .then(function () {
+          Product.query(function(products){
+            $scope.products = products;
+          });
       });
   }
-
-
 }]);
