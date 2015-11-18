@@ -1,9 +1,21 @@
-<div layout="row" style="position:fixed; bottom:3%; right:3%;">
-  <md-fab-speed-dial ng-click="newProduct($event)">
-    <md-fab-trigger>
-      <md-button aria-label="menu" class="md-fab md-warn">
-        <ng-md-icon icon="add"></ng-md-icon>
-      </md-button>
-    </md-fab-trigger>
-  </md-fab-speed-dial>
+<div layout-padding layout="row" layout-wrap>
+
+  <h1 flex="100">Meus produtos</h1>
+
+  <div ng-repeat="product in products |orderBy:'created_at':true"
+       ng-include="'shared/products/product-tile.html'"
+       flex-sm="100" flex-md="33" flex-gt-md="25" layout-padding>
+
+  </div>
+
+
+  <div layout="row" style="position:fixed; bottom:3%; right:3%;">
+    <md-fab-speed-dial ng-click="newProduct($event)">
+      <md-fab-trigger>
+        <md-button aria-label="menu" class="md-fab md-warn">
+          <ng-md-icon icon="add"></ng-md-icon>
+        </md-button>
+      </md-fab-trigger>
+    </md-fab-speed-dial>
+  </div>
 </div>
