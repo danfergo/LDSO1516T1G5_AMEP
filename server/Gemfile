@@ -27,6 +27,7 @@ gem 'rails-api'
 
 gem 'bcrypt', :require => 'bcrypt'
 
+gem 'rails_12factor', group: :production
 
 # https://github.com/rails/activerecord-session_store
 gem 'activerecord-session_store'

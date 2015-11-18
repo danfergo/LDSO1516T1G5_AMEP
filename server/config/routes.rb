@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   scope '/api/v1' do
     resources :groups, only: [:index, :create]
 
@@ -12,4 +13,6 @@ Rails.application.routes.draw do
 
   end
 
+  # match all paths with index. we love rails <3
+  match '(*foo)', to: 'index#index', via: [:get]
 end

@@ -19,6 +19,10 @@
       <excludeFolder url="file://$MODULE_DIR$/server/public/system" />
       <excludeFolder url="file://$MODULE_DIR$/server/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/server/vendor/bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/webapp/.sass-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/webapp/.tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/webapp/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/webapp/node_modules" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
