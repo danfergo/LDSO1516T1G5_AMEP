@@ -1,18 +1,16 @@
-<h1 style="text-align:center" layout-padding>Group title placeholder</h1>
+<h1 style="text-align:center;margin:50px 0 20px;" layout-padding>Group title placeholder</h1>
 
 <md-whiteframe class="md-whiteframe-2dp">
-  <md-toolbar>
-    <h4>
-      <md-button>Test</md-button>
-      <md-button>Test</md-button>
-      <md-button hide-sm>Test</md-button>
-      <md-button hide-sm>Test</md-button>
-      <md-button hide-sm>Test</md-button>
-      <md-button hide-sm>Test</md-button>
-      <md-button hide-sm>Test</md-button>
-    </h4>
+  <md-toolbar layout="row" layout-padding>
+
+    <md-button ui-sref="group.showcase">Montra</md-button>
+    <md-button ui-sref="group.history">Histórico</md-button>
+    <md-button ui-sref="group.about">Sobre</md-button>
+    <span flex></span>
+    <md-button class="md-raised">Aderir ao grupo</md-button>
+
   </md-toolbar>
 </md-whiteframe>
 
 
-<ui-view flex> </ui-view>
+<ui-view flex></ui-view>
