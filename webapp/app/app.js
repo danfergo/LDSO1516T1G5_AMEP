@@ -18,16 +18,7 @@ app.config(function ($mdThemingProvider) {
     .primaryPalette('green')
     .accentPalette('light-green');
 });
-app.factory('Group', ['$resource', function($resource) {
-  return $resource('/api/v1/groups.json', null, {
-    'update': { method:'PUT' }
-  });
-}]);
-app.factory('City', ['$resource', function($resource) {
-  return $resource('/api/v1/cities.json', null, {
-    'update': { method:'PUT' }
-  });
-}]);
+
 
 /**
  app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog', function($scope, $mdBottomSheet, $mdSidenav, $mdDialog){
@@ -122,6 +113,3 @@ app.factory('City', ['$resource', function($resource) {
         $mdDialog.hide(answer);
     };
 }; **/
-
-
-
