@@ -1,0 +1,19 @@
+<md-dialog aria-label="Mango (Fruit)">
+  <md-content class="md-padding">
+    <h1 class="md-title">Novo Grupo</h1>
+
+    <form name="newGroupForm">
+      <div layout layout-sm="column">
+        <md-input-container flex>
+          <label>Nome do grupo</label>
+          <input ng-model="group.name" placeholder="Nome do grupo " ng-minlength="10">
+        </md-input-container>
+      </div>
+    </form>
+  </md-content>
+  <div class="md-actions" layout="row">
+    <span flex></span>
+    <md-button> Cancel</md-button>
+    <md-button ng-click="!newGroupForm.$valid || ok()" class="md-primary"> Save</md-button>
+  </div>
+</md-dialog>
