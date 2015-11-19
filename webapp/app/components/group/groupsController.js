@@ -13,9 +13,15 @@ angular.module('amep-groups')
 =======
 angular.module('amep-groups').
 controller('groupsController', ['$scope', 'Groups', '$mdDialog', function ($scope, Groups, $mdDialog) {
+<<<<<<< HEAD
 
   $scope.groups = Groups.query();
 
+=======
+
+  $scope.groups = Groups.query();
+
+>>>>>>> master
   $scope.newGroup = function (event) {
     $mdDialog.show({
         controller: 'createGroupController',
