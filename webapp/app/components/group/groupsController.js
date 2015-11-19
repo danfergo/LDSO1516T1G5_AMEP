@@ -1,5 +1,5 @@
 angular.module('amep-groups').
-controller('groupsController', ['$scope', 'Groups', '$mdDialog', function ($scope, Groups, $mdDialog) {
+controller('groupsController', ['$scope', 'Groups', '$mdDialog', '$stateParams', function ($scope, Groups, $mdDialog) {
 
   $scope.groups = Groups.query();
 

@@ -37,7 +37,7 @@
     <md-divider></md-divider>
     <md-subheader ng-if="groups().length > 1">Meus Grupos</md-subheader>
     <menu-link ng-if="groups().length > 0" ng-repeat="group in groups()">
-      <a class="md-button md-ink-ripple" ui-sref="group" style="margin:0;border-radius: 0;width:100%;">
+      <a class="md-button md-ink-ripple" ui-sref="group({groupId: group.id })" style="margin:0;border-radius: 0;width:100%;">
         <md-item-content md-ink-ripple layout="row" layout-align="start center">
           <div class="inset">
             <div style="width:24px;"></div>
