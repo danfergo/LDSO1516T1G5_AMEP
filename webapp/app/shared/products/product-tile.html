@@ -1,0 +1,10 @@
+<md-whiteframe class="md-whiteframe-2dp" flex layout="column" style="background:#fff;" layout-margin>
+  <h3 class="md-title">{{product.title}}</h3>
+
+  <p>{{product.description}}</p>
+
+  <p class="text-right">
+    <b>{{product.ecos | currency:"E ":0}} / {{product.unit}}</b><br>
+    {{product.euros | currency:"€ ":0}} / {{product.unit}}
+  </p>
+</md-whiteframe>

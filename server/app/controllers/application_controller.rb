@@ -12,10 +12,9 @@ class ApplicationController < ActionController::API
  #   end
  # end
 
-
-
   # in order do be accessible to all controllers
   def is_authenticated
+
     if session[:prossumer_id]
       return true
     else
@@ -23,4 +22,14 @@ class ApplicationController < ActionController::API
       return false
     end
   end
+
+  def not_is_authenticated
+    if session[:prossumer_id]
+      render json: {error: "Please log out in order to access"}, status:  :method_not_allowed
+      return false
+    else
+      return true
+    end
+  end
+
 end

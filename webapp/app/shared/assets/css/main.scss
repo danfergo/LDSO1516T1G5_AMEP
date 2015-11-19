@@ -21,8 +21,13 @@ h2 {
   font-weight: 400;
 }
 
+md-content.md-hue-3{
+  color:#fff;
+}
+
 .md-toolbar-tools-bottom {
   font-size: small;
+  color:#fff;
   & :last-child {
     opacity: 0.8;
   }
@@ -35,10 +40,6 @@ md-toolbar:not(.md-hue-1),
 
 md-sidenav {
   fill: #737373;
-  ng-md-icon {
-    position: relative;
-    top: 5px; // adjust for svg viewbox
-  }
 }
 
 .user-avatar {
@@ -67,6 +68,10 @@ body {
   order: 4;
   min-height: 24px;
   color:#f00;
+}
+
+a, a:hover, a:focus, a:active, a:visited{
+  color:#000;
 }
 
 

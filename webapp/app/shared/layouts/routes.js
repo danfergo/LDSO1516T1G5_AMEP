@@ -1,4 +1,4 @@
-angular.module('amep-layouts',[]).
+angular.module('amep-layouts',['amep-toolbar','amep-sidebar']).
 config(function ($stateProvider, $urlRouterProvider) {
 
   $stateProvider.
@@ -7,21 +7,21 @@ config(function ($stateProvider, $urlRouterProvider) {
     abstract:true,
     templateUrl: 'shared/layouts/sidebar.html',
     /*data: {
-      permissions: {
-        only: ['prossumer'],
-        redirectTo: 'login'
-      }
-    }*/
+     permissions: {
+     only: ['prossumer'],
+     redirectTo: 'login'
+     }
+     }*/
   }).
   state('lt', {
     url: '/',
     abstract:true,
     templateUrl: 'shared/layouts/toolbar.html',
     /*data: {
-      permissions: {
-        only: ['prossumer'],
-        redirectTo: 'login'
-      }
-    }*/
+     permissions: {
+     only: ['prossumer'],
+     redirectTo: 'login'
+     }
+     }*/
   });
 });

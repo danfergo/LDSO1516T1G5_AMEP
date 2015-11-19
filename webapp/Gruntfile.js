@@ -39,7 +39,7 @@ module.exports = function (grunt) {
       },
       js: {
         files: ['<%= yeoman.app %>/**/*.js'],
-        tasks: ['newer:jshint:all'],
+        tasks: ['angularFileLoader'],
         options: {
           livereload: '<%= connect.options.livereload %>'
         }
@@ -112,7 +112,7 @@ module.exports = function (grunt) {
             //var directory = options.directory || options.base[options.base.length - 1];
             //middlewares.push(connect.directory(directory));
 
-            middlewares.push(function(req, res) { // 404 is handled with index.html
+            middlewares.push(function (req, res) { // 404 is handled with index.html
               var filename = './app/' + req.url
               if (!grunt.file.exists(filename)) filename = './app/index.html';
               res.end(grunt.file.read(filename));
@@ -316,27 +316,36 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
-     cssmin: {
-       dist: {
-         files: {
-           '<%= yeoman.dist %>/styles/main.css': [
-             '.tmp/**/*.css'
-           ]
-         }
-       }
-     },
-     uglify: {
-       dist: {
-         files: {
-           '<%= yeoman.dist %>/scripts/scripts.js': [
-             '<%= yeoman.dist %>/scripts/scripts.js'
-           ]
-         }
-       }
-     },
-     concat: {
-       dist: {}
-     },
+    cssmin: {
+      dist: {
+        files: {
+          '<%= yeoman.dist %>/styles/main.css': [
+            '.tmp/**/*.css'
+          ]
+        }
+      }
+    },
+    uglify: {
+      dist: {
+        files: {
+          '<%= yeoman.dist %>/scripts/scripts.js': [
+            '.tmp/concat/scripts/scripts.js'
+          ]
+        }
+      }
+    },
+    concat: {
+      generated: {
+        files: [
+          {
+            dest: '.tmp/concat/scripts/scripts.js',
+            src: [
+              '<%= yeoman.dist %>/**/*.js', '<%= ngtemplates.dist.dest %>'
+            ]
+          }
+        ]
+      }
+    },
 
     imagemin: {
       dist: {
@@ -382,11 +391,11 @@ module.exports = function (grunt) {
         options: {
           module: 'amep',
           htmlmin: '<%= htmlmin.dist.options %>',
-          usemin: 'scripts.js'
+          //usemin: 'scripts2.js'
         },
         cwd: '<%= yeoman.app %>',
         src: '**/*.html',
-        dest: '.tmp/templateCache.js'
+        dest: '<%= yeoman.app %>/.tmp/templateCache.js'
       }
     },
 
@@ -406,7 +415,7 @@ module.exports = function (grunt) {
     // Replace Google CDN references
     cdnify: {
       dist: {
-        html: ['<%= yeoman.dist %>/**/*.html']
+        html: ['<%= yeoman.dist %>/index.html']
       }
     },
 
@@ -422,16 +431,16 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '.htaccess',
             '**/*.html',
-            '**/*.js',
-            'images/**/*.{webp}',
+            '**/*.{png,jpg,jpeg,gif,webp,svg}',
             'fonts/**/*.*'
           ]
-        }, {
-          expand: true,
-          cwd: '.tmp/images',
-          dest: '**/images',
-          src: ['generated/*']
         }]
+        //}, {
+        //  expand: true,
+        //  cwd: '.tmp/images',
+        //  dest: '**/images',
+        //  src: ['generated/*']
+        //}*/]
       },
       styles: {
         expand: true,
@@ -514,12 +523,13 @@ module.exports = function (grunt) {
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
-    'ngtemplates',
+    'ngtemplates:dist',
     'concat',
     'ngAnnotate',
     'copy:dist',
     'cdnify',
     'cssmin',
+    'cssmin:dist',
     'uglify',
     'filerev',
     'usemin',
