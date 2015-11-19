@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
 
-  # resources :cycles, except: [:new, :edit]
   scope '/api/v1' do
     resources :groups, only: [:index, :create]
 
@@ -12,8 +11,9 @@ Rails.application.routes.draw do
 
     resources :products, only: [:index, :create]
 
+
+    resources :cycles, except: [:new, :edit]
+
   end
 
-  # match all paths with index. we love rails <3
-  match '(*foo)', to: 'index#index', via: [:get]
 end
