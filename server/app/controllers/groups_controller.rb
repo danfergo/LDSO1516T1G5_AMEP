@@ -1,11 +1,11 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :update, :destroy]
+  before_filter :is_authenticated, except: [:index]
 
   # GET /groups
   # GET /groups.json
   def index
     @groups = Group.all
-
     render json: @groups
   end
 
@@ -19,9 +19,10 @@ class GroupsController < ApplicationController
   # POST /groups.json
   def create
     @group = Group.new(group_params)
-
     if @group.save
-      render json: @group, status: :created, location: @group
+      groupsProssumer = GroupsProssumer.new group_id: @group.id, prossumer_id: session[:prossumer_id], state: 2, is_coordinator: true
+      groupsProssumer.save
+      render json: @group, status: :created
     else
       render json: @group.errors, status: :unprocessable_entity
     end
@@ -54,6 +55,7 @@ class GroupsController < ApplicationController
     end
 
     def group_params
-      params.require(:group).permit(:name)
+      params.require(:name)
+      params.permit(:name)
     end
 end
