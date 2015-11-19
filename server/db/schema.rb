@@ -16,6 +16,12 @@ ActiveRecord::Schema.define(version: 20151118220104) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "cities", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "cycles", force: :cascade do |t|
     t.datetime "start"
     t.datetime "end"
@@ -30,9 +36,14 @@ ActiveRecord::Schema.define(version: 20151118220104) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "cities_id"
   end
 
+  add_index "groups", ["cities_id"], name: "index_groups_on_cities_id", using: :btree
+
   create_table "groups_prossumers", id: false, force: :cascade do |t|
+    t.integer "groups_id"
+    t.integer "prossumers_id"
     t.integer "group_id"
     t.integer "prossumer_id"
     t.boolean "is_coordinator"
@@ -40,7 +51,9 @@ ActiveRecord::Schema.define(version: 20151118220104) do
   end
 
   add_index "groups_prossumers", ["group_id"], name: "index_groups_prossumers_on_group_id", using: :btree
+  add_index "groups_prossumers", ["groups_id"], name: "index_groups_prossumers_on_groups_id", using: :btree
   add_index "groups_prossumers", ["prossumer_id"], name: "index_groups_prossumers_on_prossumer_id", using: :btree
+  add_index "groups_prossumers", ["prossumers_id"], name: "index_groups_prossumers_on_prossumers_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.integer  "quantity"
