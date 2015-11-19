@@ -1,4 +1,4 @@
-angular.module('amep-groups', []).
+angular.module('amep-groups', ['amep-model']).
 config(function ($stateProvider) {
   $stateProvider.
   state('groups', {
