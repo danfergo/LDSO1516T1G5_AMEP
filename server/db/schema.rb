@@ -12,7 +12,11 @@
 # It's strongly recommended that you check this file into your version control system.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20151113195613) do
+=======
+ActiveRecord::Schema.define(version: 20151118220104) do
+>>>>>>> master
 =======
 ActiveRecord::Schema.define(version: 20151118220104) do
 >>>>>>> master
@@ -21,19 +25,30 @@ ActiveRecord::Schema.define(version: 20151118220104) do
   enable_extension "plpgsql"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "cities", force: :cascade do |t|
     t.string   "name"
 =======
+=======
+>>>>>>> master
   create_table "cycles", force: :cascade do |t|
     t.datetime "start"
     t.datetime "end"
     t.integer  "group_id"
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  add_index "cycles", ["group_id"], name: "index_cycles_on_group_id", using: :btree
+
+>>>>>>> master
 =======
   add_index "cycles", ["group_id"], name: "index_cycles_on_group_id", using: :btree
 
@@ -85,6 +100,35 @@ ActiveRecord::Schema.define(version: 20151118220104) do
     t.datetime "updated_at", null: false
   end
 >>>>>>> master
+
+  create_table "groups_prossumers", id: false, force: :cascade do |t|
+    t.integer "group_id"
+    t.integer "prossumer_id"
+    t.boolean "is_coordinator"
+    t.integer "state"
+  end
+
+  add_index "groups_prossumers", ["group_id"], name: "index_groups_prossumers_on_group_id", using: :btree
+  add_index "groups_prossumers", ["prossumer_id"], name: "index_groups_prossumers_on_prossumer_id", using: :btree
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "quantity"
+    t.integer  "prossumer_id"
+    t.integer  "stock_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "orders", ["prossumer_id"], name: "index_orders_on_prossumer_id", using: :btree
+  add_index "orders", ["stock_id"], name: "index_orders_on_stock_id", using: :btree
+
+  create_table "product_auths", force: :cascade do |t|
+    t.integer  "state"
+    t.integer  "group_id"
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "products", force: :cascade do |t|
     t.string   "title"
