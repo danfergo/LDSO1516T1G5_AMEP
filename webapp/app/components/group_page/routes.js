@@ -10,8 +10,18 @@ config(function ($stateProvider) {
   }).
   state('group.showcase', {
     url: '/showcase',
-    controller: 'showcaseController',
+    controller: 'groupShowcaseController',
     templateUrl: 'components/group_page/showcase.html'
+  }).
+  state('group.history', {
+    url: '/showcase',
+    controller: 'groupHistoryController',
+    templateUrl: 'components/group_page/history.html'
+  }).
+  state('group.about', {
+    url: '/showcase',
+    controller: 'groupAboutController',
+    templateUrl: 'components/group_page/about.html'
   });
 }).
  run(function($rootScope, $state){
