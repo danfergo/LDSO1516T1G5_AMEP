@@ -1,7 +1,7 @@
 var app=angular.module('amep',
   [
     'ui.router', 'ngMaterial', 'ngMdIcons', 'permission',
-    'amep-sidebar', 'amep-layouts',
+    'amep-layouts', 'amep-group-page', 'amep-settings',
     'amep-errors', 'amep-auth', 'amep-prossumer-dashboard', 'amep-static',  'amep-groups'
   ])
 app.run(['$rootScope', '$mdSidenav', function ($rootScope, $mdSidenav) {

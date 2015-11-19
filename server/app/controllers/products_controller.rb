@@ -21,6 +21,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
 
+
     if @product.save
       render json: @product, status: :created
     else
@@ -62,6 +63,8 @@ class ProductsController < ApplicationController
       params.require(:description)
       params.require(:unit)
       params.require(:prossumer_id) # double check
-      params.permit(:title,:description,:unit, :prossumer_id)
+      params.require(:ecos)
+      params.require(:euros)
+      params.permit(:title,:description,:unit, :prossumer_id, :ecos, :euros)
     end
 end
