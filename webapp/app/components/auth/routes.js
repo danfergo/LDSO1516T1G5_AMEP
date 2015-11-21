@@ -2,7 +2,10 @@ angular.module('amep-auth', ['amep-model']).
 controller('logoutController', ['Session', '$state', function (Session, $state) {
 
   Session.delete(function () {
-    $state.go('login');
+      $state.go('login', $state.params);
+  },
+  function(){
+    $state.go('login', $state.params);
   });
 
 }]).
@@ -33,8 +36,7 @@ config(function ($stateProvider) {
     }
   }).
   state('logout', {
-    parent: 'lt',
-    url: 'logout',
+    url: '/logout',
     controller: 'logoutController'
   }).
   state('confirmAccount', {

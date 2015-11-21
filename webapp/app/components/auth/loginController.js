@@ -1,7 +1,6 @@
 angular.module('amep-auth').
 controller('loginController', ['$scope', 'Session', '$state', '$mdToast', function ($scope, Session, $state, $mdToast) {
 
-
   $scope.login = function (email, password) {
     $scope.errorMessage = null;
     Session.save({email: email, password: password}, function (user) {

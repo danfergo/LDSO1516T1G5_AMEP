@@ -1,16 +1,37 @@
-<h1 style="text-align:center;margin:50px 0 20px;" layout-padding>Group title placeholder</h1>
+<md-toolbar flex="none" layout-padding class="inset">
+  <h1 class="md-title" layout-padding>{{group.name}}</h1>
+</md-toolbar>
 
-<md-whiteframe class="md-whiteframe-2dp">
-  <md-toolbar layout="row" layout-padding>
-
-    <md-button ui-sref="group.showcase">Montra</md-button>
-    <md-button ui-sref="group.history">Histórico</md-button>
-    <md-button ui-sref="group.about">Sobre</md-button>
+<!--
+    <md-button>Montra</md-button>
+    <md-button>Histórico</md-button>
+    <md-button ui-sref="about">Sobre</md-button>
     <span flex></span>
     <md-button class="md-raised">Aderir ao grupo</md-button>
 
+-->
+<md-whiteframe class="md-whiteframe-2dp">
+  <md-toolbar flex="none" layout="row" style="padding:15px 15px 0;">
+    <div ng-cloak flex="auto">
+      <md-tabs md-dynamic-height md-center-tabs>
+        <md-tab label="Montra" ui-sref-active="showcase" ui-sref="showcase">
+        </md-tab>
+        <md-tab label="Histórico" ui-sref-active="showcase" ui-sref="history">
+        </md-tab>
+        <md-tab label="Sobre" ui-sref="about">
+        </md-tab>
+        <md-tab label="Definiçoes" ui-sref="about">
+        </md-tab>
+      </md-tabs>
+    </div>
+    <md-button class="md-fab" aria-label="Aderir ao grupo"
+               ng-click="joinGroup($event)"
+               style="position:absolute;bottom:-32px;right:7%;">
+      <ng-md-icon icon="add"></ng-md-icon>
+    </md-button>
   </md-toolbar>
 </md-whiteframe>
 
-
-<ui-view flex></ui-view>
+<div flex layout="row" layout-align="center start">
+  <ui-view flex style="max-width:1200px;margin:0 auto;"></ui-view>
+</div>
