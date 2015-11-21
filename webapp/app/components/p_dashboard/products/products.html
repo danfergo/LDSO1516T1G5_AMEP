@@ -1,6 +1,6 @@
 <div layout-padding layout="row" layout-wrap>
 
-  <h1 flex="100">Meus produtos</h1>
+  <h1 flex="100" style="margin:50px 20px 20px;">Meus produtos</h1>
 
   <p flex ng-if="products.length == 0" class="text-center" style="font-size:32px; color:#999; max-width:700px;margin:50px auto;">
       Clica no botão + para poderes adicionar produtos à tua lista pessoal
@@ -16,7 +16,7 @@
   <div layout="row" style="position:fixed; bottom:3%; right:3%;">
     <md-fab-speed-dial ng-click="newProduct($event)">
       <md-fab-trigger>
-        <md-button aria-label="menu" class="md-fab md-warn">
+        <md-button aria-label="menu" class="md-fab">
           <ng-md-icon icon="add"></ng-md-icon>
         </md-button>
       </md-fab-trigger>
