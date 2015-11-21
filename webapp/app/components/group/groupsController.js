@@ -2,6 +2,10 @@
 
 //noinspection JSUnresolvedFunction
 angular.module('amep-groups')
+  .config(function($mdThemingProvider) {
+    $mdThemingProvider.theme('input', 'default')
+        .primaryPalette('grey')
+      })
   .controller('groupsController', ['$scope', 'Group', 'City', '$mdDialog', function ($scope, Group,City,$mdDialog) {
     $scope.groups=Group.query();
     $scope.cities=City.query();
