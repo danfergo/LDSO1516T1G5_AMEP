@@ -3,15 +3,14 @@
   <span flex></span>
   <md-button flex="none" ui-sref="groups">Grupos AMEP</md-button>
 
-  <md-button flex="none" ui-sref="login" class="md-raised" ng-if="session === false">
+  <md-button flex="none" ui-sref="login" class="md-raised" ng-if="!currentSession.id">
     <ng-md-icon icon="login" size="20"></ng-md-icon>
     Iniciar sessão
   </md-button>
-  <md-button flex="none" ui-sref="signUp" ng-if="session === false"
-             ui-sref-opts="{reload:true}">Criar conta
+  <md-button flex="none" ui-sref="signUp" ng-if="!currentSession.id">Criar conta
   </md-button>
 
-  <md-button flex="none" ui-sref="agenda" class="md-raised" ng-if="session">
+  <md-button flex="none" ui-sref="agenda" class="md-raised"  ng-if="currentSession.id">
     <ng-md-icon icon="home" size="20"></ng-md-icon>
     Início
   </md-button>

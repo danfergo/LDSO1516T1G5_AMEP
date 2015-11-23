@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   # resources :cycles, except: [:new, :edit]
   scope '/api/v1' do
-    resources :groups, only: [:index, :create]
+    resources :groups, only: [:index, :create, :show]
     resources :cities, only: [:index]
     resources :prossumers, only: [:create]
     get '/confirm-account/', to: 'prossumers#confirm_account'

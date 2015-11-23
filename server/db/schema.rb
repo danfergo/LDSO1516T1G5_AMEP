@@ -42,8 +42,6 @@ ActiveRecord::Schema.define(version: 20151118220104) do
   add_index "groups", ["cities_id"], name: "index_groups_on_cities_id", using: :btree
 
   create_table "groups_prossumers", id: false, force: :cascade do |t|
-    t.integer "groups_id"
-    t.integer "prossumers_id"
     t.integer "group_id"
     t.integer "prossumer_id"
     t.boolean "is_coordinator"
@@ -51,9 +49,7 @@ ActiveRecord::Schema.define(version: 20151118220104) do
   end
 
   add_index "groups_prossumers", ["group_id"], name: "index_groups_prossumers_on_group_id", using: :btree
-  add_index "groups_prossumers", ["groups_id"], name: "index_groups_prossumers_on_groups_id", using: :btree
   add_index "groups_prossumers", ["prossumer_id"], name: "index_groups_prossumers_on_prossumer_id", using: :btree
-  add_index "groups_prossumers", ["prossumers_id"], name: "index_groups_prossumers_on_prossumers_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.integer  "quantity"
