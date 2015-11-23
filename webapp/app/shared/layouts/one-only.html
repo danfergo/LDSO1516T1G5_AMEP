@@ -7,7 +7,12 @@
   </md-sidenav>
 
 
+
   <div layout="column" class="relative" flex  role="main">
+    <md-toolbar flex="none" amep-toolbar ng-if="!currentSession.id" class="md-hue-2">
+
+    </md-toolbar>
+
     <md-content class="md-default-theme"  flex="none" style="height:50px;" hide-gt-md ng-if="currentSession.id">
       <md-button ng-click="$mdSidenav('left').toggle()" aria-label="Menu" class="sidenav-left-toggle" >
         <ng-md-icon icon="menu"></ng-md-icon> MENU

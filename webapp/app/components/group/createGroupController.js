@@ -1,5 +1,5 @@
 angular.module('amep-groups').
-controller('createGroupController', ['$scope', 'Groups', '$mdDialog', '$mdToast', function ($scope, Groups, $mdDialog, $mdToast) {
+controller('createGroupController', ['$scope', 'Group', '$mdDialog', '$mdToast', function ($scope, Group, $mdDialog, $mdToast) {
   $scope.hide = function() {
     $mdDialog.hide();
   };
@@ -8,7 +8,7 @@ controller('createGroupController', ['$scope', 'Groups', '$mdDialog', '$mdToast'
 
   };
   $scope.ok = function() {
-    Groups.save($scope.group,function(group){
+    Group.save($scope.group,function(group){
       $mdToast.show(
         $mdToast.simple()
           .content('Novo grupo criado com o nome ' + group.name)
