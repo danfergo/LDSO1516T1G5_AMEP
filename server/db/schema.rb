@@ -16,6 +16,12 @@ ActiveRecord::Schema.define(version: 20151118220104) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "cities", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "cycles", force: :cascade do |t|
     t.datetime "start"
     t.datetime "end"
@@ -30,7 +36,10 @@ ActiveRecord::Schema.define(version: 20151118220104) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "cities_id"
   end
+
+  add_index "groups", ["cities_id"], name: "index_groups_on_cities_id", using: :btree
 
   create_table "groups_prossumers", id: false, force: :cascade do |t|
     t.integer "group_id"

@@ -1,4 +1,4 @@
-<div  layout-fill layout="column">
+<div layout-fill layout="column">
 
   <md-toolbar class="md-tall md-hue-2">
     <span flex></span>
@@ -22,7 +22,8 @@
   <md-content flex="none" flex-gt-md="auto">
 
     <menu-link ng-repeat="item in quickMenu">
-      <a class="md-button md-ink-ripple" ui-sref="{{item.state}}" style="margin:0;border-radius: 0;width:100%;">
+      <a class="md-button md-ink-ripple" ui-sref-active="active" ui-sref="{{item.state}}"
+         style="margin:0;border-radius: 0;width:100%;">
         <md-item-content md-ink-ripple layout="row" layout-align="start center">
           <div class="inset">
             <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
@@ -37,7 +38,8 @@
     <md-divider></md-divider>
     <md-subheader ng-if="groups().length > 1">Meus Grupos</md-subheader>
     <menu-link ng-if="groups().length > 0" ng-repeat="group in groups()">
-      <a class="md-button md-ink-ripple" ui-sref="group" style="margin:0;border-radius: 0;width:100%;">
+      <a class="md-button md-ink-ripple" ui-sref-active="active" ui-sref="group({groupId: group.id })"
+         style="margin:0;border-radius: 0;width:100%;">
         <md-item-content md-ink-ripple layout="row" layout-align="start center">
           <div class="inset">
             <div style="width:24px;"></div>
@@ -64,7 +66,8 @@
     <md-divider></md-divider>
     <md-subheader>Conta pessoal</md-subheader>
     <menu-link ng-repeat="item in accountMenu">
-      <a class="md-button md-ink-ripple" ui-sref="{{item.state}}" style="margin:0;border-radius: 0;width:100%;">
+      <a class="md-button md-ink-ripple" ui-sref-active="active" ui-sref="{{item.state}}"
+         style="margin:0;border-radius: 0;width:100%;">
         <md-item-content md-ink-ripple layout="row" layout-align="start center">
           <div class="inset">
             <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
@@ -81,10 +84,10 @@
   <md-divider></md-divider>
   <footer flex="initial" style="height:150px; max-height:10%;text-align: center;">
     <md-content layout-padding>
-      <a ui-sref="home">Missão</a> &#183;
-      <a href="#TODO">Contacto</a> &#183;
-      <a ui-sref="groups">Encontrar Grupo</a><br>
-      <a href="#TODO">Reportar</a>
+      <a ui-sref-active="active" ui-sref="home">Missão</a> &#183;
+      <a ui-sref-active="active" href="#TODO">Contacto</a> &#183;
+      <a ui-sref-active="active" ui-sref="groups">Pesquisar grupo</a><br>
+      <a ui-sref-active="active" href="#TODO">Reportar</a>
     </md-content>
 
   </footer>

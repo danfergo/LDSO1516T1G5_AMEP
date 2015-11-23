@@ -1,7 +1,6 @@
 angular.module('amep-model').
-factory('Groups', ['$resource', '$cacheFactory', function ($resource, $cacheFactory) {
-
-  var resource = $resource('/api/v1/groups/');
-
-  return resource;
+factory('Group', ['$resource', function($resource) {
+  return $resource('/api/v1/groups/:groupId', null, {
+    'update': { method:'PUT' }
+  });
 }]);
