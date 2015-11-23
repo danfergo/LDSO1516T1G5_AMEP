@@ -335,12 +335,12 @@ module.exports = function (grunt) {
       }
     },
     concat: {
-      generated: {
+      dist: {
         files: [
           {
             dest: '.tmp/concat/scripts/scripts.js',
             src: [
-              '<%= yeoman.dist %>/**/*.js', '<%= ngtemplates.dist.dest %>'
+              '<%= yeoman.app %>/**/*.js',  '<%= ngtemplates.dist.dest %>'
             ]
           }
         ]
@@ -395,7 +395,7 @@ module.exports = function (grunt) {
         },
         cwd: '<%= yeoman.app %>',
         src: '**/*.html',
-        dest: '<%= yeoman.app %>/.tmp/templateCache.js'
+        dest: '.tmp/concat/scripts/templateCache.js'
       }
     },
 
@@ -510,6 +510,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:server',
     'wiredep',
+    'angularFileLoader',
     'concurrent:test',
     'autoprefixer',
     'configureProxies',
@@ -520,6 +521,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'wiredep',
+    'angularFileLoader',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',

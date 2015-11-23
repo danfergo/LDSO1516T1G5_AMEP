@@ -1,5 +1,6 @@
 angular.module('amep-sidebar', []).
 controller('SidebarController', ['$scope', 'Session', '$mdSidenav', function ($scope, Session, $mdSidenav) {
+
   $scope.$mdSidenav = $mdSidenav;
   $scope.session = false;
 
@@ -34,26 +35,12 @@ controller('SidebarController', ['$scope', 'Session', '$mdSidenav', function ($s
   ];
 
 }]).
-directive('amepSidebar', ['Session', '$rootScope', function (Session) {
-  function link(scope) {
-
-    scope.$watch(function () {
-      return Session.getSessionInCache();
-    }, function (value) {
-      if (value && value[0] == 200) { // resolved
-        $('body').removeClass('no-sidenav-left');
-      } else { //rejected
-        $('body').addClass('no-sidenav-left');
-        scope.$mdSidenav('left').close();
-      }
-    });
-  }
-
+directive('amepSidebar', ['Session', function (Session) {
   return {
     restrict: 'A',  // Forces the directive to be an attribute.
-    link: link,
     controller: 'SidebarController',
-    templateUrl: '/shared/sidebar/sidebar.html'
+    templateUrl: '/shared/sidebar/sidebar.html',
+    scope: false
   };
 }]);
 
