@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :update, :destroy]
-  before_filter :is_authenticated, except: [:index,:show]
+  before_filter :is_authenticated, except: [:index, :show]
 
   # GET /groups
   # GET /groups.json
@@ -12,7 +12,7 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
-    render json: @group
+    render json: @group.as_json({detailed: true})
   end
 
   # POST /groups
@@ -20,6 +20,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     if @group.save
+      #state 2 - activated by default
       groupsProssumer = GroupsProssumer.new group_id: @group.id, prossumer_id: session[:prossumer_id], state: 2, is_coordinator: true
       groupsProssumer.save
       render json: @group, status: :created
@@ -50,12 +51,12 @@ class GroupsController < ApplicationController
 
   private
 
-    def set_group
-      @group = Group.find(params[:id])
-    end
+  def set_group
+    @group = Group.find(params[:id])
+  end
 
-    def group_params
-      params.require(:name)
-      params.permit(:name)
-    end
+  def group_params
+    params.require(:name)
+    params.permit(:name)
+  end
 end
