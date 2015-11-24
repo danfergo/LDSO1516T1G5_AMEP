@@ -37,10 +37,13 @@ class Prossumer < ActiveRecord::Base
   end
 
   def as_json(options={})
-    options[:except] ||= [:encrypted_password, :salt, :confirm_hash]
+
+    options[:except] = [:encrypted_password, :salt, :confirm_hash]
     options[:include] ||= [:groups, :products]
     super
   end
 
 
 end
+
+

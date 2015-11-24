@@ -28,6 +28,11 @@ controller('SidebarController', ['$scope', 'Session', '$mdSidenav', function ($s
       icon: 'local_mall'
     },
     {
+      state: 'history',
+      title: 'Histórico',
+      icon: 'history'
+    },
+    {
       state: 'settings',
       title: 'Definições',
       icon: 'settings'
