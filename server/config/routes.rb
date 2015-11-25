@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
 
+  resources :groups, except: [:new, :edit]
   # resources :cycles, except: [:new, :edit]
   scope '/api/v1' do
-    resources :groups, only: [:index, :create, :show]
     resources :cities, only: [:index]
     resources :prossumers, only: [:create]
     get '/confirm-account/', to: 'prossumers#confirm_account'
@@ -11,6 +11,11 @@ Rails.application.routes.draw do
     delete '/session/', to: 'session#delete'
 
     resources :products, only: [:index, :create]
+
+    resources :groups, only: [:index, :create, :show] do
+        resources :groups_prossumers, path: "prossumers", only: [:index,:show, :create]
+    end
+
 
   end
 
