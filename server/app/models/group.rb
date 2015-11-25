@@ -9,4 +9,6 @@ class Group < ActiveRecord::Base
   has_many :products, through: :product_auths
 
   validates :name, uniqueness: true
+
+
 end
