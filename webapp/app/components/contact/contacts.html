@@ -1,0 +1,39 @@
+<div layout-fill layout="column" layout-align="center center" class="md-default-theme" ng-if="!showConfirmationMessage">
+  <md-card class="md-whiteframe-1dp" style="width:450px;">
+    <md-card-content layout-padding>
+      <form name="contactForm" flex-gt-md >
+        <h1 class="md-title">Contacte-nos</h1>
+        <md-input-container flex>
+
+          <label>Assunto</label>
+          <input ng-model="assunto" type="text" name="assunto" ng-required="true">
+
+          <div class="custom-messages">
+            <div ng-repeat="message in errorMessages.assunto">{{message}}</div>
+          </div>
+
+
+        </md-input-container>
+        <md-input-container flex>
+
+          <label>Mensagem</label>
+          <textarea ng-model="myMessage" type="text" name="myMessage" columns="1" md-maxlength="150" rows="5"></textarea>
+
+          <div class="custom-messages">
+            <div ng-repeat="message in errorMessages.myMessage">{{message}}</div>
+          </div>
+
+
+        </md-input-container>
+        <md-input-container flex>
+          <md-button style="margin-left:0; margin-right:0;" type="button"
+                     class="md-raised md-primary"
+                     ng-disabled="!contactForm.$valid"
+                     ng-click="contactSend(assunto, myMessage)"
+                     flex>Enviar
+          </md-button>
+        </md-input-container>
+      </form>
+    </md-card-content>
+  </md-card>
+</div>
