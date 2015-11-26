@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
 
+  resources :groups, except: [:new, :edit]
+  # resources :cycles, except: [:new, :edit]
   scope '/api/v1' do
-    resources :groups, only: [:index, :create, :show]
     resources :cities, only: [:index]
     resources :prossumers, only: [:create]
     get '/confirm-account/', to: 'prossumers#confirm_account'
@@ -11,9 +12,13 @@ Rails.application.routes.draw do
 
     resources :products, only: [:index, :create]
 
+    resources :groups, only: [:index, :create, :show] do
+        resources :groups_prossumers, path: "prossumers", only: [:index,:show, :create]
+    end
 
-    resources :cycles, except: [:new, :edit]
 
   end
 
+  # match all paths with index. we love rails <3
+  match '(*foo)', to: 'index#index', via: [:get]
 end
