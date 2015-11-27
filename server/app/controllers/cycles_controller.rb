@@ -54,6 +54,6 @@ class CyclesController < ApplicationController
     end
 
     def cycle_params
-      params.require(:cycle).permit(:start, :end)
+      #params.require(:cycle).permit(:start, :end)
     end
 end
