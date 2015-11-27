@@ -13,8 +13,8 @@ City.create([
             ])
 
 Group.create([
-    {name: 'Hello Green', cities_id: 1},
-    {name: 'Weed Us', cities_id: 2},
-    {name: 'Social Impact', cities_id: 1},
-    {name: 'Titanicos', cities_id: 3}
+    {name: 'Hello Green', city_id: 1},
+    {name: 'Weed Us', city_id: 2},
+    {name: 'Social Impact', city_id: 1},
+    {name: 'Titanicos', city_id: 3}
              ])
