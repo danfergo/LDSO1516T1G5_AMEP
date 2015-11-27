@@ -4,15 +4,18 @@
       <form name="contactForm" flex-gt-md >
         <h1 class="md-title">Contacte-nos</h1>
         <md-input-container flex>
-
-          <label>Assunto</label>
-          <input ng-model="assunto" type="text" name="assunto" ng-required="true">
-
+          <label>Telemóvel (opcional)</label>
+          <input ng-model="tlm" type="text" name="tlm" ng-required="false"/>
           <div class="custom-messages">
             <div ng-repeat="message in errorMessages.assunto">{{message}}</div>
           </div>
-
-
+        </md-input-container>
+        <md-input-container flex>
+          <label>Assunto</label>
+          <input ng-model="assunto" type="text" name="assunto" ng-required="true"/>
+          <div class="custom-messages">
+            <div ng-repeat="message in errorMessages.assunto">{{message}}</div>
+          </div>
         </md-input-container>
         <md-input-container flex>
 
