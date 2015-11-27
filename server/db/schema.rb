@@ -36,10 +36,10 @@ ActiveRecord::Schema.define(version: 20151118220104) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "cities_id"
+    t.integer  "city_id"
   end
 
-  add_index "groups", ["cities_id"], name: "index_groups_on_cities_id", using: :btree
+  add_index "groups", ["city_id"], name: "index_groups_on_city_id", using: :btree
 
   create_table "groups_prossumers", id: false, force: :cascade do |t|
     t.integer "group_id"
