@@ -7,5 +7,9 @@ factory('Prossumer', ['$resource', '$http', function ($resource, $http) {
     return $http.get('/api/v1/confirm-account?id='+params.id+'&hash='+params.hash).then(successCallback, errorCallback);
   }
 
+  resource.updateSettings = function (name, email, phone) {
+    return $http.get('/api/v1/confirm-account?id='+params.id+'&hash='+params.hash).then(successCallback, errorCallback);
+  }
+
   return resource;
 }]);

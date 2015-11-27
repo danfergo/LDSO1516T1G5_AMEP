@@ -1,1 +1,74 @@
-settings
+<div layout="column" ng-cloak>
+  <md-content layout-padding>
+    <form name="userSettingsForm" flex-gt-md >
+      <h1 class="md-title">Settings</h1>
+      <md-input-container flex>
+
+        <label>Nome</label>
+        <input ng-model="name" type="text" name="name" ng-required="true">
+
+        <div class="custom-messages">
+          <div ng-repeat="message in errorMessages.name">{{message}}</div>
+        </div>
+
+
+      </md-input-container>
+      <md-input-container flex>
+        <label>Email</label>
+        <input ng-model="email" type="email" name="email" ng-required="true">
+
+        <div class="custom-messages">
+          <div ng-repeat="message in errorMessages.email">{{message}}</div>
+        </div>
+
+      </md-input-container>
+
+      <md-input-container flex>
+        <label>Contacto de telefone ou telemóvel</label>
+        <input ng-model="phone" type="text" name="text" ng-required="false">
+
+        <div class="custom-messages">
+          <div ng-repeat="message in errorMessages.phone">{{message}}</div>
+        </div>
+
+      </md-input-container>
+
+      <md-input-container flex layout="row" >
+        <md-button  type="button"
+                   class="md-raised md-primary"
+                   ng-disabled="!userSettingsForm.$valid"
+                   ng-click="saveSettingsChanges(name,email,password,phone)"
+                    layout-padding>Guardar
+        </md-button>
+      </md-input-container>
+
+
+      <!--
+      <md-input-container flex>
+        <label>Nova Palavra-passe</label>
+        <input ng-model="password" type="password" name="password" ng-required="false">
+
+        <div class="custom-messages">
+          <div ng-repeat="message in errorMessages.password">{{message}}</div>
+        </div>
+
+      </md-input-container>
+      <md-input-container flex>
+        <label>Repetir Nova Palavra-passe</label>
+        <input ng-model="confirm_password" type="password" name="password" ng-required="flase">
+      </md-input-container>
+
+      <md-input-container flex>
+        <md-button style="margin-left:0; margin-right:0;" type="button"
+                   class="md-raised md-primary"
+                   ng-disabled="!signUpForm.$valid"
+                   ng-click="signUp(name,email,password,phone)"
+                   flex>Criar conta
+        </md-button>
+      </md-input-container>
+
+      -->
+
+    </form>
+  </md-content>
+</div>

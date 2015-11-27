@@ -41,8 +41,8 @@
               <md-item ng-repeat="item in groups | filter:search.who" >
                 <md-item-content>
                   <div layout="row">
-                    <div flex="70"><h4>{{item.name}}</h4></div>
-                    <div flex="30" style="padding-top: 7px">{{cities[item.cities_id].name}}</div>
+                    <div flex="70"><h4 ui-sref="group({groupId:item.id})">{{item.name}}</h4></div>
+                    <div flex="30" style="padding-top: 7px">{{cities[item.cities_id-1].name}}</div>
                   </div>
 
 
