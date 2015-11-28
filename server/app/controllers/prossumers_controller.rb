@@ -1,6 +1,8 @@
 class ProssumersController < ApplicationController
+
   before_action :set_prossumer, only: [:show, :destroy]
   before_action :not_is_authenticated, only: [:confirm_account]
+  before_action :is_authenticated, only:[:update]
   before_action :prossumer_confirm_params, only: [:confirm_account]
 
   # GET /prossumers
@@ -35,7 +37,7 @@ class ProssumersController < ApplicationController
   def update
     @prossumer = Prossumer.find(params[:id])
 
-    if @prossumer.update(prossumer_params)
+    if @prossumer.update(prossumer_updated_params)
       head :no_content
     else
       render json: @prossumer.errors, status: :unprocessable_entity
@@ -67,20 +69,17 @@ class ProssumersController < ApplicationController
     end
   end
 
-
-
-
-
-
   private
+
   def set_prossumer
-    @prossumer = Prossumer.find_by_email(params[:id])
+    @prossumer = Prossumer.find(params[:id])
   end
+
+
 
   def prossumer_confirm_params
     params.require(:id)
     params.require(:hash)
-    params
   end
 
   def prossumer_params
@@ -89,4 +88,10 @@ class ProssumersController < ApplicationController
     params.require(:password)
     params.permit(:email, :name, :password, :phone)
   end
+
+  def prossumer_updated_params
+    params.permit(:email, :name, :phone, :password)
+  end
+
+
 end
