@@ -3,10 +3,7 @@ class GroupsProssumer < ActiveRecord::Base
   belongs_to :prossumer
 
 
-  def as_json(options={})
 
-    super
-  end
 
   def as_json(options={})
     if (options[:include_prossumer] == true)
