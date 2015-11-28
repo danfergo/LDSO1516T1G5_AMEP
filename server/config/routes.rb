@@ -5,8 +5,11 @@ Rails.application.routes.draw do
   # resources :cycles, except: [:new, :edit]
   scope '/api/v1' do
     resources :cities, only: [:index]
-    resources :prossumers, only: [:create]
+
+    resources :prossumers, only: [:create, :update]
+
     get '/confirm-account/', to: 'prossumers#confirm_account'
+
     resources :session, only: [:index, :create, :destroy]
     delete '/session/', to: 'session#delete'
 
