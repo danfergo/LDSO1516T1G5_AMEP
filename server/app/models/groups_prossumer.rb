@@ -4,6 +4,8 @@ class GroupsProssumer < ActiveRecord::Base
 
   validates_uniqueness_of :group_id, scope: [:prossumer_id]
 
+
+
   def as_json(options={})
     if (options[:include_prossumer] == true)
       options[:include] = {
