@@ -49,9 +49,6 @@ class GroupsProssumersController < ApplicationController
   private
 
     def set_groups_prossumer
-      puts "-------------"
-      puts GroupsProssumer.where({prossumer_id: params[:id], group_id: params[:group_id]}).as_json
-
       @group_prossumer = GroupsProssumer.where({prossumer_id: params[:id], group_id: params[:group_id]}).first
     end
 

@@ -5,17 +5,26 @@ controller('groupController', ['$scope', '$state', 'currentGroup', '$mdDialog', 
   $scope.group = currentGroup;
   $scope.currentSession = currentSession;
   $scope.currentProssumerState = false;
-  if (currentSession.id)
-  Group.Prossumer.get({groupId: $scope.group.id, prossumerId: $scope.currentSession.id}, function (state) {
+
+  function getCurrentProssumerState (){
+    Group.Prossumer.get({groupId: $scope.group.id, prossumerId: $scope.currentSession.id}, function (state) {
       $scope.currentProssumerState = state;
-  })
+    })
+  }
+
+  if (currentSession.id) getCurrentProssumerState();
+
+
+
+
+
 
 
   $scope.joinGroup = function (ev) {
-    var message = 'Se ainda não o fizeste sugerimos-te que entres em contacto com os <br>responsáveis do grupo e te apresentes.';
+    var message = 'A tua adesão ficará pendente da confirmação dos responsáveis do grupo.<br>Se ainda não o fizeste sugerimos-te que entres em contacto com os <br>responsáveis do grupo e te apresentes.';
 
     var confirm = $mdDialog.confirm()
-      .title('Estás prestes a aderir ao grupo "' + $scope.group.name + '"')
+      .title('Estás prestes juntar-te ao grupo "' + $scope.group.name + '"')
       .content(message)
       .ariaLabel('Novo grupo')
       .targetEvent(ev)
@@ -25,6 +34,7 @@ controller('groupController', ['$scope', '$state', 'currentGroup', '$mdDialog', 
     $mdDialog.show(confirm).then(function () {
 
       Group.Prossumer.save({},{groupId: $scope.group.id}, function (group) {
+        getCurrentProssumerState();
         $mdToast.show(
           $mdToast.simple()
             .content('Pedido de adesão enviado ')
@@ -34,4 +44,18 @@ controller('groupController', ['$scope', '$state', 'currentGroup', '$mdDialog', 
 
     });
   }
+
+  $scope.msgJoinGroupPending = function (ev) {
+    var message = 'A tua adesão está pendente da confirmação dos responsáveis do grupo.<br>Se ainda não o fizeste sugerimos-te que entres em contacto com os <br>responsáveis do grupo e te apresentes.';
+
+    var dialog = $mdDialog.alert()
+      .title('A tua adesão ao "' + $scope.group.name + '" aguarda confirmação')
+      .content(message)
+      .ariaLabel('Adesão a grupo pendente')
+      .targetEvent(ev)
+      .ok('Fechar');
+
+    $mdDialog.show(dialog);
+  }
+
 }]);
