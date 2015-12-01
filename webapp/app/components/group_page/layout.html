@@ -2,7 +2,7 @@
   <h1  flex style="max-width:1200px;padding-top:50px;padding-left: 30px; margin:0; font-size:28px;">{{group.name}}</h1>
 </md-toolbar>
 
-<md-whiteframe class="md-whiteframe-2dp">
+<md-whiteframe class="md-whiteframe-2dp" style="max-width:1200px;">
   <md-toolbar flex="none" layout="row" style="min-height:45px;">
       <md-tabs md-dynamic-height md-center-tabs flex>
         <md-tab label="Montra" ui-sref-active="showcase" ui-sref="showcase">
@@ -19,8 +19,18 @@
     <md-button class="md-fab" aria-label="Aderir ao grupo" ng-if="currentSession.id && currentProssumerState && !currentProssumerState.prossumer_id"
                ng-click="joinGroup($event)"
                style="position:absolute;bottom:-32px;right:7%;">
-      <ng-md-icon icon="add"></ng-md-icon>
+      <ng-md-icon icon="person_add"></ng-md-icon>
     </md-button>
+
+    <md-button class="md-fab"
+               aria-label="Adesão pendente" ng-if="currentSession.id && currentProssumerState && currentProssumerState.state == 1"
+               ng-click="msgJoinGroupPending($event)"
+               style="position:absolute;bottom:-32px;right:7%;background:#eee;color:#999;">
+      <ng-md-icon icon="person_outline"></ng-md-icon>
+    </md-button>
+
+
+
   </md-toolbar>
 </md-whiteframe>
 

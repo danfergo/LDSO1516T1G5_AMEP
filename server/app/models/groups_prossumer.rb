@@ -2,6 +2,7 @@ class GroupsProssumer < ActiveRecord::Base
   belongs_to :group
   belongs_to :prossumer
 
+  validates_uniqueness_of :group_id, scope: [:prossumer_id]
 
 
 
