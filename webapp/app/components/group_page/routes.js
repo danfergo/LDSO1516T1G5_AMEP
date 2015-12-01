@@ -29,6 +29,12 @@ config(function ($stateProvider,$urlRouterProvider) {
     controller: 'groupHistoryController',
     templateUrl: 'components/group_page/history.html'
   }).
+  state('cicle', {
+    parent: 'group',
+    url: '/cicle',
+    controller: 'groupCicleController',
+    templateUrl: 'components/group_page/cicle.html'
+  }).
   state('about', {
     parent: 'group',
     url: '/about',
