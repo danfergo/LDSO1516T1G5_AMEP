@@ -5,7 +5,7 @@ class GroupsProssumersController < ApplicationController
   # GET /groups_prossumers
   # GET /groups_prossumers.json
   def index
-    render json: @group_prossumer.as_json({include_prossumer: true})
+    render json: GroupsProssumer.where({group_id: params[:group_id]}).as_json({include_prossumer: true})
   end
 
   # GET /groups_prossumers/1
