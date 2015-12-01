@@ -3,13 +3,22 @@
     <md-card-content layout-padding>
       <form name="contactForm" flex-gt-md >
         <h1 class="md-title">Contacte-nos</h1>
-        <md-input-container flex>
-          <label>Telemóvel (opcional)</label>
-          <input ng-model="tlm" type="text" name="tlm" ng-required="false"/>
-          <div class="custom-messages">
-            <div ng-repeat="message in errorMessages.assunto">{{message}}</div>
-          </div>
+
+        <md-input-container flex ng-if="!currentSession.id">
+          <label>Nome</label>
+          <input ng-model="nome" type="text" name="nome" ng-required="true"/>
         </md-input-container>
+
+        <md-input-container flex ng-if="!currentSession.id">
+          <label>Email</label>
+          <input ng-model="email" type="text" name="email" ng-required="true"/>
+        </md-input-container>
+
+        <md-input-container flex ng-if="!currentSession.id">
+          <label>Tlm</label>
+          <input ng-model="tlm" type="text" name="tlm" ng-required="false"/>
+        </md-input-container>
+
         <md-input-container flex>
           <label>Assunto</label>
           <input ng-model="assunto" type="text" name="assunto" ng-required="true"/>
@@ -17,26 +26,26 @@
             <div ng-repeat="message in errorMessages.assunto">{{message}}</div>
           </div>
         </md-input-container>
+
         <md-input-container flex>
-
           <label>Mensagem</label>
-          <textarea ng-model="myMessage" type="text" name="myMessage" columns="1" md-maxlength="150" rows="5"></textarea>
-
+          <textarea ng-model="myMessage" type="text" name="myMessage" columns="1" md-maxlength="150" rows="5" ng-required="true"></textarea>
           <div class="custom-messages">
             <div ng-repeat="message in errorMessages.myMessage">{{message}}</div>
           </div>
-
-
         </md-input-container>
+
         <md-input-container flex>
+          <span style="color:#f00">{{error}}</span>
           <md-button style="margin-left:0; margin-right:0;" type="button"
-                     class="md-raised md-primary"
-                     ng-disabled="!contactForm.$valid"
-                     ng-click="contactSend(assunto, myMessage)"
-                     flex>Enviar
-          </md-button>
-        </md-input-container>
-      </form>
-    </md-card-content>
-  </md-card>
+          class="md-raised md-primary"
+          ng-disabled="!contactForm.$valid"
+          ng-click="contactSend(nome, email, tlm, assunto, myMessage)"
+          flex>Enviar
+        </md-button>
+      </md-input-container>
+
+    </form>
+  </md-card-content>
+</md-card>
 </div>
