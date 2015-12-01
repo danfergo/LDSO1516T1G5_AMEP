@@ -12,7 +12,7 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
-    render json: @group.as_json({detailed: true})
+    render json: @group
   end
 
   # POST /groups
