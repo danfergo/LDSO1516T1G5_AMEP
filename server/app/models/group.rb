@@ -10,5 +10,9 @@ class Group < ActiveRecord::Base
 
   validates :name, uniqueness: true
 
+  def as_json(options={})
+    options[:include] = {:city => {:only =>[:name]}}
+    super
+  end
 
 end
