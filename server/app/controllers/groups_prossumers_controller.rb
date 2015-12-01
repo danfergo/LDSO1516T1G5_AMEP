@@ -53,6 +53,7 @@ class GroupsProssumersController < ApplicationController
     end
 
     def groups_prossumer_params
+      params[:prossumer_id]
       params[:id]
     end
 end

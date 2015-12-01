@@ -50,16 +50,16 @@ ProductAuth.create([
   ])
 
 Cycle.create([
-  {start: DateTime.new(2015,11,29),end: DateTime.new(2015,12,20),group_id: 1},
-  {start: DateTime.new(2015,12,20),end: DateTime.new(2016,1,3),group_id: 1} 
+  {start_time: DateTime.new(2015,11,29),end_time: DateTime.new(2015,12,20),group_id: 1},
+  {start_time: DateTime.new(2015,12,20),end_time: DateTime.new(2016,1,3),group_id: 1}
   ])
 
 Week.create([
-  {number: 1,cycle_id: 1},
-  {number: 2,cycle_id: 1},
-  {number: 3,cycle_id: 1},
-  {number: 1,cycle_id: 2},
-  {number: 2,cycle_id: 2}
+  {number: 1,cycle_id: 1,delivery_date: DateTime.new(2015,12,05)},
+  {number: 2,cycle_id: 1,delivery_date: DateTime.new(2015,12,10)},
+  {number: 3,cycle_id: 1,delivery_date: DateTime.new(2015,12,17)},
+  {number: 1,cycle_id: 2,delivery_date: DateTime.new(2015,12,15)},
+  {number: 2,cycle_id: 2,delivery_date: DateTime.new(2015,12,30)}
   ])
 
 Stock.create([
@@ -67,7 +67,7 @@ Stock.create([
   ])
 
 Order.create([
-  {quantity: 2,prossumer_id: 2, stock_id: 1}
+  {quantity: 2,prossumer_id: 1, stock_id: 1}
   ])
 
 
