@@ -11,13 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20151126104243) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contact_forms", force: :cascade do |t|
+    t.string   "assunto"
+    t.string   "myMessage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "message"
+    t.string   "subject"
+    t.string   "cell"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -36,10 +55,10 @@ ActiveRecord::Schema.define(version: 20151126104243) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "cities_id"
+    t.integer  "city_id"
   end
 
-  add_index "groups", ["cities_id"], name: "index_groups_on_cities_id", using: :btree
+  add_index "groups", ["city_id"], name: "index_groups_on_city_id", using: :btree
 
   create_table "groups_prossumers", id: false, force: :cascade do |t|
     t.integer "group_id"
