@@ -1,13 +1,11 @@
 angular.module('amep-contacts').
-controller('contactController', ['$scope', 'currentSession', '$http', '$mdToast',function ($scope, currentSession, $http, $mdToast) {
+controller('contactController', ['$scope', 'currentSession', '$http', '$mdToast', '$state',function ($scope, currentSession, $http, $mdToast, $state) {
   $scope.currentSession = currentSession;
   $scope.error = null;
 
   $scope.contactSend = function (nome, email, tlm, assunto, myMessage) {
     $scope.error = null;
-    $scope.email = angular.copy(email);
-    console.log($scope.nome);
-    console.log($scope.email);
+    console.log(assunto);
     $http.post('/api/v1/contact-form', {
       nome: nome,
       email: email,
@@ -20,6 +18,7 @@ controller('contactController', ['$scope', 'currentSession', '$http', '$mdToast'
           .content('A sua mensagem foi enviada!')
           .hideDelay(1000)
       );
+      $state.go('agenda', {}, {reload: true});
     }, function(){
       $scope.error = "Erro: Tente mais tarde!";
     });
