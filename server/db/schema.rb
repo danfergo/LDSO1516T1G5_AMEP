@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118220104) do
+ActiveRecord::Schema.define(version: 20151201182141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,11 +23,12 @@ ActiveRecord::Schema.define(version: 20151118220104) do
   end
 
   create_table "cycles", force: :cascade do |t|
-    t.datetime "start"
-    t.datetime "end"
     t.integer  "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "title"
+    t.datetime "start_time"
+    t.datetime "end_time"
   end
 
   add_index "cycles", ["group_id"], name: "index_cycles_on_group_id", using: :btree
@@ -36,10 +37,10 @@ ActiveRecord::Schema.define(version: 20151118220104) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "cities_id"
+    t.integer  "city_id"
   end
 
-  add_index "groups", ["cities_id"], name: "index_groups_on_cities_id", using: :btree
+  add_index "groups", ["city_id"], name: "index_groups_on_city_id", using: :btree
 
   create_table "groups_prossumers", id: false, force: :cascade do |t|
     t.integer "group_id"
@@ -118,8 +119,9 @@ ActiveRecord::Schema.define(version: 20151118220104) do
   create_table "weeks", force: :cascade do |t|
     t.integer  "number"
     t.integer  "cycle_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.datetime "delivery_date"
   end
 
   add_index "weeks", ["cycle_id"], name: "index_weeks_on_cycle_id", using: :btree
