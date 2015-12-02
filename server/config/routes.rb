@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     delete '/session/', to: 'session#delete'
 
 
-    resources :prossumers, only: [:create] do
+    resources :prossumers, only: [:create, :update] do
       resources :products, only: [:index, :create]
       resources :agenda, only: [:index]
     end

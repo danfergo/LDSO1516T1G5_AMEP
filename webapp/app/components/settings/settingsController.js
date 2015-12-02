@@ -1,10 +1,11 @@
 angular.module('amep-settings').
 controller('settingsController', ['$scope', 'Prossumer', 'currentSession', '$mdToast', function ($scope, Prossumer, currentSession, $mdToast, $mdDialog) {
 
-  $scope.name = currentSession.name;
-  $scope.phone = currentSession.phone;
+  $scope.name = angular.copy(currentSession.name);
+  $scope.phone = angular.copy(currentSession.phone);
   $scope.currentPassword = null;
   $scope.newPassword = null;
+
 
   $scope.isProfileChangeDisable = function () {
     if (
@@ -31,12 +32,12 @@ controller('settingsController', ['$scope', 'Prossumer', 'currentSession', '$mdT
 
         currentSession.name = angular.copy($scope.name);
         currentSession.phone = angular.copy($scope.phone);
-        sendMessage('Alteração de perfil efectuado com sucesso');
+
+        sendMessage(data.status);
 
       }, function (error) {
 
         sendMessage('Falha na alteração de perfil (erro ' + error.status + ')');
-        console.log(error);
       }
     );
   }
@@ -46,13 +47,14 @@ controller('settingsController', ['$scope', 'Prossumer', 'currentSession', '$mdT
     Prossumer.update({id: currentSession.id, currentPassword: $scope.currentPassword, password: $scope.newPassword},
       function (data) {
 
-        sendMessage('Alteração de perfil efectuado com sucesso');
+        $scope.currentPassword = null;
+        $scope.newPassword = null;
+
+        sendMessage(data.status);
 
       }, function (error) {
 
-        sendMessage('Falha na alteração de perfil (erro ' + error.status + ')');
-
-        console.log(error);
+        sendMessage('Falha na alteração da palavra-passe (erro ' + error.status + ')');
       }
     );
   }
