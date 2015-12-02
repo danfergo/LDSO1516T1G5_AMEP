@@ -1,74 +1,64 @@
-<div layout="column" ng-cloak>
-  <md-content layout-padding>
-    <form name="userSettingsForm" flex-gt-md >
-      <h1 class="md-title">Settings</h1>
-      <md-input-container flex>
+<md-content layout-padding>
+  <md-tabs md-dynamic-height md-border-bottom>
 
-        <label>Nome</label>
-        <input ng-model="name" type="text" name="name" ng-required="true">
+    <md-tab label="Perfil">
+      <md-content class="md-padding">
+        <form name="userProfileForm" flex-gt-md>
 
-        <div class="custom-messages">
-          <div ng-repeat="message in errorMessages.name">{{message}}</div>
-        </div>
-
-
-      </md-input-container>
-      <md-input-container flex>
-        <label>Email</label>
-        <input ng-model="email" type="email" name="email" ng-required="true">
-
-        <div class="custom-messages">
-          <div ng-repeat="message in errorMessages.email">{{message}}</div>
-        </div>
-
-      </md-input-container>
-
-      <md-input-container flex>
-        <label>Contacto de telefone ou telemóvel</label>
-        <input ng-model="phone" type="text" name="phone" ng-required="false">
-
-        <div class="custom-messages">
-          <div ng-repeat="message in errorMessages.phone">{{message}}</div>
-        </div>
-
-      </md-input-container>
-
-      <md-input-container flex layout="row" >
-        <md-button  type="button"
-                   class="md-raised md-primary"
-                   ng-disabled="isDisabled()"
-                    ng-click="saveSettingsChanges(name,email,phone)"
-                    layout-padding>Guardar
-        </md-button>
-      </md-input-container>
+          <md-input-container flex>
+            <label>Nome</label>
+            <input ng-model="name" type="text" name="name" ng-required="true">
+          </md-input-container>
 
 
-      <!--
-      <md-input-container flex>
-        <label>Nova Palavra-passe</label>
-        <input ng-model="password" type="password" name="password" ng-required="false">
+          <md-input-container flex>
+            <label>Contacto de telefone ou telemóvel</label>
+            <input ng-model="phone" type="text" name="phone" ng-required="false">
+          </md-input-container>
 
-        <div class="custom-messages">
-          <div ng-repeat="message in errorMessages.password">{{message}}</div>
-        </div>
+          <md-input-container flex layout="row">
+            <md-button type="button"
+                       class="md-raised md-primary"
+                       ng-disabled="isProfileChangeDisable()"
+                       ng-click="saveProfileChanges($event)"
+                       layout-padding>Guardar
+            </md-button>
+          </md-input-container>
 
-      </md-input-container>
-      <md-input-container flex>
-        <label>Repetir Nova Palavra-passe</label>
-        <input ng-model="confirm_password" type="password" name="password" ng-required="flase">
-      </md-input-container>
+        </form>
+      </md-content>
+    </md-tab>
 
-      <md-input-container flex>
-        <md-button style="margin-left:0; margin-right:0;" type="button"
-                   class="md-raised md-primary"
-                   ng-disabled="!signUpForm.$valid"
-                   ng-click="signUp(name,email,password,phone)"
-                   flex>Criar conta
-        </md-button>
-      </md-input-container>
+    <md-tab label="Palavra-passe">
+      <md-content class="md-padding">
+        <form name="userPasswordForm" flex-gt-md>
 
-      -->
+          <md-input-container flex>
+            <label>Palavra-passe actual</label>
+            <input ng-model="currentPassword" type="password" ng-required="true">
+          </md-input-container>
 
-    </form>
-  </md-content>
-</div>
+          <md-input-container flex>
+            <label>Nova palavra-passe</label>
+            <input ng-model="newPassword" type="password" ng-required="true">
+          </md-input-container>
+
+          <md-input-container flex layout="row">
+            <md-button type="button"
+                       class="md-raised md-primary"
+                       ng-disabled="!userPasswordForm.$valid"
+                       ng-click="savePasswordChanges($event)"
+                       layout-padding>Guardar
+            </md-button>
+          </md-input-container>
+
+        </form>
+      </md-content>
+    </md-tab>
+
+  </md-tabs>
+
+  <style>md-tabs-canvas{background: #4CAF50;}</style>
+
+</md-content>
+

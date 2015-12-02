@@ -12,8 +12,8 @@ config(function ($stateProvider, $urlRouterProvider) {
     data: {
       permissions: {
         only: ['prossumer'],
-        redirectTo: 'login'
       }
     }
   });
+
 });

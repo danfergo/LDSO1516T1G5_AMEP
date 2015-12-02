@@ -1,8 +1,8 @@
 class ProssumersController < ApplicationController
 
-  before_action :set_prossumer, only: [:show, :destroy]
+  before_action :set_prossumer, only: [:show, :destroy, :update]
   before_action :not_is_authenticated, only: [:confirm_account]
-  before_action :is_authenticated, only:[:update]
+  before_action :is_authenticated, only: [:update]
   before_action :prossumer_confirm_params, only: [:confirm_account]
 
   # GET /prossumers
@@ -35,13 +35,25 @@ class ProssumersController < ApplicationController
   # PATCH/PUT /prossumers/1
   # PATCH/PUT /prossumers/1.json
   def update
-    @prossumer = Prossumer.find(params[:id])
 
-    if @prossumer.update(prossumer_updated_params)
-      head :no_content
+    if params[:currentPassword] && params[:password]
+
+      if @prossumer.match_password(params[:currentPassword])
+        if @prossumer.update(params.permit(:password))
+          render json: {status: 'password_updated'}
+        else
+          render json: @prossumer.errors, status: :unprocessable_entity
+        end
+      else
+        render json: {status: 'wrong_password'}
+      end
+
+    elsif @prossumer.update(updatedProfile_params)
+      render json: {status: 'profile_updated'}
     else
       render json: @prossumer.errors, status: :unprocessable_entity
     end
+
   end
 
   # DELETE /prossumers/1
@@ -76,7 +88,6 @@ class ProssumersController < ApplicationController
   end
 
 
-
   def prossumer_confirm_params
     params.require(:id)
     params.require(:hash)
@@ -89,9 +100,10 @@ class ProssumersController < ApplicationController
     params.permit(:email, :name, :password, :phone)
   end
 
-  def prossumer_updated_params
-    params.permit(:email, :name, :phone, :password)
+  def updatedProfile_params
+    params.require(:name)
+    params.require(:phone)
+    params.permit(:name, :phone)
   end
-
 
 end
