@@ -3,6 +3,7 @@ controller('settingsController', ['$scope', 'Prossumer', 'currentSession', '$mdT
 
   $scope.name = angular.copy(currentSession.name);
   $scope.phone = angular.copy(currentSession.phone);
+
   $scope.currentPassword = null;
   $scope.newPassword = null;
 
@@ -33,7 +34,7 @@ controller('settingsController', ['$scope', 'Prossumer', 'currentSession', '$mdT
         currentSession.name = angular.copy($scope.name);
         currentSession.phone = angular.copy($scope.phone);
 
-        sendMessage(data.status);
+        sendMessage(data.message);
 
       }, function (error) {
 
@@ -47,10 +48,17 @@ controller('settingsController', ['$scope', 'Prossumer', 'currentSession', '$mdT
     Prossumer.update({id: currentSession.id, currentPassword: $scope.currentPassword, password: $scope.newPassword},
       function (data) {
 
-        $scope.currentPassword = null;
-        $scope.newPassword = null;
+        sendMessage(data.message);
 
-        sendMessage(data.status);
+        if (!data.error) {
+
+          $scope.currentPassword = null;
+          $scope.newPassword = null;
+
+          $scope.userPasswordForm.$setUntouched();
+          $scope.userPasswordForm.$setUntouched();
+        }
+
 
       }, function (error) {
 
