@@ -1,0 +1,12 @@
+<br>
+<h3>Recebeu uma nova mensagem de um utilizador da AMEP</h3>
+<br>
+<b>UTILIZADOR:</b> <%= @prossumer[:name] %> <br>
+<div ng-if="@prossumer[:phone]">
+<b>TELEFONE:</b> <%= @prossumer[:phone] %> <br>
+</div>
+<b>EMAIL:</b> <%= @prossumer[:email] %> <br> <br>
+<b>ASSUNTO:</b> <%= @assunto %> <br>
+<b>MENSAGEM:</b> <br>
+<%= @msg %> <br>
+<br><br><br>

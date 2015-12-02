@@ -1,5 +1,4 @@
 class SessionController < ApplicationController
-  before_filter :is_authenticated, :except => [:create, :index]
   after_filter :short_session
 
 

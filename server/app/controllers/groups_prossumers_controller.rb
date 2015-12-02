@@ -5,7 +5,7 @@ class GroupsProssumersController < ApplicationController
   # GET /groups_prossumers
   # GET /groups_prossumers.json
   def index
-    render json: @group_prossumer.as_json({include_prossumer: true})
+    render json: GroupsProssumer.where({group_id: params[:group_id]}).as_json({include_prossumer: true})
   end
 
   # GET /groups_prossumers/1
@@ -49,13 +49,11 @@ class GroupsProssumersController < ApplicationController
   private
 
     def set_groups_prossumer
-      puts "-------------"
-      puts GroupsProssumer.where({prossumer_id: params[:id], group_id: params[:group_id]}).as_json
-
       @group_prossumer = GroupsProssumer.where({prossumer_id: params[:id], group_id: params[:group_id]}).first
     end
 
     def groups_prossumer_params
+      params[:prossumer_id]
       params[:id]
     end
 end
