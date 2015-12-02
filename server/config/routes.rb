@@ -5,20 +5,21 @@ Rails.application.routes.draw do
   # resources :cycles, except: [:new, :edit]
   scope '/api/v1' do
     resources :cities, only: [:index]
-
-    resources :prossumers, only: [:create, :update]
-
     get '/confirm-account/', to: 'prossumers#confirm_account'
-
     resources :session, only: [:index, :create, :destroy]
     delete '/session/', to: 'session#delete'
 
-    resources :products, only: [:index, :create]
+
+    resources :prossumers, only: [:create] do
+      resources :products, only: [:index, :create]
+      resources :agenda, only: [:index]
+    end
+
 
     resources :groups, only: [:index, :create, :show] do
         resources :groups_prossumers, path: "prossumers", only: [:index,:show, :create]
     end
-
+    post '/contact-form/', to: 'contact_form#create'
 
   end
 
