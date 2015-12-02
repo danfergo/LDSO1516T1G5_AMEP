@@ -1,43 +1,60 @@
 angular.module('amep-settings').
-controller('settingsController', ['$scope', 'Prossumer', 'currentSession', function ($scope, Prossumer, currentSession) {
+controller('settingsController', ['$scope', 'Prossumer', 'currentSession', '$mdToast', function ($scope, Prossumer, currentSession, $mdToast, $mdDialog) {
 
-  //$scope.showConfirmationMessage = false;
+  $scope.name = currentSession.name;
+  $scope.phone = currentSession.phone;
+  $scope.currentPassword = null;
+  $scope.newPassword = null;
 
-  $scope.email = angular.copy(currentSession.email);
-  $scope.name = angular.copy(currentSession.name);
-  $scope.phone = angular.copy(currentSession.phone);
-
-  $scope.isDisabled = function() {
+  $scope.isProfileChangeDisable = function () {
     if (
-      $scope.email == currentSession.email &&
       $scope.name == currentSession.name &&
-      $scope.phone == currentSession.phone ||
-      !$scope.userSettingsForm.$valid
+      $scope.phone == currentSession.phone || !$scope.userProfileForm.$valid
     ) return true;
+    else
+      return false;
   }
 
-  $scope.saveSettingsChanges = function (name, email, phone) {
 
+  function sendMessage(message) {
+    $mdToast.show(
+      $mdToast.simple()
+        .content(message)
+        .hideDelay(2000)
+    );
+  }
 
-    $scope.errorMessages = null;
-/*
-    console.log(name);
-    console.log(email);
-    console.log(phone);
-    */
+  $scope.saveProfileChanges = function () {
 
-    Prossumer.updateSettings(currentSession.id, {name: name, email: email, phone: phone},
-
+    Prossumer.update({id: currentSession.id, name: $scope.name, phone: $scope.phone},
       function (data) {
 
-        currentSession.name = $scope.name;
-        currentSession.email = $scope.email;
-        currentSession.phone = $scope.phone;
+        currentSession.name = angular.copy($scope.name);
+        currentSession.phone = angular.copy($scope.phone);
+        sendMessage('Alteração de perfil efectuado com sucesso');
 
       }, function (error) {
 
-        $scope.errorMessages = error.data;
+        sendMessage('Falha na alteração de perfil (erro ' + error.status + ')');
+        console.log(error);
       }
     );
+  }
 
-  }}]);
+  $scope.savePasswordChanges = function () {
+
+    Prossumer.update({id: currentSession.id, currentPassword: $scope.currentPassword, password: $scope.newPassword},
+      function (data) {
+
+        sendMessage('Alteração de perfil efectuado com sucesso');
+
+      }, function (error) {
+
+        sendMessage('Falha na alteração de perfil (erro ' + error.status + ')');
+
+        console.log(error);
+      }
+    );
+  }
+
+}]);
