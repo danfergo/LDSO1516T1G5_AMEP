@@ -1,4 +1,4 @@
 angular.module('amep-group-page').
-controller('groupHistoryController', ['$scope', function ($scope) {
-
+controller('groupHistoryController', ['$scope', 'Cycle', function ($scope, Cycle) {
+    $scope.cycles=Cycle.query();
 }]);

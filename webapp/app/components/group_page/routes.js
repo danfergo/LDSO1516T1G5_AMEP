@@ -5,6 +5,8 @@ config(function ($stateProvider,$urlRouterProvider) {
   $urlRouterProvider.when('/group/:groupId/', '/group/:groupId/showcase');
 
 
+
+
   $stateProvider.
   state('group', {
     parent: 'loo',
@@ -28,12 +30,6 @@ config(function ($stateProvider,$urlRouterProvider) {
     url: '/history',
     controller: 'groupHistoryController',
     templateUrl: 'components/group_page/history.html'
-  }).
-  state('cicle', {
-    parent: 'group',
-    url: '/cicle',
-    controller: 'groupCicleController',
-    templateUrl: 'components/group_page/cicle.html'
   }).
   state('about', {
     parent: 'group',
