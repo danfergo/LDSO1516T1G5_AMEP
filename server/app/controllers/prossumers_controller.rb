@@ -40,16 +40,16 @@ class ProssumersController < ApplicationController
 
       if @prossumer.match_password(params[:currentPassword])
         if @prossumer.update(params.permit(:password))
-          render json: {status: 'password_updated'}
+          render json: {status: 'Alteração da palavra-passe efectuada com sucesso'}
         else
           render json: @prossumer.errors, status: :unprocessable_entity
         end
       else
-        render json: {status: 'wrong_password'}
+        render json: {status: 'Palavra-passe actual errada'}
       end
 
     elsif @prossumer.update(updatedProfile_params)
-      render json: {status: 'profile_updated'}
+      render json: {status: 'Alteração de perfil efectuada com sucesso'}
     else
       render json: @prossumer.errors, status: :unprocessable_entity
     end
@@ -64,7 +64,7 @@ class ProssumersController < ApplicationController
   end
 
   def confirm_account
-    @prossumer = Prossumer.find_by_id(prossumer_confirm_params[:id])
+    @prossumer = Prossumer.find(prossumer_confirm_params[:id])
     if (@prossumer)
       if @prossumer.confirm_hash
         if @prossumer.confirm_hash.to_s == prossumer_confirm_params[:hash].to_s
