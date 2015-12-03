@@ -6,7 +6,7 @@ controller('groupShowcaseController', ['$scope','$mdDialog', function ($scope,$m
         controller: 'manageCycleProductsController',
         templateUrl: 'components/group_page/manageCycleProducts.html',
         targetEvent: ev,
-        clickOutsideToClose:false,
+        clickOutsideToClose:true,
       })
       .then(function(answer) {
         $scope.status = 'You said the information was "' + answer + '".';
