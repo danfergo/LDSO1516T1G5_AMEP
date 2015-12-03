@@ -18,11 +18,12 @@ Rails.application.routes.draw do
 
     resources :groups, only: [:index, :create, :show] do
       resources :groups_prossumers, path: "prossumers", only: [:index,:show, :create]
+      resources :cycles, only: [:index, :create, :show]
     end
 
     post '/contact-form/', to: 'contact_form#create'
 
-    resources :cycles, only: [:index, :create, :show]
+
 
   end
 

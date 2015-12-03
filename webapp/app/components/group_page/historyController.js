@@ -1,8 +1,10 @@
 angular.module('amep-group-page').
-controller('groupHistoryController', ['$scope', 'Cycle', function ($scope, Cycle) {
-    $scope.cycles=Cycle.query();
-    $scope.cycleSelected = {};
-    
+controller('groupHistoryController', ['$scope', 'Cycle', 'currentGroup', function ($scope, Cycle, currentGroup) {
+    $scope.cycles=Cycle.query({groupId: currentGroup.id}, function () {
+      $scope.cycleSelected = $scope.cycles[$scope.cycles.length - 1];
+    });
+
+
 
 
     $scope.startDate = moment().subtract(2, 'months').format('YYYY-MM-DD');
