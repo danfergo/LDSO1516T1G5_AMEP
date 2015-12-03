@@ -9,6 +9,9 @@ factory('Group', ['$resource', function ($resource) {
     }
   });
 
+  resource.Cycle = $resource('/api/v1/groups/:groupId/cycles/:id');
+  resource.Cycle.Product = $resource('/api/v1/groups/:groupId/cycles/:cycleId/products');
+
   /**
    * finds prossumer state in a group
    * 0 - banned/suspended

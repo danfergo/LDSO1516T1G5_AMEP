@@ -1,181 +1,180 @@
-
-<div layout="row" layout-wrap style="position:relative;">
+<!--<div style="position:relative;">
   <md-button class="md-fab"
+             ng-if="currentSession.id && currentProssumerState && currentProssumerState.state == 2"
              aria-label="Adesão pendente"
              ng-click="openCycleProductsManagement($event)"
              style="position:absolute;top:-36px; right:7%;">
-    <ng-md-icon icon="person_outline"></ng-md-icon>
+    <ng-md-icon icon="add_to_photos"></ng-md-icon>
   </md-button>
+</div> -->
 
+<div layout="row">
 
-  <div class="flip-container" flip-card flex="50" flex-gt-md="33" layout-padding layout="column">
-    <div class="flipper" flex layout="column">
-      <div class="front" layout="column" flex>
-        <md-whiteframe class="md-whiteframe-2dp" style="background:#fff;" flex layout-margin>
+  <div layout="row" class="page-wrapper" flex layout-wrap layout-align="space-between stretch">
 
-          <div layout-padding>
-            <h3 class="md-title">Product title</h3>
-            <p>Ha et diligenter devenietur perspicuae indefinite de at scripturis. Otium rem pauca nobis fit quies. Utcunque ut ha universo falsitas et odoratum.</p>
-          </div>
-          <div
-               style="background-image:url('https://www.buckeyehvacparts.com/wp-content/themes/cheap-hvac-parts/images/image_coming_soon.png');
+    <div flex="100">
+      <div layout-padding layout="row">
+        <span flex></span>
+        <md-switch style="margin-bottom:5px;"
+                   ng-model="showOnlyMyProducts"
+                   class="md-warn"
+                   aria-label="Enable Indicators">
+          Mostrar apenas os meus produtos
+        </md-switch>
+      </div>
+    </div>
+
+    <div class="flip-container" flip-card flex="50" flex-gt-lg="33" layout="column"
+         ng-repeat="ind in [1,2,3,4,5,6,7,8,9]">
+      <div class="flipper" flex layout="column">
+        <div class="front" layout="column" flex>
+          <md-whiteframe class="md-whiteframe-2dp" style="background:#fff;" flex layout-margin>
+            <div ng-if="$index % 2 == 0" style="padding:5px">
+              <div>
+                <h3 style="margin:0" class="md-title">
+                  <md-input-container>
+                    <label>Title</label>
+                    <input ng-model="user.title">
+                  </md-input-container>
+                </h3>
+                <md-input-container flex><label>Descrição</label>
+        <textarea ng-model="product.description" columns="1" md-maxlength="300"
+                  placeholder="Descreve  o produto"></textarea>
+                </md-input-container>
+              </div>
+
+              <div ng-if="$index % 4 != 3"
+                   style="background-image:url('http://a3145z1.americdn.com/wp-content/uploads/2013/03/orange-king-of-fruits.jpg');
                       background-size:cover;
                       background-position:center center;
                       height:150px;">
-          </div>
-          <div layout-margin>
-            <p><b>Disponibilidade</b></p>
-            <p>
-              <span class="number-chip">
-                1
-              </span>
-              <span class="number-chip">
-                2
-              </span>
-              <span class="number-chip">
-                3
-              </span>
-            </p>
-          </div>
-          <div layout-margin>
-            <p><b>No próximo ciclo</b></p>
-            <p>
-              <span class="number-chip">
-                1
-              </span>
-              <span class="number-chip">
-                2
-              </span>
-              <span class="number-chip">
-                3
-              </span>
-            </p>
-          </div>
-        </md-whiteframe>
-      </div>
-      <div class="back" layout="column">
-        <md-whiteframe class="md-whiteframe-2dp" style="background:#fff;" flex layout-padding layout-margin>
-          <h3 class="md-title">Product title</h3>
+              </div>
+              <!-- <div class="text-right" layout="row">
+                <div flex></div>
+                <md-input-container style="padding:0" flex><label>Ecos</label>
+                  <input ng-model="product.ecos" ng-required="true" type="number" class="input-ecos" step="0.01"
+                         min="0" max="99999"
+                         ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/">
+                </md-input-container>
+                <md-input-container style="padding:0" flex><label>Euros</label>
+                  <input ng-model="product.ecos" ng-required="true" type="number" class="input-ecos" step="0.01"
+                         min="0" max="99999"
+                         ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/">
+                </md-input-container>
+              </div>-->
 
-        </md-whiteframe>
-      </div>
-    </div>
-  </div>
+              <div layout="row">
+                <md-input-container flex="50">
+                  <label>Categoria</label>
+                  <md-select ng-model="category">
+                    <md-option ng-repeat="productCategory in productCategories" ng-value="productCategory">
+                      {{productCategory.name}}
+                    </md-option>
+                  </md-select>
+                </md-input-container>
+                <md-input-container flex="50"><label>Unidade</label>
+                  <input ng-model="product.unit" ng-required="true" type="text">
+                </md-input-container>
+              </div>
+            </div>
 
+            <div ng-if="$index % 2 == 1">
+              <div layout-padding>
+                <div layout="row">
+                  <h3 class="md-title" flex>Product title</h3>
+                  <md-button class="md-icon-button toggle" aria-label="Reverse" style="margin-top:5px;color:#555">
+                    <ng-md-icon icon="rotate_left" size="24"></ng-md-icon>
+                  </md-button>
+                </div>
 
-
-  <div class="flip-container" flip-card flex="50" flex-gt-md="33" layout-padding layout="column">
-    <div class="flipper" flex layout="column">
-      <div class="front" layout="column" flex>
-        <md-whiteframe class="md-whiteframe-2dp" style="background:#fff;" flex layout-margin>
-
-          <div layout-padding>
-            <h3 class="md-title">Product title</h3>
-            <p>Ha et diligenter devenietur perspicuae indefinite de at scripturis. Otium rem pauca nobis fit quies. Utcunque ut ha universo falsitas et odoratum.</p>
-          </div>
-          <div
-            style="background-image:url('https://www.buckeyehvacparts.com/wp-content/themes/cheap-hvac-parts/images/image_coming_soon.png');
+                <p>Ha et diligenter devenietur perspicuae indefinite de at scripturis. Otium rem pauca nobis fit quies.
+                  Utcunque ut ha universo falsitas et odoratum.</p>
+              </div>
+              <div ng-if="$index % 4 != 3"
+                   style="background-image:url('http://a3145z1.americdn.com/wp-content/uploads/2013/03/orange-king-of-fruits.jpg');
                       background-size:cover;
                       background-position:center center;
                       height:150px;">
-          </div>
-          <div layout-margin>
-            <p><b>Disponibilidade</b></p>
-            <p>
-              <span class="number-chip">
-                1
-              </span>
-              <span class="number-chip">
-                2
-              </span>
-              <span class="number-chip">
-                3
-              </span>
-            </p>
-          </div>
-          <div layout-margin>
-            <p><b>No próximo ciclo</b></p>
-            <p>
-              <span class="number-chip">
-                1
-              </span>
-              <span class="number-chip">
-                2
-              </span>
-              <span class="number-chip">
-                3
-              </span>
-            </p>
-          </div>
-        </md-whiteframe>
-      </div>
-      <div class="back" layout="column">
-        <md-whiteframe class="md-whiteframe-2dp" style="background:#fff;" flex layout-padding layout-margin>
-          <h3 class="md-title">Product title</h3>
+              </div>
+              <div layout-margin class="text-right">
+                <b>{{ 123 | currency :'E':2}}</b> + {{ 123 | currency :'€':2}}<br> / Kilo
+              </div>
+              <div layout-margin>
+                <span class="number-chip">1 </span>
+              </div>
+            </div>
+          </md-whiteframe>
+        </div>
+        <div class="back" layout="column">
+          <div class="md-whiteframe-2dp" style="background:#fff;" raiflex layout-padding layout-margin>
+            <div layout="row">
+              <h3 class="md-title" flex>Product title</h3>
+              <md-button class="md-icon-button toggle" aria-label="Reverse" style="margin-top:5px;color:#555">
+                <ng-md-icon icon="rotate_right" size="24"></ng-md-icon>
+              </md-button>
+            </div>
+            <div layout-margin class="text-right">
+              <b>{{ 123 | currency :'E':2}}</b> + {{ 123 | currency :'€':2}}<br> / Kilo
+            </div>
+            <div ng-repeat="item in [1,2,3,4,5,6]">
+              <md-divider></md-divider>
 
-        </md-whiteframe>
+              <div layout="row" style="margin: 5px 0">
+                <div flex style="padding:1px;line-height:26px;">Semana 1</div>
+                <input value="0" style="width:40px;padding-left: 3px;
+                border:2px solid rgba(0,0,0,0.54); border-radius:2px;outline: none;
+                margin: 0 1px;" type="number" step="1" min="0" max="30">
+
+                <div style="padding:1px 5px;line-height:26px;" flex class="text-right">
+                  <small><i>(até 30 Kilos)</i></small>
+                </div>
+              </div>
+              <md-divider ng-if="$last"></md-divider>
+            </div>
+
+            <div layout="row" style="margin-top:5px;">
+              <div flex style="line-height:55px;">
+                <b>{{ 123 | currency :'E':2}}</b> + {{ 123 | currency :'€':2}}<br>
+              </div>
+              <div>
+                <md-button style="margin:2px 0"
+                           class="md-primary md-raised md-mini" aria-label="Encomendar"> Encomendar
+                </md-button>
+              </div>
+            </div>
+            </md-whiteframe>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 
-
-
-  <div class="flip-container" flip-card flex="50" flex-gt-md="33" layout-padding layout="column">
-    <div class="flipper" flex layout="column">
-      <div class="front" layout="column" flex>
-        <md-whiteframe class="md-whiteframe-2dp" style="background:#fff;" flex layout-margin>
-
-          <div layout-padding>
-            <h3 class="md-title">Product title</h3>
-            <p>Ha et diligenter devenietur perspicuae indefinite de at scripturis. Otium rem pauca nobis fit quies. Utcunque ut ha universo falsitas et odoratum.</p>
-          </div>
-          <div
-            style="background-image:url('https://www.buckeyehvacparts.com/wp-content/themes/cheap-hvac-parts/images/image_coming_soon.png');
-                      background-size:cover;
-                      background-position:center center;
-                      height:150px;">
-          </div>
-          <div layout-margin>
-            <p><b>Disponibilidade</b></p>
-            <p>
-              <span class="number-chip">
-                1
-              </span>
-              <span class="number-chip">
-                2
-              </span>
-              <span class="number-chip">
-                3
-              </span>
-            </p>
-          </div>
-          <div layout-margin>
-            <p><b>No próximo ciclo</b></p>
-            <p>
-              <span class="number-chip">
-                1
-              </span>
-              <span class="number-chip">
-                2
-              </span>
-              <span class="number-chip">
-                3
-              </span>
-            </p>
-          </div>
-        </md-whiteframe>
-      </div>
-      <div class="back" layout="column">
-        <md-whiteframe class="md-whiteframe-2dp" style="background:#fff;" flex layout-padding layout-margin>
-          <h3 class="md-title">Product title</h3>
-
-        </md-whiteframe>
-      </div>
-    </div>
+  <div layout="column" style="width:300px;max-width:20%" layout-margin>
+    <div style="height:40px"></div>
+    <md-list>
+      <h4 style="padding-left:20px;">Meus produtos</h4>
+      <md-list-item class="md-1-line" ng-repeat="product in prossumerProducts">
+        <div class="md-list-item-text" layout="row">
+          <md-checkbox ng-click="chooseProduct($index)"
+                       class="md-warn">
+            <b>{{product.title}}</b>
+          </md-checkbox>
+        </div>
+      </md-list-item>
+    </md-list>
+    <md-divider></md-divider>
+    <md-list>
+      <h4 style="padding-left:20px;">Filtrar categorias</h4>
+      <md-list-item class="md-1-line" ng-repeat="productCategory in productCategories">
+        <div class="md-list-item-text" layout="row">
+          <md-checkbox class="md-warn">
+            <b>{{productCategory.name}}</b>
+          </md-checkbox>
+        </div>
+      </md-list-item>
+    </md-list>
   </div>
-
-
 
 
 </div>
-

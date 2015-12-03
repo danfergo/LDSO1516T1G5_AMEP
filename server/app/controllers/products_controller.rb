@@ -10,6 +10,8 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
+    is_my_resource(params[:prossumer_id])
+
     @products = Product.where(prossumer_id: params[:prossumer_id])
     render json: @products
   end
@@ -17,14 +19,17 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    is_my_resource(params[:prossumer_id])
+
     render json: @product
   end
 
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(product_params)
+    is_my_resource(params[:prossumer_id])
 
+    @product = Product.new(product_params)
 
     if @product.save
       render json: @product, status: :created
