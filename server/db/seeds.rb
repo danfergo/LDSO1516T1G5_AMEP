@@ -20,15 +20,15 @@ Group.create([
              ])
 
 Prossumer.create(
-  name: 'Master', email: 'teste@amep.pt', password: '123456', phone: '66666' 
+  name: 'Master', email: 'teste@amep.pt', password: '123456', phone: '66666'
   ).update(confirm_hash: nil)
 
 Prossumer.create(
-  name: 'Prossumer1', email: 'Prossumer1@amep.pt', password: '123456', phone: '66666' 
+  name: 'Prossumer1', email: 'Prossumer1@amep.pt', password: '123456', phone: '66666'
   ).update(confirm_hash: nil)
 
 Prossumer.create(
-  name: 'Prossumer2', email: 'Prossumer2@amep.pt', password: '123456', phone: '66666' 
+  name: 'Prossumer2', email: 'Prossumer2@amep.pt', password: '123456', phone: '66666'
   ).update(confirm_hash: nil)
 
 GroupsProssumer.create([
@@ -51,7 +51,8 @@ ProductAuth.create([
 
 Cycle.create([
   {start_time: DateTime.new(2015,11,29),end_time: DateTime.new(2015,12,20),group_id: 1},
-  {start_time: DateTime.new(2015,12,20),end_time: DateTime.new(2016,1,3),group_id: 1}
+  {start_time: DateTime.new(2015,12,20),end_time: DateTime.new(2016,1,3),group_id: 1},
+  {start_time: DateTime.new(2015,12,21),end_time: DateTime.new(2016,1,4),group_id: 2}
   ])
 
 Week.create([
@@ -71,8 +72,3 @@ Order.create([
   {quantity: 2,prossumer_id: 1, stock_id: 1},
   {quantity: 1,prossumer_id: 1, stock_id: 1}
   ])
-
-
-
-
-

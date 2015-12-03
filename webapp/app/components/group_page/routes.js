@@ -5,6 +5,8 @@ config(function ($stateProvider,$urlRouterProvider) {
   $urlRouterProvider.when('/group/:groupId/', '/group/:groupId/showcase');
 
 
+
+
   $stateProvider.
   state('group', {
     parent: 'loo',
@@ -27,13 +29,12 @@ config(function ($stateProvider,$urlRouterProvider) {
     parent: 'group',
     url: '/history',
     controller: 'groupHistoryController',
-    templateUrl: 'components/group_page/history.html'
-  }).
-  state('cicle', {
-    parent: 'group',
-    url: '/cicle',
-    controller: 'groupCicleController',
-    templateUrl: 'components/group_page/cicle.html'
+    templateUrl: 'components/group_page/history.html',
+    resolve: {
+      currentCycles: ['Cycle', 'currentGroup', function(Cycle, currentGroup){
+        return Cycle.query({groupId: currentGroup.id}).$promise;
+      }]
+    }
   }).
   state('about', {
     parent: 'group',
