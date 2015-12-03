@@ -37,6 +37,11 @@ config(function ($stateProvider, $urlRouterProvider) {
     url: '/history',
     controller: 'groupHistoryController',
     templateUrl: 'components/group_page/history.html',
+    resolve: {
+      currentCycles: ['Cycle', 'currentGroup', function (Cycle, currentGroup) {
+        return Cycle.query({groupId: currentGroup.id}).$promise;
+      }]
+    },
     data :{
       tabIndex: 1
     }
