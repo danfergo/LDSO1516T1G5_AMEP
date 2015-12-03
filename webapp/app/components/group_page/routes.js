@@ -21,9 +21,6 @@ config(function ($stateProvider, $urlRouterProvider) {
       prossumerProducts: ['Prossumer', 'currentSession', function (Prossumer, currentSession) {
         return Prossumer.Product.query({prossumerId:currentSession.id}).$promise;
       }]
-    },
-    data :{
-      tabIndex: 0
     }
   }).
   state('showcase', {
@@ -51,6 +48,12 @@ config(function ($stateProvider, $urlRouterProvider) {
     templateUrl: 'components/group_page/cicle.html',
     data :{
       tabIndex: 2
+    }
+    templateUrl: 'components/group_page/history.html',
+    resolve: {
+      currentCycles: ['Cycle', 'currentGroup', function(Cycle, currentGroup){
+        return Cycle.query({groupId: currentGroup.id}).$promise;
+      }]
     }
   }).
   state('about', {
