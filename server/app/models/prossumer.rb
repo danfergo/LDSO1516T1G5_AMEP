@@ -19,11 +19,14 @@ class Prossumer < ActiveRecord::Base
   before_save :encrypt_password
   after_save :clear_password
 
+
   def encrypt_password
     if password.present?
       self.salt = BCrypt::Engine.generate_salt
       self.encrypted_password= BCrypt::Engine.hash_secret(password, salt)
-      self.confirm_hash = SecureRandom.hex #=> "91dc3bfb4de5b11d029d376634589b61"
+      if new_record?
+        self.confirm_hash = SecureRandom.hex #=> "91dc3bfb4de5b11d029d376634589b61"
+      end
     end
   end
 

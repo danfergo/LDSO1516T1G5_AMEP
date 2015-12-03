@@ -1,6 +1,8 @@
 class ProssumersController < ApplicationController
-  before_action :set_prossumer, only: [:show, :destroy]
+
+  before_action :set_prossumer, only: [:show, :destroy, :update]
   before_action :not_is_authenticated, only: [:confirm_account]
+  before_action :is_authenticated, only: [:update]
   before_action :prossumer_confirm_params, only: [:confirm_account]
 
   # GET /prossumers
@@ -33,13 +35,25 @@ class ProssumersController < ApplicationController
   # PATCH/PUT /prossumers/1
   # PATCH/PUT /prossumers/1.json
   def update
-    @prossumer = Prossumer.find(params[:id])
 
-    if @prossumer.update(prossumer_params)
-      head :no_content
+    if params[:currentPassword] && params[:password]
+
+      if @prossumer.match_password(params[:currentPassword])
+        if @prossumer.update(params.permit(:password))
+          render json: {message: 'Alteração da palavra-passe efectuada com sucesso', error: false}
+        else
+          render json: @prossumer.errors, status: :unprocessable_entity
+        end
+      else
+        render json: {message: 'Palavra-passe actual errada', error: true}
+      end
+
+    elsif @prossumer.update(updatedProfile_params)
+      render json: {message: 'Alteração de perfil efectuada com sucesso', error: false}
     else
       render json: @prossumer.errors, status: :unprocessable_entity
     end
+
   end
 
   # DELETE /prossumers/1
@@ -50,7 +64,7 @@ class ProssumersController < ApplicationController
   end
 
   def confirm_account
-    @prossumer = Prossumer.find_by_id(prossumer_confirm_params[:id])
+    @prossumer = Prossumer.find(prossumer_confirm_params[:id])
     if (@prossumer)
       if @prossumer.confirm_hash
         if @prossumer.confirm_hash.to_s == prossumer_confirm_params[:hash].to_s
@@ -67,20 +81,16 @@ class ProssumersController < ApplicationController
     end
   end
 
-
-
-
-
-
   private
+
   def set_prossumer
-    @prossumer = Prossumer.find_by_email(params[:id])
+    @prossumer = Prossumer.find(params[:id])
   end
+
 
   def prossumer_confirm_params
     params.require(:id)
     params.require(:hash)
-    params
   end
 
   def prossumer_params
@@ -89,4 +99,11 @@ class ProssumersController < ApplicationController
     params.require(:password)
     params.permit(:email, :name, :password, :phone)
   end
+
+  def updatedProfile_params
+    params.require(:name)
+    params.require(:phone)
+    params.permit(:name, :phone)
+  end
+
 end

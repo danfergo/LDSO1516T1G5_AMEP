@@ -68,5 +68,7 @@ Stock.create([
   ])
 
 Order.create([
-  {quantity: 2,prossumer_id: 1, stock_id: 1}
+  {quantity: 2,prossumer_id: 1, stock_id: 1},
+  {quantity: 2,prossumer_id: 1, stock_id: 1},
+  {quantity: 1,prossumer_id: 1, stock_id: 1}
   ])

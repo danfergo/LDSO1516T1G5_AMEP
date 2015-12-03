@@ -32,4 +32,17 @@ class ApplicationController < ActionController::API
     end
   end
 
+  # thanks to http://www.railstips.org/blog/archives/2009/05/11/class-and-instance-methods-in-ruby/
+  def authenticate(email, password)
+
+    prossumer = Prossumer.find_by_email(email)
+    if prossumer && prossumer.match_password(password) && prossumer.confirm_hash == nil
+      return prossumer
+    elsif prossumer && prossumer.match_password(password)
+      return {error: 'Account not confirmed'}
+    else
+      return {error: 'Invalid Username or Password'}
+    end
+  end
+
 end
