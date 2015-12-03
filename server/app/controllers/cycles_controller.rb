@@ -1,10 +1,11 @@
 class CyclesController < ApplicationController
+  before_action :set_group, only: [:show]
   before_action :set_cycle, only: [:show, :update, :destroy]
 
   # GET /cycles
   # GET /cycles.json
   def index
-    @cycles = Cycle.all
+    @cycles = Cycle.where(group_id: params[:group_id])
 
     render json: @cycles
   end
@@ -51,6 +52,10 @@ class CyclesController < ApplicationController
 
     def set_cycle
       @cycle = Cycle.find(params[:id])
+    end
+
+    def set_group
+      @group = Group.find(params[:group_id])
     end
 
     def cycle_params
