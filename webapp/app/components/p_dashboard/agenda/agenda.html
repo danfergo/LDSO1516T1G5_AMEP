@@ -1,6 +1,49 @@
-<md-content>
+<md-content flex>
+  <md-content ng-repeat="week in weeks" layout-padding style="background-color: pink; margin: 10px;">
+    <h3>Semana {{week.number}} do ciclo {{week.cycle.id}} do grupo {{week.cycle.group.name}}</h3>
+    <md-content layout="row">
+      <md-content flex layout="column" style="background-color: blue" layout-padding-column>
+        <p><h5>ENCOMENDAS</h5></p>
+        <md-content ng-repeat="purchase in week.purchases"  layout-padding
+                    style="background-color: yellow; color: red;">
 
-  <md-item ng-repeat="item in weeks">
-    {{item.id}}
-    </md-item>
+
+          <p>Produto: {{purchase.stock.product.title}}</p>
+
+          <p>Produtor: {{purchase.stock.product.prossumer.name}}</p>
+
+          <p>Quantidade: {{purchase.quantity}}</p>
+
+          <p>Euros: {{purchase.quantity * purchase.stock.unit_price_euros}}</p>
+
+          <p>Ecos: {{purchase.quantity * purchase.stock.unit_price_ecos}}</p>
+
+        </md-content>
+      </md-content>
+
+      <md-content flex layout="column" style="background-color: brown" layout-padding-column>
+        <p><h5>ENTREGAS</h5></p>
+        <md-content ng-repeat="sale in week.sales"  layout-padding
+                    style="background-color: purple; color: red;">
+
+
+          <p>Produto: {{sale.stock.product.title}}</p>
+
+          <p>Consumidor: {{sale.prossumer.name}}</p>
+
+          <p>Quantidade: {{sale.quantity}}</p>
+
+          <p>Euros: {{sale.quantity * sale.stock.unit_price_euros}}</p>
+
+          <p>Ecos: {{sale.quantity * sale.stock.unit_price_ecos}}</p>
+
+
+        </md-content>
+      </md-content>
+    </md-content>
+
+  </md-content>
+
+
+</md-content>
 </md-content>
