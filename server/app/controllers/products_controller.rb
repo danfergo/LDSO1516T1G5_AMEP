@@ -3,10 +3,14 @@ class ProductsController < ApplicationController
   before_action :set_prossumer, only: [:create]
   before_action :set_product, only: [:show, :update, :destroy]
 
+  # -----------------------------------------
+  #           PROSSUMER PRODUCTS
+  # -----------------------------------------
+
   # GET /products
   # GET /products.json
   def index
-    @products = Product.where(prossumer_id: session[:prossumer_id])
+    @products = Product.where(prossumer_id: params[:prossumer_id])
     render json: @products
   end
 
@@ -55,7 +59,7 @@ class ProductsController < ApplicationController
     end
 
     def set_product
-      @product = Product.find(params[:id])
+      @product = Product.find(params[:prossumer_id])
     end
 
     def product_params
