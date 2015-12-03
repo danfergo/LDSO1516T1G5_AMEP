@@ -22,6 +22,23 @@ ActiveRecord::Schema.define(version: 20151203151608) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "contact_forms", force: :cascade do |t|
+    t.string   "assunto"
+    t.string   "myMessage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "message"
+    t.string   "subject"
+    t.string   "cell"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "cycles", force: :cascade do |t|
     t.integer  "group_id"
     t.datetime "created_at", null: false
