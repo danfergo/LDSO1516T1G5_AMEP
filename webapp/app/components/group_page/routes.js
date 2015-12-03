@@ -29,7 +29,12 @@ config(function ($stateProvider,$urlRouterProvider) {
     parent: 'group',
     url: '/history',
     controller: 'groupHistoryController',
-    templateUrl: 'components/group_page/history.html'
+    templateUrl: 'components/group_page/history.html',
+    resolve: {
+      currentCycles: ['Cycle', 'currentGroup', function(Cycle, currentGroup){
+        return Cycle.query({groupId: currentGroup.id}).$promise;
+      }]
+    }
   }).
   state('about', {
     parent: 'group',

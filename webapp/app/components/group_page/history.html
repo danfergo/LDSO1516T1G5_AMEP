@@ -1,13 +1,10 @@
-here goes the group history - the spreadsheet's information
-OLA
-<div>
-  <ul>
-    <li ng-repeat="item in cycles" ng-if="item.group_id == group.id">
-      {{item.start_time | date:'dd-MM-yyyy'}} -> {{item.end_time | date:'dd-MM-yyyy'}}
-    </li>
-  </ul>
+<div style="width: 15%; float: right;">
+  <md-select ng-model="cycleSelected" aria-label="seleciona o ciclo">
+    <md-option ng-value="cycle" ng-repeat="cycle in cycles | orderBy:'-start_time' "> {{cycle.start_time | date:'dd-MM-yyyy'}}</md-option>
+  </md-select>
 </div>
-ola
+{{my_startDate}} <br>
+{{startDate}}
 <div>
   <horizontal-timeline
   start-date="{{startDate}}"
@@ -15,18 +12,4 @@ ola
   events="events">
 </horizontal-timeline>
 
-</div>
-
-<div>
-    <h1>Dropdown Select</h1>
-    <div dropdown-select="cycles"
-        dropdown-model="cycleSelected"
-        dropdown-item-label="ola">
-    </div>
-</div>
-
-<div style="width: 15%">
-  <md-select ng-model="cycleSelected" aria-label="seleciona o ciclo">
-    <md-option ng-value="cycle" ng-repeat="cycle in cycles | orderBy:'-start_time' "> {{cycle.start_time | date:'dd-MM-yyyy'}}</md-option>
-  </md-select>
 </div>
