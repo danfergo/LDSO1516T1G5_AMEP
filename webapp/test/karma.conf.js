@@ -38,6 +38,11 @@ module.exports = function(config) {
       'bower_components/angular-resource/angular-resource.js',
       'bower_components/angular-messages/angular-messages.js',
       'bower_components/angular-timeline/dist/angular-timeline.js',
+      'bower_components/moment/moment.js',
+      'bower_components/moment-range/lib/moment-range.js',
+      'bower_components/angular-horizontal-timeline/angular-horizontal-timeline.js',
+      'bower_components/ng-dropdown/dist/js/ng-dropdown.min.js',
+      'bower_components/angular-dropdowns/dist/angular-dropdowns.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

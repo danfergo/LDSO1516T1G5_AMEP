@@ -1,9 +1,26 @@
 here goes the group history - the spreadsheet's information
 OLA
 <div>
-<ul>
-  <li ng-repeat="item in cycles" ng-if="item.group_id == group.id">
-    {{item.start_time | date:'dd-MM-yyyy'}} -> {{item.end_time | date:'dd-MM-yyyy'}}
-  </li>
-</ul>
+  <ul>
+    <li ng-repeat="item in cycles" ng-if="item.group_id == group.id">
+      {{item.start_time}} -> {{item.end_time | date:'dd-MM-yyyy'}}
+    </li>
+  </ul>
+</div>
+
+<div>
+  <horizontal-timeline
+  start-date="{{startDate}}"
+  end-date="{{endDate}}"
+  events="events">
+</horizontal-timeline>
+
+</div>
+
+<div>
+    <h1>Dropdown Select</h1>
+    <div dropdown-select="cycles"
+        dropdown-model="cycleSelected"
+        dropdown-item-label="start_time">
+    </div>
 </div>
