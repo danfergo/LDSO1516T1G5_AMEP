@@ -6,18 +6,18 @@ controller('groupController', ['$scope', '$state', 'currentGroup', '$mdDialog', 
       $scope.selectedTab = toState.data.tabIndex;
     });
 
-    console.log(productCategories);
+    $scope.Group = Group;
     $scope.productCategories = productCategories;
     $scope.prossumerProducts = prossumerProducts;
 
     $scope.group = currentGroup;
     $scope.currentSession = currentSession;
-    $scope.currentProssumerState = false;
+    $scope.prossumerState = false;
 
 
     function getCurrentProssumerState() {
       Group.Prossumer.get({groupId: $scope.group.id, prossumerId: $scope.currentSession.id}, function (state) {
-        $scope.currentProssumerState = state;
+        $scope.prossumerState = state;
       })
     }
 

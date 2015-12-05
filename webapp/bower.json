@@ -24,5 +24,8 @@
     "angular-mocks": "^1.3.0"
   },
   "appPath": "app",
-  "moduleName": "amepApp"
+  "moduleName": "amepApp",
+  "resolutions": {
+    "angular": "1.4.8"
+  }
 }
