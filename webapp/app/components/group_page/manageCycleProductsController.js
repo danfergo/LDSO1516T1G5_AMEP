@@ -1,5 +1,5 @@
 angular.module('amep-group-page').
-controller('manageCycleProductsController', ['$scope','$mdDialog', function ($scope,$mdDialog) {
+controller('manageCycleProductsController', ['$scope','$mdDialog', function ($scope,$mdDialozg) {
   $scope.cancel = function() {
     $mdDialog.cancel();
   };

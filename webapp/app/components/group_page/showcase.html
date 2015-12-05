@@ -7,12 +7,20 @@
     <ng-md-icon icon="add_to_photos"></ng-md-icon>
   </md-button>
 </div> -->
+<div ng-if="!currentCycle" style="font-size:32px; color:#999; text-align:center; max-width:700px;margin:50px auto;">
+  Nenhum ciclo se encontra ativo,
+  consulta o separador ciclos para saberes mais acerca dos últimos.
+</div>
 
-<div layout="row">
+
+<div layout="row" ng-if="currentCycle">
+
+
+
 
   <div layout="row" class="page-wrapper" flex layout-wrap layout-align="space-between stretch">
 
-    <div flex="100">
+    <div flex="100" ng-if="Group.Prossumer.isActive(prossumerState)">
       <div layout-padding layout="row">
         <span flex></span>
         <md-switch style="margin-bottom:5px;"
@@ -22,14 +30,17 @@
           Mostrar apenas os meus produtos
         </md-switch>
       </div>
+      <div ng-if="cycleShowcaseProducts.length == 0 && filteredShowcaseProducts().length == 0" style="font-size:32px; color:#999; text-align:center; max-width:700px;margin:50px auto;">
+        Ainda não inseriste nenhum dos teus produtos neste próximo ciclo.
+      </div>
     </div>
 
-    <div class="flip-container" flip-card flex="50" flex-gt-lg="33" layout="column"
-         ng-repeat="ind in [1,2,3,4,5,6,7,8,9]">
+    <div ng-repeat="product in filteredShowcaseProducts()"
+         class="flip-container" flip-card flex="50" flex-gt-lg="33" layout="column">
       <div class="flipper" flex layout="column">
         <div class="front" layout="column" flex>
           <md-whiteframe class="md-whiteframe-2dp" style="background:#fff;" flex layout-margin>
-            <div ng-if="$index % 2 == 0" style="padding:5px">
+            <div ng-if="false" style="padding:5px">
               <div>
                 <h3 style="margin:0" class="md-title">
                   <md-input-container>
@@ -78,17 +89,16 @@
               </div>
             </div>
 
-            <div ng-if="$index % 2 == 1">
+            <div ng-if="true">
               <div layout-padding>
                 <div layout="row">
-                  <h3 class="md-title" flex>Product title</h3>
+                  <h3 class="md-title" flex>{{product.title}}</h3>
                   <md-button class="md-icon-button toggle" aria-label="Reverse" style="margin-top:5px;color:#555">
                     <ng-md-icon icon="rotate_left" size="24"></ng-md-icon>
                   </md-button>
                 </div>
 
-                <p>Ha et diligenter devenietur perspicuae indefinite de at scripturis. Otium rem pauca nobis fit quies.
-                  Utcunque ut ha universo falsitas et odoratum.</p>
+                <p>{{product.description}}</p>
               </div>
               <div ng-if="$index % 4 != 3"
                    style="background-image:url('http://a3145z1.americdn.com/wp-content/uploads/2013/03/orange-king-of-fruits.jpg');
@@ -97,7 +107,9 @@
                       height:150px;">
               </div>
               <div layout-margin class="text-right">
-                <b>{{ 123 | currency :'E':2}}</b> + {{ 123 | currency :'€':2}}<br> / Kilo
+                <b>{{ product.weeks[0].stock.unit_price_ecos | currency :'E':2}}</b> +
+                {{ product.weeks[0].stock.unit_price_euros | currency :'€':2}}<br> /
+                {{product.unit}}
               </div>
               <div layout-margin>
                 <span class="number-chip">1 </span>
@@ -106,34 +118,38 @@
           </md-whiteframe>
         </div>
         <div class="back" layout="column">
-          <div class="md-whiteframe-2dp" style="background:#fff;" raiflex layout-padding layout-margin>
+          <div class="md-whiteframe-2dp" style="background:#fff;" flex layout-padding layout-margin>
             <div layout="row">
-              <h3 class="md-title" flex>Product title</h3>
+              <h3 class="md-title" flex>{{product.title}}</h3>
               <md-button class="md-icon-button toggle" aria-label="Reverse" style="margin-top:5px;color:#555">
                 <ng-md-icon icon="rotate_right" size="24"></ng-md-icon>
               </md-button>
             </div>
             <div layout-margin class="text-right">
-              <b>{{ 123 | currency :'E':2}}</b> + {{ 123 | currency :'€':2}}<br> / Kilo
+              <b>{{ product.weeks[0].stock.unit_price_ecos | currency :'E':2}}</b> +
+              {{ product.weeks[0].stock.unit_price_euros | currency :'€':2}}<br> /
+              {{product.unit}}
             </div>
-            <div ng-repeat="item in [1,2,3,4,5,6]">
+            <div ng-repeat="week in product.weeks">
               <md-divider></md-divider>
 
               <div layout="row" style="margin: 5px 0">
-                <div flex style="padding:1px;line-height:26px;">Semana 1</div>
-                <input value="0" style="width:40px;padding-left: 3px;
+                <div flex style="padding:1px;line-height:26px;">
+                  {{week.delivery_date | date:'dd/MM'}}
+                </div>
+                <input  ng-if="$scope.currentCycleState == 'supplying'" value="0" style="width:40px;padding-left: 3px;
                 border:2px solid rgba(0,0,0,0.54); border-radius:2px;outline: none;
                 margin: 0 1px;" type="number" step="1" min="0" max="30">
 
                 <div style="padding:1px 5px;line-height:26px;" flex class="text-right">
-                  <small><i>(até 30 Kilos)</i></small>
+                  <small><i>(até {{week.stock.quantity}} {{product.unit}})</i></small>
                 </div>
               </div>
-              <md-divider ng-if="$last"></md-divider>
             </div>
 
-            <div layout="row" style="margin-top:5px;">
-              <div flex style="line-height:55px;">
+            <div layout="row" ng-if="$scope.currentCycleState == 'supplying'"  style="padding-top:20px;">
+              <md-divider></md-divider>
+              <div flex style="line-height:40px;">
                 <b>{{ 123 | currency :'E':2}}</b> + {{ 123 | currency :'€':2}}<br>
               </div>
               <div>
@@ -151,19 +167,33 @@
   </div>
 
   <div layout="column" style="width:300px;max-width:20%" layout-margin>
-    <div style="height:40px"></div>
-    <md-list>
-      <h4 style="padding-left:20px;">Meus produtos</h4>
-      <md-list-item class="md-1-line" ng-repeat="product in prossumerProducts">
-        <div class="md-list-item-text" layout="row">
-          <md-checkbox ng-click="chooseProduct($index)"
-                       class="md-warn">
-            <b>{{product.title}}</b>
-          </md-checkbox>
-        </div>
-      </md-list-item>
-    </md-list>
-    <md-divider></md-divider>
+    <div ng-if="Group.Prossumer.isActive(prossumerState)" style="height:40px"></div>
+    <div ng-if="Group.Prossumer.isActive(prossumerState)">
+      <md-list>
+        <h4 style="padding-left:20px;">Meus produtos</h4>
+
+        <p style="padding-left:20px;margin-top:-10px;font-size:12px;"><i>(a incluir neste próximo ciclo)</i></p>
+
+        <md-list-item class="md-1-line" ng-repeat="product in prossumerProducts">
+          <div class="md-list-item-text" layout="row">
+            <md-checkbox ng-change="changeProssumerProductInCycle($index)"
+                         ng-model="prossumerProductsInCycle[$index]"
+                         class="md-warn">
+              <b>{{product.title}}</b>
+            </md-checkbox>
+          </div>
+        </md-list-item>
+        <md-list-item ng-click="addOrEditProduct()">
+          <md-item-content md-ink-ripple aria-label="Reverse">
+              <b><ng-md-icon icon="add" size="24" style="padding:0 5px;"></ng-md-icon>
+               &nbsp; Novo</b>
+          </md-item-content>
+        </md-list-item>
+      </md-list>
+    </div>
+
+    <md-divider ng-if="Group.Prossumer.isActive(prossumerState)"></md-divider>
+
     <md-list>
       <h4 style="padding-left:20px;">Filtrar categorias</h4>
       <md-list-item class="md-1-line" ng-repeat="productCategory in productCategories">

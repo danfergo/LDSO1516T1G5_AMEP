@@ -4,19 +4,17 @@ class GroupsCyclesProductsController < ApplicationController
   # GET /groups/1/cycles/1/products
   # GET /groups/1/cycles/1/products.json
   def index
-      render json: Week.where(cycle_id: :params[:cycle_id])
-                       .jons(:stock).joins(:product)
-                       .where('weeks.')
+    weeksIds = Week.where({cycle_id: params[:cycle_id]}).ids
+    stocksProductIds = Stock.where({week_id: weeksIds}).pluck(:product_id)
+    render json: Product.where(id: stocksProductIds).as_json(cycle_id: params[:cycle_id])
   end
 
-  # GET /groups/1/cycles/1/products/1
-  # GET /groups/1/cycles/1/products/1.json
-  #def show
-  #  is_my_resource(params[:id])
-
-  #  prossumerProductsIds = Prossumer.find(params[:id]).products.ids
-  #  render json: ProductAuth.where({product_id: prossumerProductsIds, group_id: params[:group_id]})
-  #end
+  #GET /groups/1/cycles/1/products/1
+  #GET /groups/1/cycles/1/products/1.json
+  def show
+    is_my_resource(params[:id])
+    render json: Product.find(params[:id]).as_json(cycle_id: params[:cycle_id])
+  end
 
   # POST /groups/1/cycles/1/products
   # POST /groups/1/cycles/1/products.json
@@ -44,11 +42,12 @@ class GroupsCyclesProductsController < ApplicationController
 
   # DELETE /groups/1/cycles/1/products/1
   # DELETE /groups/1/cycles/1/products/1.json
-  #def destroy
-  #  @groups_prossumer.destroy
+  def destroy
+    weeksIds = Week.where({cycle_id: params[:cycle_id]}).ids
 
-  #  head :no_content
-  #end
+    Stock.where({week_id: weeksIds, product_id: params[:id]}).destroy_all
+    index
+  end
 
 
 end

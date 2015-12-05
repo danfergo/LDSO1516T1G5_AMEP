@@ -37,6 +37,8 @@ class Week < ActiveRecord::Base
     if (options[:include_sales_and_purchases_of])
       json['purchases'] = purchases_of(options[:include_sales_and_purchases_of])
       json['sales'] = sales_of(options[:include_sales_and_purchases_of])
+    elsif (options[:product_id])
+      json['stock'] = Stock.find(options[:product_id]).as_json
     end
     json
   end
