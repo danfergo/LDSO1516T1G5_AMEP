@@ -25,9 +25,7 @@ factory('Group', ['$resource', function ($resource) {
   });
 
   resource.Cycle.Product.productSellingPrice = function (product) {
-    console.log(product);
     for (var w in product.weeks) {
-      console.log(product.weeks[w].stock);
       if (product.weeks[w].stock != null) {
         return {
           ecos: product.weeks[w].stock.unit_price_ecos,

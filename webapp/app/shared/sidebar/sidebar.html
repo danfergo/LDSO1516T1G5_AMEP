@@ -1,13 +1,11 @@
 <div layout-fill layout="column">
 
-  <md-toolbar class="md-tall md-hue-2">
-    <span flex></span>
+  <md-toolbar flex="none" class="md-tall md-hue-2" layout="column">
 
-    <div layout="column">
-      <div layout-padding style="text-align: center;">
-        <h1>AMEP</h1>
+    <div layout="column" flex>
+      <div layout-padding flex class="text-center">
+        <h1 style="margin:0; line-height:55px;">AMEP</h1>
       </div>
-      <div flex></div>
       <md-content layout="row" class="md-toolbar-tools-bottom inset md-hue-3">
         <span style="padding-top: 5px;">Olá {{ session.name }}</span>
         <span flex></span>
@@ -19,7 +17,7 @@
       </md-content>
     </div>
   </md-toolbar>
-  <md-content flex="none" flex-gt-md="auto">
+  <md-content flex="none" flex-gt-sm="auto">
 
     <menu-link ng-repeat="item in quickMenu">
       <a class="md-button md-ink-ripple" ui-sref-active="active" ui-sref="{{item.state}}"

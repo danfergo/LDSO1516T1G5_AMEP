@@ -1,7 +1,7 @@
 angular.module('amep-group-page').
 controller('groupShowcaseController',
-  ['$scope', '$mdDialog', '$mdToast', 'currentSession', 'currentGroup', 'currentCycles', 'prossumerProducts', 'Group', 'Cycle', 'Product',
-    function ($scope, $mdDialog, $mdToast, currentSession, currentGroup, currentCycles, prossumerProducts, Group, Cycle, Product) {
+  ['$scope', '$mdDialog', '$mdToast', 'currentSession', 'currentGroup', 'currentCycles', 'productCategories', 'prossumerProducts', 'Group', 'Cycle', 'Product',
+    function ($scope, $mdDialog, $mdToast, currentSession, currentGroup, currentCycles, productCategories, prossumerProducts, Group, Cycle, Product) {
       $scope.currentCycle = Cycle.firstAvailable(currentCycles);
       $scope.currentCycleState = Cycle.whatState($scope.currentCycle);
       $scope.showOnlyMyProducts = $scope.currentCycleState == 'supplying' ? true : false;
@@ -55,11 +55,7 @@ controller('groupShowcaseController',
             id: product.id
           }, function (products) {
             setShowcaseProducts(products);
-            $mdToast.show(
-              $mdToast.simple()
-                .content('Produto removido do ciclo com sucesso')
-                .hideDelay(1000)
-            );
+            $mdToast.showSimple('Removido do ciclo com sucesso');
           })
 
           $scope.prossumerProductsInCycle[i] = false;
@@ -80,7 +76,8 @@ controller('groupShowcaseController',
                 return {
                   currentProduct: product,
                   cycleId: $scope.currentCycle.id,
-                  groupId: currentGroup.id
+                  groupId: currentGroup.id,
+                  productCategories: productCategories
                 }
               },
               'weeks': function () {
@@ -88,8 +85,9 @@ controller('groupShowcaseController',
               }
             }
           })
-          .then(function (answer) {
-
+          .then(function (product) {
+            $mdToast.showSimple('Adicionado ao ciclo com sucesso');
+            $scope.cycleShowcaseProducts.unshift(product);
           }, canceled);
       }
 
