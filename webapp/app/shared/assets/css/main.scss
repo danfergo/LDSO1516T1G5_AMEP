@@ -109,3 +109,24 @@ md-toolbar.md-hue-2 .md-button.md-raised{
   max-width:1200px;
   margin:0 auto;
 }
+<<<<<<< HEAD
+=======
+
+
+md-checkbox{
+  margin-bottom:0!important; /** fix for new angular-material **/
+}
+
+
+
+@media (min-width: 333px) {
+  md-toolbar md-pagination-wrapper{
+    min-width:333px!important;
+  }
+}
+/*
+md-sidenav + div > md-content{
+  background:#000!important;
+  color:#fff!important;
+}*/
+>>>>>>> master

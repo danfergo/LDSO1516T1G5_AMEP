@@ -19,8 +19,12 @@ config(function ($stateProvider, $urlRouterProvider) {
         return ProductCategory.query().$promise;
       }],
       prossumerProducts: ['Prossumer', 'currentSession', function (Prossumer, currentSession) {
+        if(!currentSession.id) return [];
         return Prossumer.Product.query({prossumerId:currentSession.id}).$promise;
       }]
+    },
+    data: {
+      tabIndex: 0
     }
   }).
   state('showcase', {
@@ -30,7 +34,16 @@ config(function ($stateProvider, $urlRouterProvider) {
     templateUrl: 'components/group_page/showcase.html',
     data: {
       tabIndex: 0
+<<<<<<< HEAD
     }
+=======
+    },
+    resolve: {
+      currentCycles: ['Cycle', 'currentGroup', function (Cycle, currentGroup) {
+        return Cycle.query({groupId: currentGroup.id}).$promise;
+      }]
+    },
+>>>>>>> master
   }).
   state('history', {
     parent: 'group',

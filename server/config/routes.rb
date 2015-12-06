@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :groups, only: [:index, :create, :show] do
       resources :groups_prossumers, path: 'prossumers', only: [:index, :show, :create]
       resources :cycles, only: [:index, :create, :show] do
-        resources :groups_cycles_products, path: 'products', only: [:index]
+        resources :groups_cycles_products, path: 'products', only: [:index, :show, :update, :destroy]
         resources :groups_cycles_weeks, path: 'weeks', only: [:index]
       end
       resources :groups_products_auths, path: 'products_auths', only: [:index, :show]
