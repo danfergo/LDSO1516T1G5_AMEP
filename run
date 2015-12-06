@@ -1,1 +1,1 @@
-cd server/ && rails server & cd webapp/ && grunt server && fg
+cd server/ && rails server & cd webapp/ && grunt serve && fg

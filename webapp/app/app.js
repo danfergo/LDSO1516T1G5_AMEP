@@ -15,7 +15,14 @@ directive('userAvatar', function () {
   };
 }).
 config(function ($mdThemingProvider) {
+
+
+  $mdThemingProvider.definePalette('customGreen', $mdThemingProvider.extendPalette('indigo', {
+    //'500' : 'rgba(152,190,120,0)'
+  }));
+
   $mdThemingProvider.theme('default')
-    .primaryPalette('green')
-    .accentPalette('lime');
+    .primaryPalette('customGreen')
+    .accentPalette('pink');
+
 });

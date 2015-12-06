@@ -2,9 +2,9 @@
   <h1  flex style="max-width:1200px;padding-top:50px;padding-left: 30px; margin:0; font-size:28px;">{{group.name}}</h1>
 </md-toolbar>
 
-<md-whiteframe class="md-whiteframe-2dp" style="max-width:100%;">
+<md-whiteframe class="md-whiteframe-2dp">
   <md-toolbar flex="none" layout="row" style="min-height:45px;">
-      <md-tabs md-dynamic-height md-center-tabs flex>
+      <md-tabs md-selected="selectedTab" md-dynamic-height md-center-tabs flex>
         <md-tab label="Montra" ui-sref-active="showcase" ui-sref="showcase">
         </md-tab>
 <<<<<<< HEAD
@@ -37,5 +37,5 @@
 </md-whiteframe>
 
 <div flex layout="row" layout-align="center start">
-  <ui-view flex style="max-width:1200px;"></ui-view>
+  <ui-view flex></ui-view>
 </div>
