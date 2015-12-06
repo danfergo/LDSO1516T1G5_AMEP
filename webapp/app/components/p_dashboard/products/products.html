@@ -1,9 +1,12 @@
 <div layout-padding layout="row" layout-wrap>
 
-  <h1 flex="100" style="margin:50px 20px 20px;">Meus produtos</h1>
+  <div flex="100">
+    <h1 style="margin:50px 20px 20px;">Meus produtos</h1>
+  </div>
 
-  <p flex ng-if="products.length == 0" class="text-center" style="font-size:32px; color:#999; max-width:700px;margin:50px auto;">
-      Clica no botão + para poderes adicionar produtos à tua lista pessoal
+  <p flex ng-if="products.length == 0" class="text-center"
+     style="font-size:32px; color:#999; max-width:700px;margin:50px auto;">
+    Clica no botão + para poderes adicionar produtos à tua lista pessoal
   </p>
 
   <div ng-repeat="product in products |orderBy:'created_at':true"

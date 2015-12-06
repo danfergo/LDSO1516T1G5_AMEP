@@ -7,6 +7,12 @@
     <ng-md-icon icon="add_to_photos"></ng-md-icon>
   </md-button>
 </div> -->
+<horizontal-timeline
+  start-date="2015-12-04"
+  end-date="2015-12-10"
+  events='[{date:"2015-12-05","content":"<p>lorem ipsum</p>"},{"date":"2015-12-07","content":"<p>lorem ipsum</p>"}]'>
+</horizontal-timeline>
+
 <div ng-if="!currentCycle" style="font-size:32px; color:#999; text-align:center; max-width:700px;margin:50px auto;">
   Nenhum ciclo se encontra ativo,
   consulta o separador ciclos para saberes mais acerca dos últimos.
@@ -14,16 +20,14 @@
 
 
 <div layout="row" ng-if="currentCycle">
-  .
 
-  <div layout="row" class="page-wrapper" flex layout-wrap layout-align="space-between stretch">
+  <div layout="row" class="page-wrapper" flex layout-wrap layout-align="center start">
 
     <div flex="100" ng-if="Group.Prossumer.isActive(prossumerState)">
       <div layout-padding layout="row">
         <span flex></span>
         <md-switch style="margin-bottom:5px;"
                    ng-model="showOnlyMyProducts"
-                   class="md-warn"
                    aria-label="Enable Indicators">
           Mostrar apenas os meus produtos
         </md-switch>
@@ -34,7 +38,7 @@
     </div>
 
     <div ng-repeat="product in filteredShowcaseProducts()"
-         class="flip-container" flip-card flex="50" flex-gt-lg="33" layout="column">
+         class="flip-container" flip-card flex-sm="100" flex-gt-sm="33" flex-gt-lg="33" flex-xl="25"   layout="column">
       <div class="flipper" flex layout="column">
         <div class="front" layout="column" flex>
           <md-whiteframe class="md-whiteframe-2dp" style="background:#fff;" flex layout-margin>
@@ -177,8 +181,7 @@
         <md-list-item class="md-1-line" ng-repeat="product in prossumerProducts">
           <div class="md-list-item-text" layout="row">
             <md-checkbox ng-change="changeProssumerProductInCycle($index)"
-                         ng-model="prossumerProductsInCycle[$index]"
-                         class="md-warn">
+                         ng-model="prossumerProductsInCycle[$index]">
               <b>{{product.title}}</b>
             </md-checkbox>
           </div>
@@ -198,7 +201,7 @@
       <h4 style="padding-left:20px;">Filtrar categorias</h4>
       <md-list-item class="md-1-line" ng-repeat="productCategory in productCategories">
         <div class="md-list-item-text" layout="row">
-          <md-checkbox class="md-warn">
+          <md-checkbox>
             <b>{{productCategory.name}}</b>
           </md-checkbox>
         </div>
