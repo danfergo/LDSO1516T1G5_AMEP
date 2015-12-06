@@ -1,5 +1,7 @@
 class Week < ActiveRecord::Base
   belongs_to :cycle
+  has_many :stocks
+  has_many :products, :through => :stocks
 
   def purchases_of(prossumer_id)
     @stockids = Stock.where(week_id: id).ids

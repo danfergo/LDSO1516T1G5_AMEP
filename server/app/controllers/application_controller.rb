@@ -14,7 +14,6 @@ class ApplicationController < ActionController::API
 
   # in order do be accessible to all controllers
   def is_authenticated
-
     if session[:prossumer_id]
       return true
     else
@@ -26,6 +25,15 @@ class ApplicationController < ActionController::API
   def not_is_authenticated
     if session[:prossumer_id]
       render json: {error: "Please log out in order to access"}, status:  :method_not_allowed
+      return false
+    else
+      return true
+    end
+  end
+
+  def is_my_resource(id)
+    if session[:prossumer_id] == id
+      render json: {error: "Yo do not have access to this opeation"}, status:  :unauthorized
       return false
     else
       return true
