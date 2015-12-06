@@ -6,7 +6,10 @@ class Product < ActiveRecord::Base
   has_many :weeks, through: :stocks
   belongs_to :product_category
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> master
 
   def weeks_where_cycle_id(cycle_id)
     Week.where({cycle_id: cycle_id}).as_json(product_id: self.id)
@@ -19,5 +22,8 @@ class Product < ActiveRecord::Base
     end
     json
   end
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
 end

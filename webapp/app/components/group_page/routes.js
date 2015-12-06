@@ -35,14 +35,20 @@ config(function ($stateProvider, $urlRouterProvider) {
     data: {
       tabIndex: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     }
 =======
+=======
+>>>>>>> master
     },
     resolve: {
       currentCycles: ['Cycle', 'currentGroup', function (Cycle, currentGroup) {
         return Cycle.query({groupId: currentGroup.id}).$promise;
       }]
     },
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
   }).
   state('history', {

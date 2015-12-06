@@ -1,5 +1,6 @@
 angular.module('amep-group-page').
 <<<<<<< HEAD
+<<<<<<< HEAD
 controller('groupShowcaseController', ['$scope', '$mdDialog', 'Group', function ($scope, $mdDialog, Group) {
   /*$scope.openCycleProductsManagement = function (ev) {
     $mdDialog.show({
@@ -18,6 +19,8 @@ controller('groupShowcaseController', ['$scope', '$mdDialog', 'Group', function 
   }*/
   //$scope.openCycleProductsManagement();
 =======
+=======
+>>>>>>> master
 controller('groupShowcaseController',
   ['$scope', '$mdDialog', '$mdToast', 'currentSession', 'currentGroup', 'currentCycles', 'productCategories', 'prossumerProducts', 'Group', 'Cycle', 'Product',
     function ($scope, $mdDialog, $mdToast, currentSession, currentGroup, currentCycles, productCategories, prossumerProducts, Group, Cycle, Product) {
@@ -84,8 +87,11 @@ controller('groupShowcaseController',
       }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 }]);
 =======
+=======
+>>>>>>> master
       $scope.addOrEditProduct = function (product, canceled) {
         $mdDialog.show({
             controller: 'addProductToCycleController',
@@ -129,4 +135,7 @@ controller('groupShowcaseController',
 
     }
   ]);
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
