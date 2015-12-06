@@ -20,8 +20,24 @@ factory('Group', ['$resource', function ($resource) {
 
   resource.Cycle = $resource('/api/v1/groups/:groupId/cycles/:id');
   resource.Cycle.Product = $resource('/api/v1/groups/:groupId/cycles/:cycleId/products/:id', null, {
+    'save': {method: 'PUT'},
     'delete': {method: 'DELETE', isArray: true}
   });
+
+  resource.Cycle.Product.productSellingPrice = function (product) {
+    console.log(product);
+    for (var w in product.weeks) {
+      console.log(product.weeks[w].stock);
+      if (product.weeks[w].stock != null) {
+        return {
+          ecos: product.weeks[w].stock.unit_price_ecos,
+          euros: product.weeks[w].stock.unit_price_euros
+        }
+      }
+    }
+    return undefined;
+  }
+
   resource.Cycle.Week = $resource('/api/v1/groups/:groupId/cycles/:cycleId/weeks');
 
 

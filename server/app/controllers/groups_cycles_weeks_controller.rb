@@ -4,6 +4,8 @@ class GroupsCyclesWeeksController < ApplicationController
   # GET /groups/1/cycles/1/products
   # GET /groups/1/cycles/1/products.json
   def index
+    puts params[:cycle_id];
+
     render json: Week.where({cycle_id: params[:cycle_id]})
   end
 

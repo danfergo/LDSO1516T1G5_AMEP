@@ -8,6 +8,8 @@ controller('groupShowcaseController',
       $scope.prossumerProductsInCycle = [];
       $scope.cycleShowcaseProducts = [];
 
+      $scope.productSellingPrice = Group.Cycle.Product.productSellingPrice;
+
       var selectProssumerProductsInCycle = function (sProducts) {
         for (var i in prossumerProducts) {
           $scope.prossumerProductsInCycle[i] = Product.filterById(sProducts, prossumerProducts[i].id) != null;
@@ -76,11 +78,13 @@ controller('groupShowcaseController',
             resolve: {
               'data': function () {
                 return {
-                  currentProduct: product
+                  currentProduct: product,
+                  cycleId: $scope.currentCycle.id,
+                  groupId: currentGroup.id
                 }
               },
               'weeks': function () {
-                return Group.Cycle.Week.query({groupId: 1, cycleId: 1}).$promise;
+                return Group.Cycle.Week.query({groupId: currentGroup.id, cycleId: $scope.currentCycle.id}).$promise;
               }
             }
           })
@@ -101,7 +105,6 @@ controller('groupShowcaseController',
         }
 
       }
-
 
     }
   ]);
