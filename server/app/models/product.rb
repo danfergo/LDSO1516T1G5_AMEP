@@ -15,7 +15,6 @@ class Product < ActiveRecord::Base
     if (options[:cycle_id])
       json['weeks'] = weeks_where_cycle_id(options[:cycle_id])
     end
-
     json
   end
 end

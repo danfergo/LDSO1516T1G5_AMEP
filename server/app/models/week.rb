@@ -23,7 +23,6 @@ class Week < ActiveRecord::Base
     @stockids = Stock.where(week_id: id).where(product_id: @productids).ids
     @orders = Order.where(stock_id: @stockids)
     @orders.as_json(
-
         :include => {stock: {include: :product},
                      prossumer: {except: [:encrypted_password, :salt, :confirm_hash]}
         }
@@ -38,7 +37,7 @@ class Week < ActiveRecord::Base
       json['purchases'] = purchases_of(options[:include_sales_and_purchases_of])
       json['sales'] = sales_of(options[:include_sales_and_purchases_of])
     elsif (options[:product_id])
-      json['stock'] = Stock.find(options[:product_id]).as_json
+      json['stock'] = Stock.where({product_id: options[:product_id], week_id: self.id}).first.as_json
     end
     json
   end

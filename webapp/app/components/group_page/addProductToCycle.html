@@ -6,7 +6,7 @@
   <div class="flipper " flex layout="column">
     <div class="front" layout="column" flex>
       <md-card layout="column">
-        <div ng-if="$index % 4 != 3"  class="md-card-image"
+        <div ng-if="$index % 4 != 3" class="md-card-image"
              style="background-image:url('http://a3145z1.americdn.com/wp-content/uploads/2013/03/orange-king-of-fruits.jpg');
                       background-size:cover;
                       background-position:center center;
@@ -51,39 +51,55 @@
       </md-card>
     </div>
     <div class="back" layout="column">
-      <md-card>
-        <md-card-title>
-          <md-card-title-text>
-            <span class="md-headline" style="padding: 24px 16px 16px;"> <!-- padding fixes bug -->{{currentProduct.title}}</span>
-            <md-button class="md-icon-button toggle" aria-label="Reverse" style="float:right;">
-              <ng-md-icon icon="rotate_right" size="24"></ng-md-icon>
-            </md-button>
-          </md-card-title-text>
-        </md-card-title>
-        <md-card-content>
-          <div layout-margin class="text-right">
-            <b>{{ currentProduct.ecos | currency :'E':2}}</b> +
-            {{ currentProduct.euros | currency :'€':2}}<br> /
-            {{currentProduct.unit}}
-          </div>
-          <div ng-repeat="week in weeks">
-            <md-divider></md-divider>
+      <form name="editProductStock">
+        <md-card>
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline" style="padding: 24px 16px 16px;"> <!-- padding fixes bug -->{{currentProduct.title}}</span>
+              <md-button class="md-icon-button toggle" aria-label="Reverse" style="float:right;">
+                <ng-md-icon icon="rotate_right" size="24"></ng-md-icon>
+              </md-button>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-content>
+            <div layout-margin class="text-right">
+              <b>{{ currentProduct.ecos | currency :'E':2}}</b> +
+              {{ currentProduct.euros | currency :'€':2}}<br> /
+              {{currentProduct.unit}}
+            </div>
+            <div ng-repeat="week in weeks">
+              <md-divider></md-divider>
 
-            <div layout="row" style="margin: 5px 0">
-              <div flex style="padding:1px;line-height:26px;">
-                {{week.delivery_date | date:'dd/MM'}}
-              </div>
-              <input value="0" style="width:40px;padding-left: 3px;
+              <div layout="row" style="margin: 5px 0">
+                <div flex style="padding:1px;line-height:26px;">
+                  {{week.delivery_date | date:'dd/MM'}}
+                </div>
+                <div layout="row">
+                  <input ng-model="weeks[$index].quantity"
+                         name="week_{{weeks.id}}"
+                         ng-if="weeks[$index].selected"
+                         ng-required="true"
+                         value="1"
+                         style="width:40px;padding-left: 3px;
                 border:2px solid rgba(0,0,0,0.54); border-radius:2px;outline: none;
                 margin: 0 1px;" type="number" step="1" min="0" max="30">
-
+                  <md-checkbox
+                    aria-label="Selecionar semana"
+                    ng-model="weeks[$index].selected"
+                    class="md-warn">
+                    <b>{{product.title}}</b>
+                  </md-checkbox>
+                </div>
+              </div>
             </div>
-          </div>
-        </md-card-content>
-        <md-card-actions layout="row" layout-align="end center">
-          <md-button class="md-primary">Adicionar</md-button>
-        </md-card-actions>
-      </md-card>
+          </md-card-content>
+          <md-card-actions layout="row" layout-align="end center">
+            <md-button type="submit" class="md-primary"
+                       ng-click="!editProductStock.$valid || addProductToCycle()">Adicionar
+            </md-button>
+          </md-card-actions>
+        </md-card>
+      </form>
     </div>
   </div>
 

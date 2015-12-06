@@ -14,9 +14,7 @@
 
 
 <div layout="row" ng-if="currentCycle">
-
-
-
+  .
 
   <div layout="row" class="page-wrapper" flex layout-wrap layout-align="space-between stretch">
 
@@ -107,12 +105,14 @@
                       height:150px;">
               </div>
               <div layout-margin class="text-right">
-                <b>{{ product.weeks[0].stock.unit_price_ecos | currency :'E':2}}</b> +
-                {{ product.weeks[0].stock.unit_price_euros | currency :'€':2}}<br> /
+                <b>{{ productSellingPrice(product).ecos | currency :'E':2}}</b> +
+                {{ productSellingPrice(product).euros | currency :'€':2}}<br> /
                 {{product.unit}}
               </div>
               <div layout-margin>
-                <span class="number-chip">1 </span>
+                <span class="number-chip" ng-repeat="week in product.weeks" ng-if="week.stock">
+                  {{week.number}}
+                </span>
               </div>
             </div>
           </md-whiteframe>
@@ -126,11 +126,11 @@
               </md-button>
             </div>
             <div layout-margin class="text-right">
-              <b>{{ product.weeks[0].stock.unit_price_ecos | currency :'E':2}}</b> +
-              {{ product.weeks[0].stock.unit_price_euros | currency :'€':2}}<br> /
+              <b>{{ productSellingPrice(product).ecos | currency :'E':2}}</b> +
+              {{ productSellingPrice(product).euros | currency :'€':2}}<br> /
               {{product.unit}}
             </div>
-            <div ng-repeat="week in product.weeks">
+            <div ng-repeat="week in product.weeks" ng-if="week.stock">
               <md-divider></md-divider>
 
               <div layout="row" style="margin: 5px 0">
