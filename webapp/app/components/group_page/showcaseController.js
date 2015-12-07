@@ -77,7 +77,8 @@ controller('groupShowcaseController',
                   currentProduct: product,
                   cycleId: $scope.currentCycle.id,
                   groupId: currentGroup.id,
-                  productCategories: productCategories
+                  productCategories: productCategories,
+                  prossumerId: currentSession.id
                 }
               },
               'weeks': function () {

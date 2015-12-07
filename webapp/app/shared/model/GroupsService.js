@@ -36,7 +36,9 @@ factory('Group', ['$resource', function ($resource) {
     return undefined;
   }
 
-  resource.Cycle.Week = $resource('/api/v1/groups/:groupId/cycles/:cycleId/weeks');
+  resource.Cycle.Week = $resource('/api/v1/groups/:groupId/cycles/:cycleId/weeks',{},{
+    // 'index' : { method: 'GET', isArray:true}
+  });
 
 
   /**

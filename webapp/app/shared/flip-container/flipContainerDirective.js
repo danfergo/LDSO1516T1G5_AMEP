@@ -2,16 +2,17 @@ angular.module('flipCard', []).
 directive('flipCard', ['$timeout', '$window', function ($timeout, $window) {
   function link(scope, element, attrs) {
     element.bind('click', function () {
-      if (!element.hasClass('hover') && !element.hasClass('locked'))
-        element.toggleClass('hover');
+      if (!element.hasClass('flipped') && !element.hasClass('locked')) {
+        element.toggleClass('flipped');
+      }
     })
 
     element.find('.toggle').bind('click', function () {
-      element.toggleClass('hover');
+      element.toggleClass('flipped');
       return false; // prevents propagation to parent
     })
 
-    function resize(e) {
+    function resize(element) {
       var e = angular.element(element);
       var front = e.find('.front');
       var back = e.find('.back');
@@ -21,9 +22,9 @@ directive('flipCard', ['$timeout', '$window', function ($timeout, $window) {
       e.css('height', max);
     }
 
-    element.css('visibility','hidden');
+    element.css('visibility', 'hidden');
     $timeout(function () { //dom ready
-      element.css('visibility','visible');
+      element.css('visibility', 'visible');
       resize(element);
     })
 
