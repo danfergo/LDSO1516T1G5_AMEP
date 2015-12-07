@@ -1,26 +1,5 @@
 angular.module('amep-group-page').
-<<<<<<< HEAD
-<<<<<<< HEAD
-controller('groupShowcaseController', ['$scope', '$mdDialog', 'Group', function ($scope, $mdDialog, Group) {
-  /*$scope.openCycleProductsManagement = function (ev) {
-    $mdDialog.show({
-        controller: 'manageCycleProductsController',
-        templateUrl: 'components/group_page/manageCycleProducts.html',
-        targetEvent: ev,
-        clickOutsideToClose: false,
-        fullscreen: true,
-        parent: angular.element(document.body)
-      })
-      .then(function (answer) {
-        $scope.status = 'You said the information was "' + answer + '".';
-      }, function () {
-        $scope.status = 'You cancelled the dialog.';
-      });
-  }*/
-  //$scope.openCycleProductsManagement();
-=======
-=======
->>>>>>> master
+
 controller('groupShowcaseController',
   ['$scope', '$mdDialog', '$mdToast', 'currentSession', 'currentGroup', 'currentCycles', 'productCategories', 'prossumerProducts', 'Group', 'Cycle', 'Product',
     function ($scope, $mdDialog, $mdToast, currentSession, currentGroup, currentCycles, productCategories, prossumerProducts, Group, Cycle, Product) {
@@ -49,7 +28,6 @@ controller('groupShowcaseController',
         cycleId: $scope.currentCycle.id
       }, setShowcaseProducts);
 
->>>>>>> master
 
       $scope.filteredShowcaseProducts = function () {
         return $scope.showOnlyMyProducts && currentSession.id
@@ -86,12 +64,6 @@ controller('groupShowcaseController',
         });
       }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-}]);
-=======
-=======
->>>>>>> master
       $scope.addOrEditProduct = function (product, canceled) {
         $mdDialog.show({
             controller: 'addProductToCycleController',
@@ -135,7 +107,3 @@ controller('groupShowcaseController',
 
     }
   ]);
-<<<<<<< HEAD
->>>>>>> master
-=======
->>>>>>> master

@@ -34,22 +34,12 @@ config(function ($stateProvider, $urlRouterProvider) {
     templateUrl: 'components/group_page/showcase.html',
     data: {
       tabIndex: 0
-<<<<<<< HEAD
-<<<<<<< HEAD
-    }
-=======
-=======
->>>>>>> master
     },
     resolve: {
       currentCycles: ['Cycle', 'currentGroup', function (Cycle, currentGroup) {
         return Cycle.query({groupId: currentGroup.id}).$promise;
       }]
     },
-<<<<<<< HEAD
->>>>>>> master
-=======
->>>>>>> master
   }).
   state('history', {
     parent: 'group',
