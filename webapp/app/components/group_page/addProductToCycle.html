@@ -1,0 +1,109 @@
+<md-dialog aria-label="Adicionar produto ao ciclo"  role="dialog"
+           style="background:transparent;box-shadow: none;width:300px;">
+  <div class="locked flip-container"
+       ng-class="{hover: currentProduct}"
+       flip-card
+       layout="column">
+    <div class="flipper " flex layout="column">
+      <div class="front" layout="column" flex>
+        <md-card layout="column" flex>
+          <div ng-if="$index % 4 != 3" class="md-card-image"
+               style="background-image:url('http://a3145z1.americdn.com/wp-content/uploads/2013/03/orange-king-of-fruits.jpg');
+                      background-size:cover;
+                      background-position:center center;
+                      height:150px;">
+          </div>
+
+          <md-card-title>
+            <md-card-title-text>
+              <md-input-container>
+                <label>Título</label>
+                <input ng-model="currentProduct.title">
+              </md-input-container>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-content style="overflow-y:auto" flex>
+            <div>
+              <md-input-container flex><label>Descrição</label>
+        <textarea ng-model="currentProduct.description" columns="1" md-maxlength="300"
+                  placeholder="Descreve  o produto"></textarea>
+              </md-input-container>
+            </div>
+
+            <div layout="row">
+              <md-input-container flex="50">
+                <label>Categoria</label>
+                <md-select ng-model="currentProduct.product_category_id">
+                  <md-option ng-repeat="productCategory in productCategories" ng-value="productCategory.id">
+                    {{productCategory.name}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+              <md-input-container flex="50"><label>Uni. de medida</label>
+                <input ng-model="currentProduct.unit" ng-required="true" type="text">
+              </md-input-container>
+            </div>
+
+
+          </md-card-content>
+          <md-card-actions layout="row" layout-align="end center">
+            <md-button class="md-primary">Adicionar</md-button>
+          </md-card-actions>
+        </md-card>
+      </div>
+      <div class="back" layout="column">
+        <form name="editProductStock" layout="column" flex>
+          <md-card layout="column" flex>
+            <md-card-title >
+              <md-card-title-text>
+                <span class="md-headline" style="padding: 24px 16px 16px;"> <!-- padding fixes bug -->{{currentProduct.title}}</span>
+                <md-button class="md-icon-button toggle" aria-label="Reverse" style="float:right;">
+                  <ng-md-icon icon="rotate_right" size="24"></ng-md-icon>
+                </md-button>
+              </md-card-title-text>
+            </md-card-title>
+            <md-card-content flex>
+              <div layout-margin class="text-right">
+                <b>{{ currentProduct.ecos | currency :'E':2}}</b> +
+                {{ currentProduct.euros | currency :'€':2}}<br> /
+                {{currentProduct.unit}}
+              </div>
+              <div ng-repeat="week in weeks">
+                <md-divider></md-divider>
+
+                <div layout="row" style="margin: 5px 0">
+                  <div flex style="padding:1px;line-height:26px;">
+                    {{week.delivery_date | date:'dd/MM'}}
+                  </div>
+                  <div layout="row">
+                    <input ng-model="weeks[$index].quantity"
+                           name="week_{{weeks.id}}"
+                           ng-if="weeks[$index].selected"
+                           ng-required="true"
+                           value="1"
+                           style="width:40px;padding-left: 3px;
+                border:2px solid rgba(0,0,0,0.54); border-radius:2px;outline: none;
+                margin: 0 1px;" type="number" step="1" min="0" max="30">
+                    <md-checkbox
+                      aria-label="Selecionar semana"
+                      ng-model="weeks[$index].selected"
+                      class="md-warn">
+                      <b>{{product.title}}</b>
+                    </md-checkbox>
+                  </div>
+                </div>
+              </div>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+              <md-button type="submit" class="md-primary"
+                         ng-click="!editProductStock.$valid || addProductToCycle()">Guardar
+              </md-button>
+            </md-card-actions>
+          </md-card>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</md-dialog>
+

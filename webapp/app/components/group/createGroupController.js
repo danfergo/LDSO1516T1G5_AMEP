@@ -5,7 +5,6 @@ controller('createGroupController', ['$scope', 'Group', '$mdDialog', '$mdToast',
   };
   $scope.cancel = function() {
     $mdDialog.cancel();
-
   };
   $scope.ok = function() {
     Group.save($scope.group,function(group){

@@ -11,13 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151201182141) do
+ActiveRecord::Schema.define(version: 20151203151608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contact_forms", force: :cascade do |t|
+    t.string   "assunto"
+    t.string   "myMessage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "message"
+    t.string   "subject"
+    t.string   "cell"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -71,15 +88,22 @@ ActiveRecord::Schema.define(version: 20151201182141) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "product_categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
     t.string   "unit"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.integer  "prossumer_id"
     t.float    "ecos"
     t.float    "euros"
+    t.integer  "product_category_id"
   end
 
   create_table "prossumers", force: :cascade do |t|

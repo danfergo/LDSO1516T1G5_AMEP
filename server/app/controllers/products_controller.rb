@@ -3,24 +3,33 @@ class ProductsController < ApplicationController
   before_action :set_prossumer, only: [:create]
   before_action :set_product, only: [:show, :update, :destroy]
 
+  # -----------------------------------------
+  #           PROSSUMER PRODUCTS
+  # -----------------------------------------
+
   # GET /products
   # GET /products.json
   def index
-    @products = Product.where(prossumer_id: session[:prossumer_id])
+    is_my_resource(params[:prossumer_id])
+
+    @products = Product.where(prossumer_id: params[:prossumer_id])
     render json: @products
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
+    is_my_resource(params[:prossumer_id])
+
     render json: @product
   end
 
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(product_params)
+    is_my_resource(params[:prossumer_id])
 
+    @product = Product.new(product_params)
 
     if @product.save
       render json: @product, status: :created
@@ -55,7 +64,7 @@ class ProductsController < ApplicationController
     end
 
     def set_product
-      @product = Product.find(params[:id])
+      @product = Product.find(params[:prossumer_id])
     end
 
     def product_params

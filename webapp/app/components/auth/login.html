@@ -1,19 +1,19 @@
 <md-content layout-fill layout="column" layout-align="center center" class="md-default-theme">
 
-  <md-card class="md-whiteframe-1dp" style="width:350px">
+  <md-card class="md-whiteframe-2dp">
     <md-card-content layout-padding>
-      <form name="loginForm" flex-gt-md>
+      <form name="loginForm" layout="column" style="width:250px">
         <h1 class="md-title">Iniciar sessão</h1>
-        <md-input-container flex>
+        <md-input-container>
           <label>Email</label>
-          <input ng-model="email" type="email" name="email" ng-required="true" autofocus+>
+          <input ng-model="email" type="email" name="email" ng-required="true" autofocus  >
         </md-input-container>
 
-        <md-input-container flex>
+        <md-input-container>
           <label>Palavra-passe</label>
           <input ng-model="password" type="password" name="password" ng-required="true">
         </md-input-container>
-        <md-input-container flex>
+        <md-input-container>
 
           <md-switch style="margin:0;"
                      ng-model="vm.activated"
@@ -24,15 +24,16 @@
 
 
         </md-input-container>
-        <md-input-container flex>
-          <span style="color:#f00">{{errorMessage}}</span>
+
+        <div flex="none" layout="column">
+          <div style="color:#f00;min-height:20px;">{{errorMessage}}</div>
           <md-button style="margin-left:0; margin-right:0;"
                      class="md-raised md-primary"
                      ng-disabled="!loginForm.$valid"
                      ng-click="login(email,password)"
                      flex>Iniciar Sessão
           </md-button>
-        </md-input-container>
+        </div>
       </form>
     </md-card-content>
   </md-card>

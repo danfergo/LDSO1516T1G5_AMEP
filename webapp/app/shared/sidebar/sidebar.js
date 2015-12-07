@@ -28,9 +28,9 @@ controller('SidebarController', ['$scope', 'Session', '$mdSidenav', function ($s
       icon: 'local_mall'
     },
     {
-      state: 'history',
+      state: 'history-2',
       title: 'Histórico',
-      icon: 'history'
+      icon: 'history-2'
     },
     {
       state: 'settings',

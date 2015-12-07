@@ -95,11 +95,35 @@ md-toolbar.md-hue-2 .md-button.md-raised{
   text-align:center;
   font-size:16px;
   line-height:32px;
-  background: rgb(224, 224, 224);
-  color:rgb(66, 66, 66);
+  background: rgb(230, 230, 230);
+  color:#676767;
   width:32px;
   height:32px;
   font-weight:bold;
   display:inline-block;
   margin:0 2px;
 }
+
+
+.page-wrapper{
+  max-width:1200px;
+  margin:0 auto;
+}
+
+
+md-checkbox{
+  margin-bottom:0!important; /** fix for new angular-material **/
+}
+
+
+
+@media (min-width: 333px) {
+  md-toolbar md-pagination-wrapper{
+    min-width:333px!important;
+  }
+}
+/*
+md-sidenav + div > md-content{
+  background:#000!important;
+  color:#fff!important;
+}*/
