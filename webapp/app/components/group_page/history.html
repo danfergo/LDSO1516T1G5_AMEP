@@ -1,14 +1,19 @@
-<div style="width: 15%; float: right;">
-  <md-select ng-model="cycleSelected" aria-label="seleciona o ciclo" ng-change="selectChanged()">
+<div style="width: 100%;" layout="row">
+  <div flex>
+  </div>
+  <md-select ng-model="cycleSelected" aria-label="seleciona o ciclo">
     <md-option ng-value="cycle" ng-repeat="cycle in cycles | orderBy:'-start_time'"> {{cycle.start_time | date:'dd-MM-yyyy'}}</md-option>
   </md-select>
 </div>
 
 
-<div id="reloadMe">
-  <horizontal-timeline
+<timeline bla="cycleSelected">
+</timeline>
+
+<!--
+<horizontal-timeline
   start-date="{{startDate}}"
   end-date="{{endDate}}"
   events="events">
 </horizontal-timeline>
-</div>
+-->
