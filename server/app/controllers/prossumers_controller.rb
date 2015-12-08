@@ -91,6 +91,7 @@ class ProssumersController < ApplicationController
   def prossumer_confirm_params
     params.require(:id)
     params.require(:hash)
+    params
   end
 
   def prossumer_params
