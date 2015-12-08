@@ -13,6 +13,7 @@ class CyclesController < ApplicationController
   # GET /cycles/1
   # GET /cycles/1.json
   def show
+
     render json: @cycle
   end
 

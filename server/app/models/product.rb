@@ -17,4 +17,5 @@ class Product < ActiveRecord::Base
     end
     json
   end
+
 end

@@ -63,13 +63,13 @@ Cycle.create([
              ])
 
 Week.create([
-                {number: 1, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 05)},
-                {number: 2, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 10)},
-                {number: 3, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 17)},
-                {number: 1, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 15)},
-                {number: 2, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 30)},
-                {number: 1, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 15)},
-                {number: 2, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 30)}
+                {number: 1, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 05, 19, 0, 0), location: "rua do sitio, 27, 39"},
+                {number: 2, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 10, 19, 0, 0), location: "rua do sitio, 27, 39"},
+                {number: 3, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 17, 19, 0, 0), location: "rua do sitio, 27, 39"},
+                {number: 1, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 15, 19, 0, 0), location: "rua do sitio, 27, 39"},
+                {number: 2, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 30, 19, 0, 0), location: "rua do sitio, 27, 39"},
+                {number: 1, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 15, 19, 0, 0), location: "rua do sitio, 27, 39"},
+                {number: 2, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 30, 19, 0, 0), location: "rua do sitio, 27, 39"}
             ])
 
 Stock.create([
