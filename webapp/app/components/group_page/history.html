@@ -1,23 +1,11 @@
-<div style="width: 15%; ">
-  <md-select ng-model="cycleSelected" aria-label="seleciona o ciclo" ng-change="selectChanged()">
-    <md-option ng-value="cycle" ng-repeat="cycle in cycles | orderBy:'-start_time'"> {{cycle.start_time |
-      date:'dd-MM-yyyy'}}
-    </md-option>
+<div style="width: 100%;" layout="row">
+  <div flex>
+  </div>
+  <md-select ng-model="cycleSelected" aria-label="seleciona o ciclo">
+    <md-option ng-value="cycle" ng-repeat="cycle in cycles | orderBy:'-start_time'"> {{cycle.start_time | date:'dd-MM-yyyy'}}</md-option>
   </md-select>
 </div>
 
-<div layout="row" style="height:40px;background:#fff;">
-  <div style="line-height:40px;">
-    12-12-1223
-  </div>
-  <div style="margin:15px 0; height:10px; position: relative;background:#000;" flex>
-    <div style="height:10px; position: absolute;left:0;top:0;bottom: 0; width:33%;background:#f00;">
 
-    </div>
-    <div></div>
-  </div>
-  <div style="line-height:40px;">
-    12-12-1223
-  </div>
-</div>
-
+<timeline bla="cycleSelected">
+</timeline>

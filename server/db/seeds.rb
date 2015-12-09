@@ -26,34 +26,37 @@ Group.create([
              ])
 
 Prossumer.create(
-    name: 'Master', email: 'teste@amep.pt', password: '123456', phone: '66666'
+    name: 'Prossumer1', email: 'master@amep.pt', password: '123456', phone: '66666'
 ).update(confirm_hash: nil)
 
 Prossumer.create(
-    name: 'Prossumer1', email: 'Prossumer1@amep.pt', password: '123456', phone: '66666'
+    name: 'Prossumer2', email: 'prossumer2@amep.pt', password: '123456', phone: '66666'
 ).update(confirm_hash: nil)
 
 Prossumer.create(
-    name: 'Prossumer2', email: 'Prossumer2@amep.pt', password: '123456', phone: '66666'
+    name: 'Prossumer3', email: 'prossumer3@amep.pt', password: '123456', phone: '66666'
 ).update(confirm_hash: nil)
+
 
 GroupsProssumer.create([
                            {group_id: 1, prossumer_id: 1, is_coordinator: true, state: 2},
                            {group_id: 1, prossumer_id: 2, is_coordinator: false, state: 2},
-                           {group_id: 2, prossumer_id: 3, is_coordinator: true, state: 2},
-                           {group_id: 2, prossumer_id: 1, is_coordinator: true, state: 2}
+                           {group_id: 1, prossumer_id: 3, is_coordinator: false, state: 2}
                        ])
 
 Product.create([
-                   {title: 'bananas', description: 'muito boas', unit: 'kg', prossumer_id: 1},
-                   {title: 'macas', description: 'muito mas', unit: 'g', prossumer_id: 1},
-                   {title: 'bananas da madeira', description: 'muito duras', unit: 'kg', prossumer_id: 2}
+                   {title: 'Bananas', description: '', unit: 'kg', prossumer_id: 1, ecos: 3, euros: 3},
+                   {title: 'Maças', description: 'Biológicas', unit: 'g', prossumer_id: 1, ecos: 2, euros: 0.5},
+                   {title: 'Cenouras', description: '', unit: 'kg', prossumer_id: 2, ecos: 4, euros: 3},
+                   {title: 'Batatas', description: '', unit: 'kg', prossumer_id: 2, ecos: 6, euros: 3},
+                   {title: 'Iogurte', description: 'Doce', unit: 'g', prossumer_id: 3, ecos: 2, euros: 1.2}
                ])
 
 ProductAuth.create([
-                       {state: 2, group_id: 1, product_id: 1, ecos: 3, euros: 3},
-                       {state: 1, group_id: 1, product_id: 2, ecos: 3, euros: 3},
-                       {state: 0, group_id: 1, product_id: 3,ecos: 3, euros: 3},
+                       {state: 2, group_id: 1, product_id: 1},
+                       {state: 2, group_id: 1, product_id: 2},
+                       {state: 2, group_id: 1, product_id: 3},
+                       {state: 2, group_id: 1, product_id: 4}
                    ])
 
 Cycle.create([
@@ -63,22 +66,21 @@ Cycle.create([
              ])
 
 Week.create([
-                {number: 1, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 05)},
-                {number: 2, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 10)},
-                {number: 3, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 17)},
-                {number: 1, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 15)},
-                {number: 2, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 30)},
-                {number: 1, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 15)},
-                {number: 2, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 30)}
+                {number: 1, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 11)},
+                {number: 2, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 17)},
+                {number: 3, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 24)},
+                {number: 4, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 30)}
             ])
 
 Stock.create([
-                 {quantity: 5, unit_price_euros: 3, unit_price_ecos: 3, week_id: 1, product_id: 1},
-                 {quantity: 5, unit_price_euros: 3, unit_price_ecos: 3, week_id: 6, product_id: 1}
+                 {quantity: 10, unit_price_euros: 3, unit_price_ecos: 3, week_id: 1, product_id: 1},
+                 {quantity: 8, unit_price_euros: 3, unit_price_ecos: 3, week_id: 1, product_id: 3},
+                 {quantity: 3, unit_price_euros: 1, unit_price_ecos: 1, week_id: 1, product_id: 4},
+
              ])
 
 Order.create([
-                 {quantity: 2, prossumer_id: 1, stock_id: 1},
-                 {quantity: 2, prossumer_id: 1, stock_id: 1},
-                 {quantity: 1, prossumer_id: 1, stock_id: 1}
+                 {quantity: 3, prossumer_id: 2, stock_id: 1},
+                 {quantity: 5, prossumer_id: 1, stock_id: 2},
+                 {quantity: 2, prossumer_id: 1, stock_id: 3}
              ])

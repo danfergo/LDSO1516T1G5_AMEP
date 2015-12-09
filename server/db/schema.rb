@@ -146,6 +146,7 @@ ActiveRecord::Schema.define(version: 20151209162447) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.datetime "delivery_date"
+    t.string   "location"
   end
 
   add_index "weeks", ["cycle_id"], name: "index_weeks_on_cycle_id", using: :btree
