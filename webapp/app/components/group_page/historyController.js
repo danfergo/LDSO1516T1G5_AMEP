@@ -13,7 +13,7 @@ controller('groupHistoryController', ['$scope', 'Cycle', 'currentGroup', 'curren
 
   */
 
-
+/*
   $scope.startDate = moment($scope.cycleSelected.start_time).format('YYYY-MM-DD');
   $scope.endDate = moment($scope.cycleSelected.end_time).format('YYYY-MM-DD');
   $scope.events = [
@@ -36,5 +36,10 @@ console.log($scope.startDate);
 
   console.log("--> DOIS ::");
   console.log($scope.startDate);
+*/
+    $scope.startDate = moment().subtract(2, 'months').format('YYYY-MM-DD');
+    $scope.endDate = moment().add(2, 'months').format('YYYY-MM-DD');
+    $scope.events = [{'date': moment().subtract(7, 'days').format('YYYY-MM-DD'), 'content':'<p>lorem ipsum</p>'},
+      {'date': moment().add(7, 'days').format('YYYY-MM-DD'), 'content':'<p>lorem ipsum</p>'}];
 
 }]);

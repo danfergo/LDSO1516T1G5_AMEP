@@ -45,21 +45,21 @@ GroupsProssumer.create([
                        ])
 
 Product.create([
-                   {title: 'bananas', description: 'muito boas', unit: 'kg', prossumer_id: 1, ecos: 3, euros: 3},
-                   {title: 'macas', description: 'muito mas', unit: 'g', prossumer_id: 1, ecos: 20, euros: 50},
-                   {title: 'bananas da madeira', description: 'muito duras', unit: 'kg', prossumer_id: 2, ecos: 4, euros: 3}
+                   {title: 'bananas', description: 'muito boas', unit: 'kg', prossumer_id: 1},
+                   {title: 'macas', description: 'muito mas', unit: 'g', prossumer_id: 1},
+                   {title: 'bananas da madeira', description: 'muito duras', unit: 'kg', prossumer_id: 2}
                ])
 
 ProductAuth.create([
-                       {state: 2, group_id: 1, product_id: 1},
-                       {state: 1, group_id: 1, product_id: 2},
-                       {state: 0, group_id: 1, product_id: 3},
+                       {state: 2, group_id: 1, product_id: 1, ecos: 3, euros: 3},
+                       {state: 1, group_id: 1, product_id: 2, ecos: 3, euros: 3},
+                       {state: 0, group_id: 1, product_id: 3,ecos: 3, euros: 3},
                    ])
 
 Cycle.create([
                  {start_time: DateTime.new(2015, 11, 29), end_time: DateTime.new(2015, 12, 20), group_id: 1},
                  {start_time: DateTime.new(2015, 12, 20), end_time: DateTime.new(2016, 1, 3), group_id: 1},
-                 {start_time: DateTime.new(2015, 12, 18), end_time: DateTime.new(2016, 1, 4), group_id: 2}
+                 {start_time: DateTime.new(2015, 12, 23), end_time: DateTime.new(2016, 1, 4), group_id: 2}
              ])
 
 Week.create([
