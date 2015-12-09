@@ -1,49 +1,75 @@
-<md-content flex>
-  <md-content ng-repeat="week in weeks" layout-padding style="background-color: pink; margin: 10px;">
-    <h3>Semana {{week.number}} do ciclo {{week.cycle.id}} do grupo {{week.cycle.group.name}}</h3>
-    <md-content layout="row">
-      <md-content flex layout="column" style="background-color: blue" layout-padding-column>
-        <p><h5>ENCOMENDAS</h5></p>
-        <md-content ng-repeat="purchase in week.purchases"  layout-padding
-                    style="background-color: yellow; color: red;">
+<md-card ng-repeat="week in weeks" layout-padding layout="column">
+  <md-card-header layout-padding>
+    <md-card-header-text layout="row" >
+      <div flex>
+        <h3>Grupo {{week.cycle.group.name}}</h3>
+        <h4>{{week.cycle.id}}º Ciclo | {{week.number}}ª Semana</h4>
+        <div class="glyphicon glyphicon-calendar"> {{week.delivery_date.split("T")[0]}}</div>
+        <div style="padding-left: 30px" class="glyphicon glyphicon-time"> {{week.delivery_date.split("T")[1].split(".")[0]}}</div>
+      </div>
+      <div>
+        <md-card>
+          <md-content layout-padding>
+            <b>Ecos</b> {{4}}
+          </md-content>
+        </md-card>
+      </div>
+    </md-card-header-text>
+  </md-card-header>
+  <md-content>
+    <md-card>
+      <h4 layout-padding>Encomendas</h4>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Produto</th>
+          <th>Produtor</th>
+          <th>Quantidade</th>
+          <th>Ecos</th>
+          <th>Euros</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="purchase in week.purchases">
+          <td>{{purchase.stock.product.title}}</td>
+          <td>{{purchase.stock.product.prossumer.name}}</td>
+          <td>{{purchase.quantity}} ({{purchase.stock.product.unit}})</td>
+          <td>{{purchase.quantity * purchase.stock.unit_price_euros}}</td>
+          <td>{{purchase.quantity * purchase.stock.unit_price_ecos}}</td>
+        </tr>
+        </tbody>
+      </table>
 
+    </md-card>
 
-          <p>Produto: {{purchase.stock.product.title}}</p>
+    <md-card>
+      <h4 layout-padding>Entregas</h4>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Produto</th>
+          <th>Comprador</th>
+          <th>Quantidade</th>
+          <th>Ecos</th>
+          <th>Euros</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="sale in week.sales">
+          <td>{{sale.stock.product.title}}</td>
+          <td>{{sale.prossumer.name}}</td>
+          <td>{{sale.quantity}} ({{sale.stock.product.unit}})</td>
+          <td>{{sale.quantity * sale.stock.unit_price_euros}}</td>
+          <td>{{sale.quantity * sale.stock.unit_price_ecos}}</td>
+        </tr>
+        </tbody>
+      </table>
 
-          <p>Produtor: {{purchase.stock.product.prossumer.name}}</p>
-
-          <p>Quantidade: {{purchase.quantity}}</p>
-
-          <p>Euros: {{purchase.quantity * purchase.stock.unit_price_euros}}</p>
-
-          <p>Ecos: {{purchase.quantity * purchase.stock.unit_price_ecos}}</p>
-
-        </md-content>
-      </md-content>
-
-      <md-content flex layout="column" style="background-color: brown" layout-padding-column>
-        <p><h5>ENTREGAS</h5></p>
-        <md-content ng-repeat="sale in week.sales"  layout-padding
-                    style="background-color: purple; color: red;">
-
-
-          <p>Produto: {{sale.stock.product.title}}</p>
-
-          <p>Consumidor: {{sale.prossumer.name}}</p>
-
-          <p>Quantidade: {{sale.quantity}}</p>
-
-          <p>Euros: {{sale.quantity * sale.stock.unit_price_euros}}</p>
-
-          <p>Ecos: {{sale.quantity * sale.stock.unit_price_ecos}}</p>
-
-
-        </md-content>
-      </md-content>
-    </md-content>
+    </md-card>
 
   </md-content>
 
+</md-card>
 
-</md-content>
-</md-content>
+
+
