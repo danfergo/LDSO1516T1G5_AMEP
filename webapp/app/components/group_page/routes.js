@@ -78,5 +78,10 @@ config(function ($stateProvider, $urlRouterProvider) {
     data :{
       tabIndex: 3
     }
+  }).
+  state('outro', {
+    url: '/outro',
+    //controller: 'demoCtrl',
+    templateUrl: 'components/outro.html'
   });
 });

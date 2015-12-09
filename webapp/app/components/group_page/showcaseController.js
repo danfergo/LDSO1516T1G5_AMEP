@@ -1,4 +1,5 @@
 angular.module('amep-group-page').
+
 controller('groupShowcaseController',
   ['$scope', '$mdDialog', '$mdToast', 'currentSession', 'currentGroup', 'currentCycles', 'productCategories', 'prossumerProducts', 'Group', 'Cycle', 'Product',
     function ($scope, $mdDialog, $mdToast, currentSession, currentGroup, currentCycles, productCategories, prossumerProducts, Group, Cycle, Product) {
