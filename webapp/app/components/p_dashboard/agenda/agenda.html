@@ -1,4 +1,4 @@
-<md-card ng-repeat="week in weeks" layout-padding layout="column">
+<md-card ng-repeat="week in weeks" > <!--layout-padding layout="column" -->
   <div layout-padding layout="row">
     <div flex>
       <h3>Grupo {{week.cycle.group.name}}</h3>
@@ -13,7 +13,7 @@
         {{week.delivery_date.split("T")[1].split(".")[0]}}
       </div>
     </div>
-    <div>
+    <div >
       <md-card>
         <md-content layout-padding>
           Ecos: {{balanceEcos(week)}}<br>
@@ -22,10 +22,11 @@
       </md-card>
     </div>
   </div>
-  <md-content layout="row">
-    <div>
+  <md-content layout="row" layout-wrap >
+    <div layout="column"  flex="100" flex-gt-sm="50">
       <h4 layout-padding>Encomendas</h4>
-      <md-card>
+
+      <md-card style="overflow-x:auto;">
         <table class="table">
           <thead>
           <tr>
@@ -49,10 +50,10 @@
       </md-card>
     </div>
 
-    <div>
+    <div layout="column" flex="100" flex-gt-sm="50">
       <h4 layout-padding>Entregas</h4>
-      <md-card>
-        <table class="table">
+      <md-card style="overflow-x:auto;">
+        <table class="table" >
           <thead>
           <tr>
             <th>Produto</th>
