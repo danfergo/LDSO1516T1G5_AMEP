@@ -6,14 +6,37 @@
       <div layout layout-sm="column">
         <md-input-container flex>
           <label>Nome do grupo</label>
-          <input ng-model="group.name" placeholder="Nome do grupo " ng-minlength="10">
+          <input name="groupName" ng-model="group.name" placeholder="Nome" ng-minlength="5" ng-required="true">
+        </md-input-container>
+      </div>
+      <div ng-messages="newGroupForm.groupName.$error" style="color:maroon" role="alert">
+        <div ng-message="required">Required</div>
+        <div ng-message="minlength">Minimo 5 carateres</div>
+      </div>
+      <div layout layout-sm="column">
+        <md-input-container flex>
+          <label>Cidade</label>
+          <md-select name="city" ng-model="group.city_id" ng-required="true">
+            <md-option ng-repeat="city in cities" value="{{city.id}}">
+              {{city.name}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+      <div ng-messages="newGroupForm.city.$error" style="color:maroon" role="alert">
+        <div ng-message="required">Selecione uma cidade</div>
+      </div>
+      <div layout layout-sm="column">
+        <md-input-container flex>
+          <label>Moeda Virtual</label>
+          <input name="currency" ng-model="placeholder" placeholder="Moeda">
         </md-input-container>
       </div>
     </form>
   </md-content>
   <div class="md-actions" layout="row">
     <span flex></span>
-    <md-button> Cancel</md-button>
+    <md-button ng-click="cancel()"> Cancel</md-button>
     <md-button ng-click="!newGroupForm.$valid || ok()" class="md-primary"> Save</md-button>
   </div>
 </md-dialog>
