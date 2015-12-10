@@ -45,29 +45,39 @@ GroupsProssumer.create([
                        ])
 
 Product.create([
-                   {title: 'Bananas', description: '', unit: 'kg', prossumer_id: 1, ecos: 3, euros: 3},
-                   {title: 'Maças', description: 'Biológicas', unit: 'g', prossumer_id: 1, ecos: 2, euros: 0.5},
-                   {title: 'Cenouras', description: '', unit: 'kg', prossumer_id: 2, ecos: 4, euros: 3},
-                   {title: 'Batatas', description: '', unit: 'kg', prossumer_id: 2, ecos: 6, euros: 3},
-                   {title: 'Iogurte', description: 'Doce', unit: 'g', prossumer_id: 3, ecos: 2, euros: 1.2}
+                   {title: 'Bananas', description: '', unit: 'kg', prossumer_id: 1},
+                   {title: 'Maças', description: 'Biológicas', unit: 'g', prossumer_id: 1},
+                   {title: 'Cenouras', description: '', unit: 'kg', prossumer_id: 2},
+                   {title: 'Batatas', description: '', unit: 'kg', prossumer_id: 2},
+                   {title: 'Iogurte', description: 'Doce', unit: 'g', prossumer_id: 3}
                ])
 
 ProductAuth.create([
-                       {state: 2, group_id: 1, product_id: 1},
-                       {state: 2, group_id: 1, product_id: 2},
-                       {state: 2, group_id: 1, product_id: 3},
-                       {state: 2, group_id: 1, product_id: 4}
+                       {state: 2, group_id: 1, product_id: 1, ecos: 2, euros: 1.2},
+                       {state: 2, group_id: 1, product_id: 2, ecos: 2, euros: 1.2},
+                       {state: 2, group_id: 1, product_id: 3, ecos: 2, euros: 1.2},
+                       {state: 2, group_id: 1, product_id: 4, ecos: 2, euros: 1.2}
                    ])
 
 Cycle.create([
-                 {start_time: DateTime.new(2015, 12, 8), end_time: DateTime.new(2015, 12, 29), group_id: 1}
+                 {start_time: DateTime.new(2015, 12, 8), end_time: DateTime.new(2015, 12, 29), group_id: 1},
+                 {start_time: DateTime.new(2015, 12, 8), end_time: DateTime.new(2015, 12, 29), group_id: 2},
+                 {start_time: DateTime.new(2015, 12, 8), end_time: DateTime.new(2015, 12, 29), group_id: 3},
              ])
 
 Week.create([
                 {number: 1, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 11, 8)},
                 {number: 2, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 15)},
                 {number: 3, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 22)},
-                {number: 4, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 29)}
+                {number: 4, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 29)},
+                {number: 1, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 11, 8)},
+                {number: 2, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 15)},
+                {number: 3, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 22)},
+                {number: 4, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 29)},
+                {number: 1, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 11, 8)},
+                {number: 2, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 15)},
+                {number: 3, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 22)},
+                {number: 4, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 29)}
             ])
 
 Stock.create([

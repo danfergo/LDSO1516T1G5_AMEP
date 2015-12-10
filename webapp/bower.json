@@ -18,11 +18,8 @@
     "angular-horizontal-timeline": "*",
     "ng-dropdown": "~2.0.1",
     "angular-dropdowns": "ngDropdowns#~1.1.0",
-<<<<<<< HEAD
-    "ng-table": "~0.8.3"
-=======
+    "ng-table": "~0.8.3",
     "angular-i18n": "~1.4.8"
->>>>>>> master
   },
   "devDependencies": {
     "angular-mocks": "^1.3.0"
