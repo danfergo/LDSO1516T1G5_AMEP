@@ -14,5 +14,11 @@ controller('groupHistoryController', ['$scope', 'Group','Cycle', 'currentGroup',
 var data = [{name: "Moroni", age: 50}, {name: "Moni", age: 45} /*,*/];
 self.tableParams = new ngTableParams({}, { getData: data});
 
+  $scope.users = [
+    { id: 1, name: 'Bob' },
+    { id: 2, name: 'Alice' },
+    { id: 3, name: 'Steve' }
+  ];
+  $scope.selectedUser = { id: 1, name: 'Bob' };
 
 }]);
