@@ -1,4 +1,4 @@
-angular.module('amep-groups').
+angular.module('amep-search-groups').
 controller('createGroupController', ['$scope', 'Group', 'City', '$mdDialog', '$mdToast', function ($scope, Group, City, $mdDialog, $mdToast) {
   $scope.cities = City.query(function (cities) {
     $scope.defaultCity = cities[0].name;

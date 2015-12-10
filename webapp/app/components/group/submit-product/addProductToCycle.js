@@ -1,4 +1,4 @@
-angular.module('amep-group-page').
+angular.module('amep-group').
 controller('addProductToCycleController', ['$filter', '$mdToast', '$scope', '$mdDialog', 'weeks', 'data', 'Group', 'Prossumer', 'auth',
   function ($filter, $mdToast, $scope, $mdDialog, weeks, data, Group, Prossumer, auth) {
     $scope.weeks = angular.copy(weeks);

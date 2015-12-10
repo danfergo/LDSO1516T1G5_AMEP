@@ -1,4 +1,4 @@
-angular.module('amep-group-page').
+angular.module('amep-group').
 
 controller('groupShowcaseController',
   ['$scope', '$mdDialog', '$mdToast', 'currentSession', 'currentGroup', 'currentCycles', 'productCategories', 'prossumerProducts', 'Group', 'Cycle', 'Product',
@@ -68,7 +68,7 @@ controller('groupShowcaseController',
       $scope.addOrEditProduct = function (product, canceled) {
         $mdDialog.show({
             controller: 'addProductToCycleController',
-            templateUrl: 'components/group_page/addProductToCycle.html',
+            templateUrl: 'components/group/addProductToCycle.html',
             //  targetEvent: ev,
             clickOutsideToClose: false,
             parent: angular.element(document.body),

@@ -1,4 +1,4 @@
-angular.module('amep-group-page').
+angular.module('amep-group').
 controller('groupController', ['$scope', '$state', 'currentGroup', '$mdDialog', 'Group', 'productCategories', 'prossumerProducts', 'currentSession', '$mdToast',
   function ($scope, $state, currentGroup, $mdDialog, Group, productCategories, prossumerProducts, currentSession, $mdToast) {
     if (!currentGroup.id) $state.go('404');

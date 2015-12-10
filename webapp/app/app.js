@@ -1,8 +1,9 @@
 var app = angular.module('amep',
   [
     'ui.router', 'ngMaterial', 'ngMdIcons', 'permission', 'ngLocale',
-    'amep-layouts', 'amep-group-page', 'amep-settings',
-    'amep-errors', 'amep-auth', 'amep-prossumer-dashboard', 'amep-static', 'amep-groups',
+    'amep-layouts', 'amep-group', 'amep-settings',
+    'amep-products', 'amep-agenda', 'amep-history',
+    'amep-errors', 'amep-auth', 'amep-static', 'amep-search-groups',
     'flipCard', 'amep-contacts', 'ng-dropdown', 'ngDropdowns', 'angular-horizontal-timeline', 'timeline', 'ngTable'
   ]).
 run(['$rootScope', '$mdSidenav', function ($rootScope, $mdSidenav) {
