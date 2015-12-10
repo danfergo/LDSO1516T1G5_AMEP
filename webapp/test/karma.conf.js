@@ -37,6 +37,7 @@ module.exports = function(config) {
       'bower_components/angular-permission/dist/angular-permission.js',
       'bower_components/angular-resource/angular-resource.js',
       'bower_components/angular-messages/angular-messages.js',
+      'bower_components/angular-timeline/dist/angular-timeline.js',
       'bower_components/moment/moment.js',
       'bower_components/moment-range/lib/moment-range.js',
       'bower_components/angular-horizontal-timeline/angular-horizontal-timeline.js',
