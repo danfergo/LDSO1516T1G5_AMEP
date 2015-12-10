@@ -9,6 +9,7 @@ controller('groupShowcaseController',
       $scope.prossumerProductsInCycle = [];
       $scope.cycleShowcaseProducts = [];
       $scope.auth = undefined;
+      $scope.whatState = Cycle.whatState;
 
       $scope.productSellingPrice = Group.Cycle.Product.productSellingPrice;
 

@@ -32,13 +32,13 @@ class GroupsCyclesProductsController < ApplicationController
     @weeksIds = Week.where({cycle_id: params[:cycle_id]}).ids
     Stock.where({week_id: @weeksIds, product_id: params[:id]}).destroy_all
 
-    @product = Product.find(params[:id])
+    @product_auth = ProductAuth.where({product_id: params[:id], group_id: params[:group_id]}).first
 
     params[:weeks].each do |week|
       puts @product
 
       stock_params = ActionController::Parameters.new(week_id: week[:id],product_id: params[:id],quantity: week[:quantity],
-      unit_price_euros: @product[:euros], unit_price_ecos: @product[:ecos])
+      unit_price_euros: @product_auth[:euros], unit_price_ecos: @product_auth[:ecos])
 
       stock = Stock.new(stock_params.permit(:week_id, :product_id, :quantity, :unit_price_euros , :unit_price_ecos))
 
