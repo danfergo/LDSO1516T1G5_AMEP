@@ -53,31 +53,31 @@ Product.create([
                ])
 
 ProductAuth.create([
-                       {state: 2, group_id: 1, product_id: 1, ecos: 3, euros: 3},
-                       {state: 2, group_id: 1, product_id: 2, ecos: 2, euros: 0.5},
-                       {state: 2, group_id: 1, product_id: 3, ecos: 4, euros: 3},
-                       {state: 2, group_id: 1, product_id: 4, ecos: 6, euros: 3}
+                       {state: 2, group_id: 1, product_id: 1, ecos: 2, euros: 1.2},
+                       {state: 2, group_id: 1, product_id: 2, ecos: 2, euros: 1.2},
+                       {state: 2, group_id: 1, product_id: 3, ecos: 2, euros: 1.2},
+                       {state: 2, group_id: 1, product_id: 4, ecos: 2, euros: 1.2}
                    ])
 
 Cycle.create([
-                 {start_time: DateTime.new(2015, 11, 21), end_time: DateTime.new(2015, 12, 29), group_id: 1},
                  {start_time: DateTime.new(2015, 12, 8), end_time: DateTime.new(2015, 12, 29), group_id: 1},
-                 {start_time: DateTime.new(2015, 12, 9), end_time: DateTime.new(2015, 12, 29), group_id: 1}
+                 {start_time: DateTime.new(2015, 12, 8), end_time: DateTime.new(2015, 12, 29), group_id: 2},
+                 {start_time: DateTime.new(2015, 12, 8), end_time: DateTime.new(2015, 12, 29), group_id: 3},
              ])
 
 Week.create([
-                {number: 1, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 11, 19,0,0), location: "rua do sitio, 25, 0.1"},
-                {number: 2, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 15, 15, 30, 0), location: "aliados, 345, 3º dto"},
-                {number: 3, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 22, 12, 10, 0), location: "avenida grande, 10234, r/c"},
-                {number: 4, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 29, 18, 0, 0), location: "praça carlos alberto"},
-                {number: 1, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 11, 19,0,0), location: "rua do sitio, 25, 0.1"},
-                {number: 2, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 15, 15, 30, 0), location: "aliados, 345, 3º dto"},
-                {number: 3, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 22, 12, 10, 0), location: "avenida grande, 10234, r/c"},
-                {number: 4, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 29, 18, 0, 0), location: "praça carlos alberto"},
-                {number: 1, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 11, 19,0,0), location: "rua do sitio, 25, 0.1"},
-                {number: 2, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 15, 15, 30, 0), location: "aliados, 345, 3º dto"},
-                {number: 3, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 22, 12, 10, 0), location: "avenida grande, 10234, r/c"},
-                {number: 4, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 29, 18, 0, 0), location: "praça carlos alberto"}
+                {number: 1, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 11, 8)},
+                {number: 2, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 15)},
+                {number: 3, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 22)},
+                {number: 4, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 29)},
+                {number: 1, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 11, 8)},
+                {number: 2, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 15)},
+                {number: 3, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 22)},
+                {number: 4, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 29)},
+                {number: 1, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 11, 8)},
+                {number: 2, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 15)},
+                {number: 3, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 22)},
+                {number: 4, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 29)}
             ])
 
 Stock.create([
