@@ -7,6 +7,8 @@ controller('settingsController', ['$scope', 'Prossumer', 'currentSession', '$mdT
   $scope.currentPassword = null;
   $scope.newPassword = null;
 
+  console.log(new Date().getDate());
+
 
   $scope.isProfileChangeDisable = function () {
     if (
