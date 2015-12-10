@@ -18,6 +18,7 @@ factory('Group', ['$resource', function ($resource) {
     return state && state.state == 2;
   }
 
+  resource.ProductAuth = $resource('/api/v1/groups/:groupId/products_auths/:id');
   resource.Cycle = $resource('/api/v1/groups/:groupId/cycles/:id');
   resource.Cycle.Product = $resource('/api/v1/groups/:groupId/cycles/:cycleId/products/:id', null, {
     'save': {method: 'PUT'},
@@ -36,7 +37,9 @@ factory('Group', ['$resource', function ($resource) {
     return undefined;
   }
 
-  resource.Cycle.Week = $resource('/api/v1/groups/:groupId/cycles/:cycleId/weeks');
+  resource.Cycle.Week = $resource('/api/v1/groups/:groupId/cycles/:cycleId/weeks',{},{
+    // 'index' : { method: 'GET', isArray:true}
+  });
 
 
   /**

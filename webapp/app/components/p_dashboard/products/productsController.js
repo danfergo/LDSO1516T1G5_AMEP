@@ -1,8 +1,8 @@
 angular.module('amep-prossumer-dashboard').
-controller('productsController', ['$scope', 'Session','Product', '$mdDialog', function ($scope, Session, Product, $mdDialog) {
+controller('productsController', ['$scope', 'Session','Product', 'products', '$mdDialog', function ($scope, Session, Product, products,$mdDialog) {
 
   $scope.session = Session.get();
-  $scope.products = Product.query();
+  $scope.products = products;
 
   $scope.newProduct = function (event) {
     $mdDialog.show({

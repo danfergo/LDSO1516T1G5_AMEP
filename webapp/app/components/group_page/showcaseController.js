@@ -1,4 +1,5 @@
 angular.module('amep-group-page').
+
 controller('groupShowcaseController',
   ['$scope', '$mdDialog', '$mdToast', 'currentSession', 'currentGroup', 'currentCycles', 'productCategories', 'prossumerProducts', 'Group', 'Cycle', 'Product',
     function ($scope, $mdDialog, $mdToast, currentSession, currentGroup, currentCycles, productCategories, prossumerProducts, Group, Cycle, Product) {
@@ -7,6 +8,7 @@ controller('groupShowcaseController',
       $scope.showOnlyMyProducts = $scope.currentCycleState == 'supplying' ? true : false;
       $scope.prossumerProductsInCycle = [];
       $scope.cycleShowcaseProducts = [];
+      $scope.auth = undefined;
 
       $scope.productSellingPrice = Group.Cycle.Product.productSellingPrice;
 
@@ -16,16 +18,16 @@ controller('groupShowcaseController',
         }
       }
 
-      var setShowcaseProducts = function(products){
+      var setShowcaseProducts = function (products) {
         $scope.cycleShowcaseProducts = products;
         selectProssumerProductsInCycle(products);
       }
 
-      if($scope.currentCycle)
-      Group.Cycle.Product.query({
-        groupId: currentGroup.id,
-        cycleId: $scope.currentCycle.id
-      }, setShowcaseProducts);
+      if ($scope.currentCycle)
+        Group.Cycle.Product.query({
+          groupId: currentGroup.id,
+          cycleId: $scope.currentCycle.id
+        }, setShowcaseProducts);
 
 
       $scope.filteredShowcaseProducts = function () {
@@ -48,7 +50,6 @@ controller('groupShowcaseController',
           .ok('Confirmar');
 
         $mdDialog.show(confirm).then(function () {
-
           Group.Cycle.Product.delete({
             groupId: currentGroup.id,
             cycleId: $scope.currentCycle.id,
@@ -69,7 +70,6 @@ controller('groupShowcaseController',
             templateUrl: 'components/group_page/addProductToCycle.html',
             //  targetEvent: ev,
             clickOutsideToClose: false,
-            fullscreen: true,
             parent: angular.element(document.body),
             resolve: {
               'data': function () {
@@ -77,12 +77,16 @@ controller('groupShowcaseController',
                   currentProduct: product,
                   cycleId: $scope.currentCycle.id,
                   groupId: currentGroup.id,
-                  productCategories: productCategories
+                  productCategories: productCategories,
+                  prossumerId: currentSession.id
                 }
               },
               'weeks': function () {
                 return Group.Cycle.Week.query({groupId: currentGroup.id, cycleId: $scope.currentCycle.id}).$promise;
-              }
+              },
+              'auth': [function () {
+                return product ? Group.ProductAuth.get({groupId: currentGroup.id, id: product.id}).$promise : null;
+              }]
             }
           })
           .then(function (product) {

@@ -3,7 +3,7 @@ var app = angular.module('amep',
     'ui.router', 'ngMaterial', 'ngMdIcons', 'permission',
     'amep-layouts', 'amep-group-page', 'amep-settings',
     'amep-errors', 'amep-auth', 'amep-prossumer-dashboard', 'amep-static', 'amep-groups',
-    'flipCard', 'amep-contacts', 'ng-dropdown', 'ngDropdowns', 'angular-horizontal-timeline'
+    'flipCard', 'amep-contacts', 'ng-dropdown', 'ngDropdowns', 'angular-horizontal-timeline', 'timeline'
   ]).
 run(['$rootScope', '$mdSidenav', function ($rootScope, $mdSidenav) {
   $rootScope.$mdSidenav = $mdSidenav;
@@ -17,12 +17,17 @@ directive('userAvatar', function () {
 config(function ($mdThemingProvider) {
 
 
-  $mdThemingProvider.definePalette('customGreen', $mdThemingProvider.extendPalette('indigo', {
-    //'500' : 'rgba(152,190,120,0)'
+
+  $mdThemingProvider.definePalette('customWhite', $mdThemingProvider.extendPalette('indigo', {
+    //'500' : 'rgba(152,190,120,0)',
+    'A100' : "ffffff",
+    'A200' : "000000",
+    'A400' : "ffffff",
+    'A700' : "ffffff"
   }));
 
   $mdThemingProvider.theme('default')
-    .primaryPalette('customGreen')
-    .accentPalette('pink');
+    .primaryPalette('indigo')
+    .accentPalette('customWhite');
 
 });

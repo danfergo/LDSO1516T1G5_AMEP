@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_filter :is_authenticated, except: []
+  before_filter :is_authenticated
   before_action :set_prossumer, only: [:create]
   before_action :set_product, only: [:show, :update, :destroy]
 
@@ -10,31 +10,33 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    is_my_resource(params[:prossumer_id])
+    puts ">>>>>>>>>>>> #{params[:prossumer_id]} "
 
-    @products = Product.where(prossumer_id: params[:prossumer_id])
-    render json: @products
+    if is_my_resource(params[:prossumer_id])
+      @products = Product.where(prossumer_id: params[:prossumer_id])
+      render json: @products
+    end
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
-    is_my_resource(params[:prossumer_id])
-
-    render json: @product
+    if is_my_resource(params[:prossumer_id])
+      render json: @product
+    end
   end
 
   # POST /products
   # POST /products.json
   def create
-    is_my_resource(params[:prossumer_id])
+    if is_my_resource(params[:prossumer_id])
+      @product = Product.new(product_params)
 
-    @product = Product.new(product_params)
-
-    if @product.save
-      render json: @product, status: :created
-    else
-      render json: @product.errors, status: :unprocessable_entity
+      if @product.save
+        render json: @product, status: :created
+      else
+        render json: @product.errors, status: :unprocessable_entity
+      end
     end
   end
 
@@ -72,8 +74,7 @@ class ProductsController < ApplicationController
       params.require(:description)
       params.require(:unit)
       params.require(:prossumer_id) # double check
-      params.require(:ecos)
-      params.require(:euros)
-      params.permit(:title,:description,:unit, :prossumer_id, :ecos, :euros)
+      params.require(:product_category_id)
+      params.permit(:title,:description,:unit, :prossumer_id, :product_category_id)
     end
 end

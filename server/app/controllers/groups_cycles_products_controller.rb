@@ -12,8 +12,9 @@ class GroupsCyclesProductsController < ApplicationController
   #GET /groups/1/cycles/1/products/1
   #GET /groups/1/cycles/1/products/1.json
   def show
-    is_my_resource(params[:id])
-    render json: Product.find(params[:id]).as_json(cycle_id: params[:cycle_id])
+    # if is_my_resource(params[:id])
+      render json: Product.find(params[:id]).as_json(cycle_id: params[:cycle_id])
+    # end
   end
 
   # POST /groups/1/cycles/1/products

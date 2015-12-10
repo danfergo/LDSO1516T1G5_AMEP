@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203151608) do
+ActiveRecord::Schema.define(version: 20151209162447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,8 @@ ActiveRecord::Schema.define(version: 20151203151608) do
     t.integer  "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float    "ecos"
+    t.float    "euros"
   end
 
   create_table "product_categories", force: :cascade do |t|
@@ -101,8 +103,6 @@ ActiveRecord::Schema.define(version: 20151203151608) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.integer  "prossumer_id"
-    t.float    "ecos"
-    t.float    "euros"
     t.integer  "product_category_id"
   end
 
@@ -146,6 +146,7 @@ ActiveRecord::Schema.define(version: 20151203151608) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.datetime "delivery_date"
+    t.string   "location"
   end
 
   add_index "weeks", ["cycle_id"], name: "index_weeks_on_cycle_id", using: :btree
