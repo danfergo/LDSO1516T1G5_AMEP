@@ -55,21 +55,6 @@ config(function ($stateProvider, $urlRouterProvider) {
       tabIndex: 1
     }
   }).
-  state('cicle', {
-    parent: 'group',
-    url: '/cicle',
-    controller: 'groupCicleController',
-    templateUrl: 'components/group_page/cicle.html',
-    data :{
-      tabIndex: 2
-    },
-    templateUrl: 'components/group_page/history.html',
-    resolve: {
-      currentCycles: ['Cycle', 'currentGroup', function(Cycle, currentGroup){
-        return Cycle.query({groupId: currentGroup.id}).$promise;
-      }]
-    }
-  }).
   state('about', {
     parent: 'group',
     url: '/about',

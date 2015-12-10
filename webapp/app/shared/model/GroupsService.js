@@ -37,7 +37,13 @@ factory('Group', ['$resource', function ($resource) {
   }
 
   resource.Cycle.Week = $resource('/api/v1/groups/:groupId/cycles/:cycleId/weeks');
-
+/*
+  resource.Cycle.Week.Stock = $resource('/api/v1/groups/:groupId/cycles/:cycleId/weeks/:weekId/stocks');
+  resource.Cycle.Week.Product = $resource('/api/v1/groups/:groupId/cycles/:cycleId/weeks/:weekId/product');
+  resource.Cycle.Week.Product. = $resource('/api/v1/groups/:groupId/cycles/:cycleId/weeks/:weekId/product');
+  resource.Cycle.Week.Order = $resource('/api/v1/groups/:groupId/cycles/:cycleId/weeks/:weekId/orders');
+  resource.Cycle.Week.Order.Buyer = $resource('/api/v1/groups/:groupId/cycles/:cycleId/weeks/:weekId/prossumer');
+*/
 
   /**
    * finds prossumer state in a group

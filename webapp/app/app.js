@@ -3,7 +3,7 @@ var app = angular.module('amep',
     'ui.router', 'ngMaterial', 'ngMdIcons', 'permission',
     'amep-layouts', 'amep-group-page', 'amep-settings',
     'amep-errors', 'amep-auth', 'amep-prossumer-dashboard', 'amep-static', 'amep-groups',
-    'flipCard', 'amep-contacts', 'ng-dropdown', 'ngDropdowns', 'angular-horizontal-timeline', 'timeline'
+    'flipCard', 'amep-contacts', 'ng-dropdown', 'ngDropdowns', 'angular-horizontal-timeline', 'timeline', 'tabela'
   ]).
 run(['$rootScope', '$mdSidenav', function ($rootScope, $mdSidenav) {
   $rootScope.$mdSidenav = $mdSidenav;
