@@ -11,31 +11,11 @@ controller('agendaController', ['$scope', 'Agenda', 'currentSession', function (
     }
   );
 
-  $scope.balanceEuros = function(week) {
 
-    var balance = 0;
+  $scope.signedValue = function(value) {
 
-    for (id in week.sales)
-      balance += week.sales[id].quantity * week.sales[id].stock.unit_price_euros;
-
-    for (id in week.purchases)
-      balance -= week.purchases[id].quantity * week.purchases[id].stock.unit_price_euros;
-
-    return balance;
+    return (value > 0 ? '+' : '') + value;
   }
 
-  $scope.balanceEcos = function(week) {
 
-    var balance = 0;
-
-    for (id in week.sales)
-      balance += week.sales[id].quantity * week.sales[id].stock.unit_price_ecos;
-
-    for (id in week.purchases)
-      balance -= week.purchases[id].quantity * week.purchases[id].stock.unit_price_ecos;
-
-    return balance;
-  }
-
-}])
-;
+}]);
