@@ -1,7 +1,8 @@
+<div>
 <div style="width: 100%;" layout="row">
   <div flex>
   </div>
-  <md-select ng-model="cycleSelected" aria-label="seleciona o ciclo">
+  <md-select ng-model="cycleSelected" aria-label="seleciona o ciclo" md-on-close="mudaSemana()">
     <md-option ng-value="cycle" ng-repeat="cycle in cycles | orderBy:'-start_time'"> {{cycle.start_time | date:'dd-MM-yyyy'}}</md-option>
   </md-select>
 </div>
@@ -9,3 +10,71 @@
 
 <timeline bla="cycleSelected">
 </timeline>
+<!--
+<div style="width: 100%;" layout="row">
+  <div flex>
+  </div>
+  <md-select ng-model="weekSelected" aria-label="seleciona a semana">
+    <md-option ng-value="week" ng-repeat="week in weeks | orderBy:'-delivery_date'"> {{week.delivery_date | date:'dd-MM-yyyy'}}</md-option>
+  </md-select>
+</div>
+-->
+
+<div id="cycleTable" layout="row" layout-align="center center">
+  <table ng-repeat="week in getWeeks">
+    <tr ng-repeat="stock in week.stocks">
+      <td>{{ stock.product.title }}</td>
+      <td>{{ stock.product.prossumer.name }}</td>
+      <td>{{ stock.unit_price_euros | currency:'€':2 }} + {{ stock.unit_price_ecos | currency:'E':2}} <br> {{stock.product.unit}}</td>
+      <td>
+        <table>
+          <tr ng-repeat="order in stock.orders">
+            <td>{{ order.prossumer.name }}</td>
+            <td>{{ order.quantity}}</td>
+            <td>{{ stock.unit_price_euros * order.quantity | currency:'€':2 }}</td>
+            <td>{{ stock.unit_price_ecos * order.quantity | currency:'E':2}}</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+-----------------------
+<table ng-table="vm.tableParams" class="table" show-filter="true">
+    <tr ng-repeat="user in $data">
+        <td title="'LALA'" filter="{ name: 'text'}" sortable="'name'">
+            {{user.name}}</td>
+        <td title="'Age'" filter="{ age: 'number'}" sortable="'age'">
+            {{user.age}}</td>
+    </tr>
+</table>
+
+<!--
+<div layout="row" ng-repeat="week in getWeeks">
+  <div layout="row" flex ng-repeat="stock in week.stocks">
+    <div flex>
+      {{ stock.product.title }}
+    </div>
+    <div flex>
+      {{ stock.product.prossumer.name }}
+    </div>
+    <div flex>
+      {{ stock.unit_price_euros | currency:'€':2 }} + {{ stock.unit_price_ecos | currency:'E':2}} <br> {{stock.product.unit}}
+    </div>
+    <div flex layout="row" ng-repeat="order in stock.orders">
+      <div flex>
+        {{ order.prossumer.name }}
+      </div>
+      <div flex>
+        {{ order.quantity}}
+      </div>
+      <div flex>
+        {{ stock.unit_price_euros * order.quantity | currency:'€':2 }}
+      </div>
+      <div flex>
+        {{ stock.unit_price_ecos * order.quantity | currency:'E':2}}
+      </div>
+    </div>
+  </div>
+</div>
+-->

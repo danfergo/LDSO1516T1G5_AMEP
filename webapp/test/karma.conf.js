@@ -43,6 +43,7 @@ module.exports = function(config) {
       'bower_components/angular-horizontal-timeline/angular-horizontal-timeline.js',
       'bower_components/ng-dropdown/dist/js/ng-dropdown.min.js',
       'bower_components/angular-dropdowns/dist/angular-dropdowns.js',
+      'bower_components/ng-table/dist/ng-table.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

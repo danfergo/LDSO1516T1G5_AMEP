@@ -6,7 +6,6 @@ angular.module('timeline', ['ngMaterial'])
       var myDiff = moment($scope.bla.end_time).diff(moment($scope.bla.start_time), 'days');
       var myCurDiff = moment(date).diff(moment($scope.bla.start_time),'days');
       myCurDiff = Math.max(0, myCurDiff);
-console.log(date +' '+(myCurDiff/myDiff) * 100);
       return ( (myCurDiff/myDiff) * 100);
     }
 
