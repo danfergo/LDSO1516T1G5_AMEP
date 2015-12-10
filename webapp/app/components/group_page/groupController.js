@@ -29,7 +29,7 @@ controller('groupController', ['$scope', '$state', 'currentGroup', '$mdDialog', 
 
       var confirm = $mdDialog.confirm()
         .title('Estás prestes juntar-te ao grupo "' + $scope.group.name + '"')
-        .content(message)
+        .htmlContent(message)
         .ariaLabel('Novo grupo')
         .targetEvent(ev)
         .cancel('Cancelar')
@@ -54,7 +54,7 @@ controller('groupController', ['$scope', '$state', 'currentGroup', '$mdDialog', 
 
       var dialog = $mdDialog.alert()
         .title('A tua adesão ao "' + $scope.group.name + '" aguarda confirmação')
-        .content(message)
+        .htmlContent(message)
         .ariaLabel('Adesão a grupo pendente')
         .targetEvent(ev)
         .ok('Fechar');

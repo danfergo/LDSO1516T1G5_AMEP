@@ -1,6 +1,6 @@
 var app = angular.module('amep',
   [
-    'ui.router', 'ngMaterial', 'ngMdIcons', 'permission',
+    'ui.router', 'ngMaterial', 'ngMdIcons', 'permission', 'ngLocale',
     'amep-layouts', 'amep-group-page', 'amep-settings',
     'amep-errors', 'amep-auth', 'amep-prossumer-dashboard', 'amep-static', 'amep-groups',
     'flipCard', 'amep-contacts', 'ng-dropdown', 'ngDropdowns', 'angular-horizontal-timeline', 'timeline', 'ngTable'

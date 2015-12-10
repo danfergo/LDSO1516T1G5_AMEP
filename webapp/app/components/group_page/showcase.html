@@ -7,18 +7,24 @@
     <ng-md-icon icon="add_to_photos"></ng-md-icon>
   </md-button>
 </div> -->
+
+
 <div ng-if="!currentCycle" style="font-size:32px; color:#999; text-align:center; max-width:700px;margin:50px auto;">
   Nenhum ciclo se encontra ativo,
   consulta o separador ciclos para saberes mais acerca dos últimos.
 </div>
-
 
 <div layout="row" ng-if="currentCycle">
 
   <div layout="row" class="page-wrapper" flex layout-wrap layout-align="center start">
 
     <div flex="100" ng-if="Group.Prossumer.isActive(prossumerState)">
-      <div layout-padding layout="row">
+      <div layout-padding layout="row" layout-wrap>
+        <h1 flex-sm="100"
+            ng-if="whatState(currentCycle) == 'supplying'" class="md-title" style="margin:16px 0 5px 0;padding: 2px 0px 0px">
+          Vendas abertas para {{currentCycle.title}}
+          <small>({{currentCycle.start_time | date:'longDate'}})</small>
+        </h1>
         <span flex></span>
         <md-switch style="margin-bottom:5px;"
                    ng-model="showOnlyMyProducts"
@@ -26,13 +32,14 @@
           Mostrar apenas os meus produtos
         </md-switch>
       </div>
-      <div ng-if="cycleShowcaseProducts.length == 0 && filteredShowcaseProducts().length == 0" style="font-size:32px; color:#999; text-align:center; max-width:700px;margin:50px auto;">
+      <div ng-if="cycleShowcaseProducts.length == 0 && filteredShowcaseProducts().length == 0"
+           style="font-size:32px; color:#999; text-align:center; max-width:700px;margin:50px auto;">
         Ainda não inseriste nenhum dos teus produtos neste próximo ciclo.
       </div>
     </div>
 
     <div ng-repeat="product in filteredShowcaseProducts()"
-         class="flip-container" flip-card flex-sm="100" flex-gt-sm="33" flex-gt-lg="33" flex-xl="25"   layout="column">
+         class="flip-container" flip-card flex-sm="100" flex-gt-sm="50" flex-lg="33" flex-xl="25" layout="column">
       <div class="flipper" flex layout="column">
         <div class="front" layout="column" flex>
           <md-whiteframe class="md-whiteframe-2dp" style="background:#fff;" flex layout-margin>
@@ -56,19 +63,6 @@
                       background-position:center center;
                       height:150px;">
               </div>
-              <!-- <div class="text-right" layout="row">
-                <div flex></div>
-                <md-input-container style="padding:0" flex><label>Ecos</label>
-                  <input ng-model="product.ecos" ng-required="true" type="number" class="input-ecos" step="0.01"
-                         min="0" max="99999"
-                         ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/">
-                </md-input-container>
-                <md-input-container style="padding:0" flex><label>Euros</label>
-                  <input ng-model="product.ecos" ng-required="true" type="number" class="input-ecos" step="0.01"
-                         min="0" max="99999"
-                         ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/">
-                </md-input-container>
-              </div>-->
 
               <div layout="row">
                 <md-input-container flex="50">
@@ -135,7 +129,7 @@
                 <div flex style="padding:1px;line-height:26px;">
                   {{week.delivery_date | date:'dd/MM'}}
                 </div>
-                <input  ng-if="$scope.currentCycleState == 'supplying'" value="0" style="width:40px;padding-left: 3px;
+                <input ng-if="$scope.currentCycleState == 'supplying'" value="0" style="width:40px;padding-left: 3px;
                 border:2px solid rgba(0,0,0,0.54); border-radius:2px;outline: none;
                 margin: 0 1px;" type="number" step="1" min="0" max="30">
 
@@ -145,7 +139,7 @@
               </div>
             </div>
 
-            <div layout="row" ng-if="$scope.currentCycleState == 'supplying'"  style="padding-top:20px;">
+            <div layout="row" ng-if="$scope.currentCycleState == 'supplying'" style="padding-top:20px;">
               <md-divider></md-divider>
               <div flex style="line-height:40px;">
                 <b>{{ 123 | currency :'E':2}}</b> + {{ 123 | currency :'€':2}}<br>
@@ -181,8 +175,9 @@
         </md-list-item>
         <md-list-item ng-click="addOrEditProduct()">
           <md-item-content md-ink-ripple aria-label="Reverse">
-              <b><ng-md-icon icon="add" size="24" style="padding:0 5px;"></ng-md-icon>
-               &nbsp; Novo</b>
+            <b>
+              <ng-md-icon icon="add" size="24" style="padding:0 5px;"></ng-md-icon>
+              &nbsp; Novo</b>
           </md-item-content>
         </md-list-item>
       </md-list>
