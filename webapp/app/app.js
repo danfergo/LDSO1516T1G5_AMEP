@@ -17,12 +17,17 @@ directive('userAvatar', function () {
 config(function ($mdThemingProvider) {
 
 
-  $mdThemingProvider.definePalette('customGreen', $mdThemingProvider.extendPalette('indigo', {
-    //'500' : 'rgba(152,190,120,0)'
+
+  $mdThemingProvider.definePalette('customWhite', $mdThemingProvider.extendPalette('indigo', {
+    //'500' : 'rgba(152,190,120,0)',
+    'A100' : "ffffff",
+    'A200' : "000000",
+    'A400' : "ffffff",
+    'A700' : "ffffff"
   }));
 
   $mdThemingProvider.theme('default')
-    .primaryPalette('customGreen')
-    .accentPalette('pink');
+    .primaryPalette('indigo')
+    .accentPalette('customWhite');
 
 });

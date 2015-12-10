@@ -86,6 +86,8 @@ ActiveRecord::Schema.define(version: 20151208214521) do
     t.integer  "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float    "ecos"
+    t.float    "euros"
   end
 
   create_table "product_categories", force: :cascade do |t|
@@ -101,8 +103,6 @@ ActiveRecord::Schema.define(version: 20151208214521) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.integer  "prossumer_id"
-    t.float    "ecos"
-    t.float    "euros"
     t.integer  "product_category_id"
   end
 

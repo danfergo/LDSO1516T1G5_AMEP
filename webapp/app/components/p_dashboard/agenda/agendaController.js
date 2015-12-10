@@ -1,17 +1,21 @@
 angular.module('amep-prossumer-dashboard').
-controller('agendaController',['$scope', 'Agenda', 'currentSession', function ($scope, Agenda, currentSession) {
+controller('agendaController', ['$scope', 'Agenda', 'currentSession', function ($scope, Agenda, currentSession) {
 
   $scope.weeks = Agenda.query({id: currentSession.id},
-  function(data)
-  {
+    function (data) {
 
-  },
-    function(error)
-    {
+
+    },
+    function (error) {
 
     }
   );
 
-  console.log($scope.weeks.id);
+
+  $scope.signedValue = function(value) {
+
+    return (value > 0 ? '+' : '') + value;
+  }
+
 
 }]);

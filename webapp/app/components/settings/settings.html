@@ -1,22 +1,23 @@
-<md-content layout-padding>
-  <md-tabs md-dynamic-height md-border-bottom>
+<md-toolbar flex="none" layout="row" layout-align="center start">
+  <h1 flex style="max-width:1200px;padding-top:50px;padding-left: 30px; margin:0; font-size:28px;">Definições</h1>
+</md-toolbar>
 
+<md-toolbar flex="none" style="min-height:45px; font-size:14px;">
+  <md-tabs md-dynamic-height md-center-tabs="true">
     <md-tab label="Perfil">
       <md-content class="md-padding">
-        <form name="userProfileForm" flex-gt-md>
-
-          <md-input-container flex>
+        <form name="userProfileForm">
+          <md-input-container>
             <label>Nome</label>
             <input ng-model="name" type="text" name="name" ng-required="true">
           </md-input-container>
 
-
-          <md-input-container flex>
-            <label>Contacto de telefone ou telemóvel</label>
-            <input ng-model="phone" type="text" name="phone" ng-required="false">
+          <md-input-container>
+            <label>Contacto</label>
+            <input ng-model="phone" type="text" name="phone" pattern="[29][0-9]{8}" ng-required="false">
           </md-input-container>
 
-          <md-input-container flex layout="row">
+          <md-input-container>
             <md-button type="button"
                        class="md-raised md-primary"
                        ng-disabled="isProfileChangeDisable()"
@@ -31,19 +32,19 @@
 
     <md-tab label="Palavra-passe">
       <md-content class="md-padding">
-        <form name="userPasswordForm" flex-gt-md>
+        <form name="userPasswordForm">
 
-          <md-input-container flex>
+          <md-input-container>
             <label>Palavra-passe actual</label>
             <input ng-model="currentPassword" type="password" required>
           </md-input-container>
 
-          <md-input-container flex>
+          <md-input-container>
             <label>Nova palavra-passe</label>
             <input ng-model="newPassword" type="password" required>
           </md-input-container>
 
-          <md-input-container flex layout="row">
+          <md-input-container>
             <md-button type="button"
                        class="md-raised md-primary"
                        ng-disabled="!userPasswordForm.$valid"
@@ -58,7 +59,8 @@
 
   </md-tabs>
 
-  <style>md-tabs-canvas{background: #4CAF50;}</style>
+</md-toolbar>
 
-</md-content>
+
+
 

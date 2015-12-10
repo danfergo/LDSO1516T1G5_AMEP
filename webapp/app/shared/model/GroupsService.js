@@ -18,6 +18,7 @@ factory('Group', ['$resource', function ($resource) {
     return state && state.state == 2;
   }
 
+  resource.ProductAuth = $resource('/api/v1/groups/:groupId/products_auths/:id');
   resource.Cycle = $resource('/api/v1/groups/:groupId/cycles/:id');
   resource.Cycle.Product = $resource('/api/v1/groups/:groupId/cycles/:cycleId/products/:id', null, {
     'save': {method: 'PUT'},
@@ -36,14 +37,8 @@ factory('Group', ['$resource', function ($resource) {
     return undefined;
   }
 
+
   resource.Cycle.Week = $resource('/api/v1/groups/:groupId/cycles/:cycleId/weeks');
-/*
-  resource.Cycle.Week.Stock = $resource('/api/v1/groups/:groupId/cycles/:cycleId/weeks/:weekId/stocks');
-  resource.Cycle.Week.Product = $resource('/api/v1/groups/:groupId/cycles/:cycleId/weeks/:weekId/product');
-  resource.Cycle.Week.Product. = $resource('/api/v1/groups/:groupId/cycles/:cycleId/weeks/:weekId/product');
-  resource.Cycle.Week.Order = $resource('/api/v1/groups/:groupId/cycles/:cycleId/weeks/:weekId/orders');
-  resource.Cycle.Week.Order.Buyer = $resource('/api/v1/groups/:groupId/cycles/:cycleId/weeks/:weekId/prossumer');
-*/
 
   /**
    * finds prossumer state in a group

@@ -32,11 +32,11 @@ class ApplicationController < ActionController::API
   end
 
   def is_my_resource(id)
-    if session[:prossumer_id] == id
+    if "#{session[:prossumer_id]}".eql? "#{id}"
+      return true
+    else
       render json: {error: "Yo do not have access to this opeation"}, status:  :unauthorized
       return false
-    else
-      return true
     end
   end
 

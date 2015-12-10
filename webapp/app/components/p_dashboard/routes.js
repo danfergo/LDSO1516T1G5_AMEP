@@ -21,6 +21,11 @@ config(function ($stateProvider, $urlRouterProvider) {
     url: 'products',
     controller: 'productsController',
     templateUrl: 'components/p_dashboard/products/products.html',
+    resolve: {
+      'products': ['Prossumer','currentSession',function(Prossumer,currentSession){
+          return Prossumer.Product.query({prossumerId: currentSession.id}).$promise;
+      }]
+    },
     data: {
       permissions: {
         only: ['prossumer'],

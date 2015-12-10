@@ -7,12 +7,6 @@
     <ng-md-icon icon="add_to_photos"></ng-md-icon>
   </md-button>
 </div> -->
-<horizontal-timeline
-  start-date="2015-12-04"
-  end-date="2015-12-10"
-  events='[{date:"2015-12-05","content":"<p>lorem ipsum</p>"},{"date":"2015-12-07","content":"<p>lorem ipsum</p>"}]'>
-</horizontal-timeline>
-
 <div ng-if="!currentCycle" style="font-size:32px; color:#999; text-align:center; max-width:700px;margin:50px auto;">
   Nenhum ciclo se encontra ativo,
   consulta o separador ciclos para saberes mais acerca dos últimos.
@@ -171,7 +165,6 @@
   </div>
 
   <div layout="column" style="width:300px;max-width:20%" layout-margin>
-    <div ng-if="Group.Prossumer.isActive(prossumerState)" style="height:40px"></div>
     <div ng-if="Group.Prossumer.isActive(prossumerState)">
       <md-list>
         <h4 style="padding-left:20px;">Meus produtos</h4>
