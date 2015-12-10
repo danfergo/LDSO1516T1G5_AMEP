@@ -10,8 +10,8 @@
 
 
 <div ng-if="!currentCycle" style="font-size:32px; color:#999; text-align:center; max-width:700px;margin:50px auto;">
-  Nenhum ciclo se encontra ativo,
-  consulta o separador ciclos para saberes mais acerca dos últimos.
+  Nenhum ciclo se encontra em fase de preparação,
+  consulta o separador ciclos para saberes mais acerca dos últimos realizados.
 </div>
 
 <div layout="row" ng-if="currentCycle">
@@ -43,43 +43,8 @@
       <div class="flipper" flex layout="column">
         <div class="front" layout="column" flex>
           <md-whiteframe class="md-whiteframe-2dp" style="background:#fff;" flex layout-margin>
-            <div ng-if="false" style="padding:5px">
-              <div>
-                <h3 style="margin:0" class="md-title">
-                  <md-input-container>
-                    <label>Title</label>
-                    <input ng-model="user.title">
-                  </md-input-container>
-                </h3>
-                <md-input-container flex><label>Descrição</label>
-        <textarea ng-model="product.description" columns="1" md-maxlength="300"
-                  placeholder="Descreve  o produto"></textarea>
-                </md-input-container>
-              </div>
 
-              <div ng-if="$index % 4 != 3"
-                   style="background-image:url('http://a3145z1.americdn.com/wp-content/uploads/2013/03/orange-king-of-fruits.jpg');
-                      background-size:cover;
-                      background-position:center center;
-                      height:150px;">
-              </div>
-
-              <div layout="row">
-                <md-input-container flex="50">
-                  <label>Categoria</label>
-                  <md-select ng-model="category">
-                    <md-option ng-repeat="productCategory in productCategories" ng-value="productCategory">
-                      {{productCategory.name}}
-                    </md-option>
-                  </md-select>
-                </md-input-container>
-                <md-input-container flex="50"><label>Unidade</label>
-                  <input ng-model="product.unit" ng-required="true" type="text">
-                </md-input-container>
-              </div>
-            </div>
-
-            <div ng-if="true">
+            <div>
               <div layout-padding>
                 <div layout="row">
                   <h3 class="md-title" flex>{{product.title}}</h3>
@@ -189,7 +154,7 @@
       <h4 style="padding-left:20px;">Filtrar categorias</h4>
       <md-list-item class="md-1-line" ng-repeat="productCategory in productCategories">
         <div class="md-list-item-text" layout="row">
-          <md-checkbox>
+          <md-checkbox ng-model="filterCategories[productCategory.id]">
             <b>{{productCategory.name}}</b>
           </md-checkbox>
         </div>
