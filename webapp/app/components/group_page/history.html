@@ -1,3 +1,4 @@
+<!--
 <div>
 <div style="width: 100%;" layout="row">
   <div flex>
@@ -6,19 +7,12 @@
     <md-option ng-value="cycle" ng-repeat="cycle in cycles | orderBy:'-start_time'"> {{cycle.start_time | date:'dd-MM-yyyy'}}</md-option>
   </md-select>
 </div>
-
+</div>
+-->
 
 <timeline bla="cycleSelected">
 </timeline>
-<!--
-<div style="width: 100%;" layout="row">
-  <div flex>
-  </div>
-  <md-select ng-model="weekSelected" aria-label="seleciona a semana">
-    <md-option ng-value="week" ng-repeat="week in weeks | orderBy:'-delivery_date'"> {{week.delivery_date | date:'dd-MM-yyyy'}}</md-option>
-  </md-select>
-</div>
--->
+
 
 <div id="cycleTable" layout="row" layout-align="center center">
   <table ng-repeat="week in getWeeks">
@@ -39,17 +33,8 @@
     </tr>
   </table>
 </div>
------------------------
-<table ng-table="vm.tableParams" class="table" show-filter="true">
-    <tr ng-repeat="user in $data">
-        <td title="'LALA'" filter="{ name: 'text'}" sortable="'name'">
-            {{user.name}}</td>
-        <td title="'Age'" filter="{ age: 'number'}" sortable="'age'">
-            {{user.age}}</td>
-    </tr>
-</table>
 
-<!--
+
 <div layout="row" ng-repeat="week in getWeeks">
   <div layout="row" flex ng-repeat="stock in week.stocks">
     <div flex>
@@ -77,4 +62,3 @@
     </div>
   </div>
 </div>
--->
