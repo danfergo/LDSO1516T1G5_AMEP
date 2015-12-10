@@ -31,8 +31,6 @@ module.exports = function(config) {
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
       'bower_components/angular-ui-router/release/angular-ui-router.js',
-      'bower_components/angular-aria/angular-aria.js',
-      'bower_components/angular-material/angular-material.js',
       'bower_components/angular-material-icons/angular-material-icons.min.js',
       'bower_components/angular-permission/dist/angular-permission.js',
       'bower_components/angular-resource/angular-resource.js',
@@ -43,6 +41,8 @@ module.exports = function(config) {
       'bower_components/ng-dropdown/dist/js/ng-dropdown.min.js',
       'bower_components/angular-dropdowns/dist/angular-dropdowns.js',
       'bower_components/ng-table/dist/ng-table.min.js',
+      'bower_components/angular-aria/angular-aria.js',
+      'bower_components/angular-material/angular-material.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
