@@ -1,12 +1,12 @@
 'use strict';
 
 //noinspection JSUnresolvedFunction
-angular.module('amep-groups')
+angular.module('amep-search-groups')
   .config(function ($mdThemingProvider) {
     $mdThemingProvider.theme('input', 'default')
       .primaryPalette('grey')
   })
-  .controller('groupsController', ['$scope', 'Group', 'City', 'currentSession', '$mdDialog', function ($scope, Group, City, currentSession, $mdDialog) {
+  .controller('searchGroupsController', ['$scope', 'Group', 'City', 'currentSession', '$mdDialog', function ($scope, Group, City, currentSession, $mdDialog) {
     $scope.groups = Group.query();
     $scope.cities = City.query();
 
@@ -21,7 +21,7 @@ angular.module('amep-groups')
     $scope.newGroup = function (event) {
       $mdDialog.show({
           controller: 'createGroupController',
-          templateUrl: 'components/group/create-group.html',
+          templateUrl: 'components/search-groups/createGroup.html',
           targetEvent: event,
           clickOutsideToClose: true
         })

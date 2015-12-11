@@ -498,6 +498,7 @@ module.exports = function (grunt) {
       'autoprefixer:server',
       'configureProxies:server',
       'connect:livereload',
+      'angularFileLoader',
       'watch'
     ]);
   });

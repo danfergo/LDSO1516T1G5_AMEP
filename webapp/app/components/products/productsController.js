@@ -1,4 +1,4 @@
-angular.module('amep-prossumer-dashboard').
+angular.module('amep-products').
 controller('productsController', ['$scope', 'Session','Product', 'products', '$mdDialog', function ($scope, Session, Product, products,$mdDialog) {
 
   $scope.session = Session.get();
@@ -6,8 +6,8 @@ controller('productsController', ['$scope', 'Session','Product', 'products', '$m
 
   $scope.newProduct = function (event) {
     $mdDialog.show({
-        controller: 'productModalController',
-        templateUrl: 'components/p_dashboard/products/product-modal.html',
+        controller: 'createProductController',
+        templateUrl: 'components/products/createProduct.html',
         targetEvent: event,
         clickOutsideToClose:true
       })
