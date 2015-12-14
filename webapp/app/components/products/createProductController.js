@@ -1,5 +1,5 @@
-angular.module('amep-prossumer-dashboard').
-controller('productModalController', ['$scope', 'Session', '$mdDialog','Product','$mdToast', function ($scope, Session, $mdDialog,Product,$mdToast) {
+angular.module('amep-products').
+controller('createProductController', ['$scope', 'Session', '$mdDialog','Product','$mdToast', function ($scope, Session, $mdDialog,Product,$mdToast) {
   $scope.hide = function() {
     $mdDialog.hide();
   };

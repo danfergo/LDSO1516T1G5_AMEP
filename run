@@ -1,1 +1,5 @@
-cd server/ && rails server & cd webapp/ && grunt serve && fg
+#!/bin/bash
+
+echo "Danfergo launcher script, <3"
+
+cd server/ && rails server & cd webapp/ && sleep 5 && grunt serve && fg
