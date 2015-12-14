@@ -1,62 +1,90 @@
 <div>
-<div style="width: 100%;" layout="row">
-  <div flex>
+  <div style="width: 100%;" layout="row">
+    <div flex>
+    </div>
+    <md-select ng-model="cycleSelected" aria-label="seleciona o ciclo" md-on-close="mudaSemana()">
+      <md-option ng-value="cycle" ng-repeat="cycle in cycles | orderBy:'-start_time'"> {{cycle.start_time | date:'dd-MM-yyyy'}}</md-option>
+    </md-select>
   </div>
-  <md-select ng-model="cycleSelected" aria-label="seleciona o ciclo" md-on-close="mudaSemana()">
-    <md-option ng-value="cycle" ng-repeat="cycle in cycles | orderBy:'-start_time'"> {{cycle.start_time | date:'dd-MM-yyyy'}}</md-option>
-  </md-select>
-</div>
 </div>
 
-<timeline bla="cycleSelected">
-</timeline>
+  <timeline bla="cycleSelected">
+  </timeline>
 
 
-<div id="cycleTable" layout="row" layout-align="center center">
-  <table ng-repeat="week in getWeeks">
-    <tr ng-repeat="stock in week.stocks">
-      <td>{{ stock.product.title }}</td>
-      <td>{{ stock.product.prossumer.name }}</td>
-      <td>{{ stock.unit_price_euros | currency:'€':2 }} + {{ stock.unit_price_ecos | currency:'E':2}} <br> {{stock.product.unit}}</td>
-      <td>
-        <table>
-          <tr ng-repeat="order in stock.orders">
-            <td>{{ order.prossumer.name }}</td>
-            <td>{{ order.quantity}}</td>
-            <td>{{ stock.unit_price_euros * order.quantity | currency:'€':2 }}</td>
-            <td>{{ stock.unit_price_ecos * order.quantity | currency:'E':2}}</td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-</div>
+<div style="margin-top: 74px;">
+  <md-card style="width:98.5%">
+    <md-content>
+      <div layout="column" layout-align="space-around stretch" ng-repeat="week in getWeeks" ng-if="week.stocks.length != 0">
+        <div class="semana-titulo" layout="row">
+          <div flex style="font-family: 'Montserrat', sans-serif; font-size: 20px">SEMANA {{$index+1}}</div>
+          <div flex='15' style="text-align: right">{{week.delivery_date | date: 'dd-MM-yyyy'}}</div>
+        </div>
+        <div class="tabela-head" layout="row" layout-align="space-around stretch">
+          <div flex>
+            PRODUTO
+          </div>
+          <div flex>
+            PRODUTOR
+          </div>
+          <div flex>
+            PREÇO
+          </div>
+          <div flex='50' layout="row" layout-align="space-around stretch">
+            <div flex>
+              CONSUMIDOR
+            </div>
+            <div flex>
+              QUANTIDADE
+            </div>
+            <div flex>
+              TOTAL
+            </div>
+          </div>
+        </div>
 
+        <div class="tabela-body"  ng-repeat="stock in week.stocks" ng-if="stock.orders.length != 0" style="margin-left: 29px; margin-right: 29px;">
+          <md-divider></md-divider>
+          <div layout="row">
 
-<div layout="row" ng-repeat="week in getWeeks">
-  <div layout="row" flex ng-repeat="stock in week.stocks">
-    <div flex>
-      {{ stock.product.title }}
-    </div>
-    <div flex>
-      {{ stock.product.prossumer.name }}
-    </div>
-    <div flex>
-      {{ stock.unit_price_euros | currency:'€':2 }} + {{ stock.unit_price_ecos | currency:'E':2}} <br> {{stock.product.unit}}
-    </div>
-    <div flex layout="row" ng-repeat="order in stock.orders">
-      <div flex>
-        {{ order.prossumer.name }}
+          <div flex>
+            {{ stock.product.title }}
+          </div>
+          <div flex>
+            {{ stock.product.prossumer.name }}
+          </div>
+          <div flex>
+            {{ week.stocks[0].unit_price_euros | currency:'€':2 }} + {{ stock.unit_price_ecos | currency:'E':2}} <br> /{{stock.product.unit}}
+          </div>
+
+          <div flex='50'>
+            <div layout="column" layout-align="center stretch" ng-repeat="order in stock.orders" >
+              <div layout="row" layout-align="center stretch">
+                <div flex>
+                  {{ order.prossumer.name }}
+                </div>
+                <div flex>
+                  {{ order.quantity}}
+                </div>
+                <div flex>
+                  {{ stock.unit_price_euros * order.quantity | currency:'€':2 }} + {{ stock.unit_price_ecos * order.quantity | currency:'E':2}}
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        </div>
+
+        </div>
+
+      <div layout="column" layout-align="space-around stretch" ng-repeat="week in getWeeks" ng-if="week.stocks.length == 0">
+        <div class="semana-titulo" layout="row">
+          <div flex style="font-family: 'Montserrat', sans-serif; font-size: 20px">SEMANA {{$index+1}}</div>
+          <div flex='15' style="text-align: right">{{week.delivery_date | date: 'dd-MM-yyyy'}}</div>
+        </div>
+        <div style="font-family: 'Montserrat', sans-serif; text-align: center">Não existem encomendas nesta semana</div>
       </div>
-      <div flex>
-        {{ order.quantity}}
-      </div>
-      <div flex>
-        {{ stock.unit_price_euros * order.quantity | currency:'€':2 }}
-      </div>
-      <div flex>
-        {{ stock.unit_price_ecos * order.quantity | currency:'E':2}}
-      </div>
-    </div>
-  </div>
+    </md-content>
+  </md-card>
 </div>
