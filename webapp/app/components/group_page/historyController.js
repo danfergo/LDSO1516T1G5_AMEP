@@ -1,7 +1,8 @@
-angular.module('amep-group-page').
-controller('groupHistoryController', ['$scope', 'Group','Cycle', 'currentGroup', 'currentCycles','ngTableParams', function ($scope, Group, Cycle, currentGroup, currentCycles, ngTableParams) {
+'use strict';
 
-  console.log(currentCycles);
+angular.module('amep-group-page').
+controller('groupHistoryController', ['$scope', 'Group','Cycle', 'currentGroup', 'currentCycles', function ($scope, Group, Cycle, currentGroup, currentCycles) {
+
   $scope.cycles= currentCycles;
   $scope.cycleSelected = $scope.cycles[0];
 
@@ -10,15 +11,5 @@ controller('groupHistoryController', ['$scope', 'Group','Cycle', 'currentGroup',
   };
   $scope.mudaSemana();
 
-  var self = this;
-var data = [{name: "Moroni", age: 50}, {name: "Moni", age: 45} /*,*/];
-self.tableParams = new ngTableParams({}, { getData: data});
-
-  $scope.users = [
-    { id: 1, name: 'Bob' },
-    { id: 2, name: 'Alice' },
-    { id: 3, name: 'Steve' }
-  ];
-  $scope.selectedUser = { id: 1, name: 'Bob' };
 
 }]);
