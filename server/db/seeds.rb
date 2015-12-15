@@ -60,14 +60,24 @@ ProductAuth.create([
                    ])
 
 Cycle.create([
-                 {start_time: DateTime.new(2015, 12, 8), end_time: DateTime.new(2015, 12, 29), group_id: 1}
+                 {start_time: DateTime.new(2015, 12, 8), end_time: DateTime.new(2015, 12, 29), group_id: 1},
+                 {start_time: DateTime.new(2015, 12, 8), end_time: DateTime.new(2015, 12, 29), group_id: 2},
+                 {start_time: DateTime.new(2015, 12, 8), end_time: DateTime.new(2015, 12, 29), group_id: 3},
              ])
 
 Week.create([
-                {number: 1, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 11, 8)},
-                {number: 2, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 15)},
-                {number: 3, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 22)},
-                {number: 4, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 29)}
+                {number: 1, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 11, 18, 30)},
+                {number: 2, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 15, 17, 00)},
+                {number: 3, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 22, 15, 30)},
+                {number: 4, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 29, 18, 15)},
+                {number: 5, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 11, 18, 30)},
+                {number: 6, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 15, 17, 15)},
+                {number: 7, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 22, 15, 30)},
+                {number: 8, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 29, 18, 15)},
+                {number: 9, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 11, 17, 15)},
+                {number: 10, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 15, 18, 30)},
+                {number: 11, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 22, 15, 30)},
+                {number: 12, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 29, 18, 15)}
             ])
 
 Stock.create([
@@ -79,6 +89,6 @@ Stock.create([
 
 Order.create([
                  {quantity: 3, prossumer_id: 2, stock_id: 1},
-                 {quantity: 5, prossumer_id: 1, stock_id: 2},
+                 {quantity: 5, prossumer_id: 1, stock_id: 1},
                  {quantity: 2, prossumer_id: 1, stock_id: 3}
              ])
