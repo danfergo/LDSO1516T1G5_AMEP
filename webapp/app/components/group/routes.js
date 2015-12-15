@@ -61,6 +61,15 @@ config(function ($stateProvider, $urlRouterProvider) {
     controller: 'groupAboutController',
     templateUrl: 'components/group/about/about.html',
     data :{
+      tabIndex: 2
+    }
+  }).
+  state('stats', {
+    parent: 'group',
+    url: '/stats',
+    controller: 'groupStatsController',
+    templateUrl: 'components/group/stats/stats.html',
+    data :{
       tabIndex: 3
     }
   });

@@ -18,7 +18,7 @@
       <div layout="column" layout-align="space-around stretch" ng-repeat="week in getWeeks" ng-if="week.stocks.length != 0">
         <div class="semana-titulo" layout="row">
           <div flex style="font-family: 'Montserrat', sans-serif; font-size: 20px">SEMANA {{$index+1}}</div>
-          <div flex='15' style="text-align: right">{{week.delivery_date | date: 'dd-MM-yyyy'}}</div>
+          <div flex='15' style="text-align: right; font-family: 'PT Sans', sans-serif;">{{week.delivery_date | date: 'dd-MM-yyyy'}}</div>
         </div>
         <div class="tabela-head" layout="row" layout-align="space-around stretch">
           <div flex>
