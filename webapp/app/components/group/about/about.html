@@ -1,4 +1,19 @@
-sobre o grupo. informação generica.. <br>
+<!--sobre o grupo. informação generica.. <br>
 - onde e quando se encontram <br>
 - dados <br>
 - membros ?
+-->
+
+<md-content>
+  <md-list>
+    <md-list-item class="md-3-line" ng-repeat="item in messages">
+      <div class="md-list-item-text">
+        <h3>{{item.what}}</h3>
+        <h4>{{item.who}}</h4>
+        <p>{{item.notes}}</p>
+      </div>
+      <md-button class="md-secondary">Respond</md-button>
+      <md-divider ng-if="!$last"></md-divider>
+    </md-list-item>
+  </md-list>
+</md-content>
