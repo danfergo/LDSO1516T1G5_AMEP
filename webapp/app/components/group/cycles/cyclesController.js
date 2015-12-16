@@ -1,3 +1,5 @@
+"use strict";
+
 angular.module('amep-group').
 controller('groupHistoryController', ['$scope', 'Group', 'Cycle', 'currentGroup', 'currentCycles', 'ngTableParams', function ($scope, Group, Cycle, currentGroup, currentCycles, ngTableParams) {
 

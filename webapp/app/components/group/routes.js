@@ -61,7 +61,7 @@ config(function ($stateProvider, $urlRouterProvider) {
     controller: 'groupAboutController',
     templateUrl: 'components/group/about/about.html',
     data :{
-      tabIndex: 2
+      tabIndex: 3
     }
   }).
   state('stats', {
@@ -69,8 +69,13 @@ config(function ($stateProvider, $urlRouterProvider) {
     url: '/stats',
     controller: 'groupStatsController',
     templateUrl: 'components/group/stats/stats.html',
+    resolve: {
+      currentCycles: ['Cycle', 'currentGroup', function (Cycle, currentGroup) {
+        return Cycle.query({groupId: currentGroup.id}).$promise;
+      }]
+    },
     data :{
-      tabIndex: 3
+      tabIndex: 1
     }
   });
 });
