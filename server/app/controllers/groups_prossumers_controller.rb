@@ -29,12 +29,11 @@ class GroupsProssumersController < ApplicationController
   # PATCH/PUT /groups_prossumers/1
   # PATCH/PUT /groups_prossumers/1.json
   def update
-    @groups_prossumer = GroupsProssumer.find(params[:id])
-
+    render json: @groups_prossumer
     if @groups_prossumer.update(groups_prossumer_params)
       head :no_content
     else
-      render json: @groups_prossumer.errors, status: :unprocessable_entity
+     render json: @groups_prossumer.errors, status: :unprocessable_entity
     end
   end
 
@@ -49,11 +48,13 @@ class GroupsProssumersController < ApplicationController
   private
 
     def set_groups_prossumer
-      @group_prossumer = GroupsProssumer.where({prossumer_id: params[:id], group_id: params[:group_id]}).first
+      @groups_prossumer = GroupsProssumer.find(params[:id])
     end
 
     def groups_prossumer_params
-      params[:prossumer_id]
-      params[:id]
+      params[:is_coordinator]
+      params[:state]
+      params.permit(:is_coordinator)
+      params.permit(:state)
     end
 end
