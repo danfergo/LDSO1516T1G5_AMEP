@@ -5,16 +5,8 @@ class GroupsProssumersController < ApplicationController
   # GET /groups_prossumers
   # GET /groups_prossumers.json
   def index
-    render json: GroupsProssumer.where({group_id: params[:group_id]}).as_json({include_prossumer: true})
-   # group = Group.find(params[:group_id])
-    #iscoord = GroupsProssumer.where(group_id: params[:group_id],prossumer_id: session[:prossumer_id]).first.is_coordinator
-   # group_prossumers = group.as_json(
-   #     include: {groups_prossumers: {
-   #         include: [prossumer: {except: [:encrypted_password, :salt, :confirm_hash,:created_at,:updated_at]}]
-  #     }})
-   # renderobject = {coordinator: iscoord, group: group_prossumers}
-
-    #render json: renderobject
+    render json: GroupsProssumer.where({group_id: params[:group_id]}).
+        joins(:prossumer).order('prossumers.name').as_json({include_prossumer: true})
   end
 
   # GET /groups_prossumers/1
@@ -38,7 +30,7 @@ class GroupsProssumersController < ApplicationController
   # PATCH/PUT /groups_prossumers/1
   # PATCH/PUT /groups_prossumers/1.json
   def update
-    render json: @groups_prossumer
+    #render json: @groups_prossumer
     if @groups_prossumer.update(groups_prossumer_params)
       head :no_content
     else
@@ -61,9 +53,6 @@ class GroupsProssumersController < ApplicationController
     end
 
     def groups_prossumer_params
-      params[:is_coordinator]
-      params[:state]
-      params.permit(:is_coordinator)
-      params.permit(:state)
+      params.permit(:is_coordinator,:state)
     end
 end

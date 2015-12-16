@@ -9,7 +9,7 @@ factory('Group', ['$resource', function ($resource) {
     },
     update: {
       method: 'PUT',
-      params: {group_id: '@groupId', id: '@prossumerId'}
+      params: {groupId: '@groupId', prossumerId: '@prossumerId'}
     }
   });
 
