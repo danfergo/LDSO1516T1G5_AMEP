@@ -3,11 +3,25 @@ angular.module('timeline', ['ngMaterial'])
 
 .directive('timeline', [function(){
   function controller($scope, Group){
+
+
+    $scope.diffBefore = moment($scope.bla.start_time).subtract(2,'weeks');
+    var myDate= new Date($scope.diffBefore);
+    $scope.diffBeforeString = (myDate.getDate()) + "-" + (myDate.getMonth()+1) + "-" + myDate.getFullYear();
+
     $scope.getPosition = function(date){
-      var myDiff = moment($scope.bla.end_time).diff(moment($scope.bla.start_time), 'days');
-      var myCurDiff = moment(date).diff(moment($scope.bla.start_time),'days');
-      myCurDiff = Math.max(0, myCurDiff);
-      return ( (myCurDiff/myDiff) * 100);
+
+      if($scope.estado == 'supplying' || $scope.estado == 'buying'){
+        $scope.myDiff = moment($scope.bla.end_time).diff($scope.diffBefore, 'days');
+        $scope.myCurDiff = moment(date).diff(moment($scope.diffBefore),'days');
+      }
+      else{
+        $scope.myDiff = moment($scope.bla.end_time).diff($scope.bla.start_time, 'days');
+        $scope.myCurDiff = moment(date).diff(moment($scope.bla.start_time),'days');
+      }
+
+      $scope.myCurDiff = Math.max(0, $scope.myCurDiff);
+      return ( ($scope.myCurDiff/$scope.myDiff) * 100);
     };
 
     $scope.getWeeks = Group.Cycle.Week.query({groupId: $scope.bla.group_id, cycleId: $scope.bla.id});
@@ -15,6 +29,9 @@ angular.module('timeline', ['ngMaterial'])
       return $scope.bla;
     },function(){
       $scope.getWeeks = Group.Cycle.Week.query({groupId: $scope.bla.group_id, cycleId: $scope.bla.id});
+      $scope.diffBefore = moment($scope.bla.start_time).subtract(2,'weeks');
+      var myDate= new Date($scope.diffBefore);
+      $scope.diffBeforeString = (myDate.getDate()) + "-" + (myDate.getMonth()+1) + "-" + myDate.getFullYear();
     });
     $scope.hoverIn = function(){
         this.hoverEdit = true;
@@ -29,7 +46,7 @@ angular.module('timeline', ['ngMaterial'])
     controller: controller,
     scope: {
       'bla':'=',
-      'events' : '='
+      'estado' : '='
     },
     templateUrl: 'shared/timeline/timeline.html'
   };
