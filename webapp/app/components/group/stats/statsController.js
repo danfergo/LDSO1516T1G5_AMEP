@@ -1,50 +1,34 @@
 "use strict";
 
 angular.module('amep-group').
-controller('groupStatsController', ['$scope','Group', 'Cycle', 'currentGroup', 'currentCycles', function ($scope, Group, Cycle, currentGroup, currentCycles) {
+controller('groupStatsController', ['$scope','Group', 'Cycle', 'currentGroup','currentStats', function ($scope, Group, Cycle, currentGroup, currentStats) {
   $scope.myLabel="stats";
 
-  $scope.cycles = currentCycles;
-  $scope.cycleSelected = $scope.cycles[0];
-  $scope.getWeeks = Group.Cycle.Week.query({
-    groupId: $scope.cycleSelected.group_id,
-    cycleId: $scope.cycleSelected.id
-  });
-  $scope.prod=[];
-  $scope.getProducts = function(){
-    for (var i in $scope.getWeeks) {
-      $scope.prod.push(i);
-    }
-    return $scope.prod;
-  };
-  $scope.testezinho=[
-    {'nome': '2006', 'valor': 56},
-    {'nome': '2007', 'valor': 70}
-  ];
-  $scope.a=[];
-  $scope.b=[];
-  for(var i in $scope.testezinho){
-    $scope.a.push($scope.testezinho[i].nome);
-    $scope.b.push(i.valor);
-  }
 
-  $scope.number=78;
+  $scope.stats = currentStats;
+
+  $scope.venda=[];
+  $scope.compra=[];
+  $scope.myEcos=[];
+  $scope.myEuros=[];
+  $scope.label1=[];
+
+  for(var i=0; i<$scope.stats.length; i++){
+    $scope.venda.push($scope.stats[i].sumstocks);
+    $scope.compra.push($scope.stats[i].sumorders);
+    $scope.myEcos.push($scope.stats[i].sumecos);
+    $scope.myEuros.push($scope.stats[i].sumeuros);
+    var myDate= new Date($scope.stats[i].start_time);
+    $scope.label1.push((myDate.getDate()) + "-" + (myDate.getMonth()+1) + "-" + myDate.getFullYear());
+  }
 }]).
 controller("BarCtrl", function ($scope) {
-  $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-  $scope.series = ['venda'];
+  $scope.series = ['venda','compra'];
 
-  $scope.data = [
-    [56, 59, 80, 81, 56, 55, 40]
-  ];
+  $scope.data=[$scope.venda, $scope.compra];
 }).controller("LineCtrl", function ($scope) {
-
-  $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
   $scope.series = ['€', 'Ecos'];
-  $scope.data = [
-    [65, 59, 80, 81, 56, 55, 40],
-    [28, 48, 40, 19, 86, 27, 90]
-  ];
+  $scope.data2 = [$scope.myEuros, $scope.myEcos];
   $scope.onClick = function (points, evt) {
     console.log(points, evt);
   };
