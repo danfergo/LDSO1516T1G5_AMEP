@@ -1,5 +1,6 @@
 class GroupsProssumersController < ApplicationController
   before_filter :is_authenticated
+  before_filter :is_coordinator, only: [:update]
   before_action :set_groups_prossumer, only: [:show, :update, :destroy]
 
   # GET /groups_prossumers
@@ -30,7 +31,6 @@ class GroupsProssumersController < ApplicationController
   # PATCH/PUT /groups_prossumers/1
   # PATCH/PUT /groups_prossumers/1.json
   def update
-    #render json: @groups_prossumer
     if @groups_prossumer.update(groups_prossumer_params)
       head :no_content
     else
@@ -48,8 +48,22 @@ class GroupsProssumersController < ApplicationController
 
   private
 
+    def is_coordinator
+      check = GroupsProssumer.where({group_id: params[:group_id],prossumer_id: session[:prossumer_id]}).first.is_coordinator
+      if check
+        return true
+      else
+        render json: {error: "Unauthorized Access"}, status:  :unauthorized
+        return false
+      end
+    end
+
+
+
+
     def set_groups_prossumer
       @groups_prossumer = GroupsProssumer.find(params[:id])
+
     end
 
     def groups_prossumer_params
