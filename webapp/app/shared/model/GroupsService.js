@@ -6,9 +6,15 @@ factory('Group', ['$resource', function ($resource) {
     save: {
       method: 'POST',
       params: {groupId: '@groupId'}
+    },
+    update: {
+      method: 'PUT',
+      params: {group_id: '@groupId', id: '@prossumerId'}
     }
   });
+
   resource.Stats = $resource('/api/v1/groups/:groupId/stats', null);
+
   resource.Prossumer.isNotInTheGroup = function (state) {
     return state && !state.prossumer_id;
   }
@@ -22,6 +28,7 @@ factory('Group', ['$resource', function ($resource) {
   resource.ProductAuth = $resource('/api/v1/groups/:groupId/products_auths/:id',null,{
     'update': {method: 'PUT'}
   });
+
   resource.Cycle = $resource('/api/v1/groups/:groupId/cycles/:id');
   resource.Cycle.Product = $resource('/api/v1/groups/:groupId/cycles/:cycleId/products/:id', null, {
     'save': {method: 'PUT'},

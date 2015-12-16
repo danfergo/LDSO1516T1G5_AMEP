@@ -6,14 +6,18 @@
 
 <md-content>
   <md-list>
-    <md-list-item class="md-3-line" ng-repeat="item in messages">
+    <md-list-item layout-padding class="md-3-line" ng-repeat="groupProssumer in groupProssumers">
       <div class="md-list-item-text">
-        <h3>{{item.what}}</h3>
-        <h4>{{item.who}}</h4>
-        <p>{{item.notes}}</p>
+        <h3>{{groupProssumer.prossumer.name}}</h3>
+        <h4>{{groupProssumer.prossumer.email}}</h4>
       </div>
-      <md-button class="md-secondary">Respond</md-button>
+      <md-button class="md-primary" ng-if="coordinator && groupProssumer.state == 1">Aceitar</md-button>
+      <md-button class="md-primary" ng-if="coordinator && groupProssumer.state == 2">Remover</md-button>
+      <md-button class="md-primary" ng-if="coordinator && !groupProssumer.is_coordinator && groupProssumer.state == 2" ng-click="turnCoordinator(groupProssumer.group_id, groupProssumer.id)">
+        Tornar coordenador
+      </md-button>
       <md-divider ng-if="!$last"></md-divider>
     </md-list-item>
   </md-list>
 </md-content>
+
