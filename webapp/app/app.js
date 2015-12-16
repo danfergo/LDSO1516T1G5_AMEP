@@ -1,10 +1,11 @@
+"use strict";
 var app = angular.module('amep',
   [
     'ui.router', 'ngMaterial', 'ngMdIcons', 'permission', 'ngLocale',
     'amep-layouts', 'amep-group', 'amep-settings',
     'amep-products', 'amep-agenda', 'amep-history',
     'amep-errors', 'amep-auth', 'amep-static', 'amep-search-groups',
-    'flipCard', 'amep-contacts', 'ng-dropdown', 'ngDropdowns', 'angular-horizontal-timeline', 'timeline', 'ngTable'
+    'flipCard', 'amep-contacts', 'ng-dropdown', 'ngDropdowns', 'angular-horizontal-timeline', 'timeline', 'ngTable', 'chart.js'
   ]).
 run(['$rootScope', '$mdSidenav', function ($rootScope, $mdSidenav) {
   $rootScope.$mdSidenav = $mdSidenav;
