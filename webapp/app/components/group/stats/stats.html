@@ -1,1 +1,26 @@
-OLA {{myLabel}}!!
+
+<div style=" padding-left: 100px; padding-right: 100px">
+  <md-card style="max-width: 900px">
+    <md-card-content>
+      <div ng-controller="BarCtrl">
+        <canvas id="bar" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-legend="true" chart-series="series"></canvas>
+      </div>
+    </md-card-content>
+  </md-card>
+  <md-card style="max-width: 900px;">
+    <md-card-content>
+      <div ng-controller="LineCtrl">
+      <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-legend="true" chart-series="series" chart-click="onClick"></canvas>
+    </div>
+    </md-card-content>
+  </md-card>
+</div>
+
+<!--
+{{getWeeks[1]}}
+
+{{getProducts()}}-->
+LALA <br>
+{{a}}
+..............
+LULU
