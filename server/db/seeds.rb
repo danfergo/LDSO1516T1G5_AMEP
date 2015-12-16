@@ -62,7 +62,7 @@ ProductAuth.create([
                    ])
 
 Cycle.create([
-                 {start_time: DateTime.new(2015, 12, 8), end_time: DateTime.new(2015, 12, 29), group_id: 1},
+                 {start_time: DateTime.new(2015, 12, 8), end_time: DateTime.new(2015, 12, 14), group_id: 1},
                  {start_time: DateTime.new(2015, 12, 8), end_time: DateTime.new(2015, 12, 29), group_id: 2},
                  {start_time: DateTime.new(2015, 12, 8), end_time: DateTime.new(2015, 12, 29), group_id: 3},
                  {start_time: DateTime.new(2015, 12, 29), end_time: DateTime.new(2016, 1, 12), group_id: 1}

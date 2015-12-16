@@ -70,8 +70,8 @@ config(function ($stateProvider, $urlRouterProvider) {
     controller: 'groupStatsController',
     templateUrl: 'components/group/stats/stats.html',
     resolve: {
-      currentCycles: ['Cycle', 'currentGroup', function (Cycle, currentGroup) {
-        return Cycle.query({groupId: currentGroup.id}).$promise;
+      currentStats: ['Group', 'currentGroup', function (Group, currentGroup) {
+        return Group.Stats.query({groupId: currentGroup.id}).$promise;
       }]
     },
     data :{

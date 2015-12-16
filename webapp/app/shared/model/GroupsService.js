@@ -8,6 +8,7 @@ factory('Group', ['$resource', function ($resource) {
       params: {groupId: '@groupId'}
     }
   });
+  resource.Stats = $resource('/api/v1/groups/:groupId/stats', null);
   resource.Prossumer.isNotInTheGroup = function (state) {
     return state && !state.prossumer_id;
   }
