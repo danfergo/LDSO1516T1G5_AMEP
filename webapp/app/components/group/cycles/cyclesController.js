@@ -3,6 +3,8 @@
 angular.module('amep-group').
 controller('groupHistoryController', ['$scope', 'Group', 'Cycle', 'currentGroup', 'currentCycles', 'ngTableParams', function ($scope, Group, Cycle, currentGroup, currentCycles, ngTableParams) {
 
+  $scope.whatState = Cycle.whatState;
+
   $scope.cycles = currentCycles;
   $scope.cycleSelected = $scope.cycles[0];
 

@@ -1,11 +1,19 @@
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 
+
 <div id="timelineBox" layout="row" layout-align="center center" layout-margin>
   <div style="line-height:40px;" flex='10'>
-    {{bla.start_time | date:'dd-MM-yyyy'}}
+    <div>
+      {{bla.start_time | date:'dd-MM-yyyy'}}
+    </div>
+    <div style="font-size: 12px; color: #375D3B">
+      {{diffBeforeString}}
+    </div>
   </div>
   <div id="timelineChart" flex ='80'>
-    <div id="timelineBar" ng-style="{'width' : getPosition()+'%'}"></div>
+    <div id="timelineBar" ng-if="estado == 'happening'" ng-style="{'width' : getPosition()+'%', 'background':'#053748'}"></div>
+    <div id="timelineBar" ng-if="estado == 'supplying' || estado == 'buying'" ng-style="{'width' : getPosition()+'%', 'background' : '#375D3B'}"></div>
+    <div id="timelineBar" ng-if="estado == 'ended'" ng-style="{'width' : 100+'%', 'background':'#053748'}"></div>
     <div id="timelineEvents" ng-repeat="item in getWeeks" ng-style="{'left' : getPosition(item.delivery_date)+'%'}" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
       <span ng-show="hoverEdit" class="animate-show">
         <div class="timelineEventBox" ng-if="$index == 0" ng-bind-html="'Semana '+($index+1)+'<br>'+(item.delivery_date | date : 'dd-MM-yyyy').toString()+'<br> às '+ (item.delivery_date | date : 'HH.mm').toString()+ 'h' + '<br> primeira semana!'"></div>
