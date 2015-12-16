@@ -64,7 +64,8 @@ ProductAuth.create([
 Cycle.create([
                  {start_time: DateTime.new(2015, 12, 8), end_time: DateTime.new(2015, 12, 29), group_id: 1},
                  {start_time: DateTime.new(2015, 12, 8), end_time: DateTime.new(2015, 12, 29), group_id: 2},
-                 {start_time: DateTime.new(2015, 12, 8), end_time: DateTime.new(2015, 12, 29), group_id: 3}
+                 {start_time: DateTime.new(2015, 12, 8), end_time: DateTime.new(2015, 12, 29), group_id: 3},
+                 {start_time: DateTime.new(2015, 12, 29), end_time: DateTime.new(2016, 1, 12), group_id: 1}
              ])
 
 Week.create([
@@ -72,8 +73,10 @@ Week.create([
                 {number: 2, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 15, 17, 00)},
                 {number: 3, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 22, 15, 30)},
                 {number: 4, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 29, 18, 15)},
-                {number: 1, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 11, 18, 30)},
-                {number: 2, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 15, 17, 15)},
+                {number: 1, cycle_id: 4, delivery_date: DateTime.new(2015, 12, 11, 18, 30)},
+                {number: 2, cycle_id: 4, delivery_date: DateTime.new(2015, 12, 15, 17, 00)},
+                {number: 1, cycle_id: 2, delivery_date: DateTime.new(2016, 1, 5, 18, 30)},
+                {number: 2, cycle_id: 2, delivery_date: DateTime.new(2016, 1, 9, 17, 15)},
                 {number: 3, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 22, 15, 30)},
                 {number: 4, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 29, 18, 15)},
                 {number: 1, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 11, 17, 15)},
