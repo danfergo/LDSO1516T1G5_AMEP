@@ -6,7 +6,7 @@
   <md-tabs md-dynamic-height md-center-tabs="true">
     <md-tab label="Perfil">
       <md-card class="md-padding">
-        <form name="userProfileForm" layout="column ">
+        <form name="userProfileForm" layout="column">
           <md-input-container>
             <label>Nome</label>
             <input ng-model="name" type="text" name="name" ng-required="true">
@@ -31,8 +31,8 @@
     </md-tab>
 
     <md-tab label="Palavra-passe">
-      <md-content class="md-padding">
-        <form name="userPasswordForm">
+      <md-card class="md-padding">
+        <form name="userPasswordForm" layout="column">
 
           <md-input-container>
             <label>Palavra-passe actual</label>
@@ -54,7 +54,7 @@
           </md-input-container>
 
         </form>
-      </md-content>
+      </md-card>
     </md-tab>
 
   </md-tabs>

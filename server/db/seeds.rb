@@ -41,7 +41,9 @@ Prossumer.create(
 GroupsProssumer.create([
                            {group_id: 1, prossumer_id: 1, is_coordinator: true, state: 2},
                            {group_id: 1, prossumer_id: 2, is_coordinator: false, state: 2},
-                           {group_id: 1, prossumer_id: 3, is_coordinator: false, state: 2}
+                           {group_id: 1, prossumer_id: 3, is_coordinator: false, state: 2},
+                           {group_id: 2, prossumer_id: 1, is_coordinator: true, state: 2},
+                           {group_id: 3, prossumer_id: 1, is_coordinator: true, state: 2}
                        ])
 
 Product.create([
@@ -53,16 +55,17 @@ Product.create([
                ])
 
 ProductAuth.create([
-                       {state: 2, group_id: 1, product_id: 1, ecos: 2, euros: 1.2},
-                       {state: 2, group_id: 1, product_id: 2, ecos: 2, euros: 1.2},
-                       {state: 2, group_id: 1, product_id: 3, ecos: 2, euros: 1.2},
-                       {state: 2, group_id: 1, product_id: 4, ecos: 2, euros: 1.2}
+                       {state: 2, group_id: 1, product_id: 1, ecos: 3, euros: 3},
+                       {state: 2, group_id: 1, product_id: 2, ecos: 2, euros: 0.5},
+                       {state: 2, group_id: 1, product_id: 3, ecos: 4, euros: 3},
+                       {state: 2, group_id: 1, product_id: 4, ecos: 6, euros: 3}
                    ])
 
 Cycle.create([
                  {start_time: DateTime.new(2015, 12, 8), end_time: DateTime.new(2015, 12, 29), group_id: 1},
                  {start_time: DateTime.new(2015, 12, 8), end_time: DateTime.new(2015, 12, 29), group_id: 2},
                  {start_time: DateTime.new(2015, 12, 8), end_time: DateTime.new(2015, 12, 29), group_id: 3},
+                 {start_time: DateTime.new(2015, 12, 29), end_time: DateTime.new(2016, 1, 12), group_id: 1}
              ])
 
 Week.create([
@@ -70,20 +73,22 @@ Week.create([
                 {number: 2, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 15, 17, 00)},
                 {number: 3, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 22, 15, 30)},
                 {number: 4, cycle_id: 1, delivery_date: DateTime.new(2015, 12, 29, 18, 15)},
-                {number: 5, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 11, 18, 30)},
-                {number: 6, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 15, 17, 15)},
-                {number: 7, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 22, 15, 30)},
-                {number: 8, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 29, 18, 15)},
-                {number: 9, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 11, 17, 15)},
-                {number: 10, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 15, 18, 30)},
-                {number: 11, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 22, 15, 30)},
-                {number: 12, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 29, 18, 15)}
+                {number: 1, cycle_id: 4, delivery_date: DateTime.new(2015, 12, 11, 18, 30)},
+                {number: 2, cycle_id: 4, delivery_date: DateTime.new(2015, 12, 15, 17, 00)},
+                {number: 1, cycle_id: 2, delivery_date: DateTime.new(2016, 1, 5, 18, 30)},
+                {number: 2, cycle_id: 2, delivery_date: DateTime.new(2016, 1, 9, 17, 15)},
+                {number: 3, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 22, 15, 30)},
+                {number: 4, cycle_id: 2, delivery_date: DateTime.new(2015, 12, 29, 18, 15)},
+                {number: 1, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 11, 17, 15)},
+                {number: 2, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 15, 18, 30)},
+                {number: 3, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 22, 15, 30)},
+                {number: 4, cycle_id: 3, delivery_date: DateTime.new(2015, 12, 29, 18, 15)}
             ])
 
 Stock.create([
                  {quantity: 10, unit_price_euros: 3, unit_price_ecos: 3, week_id: 1, product_id: 1},
                  {quantity: 8, unit_price_euros: 3, unit_price_ecos: 3, week_id: 1, product_id: 3},
-                 {quantity: 3, unit_price_euros: 1, unit_price_ecos: 1, week_id: 1, product_id: 4},
+                 {quantity: 3, unit_price_euros: 1, unit_price_ecos: 1, week_id: 1, product_id: 4}
 
              ])
 

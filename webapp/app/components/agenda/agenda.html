@@ -1,88 +1,98 @@
-<md-toolbar style="background-color:slategray" class="md-tall" flex="none" layout="row" layout-align="center start">
-  <h1 flex style="max-width:1200px; padding-top:50px; padding-left:30px; margin:0; font-size:28px;">Agenda</h1>
-</md-toolbar>
+<md-whiteframe class="md-whiteframe-2dp">
+  <md-toolbar class="md-tall" flex="none" layout="row" layout-align="center start">
+    <h1 flex style="max-width:1200px; padding-top:50px; padding-left:30px; margin:0; font-size:28px;">
+      Agenda</h1>
+  </md-toolbar>
+</md-whiteframe>
 
-<md-card ng-repeat="week in weeks">
-  <div layout-padding layout="row">
-    <div flex>
-      <h3>Grupo {{week.cycle.group.name}}</h3>
-      <h4>{{week.cycle.id}}º Ciclo | {{week.number}}ª Semana</h4>
+<md-content>
+  <md-card ng-repeat="week in weeks">
+    <div layout-padding layout="row">
+      <div flex>
+        <h3>Grupo {{week.cycle.group.name}}</h3>
+        <h4>{{week.cycle.id}}º Ciclo | {{week.number}}ª Semana</h4>
 
-      <div layout-padding class="glyphicon glyphicon-calendar">
-        {{week.delivery_date.split("T")[0]}}
+        <div layout-padding class="glyphicon glyphicon-calendar">
+          {{week.delivery_date.split("T")[0]}}
+        </div>
+        <br>
+
+        <div layout-padding class="glyphicon glyphicon-time">
+          {{week.delivery_date.split("T")[1].split(".")[0]}}
+        </div>
       </div>
-      <br>
-
-      <div layout-padding class="glyphicon glyphicon-time">
-        {{week.delivery_date.split("T")[1].split(".")[0]}}
+      <div class="panel panel-default">
+        <table class="table">
+          <tbody>
+          <tr>
+            <td>Balanço do ciclo</td>
+          </tr>
+          <tr>
+            <td id="ecosBalance">{{signedValue(week.cycle.balance.sales.ecos - week.cycle.balance.purchases.ecos)}} Ecos</td>
+          </tr>
+          <tr>
+            <td id="eurosBalance">{{signedValue(week.cycle.balance.sales.euros - week.cycle.balance.purchases.euros)}} €</td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-    <div>
-      <md-card>
-        <md-content layout-padding>
-          <h4>Balance</h4>
-          Ecos: {{signedValue(week.cycle.balance.sales.ecos - week.cycle.balance.purchases.ecos)}}<br>
-          Euros: {{signedValue(week.cycle.balance.sales.euros - week.cycle.balance.purchases.euros)}}
+    <md-content layout-padding layout="row" layout-wrap>
+      <div layout="column" flex="100" flex-gt-sm="50">
+        <h4>Encomendas</h4>
+        <md-content>
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Produtor</th>
+              <th>Quantidade</th>
+              <th>Ecos</th>
+              <th>Euros</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="purchase in week.purchases">
+              <td>{{purchase.stock.product.title}}</td>
+              <td>{{purchase.stock.product.prossumer.name}}</td>
+              <td>{{purchase.quantity}} ({{purchase.stock.product.unit}})</td>
+              <td>{{purchase.quantity * purchase.stock.unit_price_euros}}</td>
+              <td>{{purchase.quantity * purchase.stock.unit_price_ecos}}</td>
+            </tr>
+            </tbody>
+          </table>
         </md-content>
-      </md-card>
-    </div>
-  </div>
-  <md-content layout-padding layout="row" layout-wrap>
-    <div layout="column" flex="100" flex-gt-sm="50">
-      <h4>Encomendas</h4>
-      <md-content>
-        <table class="table">
-          <thead>
-          <tr>
-            <th>Produto</th>
-            <th>Produtor</th>
-            <th>Quantidade</th>
-            <th>Ecos</th>
-            <th>Euros</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr ng-repeat="purchase in week.purchases">
-            <td>{{purchase.stock.product.title}}</td>
-            <td>{{purchase.stock.product.prossumer.name}}</td>
-            <td>{{purchase.quantity}} ({{purchase.stock.product.unit}})</td>
-            <td>{{purchase.quantity * purchase.stock.unit_price_euros}}</td>
-            <td>{{purchase.quantity * purchase.stock.unit_price_ecos}}</td>
-          </tr>
-          </tbody>
-        </table>
-      </md-content>
-    </div>
+      </div>
 
-    <div layout="column" flex="100" flex-gt-sm="50">
-      <h4>Entregas</h4>
-      <md-content>
-        <table class="table">
-          <thead>
-          <tr>
-            <th>Produto</th>
-            <th>Comprador</th>
-            <th>Quantidade</th>
-            <th>Ecos</th>
-            <th>Euros</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr ng-repeat="sale in week.sales">
-            <td>{{sale.stock.product.title}}</td>
-            <td>{{sale.prossumer.name}}</td>
-            <td>{{sale.quantity}} ({{sale.stock.product.unit}})</td>
-            <td>{{sale.quantity * sale.stock.unit_price_euros}}</td>
-            <td>{{sale.quantity * sale.stock.unit_price_ecos}}</td>
-          </tr>
-          </tbody>
-        </table>
-      </md-content>
-    </div>
+      <div layout="column" flex="100" flex-gt-sm="50">
+        <h4>Entregas</h4>
+        <md-content>
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Comprador</th>
+              <th>Quantidade</th>
+              <th>Ecos</th>
+              <th>Euros</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="sale in week.sales">
+              <td>{{sale.stock.product.title}}</td>
+              <td>{{sale.prossumer.name}}</td>
+              <td>{{sale.quantity}} ({{sale.stock.product.unit}})</td>
+              <td>{{sale.quantity * sale.stock.unit_price_euros}}</td>
+              <td>{{sale.quantity * sale.stock.unit_price_ecos}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </md-content>
+      </div>
 
-  </md-content>
+    </md-content>
 
-</md-card>
-
+  </md-card>
+</md-content>
 
 
