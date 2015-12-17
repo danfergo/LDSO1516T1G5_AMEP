@@ -4,6 +4,8 @@ controller('groupAboutController', ['$scope','$mdDialog','$state','currentSessio
   $scope.groupProssumers = currentAbout;
   $scope.coordinator = false;
 
+  $scope.currentSessionId = currentSession.id
+
   for(id in currentAbout) {
     if (currentAbout[id].prossumer_id == currentSession.id) {
       $scope.coordinator = currentAbout[id].is_coordinator;
