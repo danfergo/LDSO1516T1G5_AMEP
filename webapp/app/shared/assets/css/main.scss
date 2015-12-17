@@ -105,16 +105,18 @@ md-toolbar.md-hue-2 .md-button.md-raised{
   border-radius: 999px;
   text-align:center;
   font-size:16px;
-  line-height:32px;
+  line-height:30px;
   background: rgb(230, 230, 230);
   color:#676767;
-  width:32px;
-  height:32px;
+  width:30px;
+  height:30px;
   font-weight:bold;
   display:inline-block;
-  margin:0 2px;
+  margin:0 5px;
 }
-
+.number-chip:first-child{
+  margin-left:0;
+}
 
 .page-wrapper{
   max-width:1200px;
@@ -139,3 +141,9 @@ md-sidenav + div > md-content{
   background:#000!important;
   color:#fff!important;
 }*/
+
+
+ng-md-icon[size="16"]{
+  height:16px;
+  width:16px;
+}

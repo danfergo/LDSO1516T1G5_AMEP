@@ -25,6 +25,12 @@
           Vendas abertas para {{currentCycle.title}}
           <small>({{currentCycle.start_time | date:'longDate'}})</small>
         </h1>
+
+        <h1 flex-sm="100"
+            ng-if="whatState(currentCycle) == 'buying'" class="md-title" style="margin:16px 0 5px 0;padding: 2px 0px 0px">
+            Compras abertas para {{currentCycle.title}}
+          <small>({{currentCycle.start_time | date:'longDate'}})</small>
+        </h1>
         <span flex></span>
         <md-switch style="margin-bottom:5px;"
                    ng-model="showOnlyMyProducts"
@@ -38,41 +44,35 @@
       </div>
     </div>
 
+
     <div ng-repeat="product in filteredShowcaseProducts()"
          class="flip-container" flip-card flex-sm="100" flex-gt-sm="50" flex-lg="33" flex-xl="25" layout="column">
       <div class="flipper" flex layout="column">
         <div class="front" layout="column" flex>
-          <md-whiteframe class="md-whiteframe-2dp" style="background:#fff;" flex layout-margin>
+          <md-card>
+            <md-card-header>
+              <md-card-header-text>
+                <span class="md-subhead"> {{product.prossumer.name}} <ng-md-icon icon="keyboard_arrow_right" size="16"></ng-md-icon> {{product.product_category.name}} </span>
+                <span class="md-title">{{product.title}}</span>
+              </md-card-header-text>
+            </md-card-header>
 
-            <div>
-              <div layout-padding>
-                <div layout="row">
-                  <h3 class="md-title" flex>{{product.title}}</h3>
-                  <md-button class="md-icon-button toggle" aria-label="Reverse" style="margin-top:5px;color:#555">
-                    <ng-md-icon icon="rotate_left" size="24"></ng-md-icon>
-                  </md-button>
-                </div>
-
-                <p>{{product.description}}</p>
-              </div>
-              <div ng-if="$index % 4 != 3"
-                   style="background-image:url('http://a3145z1.americdn.com/wp-content/uploads/2013/03/orange-king-of-fruits.jpg');
+            <div ng-if="$index % 4 != 3"
+                 style="background-image:url('http://a3145z1.americdn.com/wp-content/uploads/2013/03/orange-king-of-fruits.jpg');
                       background-size:cover;
                       background-position:center center;
-                      height:150px;">
-              </div>
-              <div layout-margin class="text-right">
-                <b>{{ productSellingPrice(product).ecos | currency :'E':2}}</b> +
-                {{ productSellingPrice(product).euros | currency :'€':2}}<br> /
-                {{product.unit}}
-              </div>
-              <div layout-margin>
-                <span class="number-chip" ng-repeat="week in product.weeks" ng-if="week.stock">
+                      height:150px;"> </div>
+            <md-card-content>
+              <p>{{product.description}}</p>
+              <div layout-margin class="text-right" product-price="product"> </div>
+
+            </md-card-content>
+            <md-card-footer>
+              <span class="number-chip" ng-repeat="week in product.weeks" ng-if="week.stock">
                   {{week.number}}
                 </span>
-              </div>
-            </div>
-          </md-whiteframe>
+            </md-card-footer>
+          </md-card>
         </div>
         <div class="back" layout="column">
           <div class="md-whiteframe-2dp" style="background:#fff;" flex layout-padding layout-margin>
@@ -94,7 +94,7 @@
                 <div flex style="padding:1px;line-height:26px;">
                   {{week.delivery_date | date:'dd/MM'}}
                 </div>
-                <input ng-if="$scope.currentCycleState == 'supplying'" value="0" style="width:40px;padding-left: 3px;
+                <input ng-if="whatState(currentCycle) == 'buying'" value="0" style="width:40px;padding-left: 3px;
                 border:2px solid rgba(0,0,0,0.54); border-radius:2px;outline: none;
                 margin: 0 1px;" type="number" step="1" min="0" max="30">
 
