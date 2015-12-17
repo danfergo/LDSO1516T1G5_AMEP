@@ -19,8 +19,8 @@ config(function ($stateProvider, $urlRouterProvider) {
         return ProductCategory.query().$promise;
       }],
       prossumerProducts: ['Prossumer', 'currentSession', function (Prossumer, currentSession) {
-        if(!currentSession.id) return [];
-        return Prossumer.Product.query({prossumerId:currentSession.id}).$promise;
+        if (!currentSession.id) return [];
+        return Prossumer.Product.query({prossumerId: currentSession.id}).$promise;
       }]
     },
     data: {
@@ -51,7 +51,7 @@ config(function ($stateProvider, $urlRouterProvider) {
         return Cycle.query({groupId: currentGroup.id}).$promise;
       }]
     },
-    data :{
+    data: {
       tabIndex: 1
     }
   }).
@@ -60,7 +60,26 @@ config(function ($stateProvider, $urlRouterProvider) {
     url: '/about',
     controller: 'groupAboutController',
     templateUrl: 'components/group/about/about.html',
-    data :{
+    resolve: {
+      currentAbout: ['Group', 'currentGroup', function (Group, currentGroup) {
+        return  Group.Prossumer.query({groupId: currentGroup.id}).$promise;
+      }]
+    },
+    data: {
+      tabIndex: 2
+    }
+  }).
+  state('stats', {
+    parent: 'group',
+    url: '/stats',
+    controller: 'groupStatsController',
+    templateUrl: 'components/group/stats/stats.html',
+    resolve: {
+      currentStats: ['Group', 'currentGroup', function (Group, currentGroup) {
+        return Group.Stats.query({groupId: currentGroup.id}).$promise;
+      }]
+    },
+    data: {
       tabIndex: 3
     }
   });
