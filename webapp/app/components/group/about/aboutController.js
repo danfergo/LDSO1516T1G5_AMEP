@@ -24,7 +24,7 @@ controller('groupAboutController', ['$scope','$mdDialog','$state','currentSessio
   };
 
   $scope.disableProssumer = function(groupId, groupProssumerId) {
-    Group.Prossumer.update({groupId: groupId, prossumerId: groupProssumerId, state: 0});
+    Group.Prossumer.update({groupId: groupId, prossumerId: groupProssumerId, state: 0, is_coordinator: false});
   };
 
 

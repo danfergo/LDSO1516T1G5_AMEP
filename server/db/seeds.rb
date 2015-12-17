@@ -95,9 +95,9 @@ Week.create([
 
 Stock.create([
                 {quantity: 10, unit_price_euros: 2, unit_price_ecos: 9, week_id: 5, product_id: 1},
-                 {quantity: 10, unit_price_euros: 3, unit_price_ecos: 3, week_id: 1, product_id: 1},
-                 {quantity: 8, unit_price_euros: 3, unit_price_ecos: 3, week_id: 1, product_id: 3},
-                 {quantity: 3, unit_price_euros: 1, unit_price_ecos: 1, week_id: 1, product_id: 4},
+                {quantity: 10, unit_price_euros: 3, unit_price_ecos: 3, week_id: 1, product_id: 1},
+                {quantity: 8, unit_price_euros: 3, unit_price_ecos: 3, week_id: 1, product_id: 3},
+                {quantity: 3, unit_price_euros: 1, unit_price_ecos: 1, week_id: 1, product_id: 4},
                 {quantity: 10, unit_price_euros: 3, unit_price_ecos: 3, week_id: 1, product_id: 1},
                 {quantity: 8, unit_price_euros: 2, unit_price_ecos: 3, week_id: 17, product_id: 3},
                 {quantity: 8, unit_price_euros: 2, unit_price_ecos: 3, week_id: 17, product_id: 2},
@@ -113,5 +113,6 @@ Order.create([
                  {quantity: 5, prossumer_id: 1, stock_id: 1},
                  {quantity: 2, prossumer_id: 1, stock_id: 3},
                  {quantity: 2, prossumer_id: 2, stock_id: 8},
-                 {quantity: 5, prossumer_id: 1, stock_id: 9}
+                 {quantity: 5, prossumer_id: 1, stock_id: 9},
+                 {quantity: 3, prossumer_id: 3, stock_id: 9}
              ])
