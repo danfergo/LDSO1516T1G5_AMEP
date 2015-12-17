@@ -9,11 +9,12 @@
 
     <md-button ui-sref="groups">Grupos AMEP</md-button>
 
+    <md-button ui-sref="signUp" ng-if="!currentSession.id">Criar conta
+    </md-button>
+
     <md-button ui-sref="login" class="md-raised" ng-if="!currentSession.id">
       <ng-md-icon icon="login" size="20"></ng-md-icon>
       Iniciar sessão
-    </md-button>
-    <md-button ui-sref="signUp" ng-if="!currentSession.id">Criar conta
     </md-button>
 
     <md-button ui-sref="agenda" class="md-raised" ng-if="currentSession.id">
