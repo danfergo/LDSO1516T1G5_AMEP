@@ -1,8 +1,8 @@
 class GroupsProssumers < ActiveRecord::Migration
   def change
-    create_table :groups_prossumers, id: false do |t|
-      t.belongs_to :group, index: true
-      t.belongs_to :prossumer, index: true
+    create_table :groups_prossumers do |t|
+      t.belongs_to :group
+      t.belongs_to :prossumer
       t.boolean :is_coordinator
       t.integer :state
     end

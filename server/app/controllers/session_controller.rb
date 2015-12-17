@@ -15,7 +15,7 @@ class SessionController < ApplicationController
 
     if !prossumer[:error]
       session[:prossumer_id] = prossumer.id
-      render json: prossumer, status: :created #, location: @prossumer
+      render json: prossumer.as_json(only_prossumer: 1), status: :created #, location: @prossumer
     else
       session[:prossumer_id] = nil # just in case there exists an old session
       render json: prossumer, status: :unprocessable_entity

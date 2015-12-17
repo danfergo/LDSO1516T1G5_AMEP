@@ -1,8 +1,8 @@
 angular.module('amep-group').
 
 controller('groupShowcaseController',
-  ['$scope', '$mdDialog', '$mdToast', 'currentSession', 'currentGroup', 'currentCycles', 'productCategories', 'prossumerProducts', 'Group', 'Cycle', 'Product',
-    function ($scope, $mdDialog, $mdToast, currentSession, currentGroup, currentCycles, productCategories, prossumerProducts, Group, Cycle, Product) {
+  ['$scope', '$mdDialog', '$mdToast', 'currentSession', 'currentGroup', '$filter', 'currentCycles', 'productCategories', 'prossumerProducts', 'Group', 'Cycle', 'Product',
+    function ($scope, $mdDialog, $mdToast, currentSession, currentGroup, $filter, currentCycles, productCategories, prossumerProducts, Group, Cycle, Product) {
       $scope.currentCycle = Cycle.firstAvailable(currentCycles);
       $scope.currentCycleState = Cycle.whatState($scope.currentCycle);
       $scope.showOnlyMyProducts = $scope.currentCycleState == 'supplying' ? true : false;
@@ -10,6 +10,7 @@ controller('groupShowcaseController',
       $scope.cycleShowcaseProducts = [];
       $scope.auth = undefined;
       $scope.whatState = Cycle.whatState;
+      $scope.filterCategories = [];
 
       $scope.productSellingPrice = Group.Cycle.Product.productSellingPrice;
 
@@ -31,10 +32,30 @@ controller('groupShowcaseController',
         }, setShowcaseProducts);
 
 
+      var selectedCategoriesIds = function () {
+        var categoriesIds = [];
+        $scope.filterCategories.forEach(function(element,index){
+            if(element) categoriesIds.push(index);
+        })
+        return categoriesIds;
+      }
+
+      var filterByCategory = function (products) {
+        var selectedCategoriesIs = selectedCategoriesIds();
+        if(selectedCategoriesIs.length == 0) return products;
+        else return products.filter(function(product){
+          if(selectedCategoriesIs.indexOf(product.product_category_id) == -1){
+            return false;
+          }else {
+            return true;
+          }
+        })
+      }
+
       $scope.filteredShowcaseProducts = function () {
-        return $scope.showOnlyMyProducts && currentSession.id
+        return filterByCategory($scope.showOnlyMyProducts && currentSession.id
           ? Product.filterBySessionId($scope.cycleShowcaseProducts, currentSession.id)
-          : $scope.cycleShowcaseProducts;
+          : $scope.cycleShowcaseProducts);
       }
 
 
@@ -68,9 +89,8 @@ controller('groupShowcaseController',
       $scope.addOrEditProduct = function (product, canceled) {
         $mdDialog.show({
             controller: 'addProductToCycleController',
-            templateUrl: 'components/group/addProductToCycle.html',
+            templateUrl: 'components/group/submit-product/addProductToCycle.html',
             //  targetEvent: ev,
-            clickOutsideToClose: false,
             parent: angular.element(document.body),
             resolve: {
               'data': function () {
