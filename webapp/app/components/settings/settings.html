@@ -5,7 +5,7 @@
 <!-- <md-toolbar flex="none" style="min-height:45px; font-size:14px;"> -->
   <md-tabs md-dynamic-height md-center-tabs="true">
     <md-tab label="Perfil">
-      <md-card class="md-padding">
+      <md-card class="md-padding" flex="50">
         <form name="userProfileForm" layout="column">
           <md-input-container>
             <label>Nome</label>
@@ -22,7 +22,7 @@
                        class="md-raised md-primary"
                        ng-disabled="isProfileChangeDisable()"
                        ng-click="saveProfileChanges($event)"
-                       layout-padding>Guardar
+                       layout-padding>Guardar Alteração
             </md-button>
           </md-input-container>
 
@@ -31,7 +31,7 @@
     </md-tab>
 
     <md-tab label="Palavra-passe">
-      <md-card class="md-padding">
+      <md-card class="md-padding" flex="50">
         <form name="userPasswordForm" layout="column">
 
           <md-input-container>
@@ -49,7 +49,7 @@
                        class="md-raised md-primary"
                        ng-disabled="!userPasswordForm.$valid"
                        ng-click="savePasswordChanges($event)"
-                       layout-padding>Guardar
+                       layout-padding>Guardar Alteração
             </md-button>
           </md-input-container>
 

@@ -24,7 +24,7 @@ controller('SidebarController', ['$scope', 'Session', '$mdSidenav', function ($s
   $scope.accountMenu = [
     {
       state: 'products',
-      title: 'Meus Produtos',
+      title: 'Os meus produtos',
       icon: 'local_mall'
     },
     {

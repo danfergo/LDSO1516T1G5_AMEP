@@ -7,9 +7,10 @@
         <h1 style="margin:0; line-height:55px;">AMEP</h1>
       </div>
       <md-content layout="row" class="md-toolbar-tools-bottom inset md-hue-3">
-        <span style="padding-top: 5px;">Olá {{ session.name }}</span>
+        <span style="padding-top: 5px;">Olá {{session.name}}</span>
         <span flex></span>
         <span>
+          Sair
           <a ui-sref="logout" style="color:#fff;">
             <ng-md-icon icon="logout" size="24"></ng-md-icon>
           </a>
@@ -19,22 +20,8 @@
   </md-toolbar>
   <md-content flex="none" flex-gt-sm="auto">
 
-    <menu-link ng-repeat="item in quickMenu">
-      <a class="md-button md-ink-ripple" ui-sref-active="active" ui-sref="{{item.state}}"
-         style="margin:0;border-radius: 0;width:100%;">
-        <md-item-content md-ink-ripple layout="row" layout-align="start center">
-          <div class="inset">
-            <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
-          </div>
-          <div class="inset">{{item.title}}
-          </div>
-        </md-item-content>
-      </a>
-    </menu-link>
+    <md-subheader ng-if="groups().length > 0">{{groups().length > 1? "Meus grupos" : "Meu grupo"}}</md-subheader>
 
-
-    <md-divider></md-divider>
-    <md-subheader ng-if="groups().length > 1">Meus Grupos</md-subheader>
     <menu-link ng-if="groups().length > 0" ng-repeat="group in groups()">
       <a class="md-button md-ink-ripple" ui-sref-active="active" ui-sref="group({groupId: group.id })"
          style="margin:0;border-radius: 0;width:100%;">
@@ -63,6 +50,18 @@
 
     <md-divider></md-divider>
     <md-subheader>Conta pessoal</md-subheader>
+    <menu-link ng-repeat="item in quickMenu">
+      <a class="md-button md-ink-ripple" ui-sref-active="active" ui-sref="{{item.state}}"
+         style="margin:0;border-radius: 0;width:100%;">
+        <md-item-content md-ink-ripple layout="row" layout-align="start center">
+          <div class="inset">
+            <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+          </div>
+          <div class="inset">{{item.title}}
+          </div>
+        </md-item-content>
+      </a>
+    </menu-link>
     <menu-link ng-repeat="item in accountMenu">
       <a class="md-button md-ink-ripple" ui-sref-active="active" ui-sref="{{item.state}}"
          style="margin:0;border-radius: 0;width:100%;">
