@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       resources :groups_prossumers, path: 'prossumers', only: [:index, :show, :create, :update]
       resources :stats, path: 'stats', only: [:index]
       resources :cycles, only: [:index, :create, :show] do
-        resources :pdf_download,path: 'pdf', only: [:index]
+        resources :pdf_download,path: 'pdf', only: [:index, :show]
         resources :groups_cycles_products, path: 'products', only: [:index, :show, :update, :destroy]
         resources :groups_cycles_weeks, path: 'weeks', only: [:index]
       end
