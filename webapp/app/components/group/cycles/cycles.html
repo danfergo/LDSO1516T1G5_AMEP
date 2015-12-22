@@ -1,6 +1,7 @@
 <div>
   <div style="width: 100%;" layout="row">
-    <div flex>
+    <div flex layout="row" layout-sm="column" layout-align="left center" layout-wrap>
+      <md-button class="md-raised md-warn"  ng-click="pdfCycle()">PDF</md-button>
     </div>
     <md-select ng-model="cycleSelected" aria-label="seleciona o ciclo" md-on-close="mudaSemana()">
       <md-option ng-value="cycle" ng-repeat="cycle in cycles | orderBy:'-start_time'"> {{cycle.start_time | date:'dd-MM-yyyy'}}</md-option>
