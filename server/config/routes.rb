@@ -22,8 +22,10 @@ Rails.application.routes.draw do
       resources :cycles, only: [:index, :create, :show] do
         resources :groups_cycles_products, path: 'products', only: [:index, :show, :update, :destroy]
         resources :groups_cycles_weeks, path: 'weeks', only: [:index]
+        resources :groups_cycles_orders, path: 'orders', only: [:index,:create]
+
       end
-      resources :groups_products_auths, path: 'products_auths', only: [:index, :show, :update]
+      resources :groups_products_auths, path: 'products_auths', only: [:index, :show, :update, :create]
     end
 
     post '/contact-form/', to: 'contact_form#create'

@@ -39,11 +39,7 @@ controller('groupController', ['$scope', '$state', 'currentGroup', '$mdDialog', 
 
         Group.Prossumer.save({}, {groupId: $scope.group.id}, function (group) {
           getCurrentProssumerState();
-          $mdToast.show(
-            $mdToast.simple()
-              .content('Pedido de adesão enviado ')
-              .hideDelay(1000)
-          );
+          $mdToast.show('Pedido de adesão enviado ');
         })
 
       });

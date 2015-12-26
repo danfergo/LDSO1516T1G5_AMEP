@@ -21,8 +21,15 @@ class GroupsCyclesProductsController < ApplicationController
   #GET /groups/1/cycles/1/products/1.json
   def show
     # if is_my_resource(params[:id])
-    render json: Product.find(params[:id]).as_json(cycle_id: params[:cycle_id])
-    # end
+    render json: Product.find(params[:id]).as_json({
+                                                       cycle_id: params[:cycle_id],
+                                                       include: {
+                                                           prossumer: {
+                                                               except: [:encrypted_password, :salt, :confirm_hash]
+                                                           },
+                                                           product_category: {}
+                                                       }
+                                                   })
   end
 
   # POST /groups/1/cycles/1/products

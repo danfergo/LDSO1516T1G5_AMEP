@@ -1,4 +1,12 @@
 class GroupsProductsAuthsController < ApplicationController
+  #
+  # Product Auth state legend:
+  #
+  # 0 - canceled
+  # 1 - pending
+  # 2 - accepted
+  #
+
   before_filter :is_authenticated
 
   # GET /groups/1/products_auths
@@ -19,13 +27,9 @@ class GroupsProductsAuthsController < ApplicationController
   # POST /groups/1/products_auths
   # POST /groups/1/products_auths.json
   def create
-    @product_auth_params = ActionController::Parameters.new(state: 1,
-                                                             product_id: params[:id],
-                                                             group_id: params[:group_id],
-                                                             ecos: params[:ecos],
-                                                             euros: params[:euros]
-                                                            );
-    @product_auth = ProductAuth.new(@product_auth_params.permit(:state, :product_id, :group_id, :ecos, :euros));
+
+    params[:state] = 1;
+    @product_auth = ProductAuth.new(params.permit(:state, :product_id, :group_id, :ecos, :euros));
     if @product_auth.save
       render json: @product_auth
     else
@@ -37,13 +41,8 @@ class GroupsProductsAuthsController < ApplicationController
   # PATCH/PUT /groups/1/products_auths/1.json
   def update
     @product_auth = ProductAuth.where({product_id: params[:id], group_id: params[:group_id]}).first
-    if(!@product_auth)
-      return create
-    end
 
-    @product_auth_params = ActionController::Parameters.new(state: 1, ecos: params[:ecos], euros: params[:euros]);
-
-    if @product_auth.update(@product_auth_params.permit(:state, :ecos, :euros))
+    if @product_auth.update(params.permit(:state))
       render json: @product_auth
     else
       render json: @product_auth.errors

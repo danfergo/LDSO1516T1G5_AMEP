@@ -3,15 +3,16 @@ angular.module('amep-product-card', ['amep-model'])
 
     return {
       controller: ['Group', '$scope', function(Group,$scope){
-          $scope.productSellingPrice = Group.Cycle.Product.productSellingPrice;
+          $scope.productPrice = $scope.authorizedPrice ? $scope.authorizedPrice : Group.Cycle.Product.productSellingPrice($scope.product);
       }],
       restrict: 'A',
       scope: {
-        'product': '=productPrice'
+        'product': '=productPrice',
+        'authorizedPrice': '=productAuthorizedPrice'
       },
-      template: "<b style='margin:0;'>{{ productSellingPrice(product).ecos | currency :'E':2}}</b> + " +
-      "{{ productSellingPrice(product).euros | currency :'€':2}}<br> /" +
-      "{{product.unit}}"
+      template: "<b style='margin:0;'>{{ productPrice.ecos | currency :'E':2}}</b> + " +
+      "{{productPrice.euros | currency :'€':2}}<br> /" +
+      "{{product.unit}}<br>"
     }
 
   }])
