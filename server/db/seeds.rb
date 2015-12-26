@@ -47,11 +47,11 @@ GroupsProssumer.create([
                        ])
 
 Product.create([
-                   {title: 'Bananas', description: '', unit: 'kg', prossumer_id: 1},
-                   {title: 'Maças', description: 'Biológicas', unit: 'g', prossumer_id: 1},
-                   {title: 'Cenouras', description: '', unit: 'kg', prossumer_id: 2},
-                   {title: 'Batatas', description: '', unit: 'kg', prossumer_id: 2},
-                   {title: 'Iogurte', description: 'Doce', unit: 'g', prossumer_id: 3}
+                   {title: 'Bananas', description: '', unit: 'kg', prossumer_id: 1, product_category_id: 2},
+                   {title: 'Maças', description: 'Biológicas', unit: 'g', prossumer_id: 1, product_category_id: 2},
+                   {title: 'Cenouras', description: '', unit: 'kg', prossumer_id: 2, product_category_id: 3},
+                   {title: 'Batatas', description: '', unit: 'kg', prossumer_id: 2, product_category_id: 3},
+                   {title: 'Iogurte', description: 'Doce', unit: 'g', prossumer_id: 3, product_category_id: 1}
                ])
 
 ProductAuth.create([

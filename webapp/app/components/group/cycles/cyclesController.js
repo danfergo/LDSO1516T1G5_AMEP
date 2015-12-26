@@ -16,6 +16,14 @@ controller('groupHistoryController', ['$scope', 'Group', 'Cycle', 'currentGroup'
   };
   $scope.mudaSemana();
 
+  $scope.pdfCycle = function() {
+
+    Cycle.getPdf.pdf({
+      groupId: $scope.cycleSelected.group_id,
+      cycleId: $scope.cycleSelected.id
+    });
+  };
+
   var self = this;
   var data = [{name: "Moroni", age: 50}, {name: "Moni", age: 45} /*,*/];
   self.tableParams = new ngTableParams({}, {getData: data});
