@@ -47,6 +47,10 @@ class ProductsController < ApplicationController
     if is_my_resource(@product.prossumer_id)
 
       if @product.save
+        File.open(Rails.root.join('public', 'product_prev', "#{@product.id}"), 'wb') do |file|
+          file.write(params[:file].read)
+        end
+
         render json: @product, status: :created
       else
         render json: @product.errors, status: :unprocessable_entity

@@ -1,4 +1,4 @@
-angular.module('amep-products', ['amep-model']).
+angular.module('amep-products', ['amep-model','ngFileUpload']).
 config(function ($stateProvider) {
 
   $stateProvider.

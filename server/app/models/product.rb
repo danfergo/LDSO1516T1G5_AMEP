@@ -15,6 +15,11 @@ class Product < ActiveRecord::Base
     if (options[:cycle_id])
       json['weeks'] = weeks_where_cycle_id(options[:cycle_id])
     end
+    if( File.exist?(Rails.root.join('public', 'product_prev', "#{self.id}")))
+      json[:has_prev] = true
+    else
+      json[:has_prev] = false
+    end
     json
   end
 
