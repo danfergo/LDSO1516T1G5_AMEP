@@ -67,6 +67,7 @@
                   Aguarda aprovação
                 </md-tooltip>
               </ng-md-icon>
+              
               <md-button style="margin: 0; margin-right:5px;min-width:36px;" ng-if="productAuth(product).state == 1 && prossumerState.is_coordinator"
                          ng-click="approveProduct(product,true)"
                          class="md-primary md-mini md-raised" aria-label="Aprovar">

@@ -41,8 +41,6 @@ module.exports = function(config) {
       'bower_components/ng-dropdown/dist/js/ng-dropdown.min.js',
       'bower_components/angular-dropdowns/dist/angular-dropdowns.js',
       'bower_components/ng-table/dist/ng-table.min.js',
-      'bower_components/angular-aria/angular-aria.js',
-      'bower_components/angular-material/angular-material.js',
       'bower_components/Chart.js/Chart.js',
       'bower_components/angular-chart.js/dist/angular-chart.js',
       'bower_components/blob-polyfill/Blob.js',
@@ -50,6 +48,8 @@ module.exports = function(config) {
       'bower_components/angular-file-saver/dist/angular-file-saver.bundle.js',
       'bower_components/ng-file-upload/ng-file-upload.js',
       'bower_components/ng-file-upload-shim/ng-file-upload-shim.js',
+      'bower_components/angular-aria/angular-aria.js',
+      'bower_components/angular-material/angular-material.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

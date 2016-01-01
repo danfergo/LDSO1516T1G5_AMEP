@@ -1,42 +1,45 @@
-<md-dialog aria-label="Novo ciclo">
+<md-dialog aria-label="Novo ciclo" style="min-width:300px;">
   <md-content class="md-padding">
     <h1 class="md-title">Novo ciclo</h1>
+    <form name="newCycle">
+      <md-input-container style="width:100%">
+        <label>Título</label>
+        <input ng-model="cycle.title" placeholder="(opcional)">
+      </md-input-container>
+      <md-input-container style="width:100%">
+        <label>Duração</label>
+        <input ng-model="nWeeks" ng-change="genWeeks()" type="number" step="1" placeholder="Número de semanas" required min="1" max="10">
+      </md-input-container>
 
-    <form name="newGroupForm">
-      <div layout layout-sm="column">
-        <md-input-container flex>
-          <label>Nome do grupo</label>
-          <input name="groupName" ng-model="group.name" placeholder="Nome" ng-minlength="5" ng-required="true">
+
+      <h4 ng-if="weeks.length > 0">Semanas</h4>
+      <div layout="row" ng-repeat="week in cycle.weeks">
+        <md-input-container class="md-block" flex>
+          <label>Local de encontro</label>
+          <input ng-model="week.location" placeholder="(opcional)">
         </md-input-container>
+        <md-datepicker ng-model="week.delivery_date" md-placeholder="Dia de entrega" required>
+        </md-datepicker>
       </div>
-      <div ng-messages="newGroupForm.groupName.$error" style="color:maroon" role="alert">
-        <div ng-message="required">Required</div>
-        <div ng-message="minlength">Minimo 5 carateres</div>
-      </div>
-      <div layout layout-sm="column">
-        <md-input-container flex>
-          <label>Cidade</label>
-          <md-select name="city" ng-model="group.city_id" ng-required="true">
-            <md-option ng-repeat="city in cities" value="{{city.id}}">
-              {{city.name}}
-            </md-option>
-          </md-select>
-        </md-input-container>
-      </div>
-      <div ng-messages="newGroupForm.city.$error" style="color:maroon" role="alert">
-        <div ng-message="required">Selecione uma cidade</div>
-      </div>
-      <div layout layout-sm="column">
-        <md-input-container flex>
-          <label>Moeda Virtual</label>
-          <input name="currency" ng-model="placeholder" placeholder="Moeda">
-        </md-input-container>
-      </div>
+
     </form>
   </md-content>
-  <div class="md-actions" layout="row">
+  <md-dialog-actions layout="row">
     <span flex></span>
     <md-button ng-click="cancel()"> Cancel</md-button>
-    <md-button ng-click="!newGroupForm.$valid || ok()" class="md-primary"> Save</md-button>
-  </div>
+    <md-button ng-click="!newCycle.$valid || ok()" class="md-primary"> Save</md-button>
+  </md-dialog-actions>
 </md-dialog>
+
+
+<style>
+  md-datepicker{
+    margin-right:0;
+    padding-right:0;
+    padding-top:14px;
+  }
+
+  .md-datepicker-input-mask{
+    width:308px;
+  }
+</style>

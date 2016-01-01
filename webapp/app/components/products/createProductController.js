@@ -6,7 +6,6 @@ controller('createProductController', ['$scope', 'Session', '$mdDialog','Prossum
   };
   $scope.cancel = function() {
     $mdDialog.cancel();
-
   };
   $scope.ok = function(file) {
     var data = angular  .copy($scope.product);

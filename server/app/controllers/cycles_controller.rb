@@ -20,10 +20,23 @@ class CyclesController < ApplicationController
   # POST /cycles
   # POST /cycles.json
   def create
-    @cycle = Cycle.new(cycle_params)
+    cycleParams = ActionController::Parameters.new(title: (cycle_params[:title] ? cycle_params[:title] : nil),
+                                                   group_id: cycle_params[:group_id],
+                                                   start_time: cycle_params[:weeks].first[:delivery_date],
+                                                   end_time: cycle_params[:weeks].last[:delivery_date]
+    )
 
+    @cycle = Cycle.new(cycleParams.permit(:title,:group_id, :start_time, :end_time))
     if @cycle.save
-      render json: @cycle, status: :created, location: @cycle
+      #TODO validate that weeks do not overlap. i.e.,
+      cycle_params[:weeks].each do |t|
+        weekParams = ActionController::Parameters.new({cycle_id: @cycle.id, delivery_date: t[:delivery_date],
+                                                       location: (t[:location] ? t[:location] : nil)})
+        week = Week.new(weekParams.permit(:cycle_id, :delivery_date, :location))
+        week.save()
+        #TODO check for errors
+      end
+      render json: @cycle.as_json(include: [:weeks]), status: :created, location: @cycle
     else
       render json: @cycle.errors, status: :unprocessable_entity
     end
@@ -51,15 +64,20 @@ class CyclesController < ApplicationController
 
   private
 
-    def set_cycle
-      @cycle = Cycle.find(params[:id])
-    end
+  def set_cycle
+    @cycle = Cycle.find(params[:id])
+  end
 
-    def set_group
-      @group = Group.find(params[:group_id])
-    end
+  def set_group
+    @group = Group.find(params[:group_id])
+  end
 
-    def cycle_params
-      #params.require(:cycle).permit(:start, :end)
+  def cycle_params
+    params.require(:group_id)
+    params.require(:weeks)
+    params[:weeks].each do |t|
+      t.require(:delivery_date)
     end
+    params
+  end
 end
