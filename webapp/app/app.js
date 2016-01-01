@@ -5,7 +5,7 @@ var app = angular.module('amep',
     'amep-layouts', 'amep-group', 'amep-settings',
     'amep-products', 'amep-agenda', 'amep-history', 'amep-product-card',
     'amep-errors', 'amep-auth', 'amep-static', 'amep-search-groups',
-    'flipCard', 'amep-contacts', 'ng-dropdown', 'ngDropdowns', 'angular-horizontal-timeline', 'timeline', 'ngTable', 'chart.js'
+    'flipCard', 'amep-contacts', 'ng-dropdown', 'ngDropdowns', 'angular-horizontal-timeline', 'timeline', 'ngTable', 'chart.js','ngFileSaver'
   ]).
 run(['$rootScope', '$mdSidenav', function ($rootScope, $mdSidenav) {
   $rootScope.$mdSidenav = $mdSidenav;

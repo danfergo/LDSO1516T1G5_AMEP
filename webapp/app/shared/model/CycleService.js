@@ -8,6 +8,33 @@ factory('Cycle', ['$resource', '$filter', function ($resource, $filter) {
    * @param cycle - a cycle object
    * @returns {string, null} - unborn, supplying, buying, happening, ended
    */
+ resource.getPdf = $resource('/api/v1/groups/:groupId/cycles/:cycleId/pdf/:prossumerId', null ,{
+    pdf: {
+      method: 'GET',
+      headers: {
+        accept: 'application/pdf'
+      },
+      responseType: 'arraybuffer',
+      cache: false,
+      transformResponse: function (data,headers) {
+        var pdf;
+        var header = headers('Content-Disposition');
+        var array = header.split('"');
+        if (data) {
+          pdf = new Blob([data], {
+            type: 'application/pdf'
+          });
+          saveAs(pdf,array[1]);
+          return true;
+        }
+        return false;
+
+      }
+    }
+  })
+
+
+
   resource.whatState = function (cycle) {
     if (!cycle || !cycle.start_time) return null;
 

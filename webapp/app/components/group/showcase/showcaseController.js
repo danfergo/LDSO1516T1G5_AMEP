@@ -1,18 +1,32 @@
 angular.module('amep-group').
-
 controller('groupShowcaseController',
-  ['$scope', '$mdDialog', '$mdToast', 'currentSession', 'currentGroup', '$filter', 'currentCycles', 'productCategories', 'prossumerProducts', 'Group', 'Cycle', 'Product',
-    function ($scope, $mdDialog, $mdToast, currentSession, currentGroup, $filter, currentCycles, productCategories, prossumerProducts, Group, Cycle, Product) {
+  ['$scope', '$mdDialog', '$mdToast', 'currentSession', 'currentGroup', '$filter', 'currentCycles', 'productCategories', 'prossumerProducts', 'Group', 'Cycle', 'Product', 'productAuths',
+    function ($scope, $mdDialog, $mdToast, currentSession, currentGroup, $filter, currentCycles, productCategories, prossumerProducts, Group, Cycle, Product, productAuths) {
       $scope.currentCycle = Cycle.firstAvailable(currentCycles);
       $scope.currentCycleState = Cycle.whatState($scope.currentCycle);
       $scope.showOnlyMyProducts = $scope.currentCycleState == 'supplying' ? true : false;
       $scope.prossumerProductsInCycle = [];
       $scope.cycleShowcaseProducts = [];
-      $scope.auth = undefined;
       $scope.whatState = Cycle.whatState;
       $scope.filterCategories = [];
+      $scope.purchases = {};
 
       $scope.productSellingPrice = Group.Cycle.Product.productSellingPrice;
+
+
+      Group.Prossumer.get({groupId: currentGroup.id, prossumerId: currentSession.id}, function (state) {
+        $scope.prossumerState = state;
+      });
+
+
+      var orders = [];
+      Group.Cycle.Order.query({groupId: currentGroup.id, cycleId: $scope.currentCycle.id}, function (o) {
+        orders = o;
+      });
+
+      $scope.productAuth = function (product) {
+        return Group.ProductAuth.findByProductId(productAuths, product.id);
+      }
 
       var selectProssumerProductsInCycle = function (sProducts) {
         for (var i in prossumerProducts) {
@@ -34,19 +48,19 @@ controller('groupShowcaseController',
 
       var selectedCategoriesIds = function () {
         var categoriesIds = [];
-        $scope.filterCategories.forEach(function(element,index){
-            if(element) categoriesIds.push(index);
+        $scope.filterCategories.forEach(function (element, index) {
+          if (element) categoriesIds.push(index);
         })
         return categoriesIds;
       }
 
       var filterByCategory = function (products) {
         var selectedCategoriesIs = selectedCategoriesIds();
-        if(selectedCategoriesIs.length == 0) return products;
-        else return products.filter(function(product){
-          if(selectedCategoriesIs.indexOf(product.product_category_id) == -1){
+        if (selectedCategoriesIs.length == 0) return products;
+        else return products.filter(function (product) {
+          if (selectedCategoriesIs.indexOf(product.product_category_id) == -1) {
             return false;
-          }else {
+          } else {
             return true;
           }
         })
@@ -86,7 +100,7 @@ controller('groupShowcaseController',
         });
       }
 
-      $scope.addOrEditProduct = function (product, canceled) {
+      $scope.saveProduct = function (product, canceled) {
         $mdDialog.show({
             controller: 'addProductToCycleController',
             templateUrl: 'components/group/submit-product/addProductToCycle.html',
@@ -122,12 +136,53 @@ controller('groupShowcaseController',
           confirmRemovingProductFromCycle(i);
         }
         else {
-          $scope.addOrEditProduct(prossumerProducts[i], function () {
+          $scope.saveProduct(prossumerProducts[i], function () {
             $scope.prossumerProductsInCycle[i] = false
           });
         }
 
       }
 
-    }
-  ]);
+
+      $scope.approveProduct = function (product, ok) {
+        Group.ProductAuth.update({
+          groupId: currentGroup.id,
+          id: product.id
+        }, {state: ok ? 2 : 0}, function (productAuth) {
+
+        });
+      }
+
+      $scope.purchase = function (productId) {
+        var weekOrders = [];
+        for (var weekId in  $scope.purchases[productId]) {
+          if ($scope.purchases[productId][weekId] > 0) {
+            weekOrders.push({week_id: weekId, quantity: $scope.purchases[productId][weekId]})
+          }
+        }
+
+        var order = {
+          product_id: productId,
+          prossumer_id: currentSession.id,
+          weeks: weekOrders
+        };
+        Group.Cycle.Order.save({groupId: currentGroup.id, cycleId: $scope.currentCycle}, order,
+          function (order) {
+            $scope.purchases[productId] = null;
+          });
+      }
+
+
+      $scope.availableStockFor = function(stock){
+        if(!stock) return 0;
+
+        var actualStock = stock.quantity;
+        for(var o in orders){
+          if(orders[o].stock_id == stock.id){
+            actualStock -= orders[o].quantity;
+          }
+        }
+        return actualStock;
+      }
+
+    }]);

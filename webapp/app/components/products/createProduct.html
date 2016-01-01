@@ -1,38 +1,62 @@
-<md-dialog aria-label="New Product">
-  <md-content class="md-padding" layout-margin style="min-width:500px;">
-    <h1 class="md-title">Novo produto</h1>
+<md-dialog aria-label="New Product" style="background:transparent;box-shadow: none;width:300px;">
+  <form name="createProduct">
 
-    <form name="newProductForm">
-      <md-input-container flex><label>Nome</label>
-        <input ng-model="product.title" ng-required="true"
-               placeholder="Por exemplo: tomate cereja, bolachas com pepitas de chocolate ...">
-      </md-input-container>
-      <md-input-container flex><label>Descrição</label>
-        <textarea ng-model="product.description" columns="1" md-maxlength="300"
-                  placeholder="Apresenta uma pequena descrição que melhor caraterize o produto"></textarea>
-      </md-input-container>
-      </md-input-container>
-      <div layout layout-sm="column">
+    <md-card layout="column">
+      <md-card-title flex="none">
+        <md-card-title-text>
+          <md-input-container>
+            <label>Título</label>
+            <input ng-required="true" ng-model="product.title">
+          </md-input-container>
+        </md-card-title-text>
+      </md-card-title>
+      <div class="md-card-image" ngf-thumbnail="picFile" ngf-as-background="true"
+           style="background-size:cover;
+                      background-position:center center;
+                      height:150px;">
 
-        <md-input-container flex><label>Preço em Ecos</label>
-          <input ng-model="product.ecos" ng-required="true" type="number" class="input-ecos" step="0.01"
-                 min="0" max="99999"
-                 ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/">
-        </md-input-container>
-        <md-input-container flex><label>Preço em Euros</label>
-          <input ng-model="product.euros" ng-required="true" type="number"
-                 min="0" max="99999"
-                 class="input-euros" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/">
-        </md-input-container>
-        <md-input-container flex><label>Unidade</label>
-          <input ng-model="product.unit" ng-required="true" type="text">
-        </md-input-container>
       </div>
 
-    </form>
-  </md-content>
-  <div class="md-actions" layout="row"><span flex></span>
-    <md-button ng-click="cancel()"> Cancel</md-button>
-    <md-button ng-click="!newProductForm.$valid || ok()" class="md-primary"> Save</md-button>
-  </div>
+      <md-card-content flex="none" layout="column" style="overflow-y:auto">
+        <md-input-container flex="none">
+          <label>Descrição</label>
+                  <textarea ng-model="product.description" columns="1" md-maxlength="300"
+                            placeholder="Descreve  o produto"></textarea>
+        </md-input-container>
+
+        <div layout="row" flex="none">
+          <md-input-container flex="50">
+            <label>Categoria</label>
+            <md-select ng-model="product.product_category_id" ng-required="true">
+              <md-option ng-repeat="productCategory in productCategories" ng-value="productCategory.id">
+                {{productCategory.name}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container flex="50"><label>Uni. de medida</label>
+            <input ng-model="product.unit" ng-required="true" type="text">
+          </md-input-container>
+        </div>
+
+        <div layout="row">
+          <div flex>
+            <input type="file" ngf-select ng-model="picFile" name="file"
+                   accept="image/*" ngf-max-size="2MB" required style="width:100%;">
+          </div>
+          <div>
+              <ng-md-icon icon="close" size="20" ng-click="picFile = null" ng-show="picFile" ></ng-md-icon>
+          </div>
+        </div>
+
+
+      </md-card-content>
+      <md-card-actions flex="none" layout="row" layout-align="end center">
+        <md-button class="md-primary" ng-click="!createProduct.$valid || ok(picFile)"
+                   ng-disabled="!createProduct.$valid">Adicionar
+        </md-button>
+      </md-card-actions>
+    </md-card>
+  </form>
 </md-dialog>
+
+

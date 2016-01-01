@@ -1,14 +1,3 @@
-<!--<div style="position:relative;">
-  <md-button class="md-fab"
-             ng-if="currentSession.id && currentProssumerState && currentProssumerState.state == 2"
-             aria-label="Adesão pendente"
-             ng-click="openCycleProductsManagement($event)"
-             style="position:absolute;top:-36px; right:7%;">
-    <ng-md-icon icon="add_to_photos"></ng-md-icon>
-  </md-button>
-</div> -->
-
-
 <div ng-if="!currentCycle" style="font-size:32px; color:#999; text-align:center; max-width:700px;margin:50px auto;">
   Nenhum ciclo se encontra em fase de preparação,
   consulta o separador ciclos para saberes mais acerca dos últimos realizados.
@@ -21,24 +10,21 @@
     <div flex="100" ng-if="Group.Prossumer.isActive(prossumerState)">
       <div layout-padding layout="row" layout-wrap>
         <h1 flex-sm="100"
-            ng-if="whatState(currentCycle) == 'supplying'" class="md-title" style="margin:16px 0 5px 0;padding: 2px 0px 0px">
+            ng-if="whatState(currentCycle) == 'supplying'" class="md-title"
+            style="margin:16px 0 5px 0;padding: 2px 0px 0px">
           Vendas abertas para {{currentCycle.title}}
           <small>({{currentCycle.start_time | date:'longDate'}})</small>
         </h1>
 
         <h1 flex-sm="100"
-            ng-if="whatState(currentCycle) == 'buying'" class="md-title" style="margin:16px 0 5px 0;padding: 2px 0px 0px">
-            Compras abertas para {{currentCycle.title}}
+            ng-if="whatState(currentCycle) == 'buying'" class="md-title"
+            style="margin:16px 0 5px 0;padding: 2px 0px 0px">
+          Compras abertas para {{currentCycle.title}}
           <small>({{currentCycle.start_time | date:'longDate'}})</small>
         </h1>
         <span flex></span>
-        <md-switch style="margin-bottom:5px;"
-                   ng-model="showOnlyMyProducts"
-                   aria-label="Enable Indicators">
-          Mostrar apenas os meus produtos
-        </md-switch>
       </div>
-      <div ng-if="cycleShowcaseProducts.length == 0 && filteredShowcaseProducts().length == 0"
+      <div ng-if="whatState(currentCycle) == 'supplying' && cycleShowcaseProducts.length == 0 && filteredShowcaseProducts().length == 0"
            style="font-size:32px; color:#999; text-align:center; max-width:700px;margin:50px auto;">
         Ainda não inseriste nenhum dos teus produtos neste próximo ciclo.
       </div>
@@ -52,71 +38,101 @@
           <md-card>
             <md-card-header>
               <md-card-header-text>
-                <span class="md-subhead"> {{product.prossumer.name}} <ng-md-icon icon="keyboard_arrow_right" size="16"></ng-md-icon> {{product.product_category.name}} </span>
+                <span class="md-subhead"> {{product.prossumer.name}} <ng-md-icon icon="keyboard_arrow_right"
+                                                                                 size="16"></ng-md-icon> {{product.product_category.name}} </span>
                 <span class="md-title">{{product.title}}</span>
               </md-card-header-text>
             </md-card-header>
 
-            <div ng-if="$index % 4 != 3"
-                 style="background-image:url('http://a3145z1.americdn.com/wp-content/uploads/2013/03/orange-king-of-fruits.jpg');
+            <div ng-if="product.has_prev"
+                 style="background-image:url('product_prev/{{product.id}}');
                       background-size:cover;
                       background-position:center center;
-                      height:150px;"> </div>
+                      height:150px;"></div>
+
             <md-card-content>
               <p>{{product.description}}</p>
-              <div layout-margin class="text-right" product-price="product"> </div>
+
+              <div layout-margin class="text-right" product-price="product"></div>
 
             </md-card-content>
-            <md-card-footer>
-              <span class="number-chip" ng-repeat="week in product.weeks" ng-if="week.stock">
+            <md-card-footer style="padding-top:0;">
+              <span class="number-chip" ng-repeat="week in product.weeks" ng-if="availableStockFor(week.stock) > 0">
                   {{week.number}}
-                </span>
+              </span>
             </md-card-footer>
+            <md-card-actions layout="row">
+              <ng-md-icon icon="visibility_off" ng-if="productAuth(product).state == 1 && !prossumerState.is_coordinator">
+                <md-tooltip md-direction="top">
+                  Aguarda aprovação
+                </md-tooltip>
+              </ng-md-icon>
+              
+              <md-button style="margin: 0; margin-right:5px;min-width:36px;" ng-if="productAuth(product).state == 1 && prossumerState.is_coordinator"
+                         ng-click="approveProduct(product,true)"
+                         class="md-primary md-mini md-raised" aria-label="Aprovar">
+                        <ng-md-icon icon="check"></ng-md-icon>
+              </md-button>
+              <md-button style="margin: 0;min-width:36px;" ng-if="productAuth(product).state == 1 && prossumerState.is_coordinator"
+                         ng-click="approveProduct(product,false)"
+                         class="md-primary md-mini" aria-label="Rejeitar">
+                        <ng-md-icon icon="close"></ng-md-icon>
+              </md-button>
+              <span flex></span>
+              <md-button style="margin: 0;"  ng-if="whatState(currentCycle) != 'buying' || productAuth(product).state == 1"
+                         class="md-primary toggle md-mini" aria-label="Disponibilidade"> Disponibilidade
+              </md-button>
+              <md-button style="margin: 0;"  ng-if="whatState(currentCycle) == 'buying' && productAuth(product).state == 2"
+                         class="md-primary toggle md-mini" aria-label="Encomendar"> Encomendar
+              </md-button>
+            </md-card-actions>
           </md-card>
         </div>
         <div class="back" layout="column">
-          <div class="md-whiteframe-2dp" style="background:#fff;" flex layout-padding layout-margin>
-            <div layout="row">
-              <h3 class="md-title" flex>{{product.title}}</h3>
-              <md-button class="md-icon-button toggle" aria-label="Reverse" style="margin-top:5px;color:#555">
-                <ng-md-icon icon="rotate_right" size="24"></ng-md-icon>
-              </md-button>
-            </div>
-            <div layout-margin class="text-right">
-              <b>{{ productSellingPrice(product).ecos | currency :'E':2}}</b> +
-              {{ productSellingPrice(product).euros | currency :'€':2}}<br> /
-              {{product.unit}}
-            </div>
-            <div ng-repeat="week in product.weeks" ng-if="week.stock">
-              <md-divider></md-divider>
+          <md-card layout="column" flex>
+            <md-card-header>
+              <md-card-header-text>
+                <span class="md-subhead"> {{product.prossumer.name}} <ng-md-icon icon="keyboard_arrow_right"
+                                                                                 size="16"></ng-md-icon> {{product.product_category.name}} </span>
+                <span class="md-title">{{product.title}}</span>
+              </md-card-header-text>
+            </md-card-header>
+            <md-card-content flex>
+              <div layout-margin class="text-right" product-price="product"></div>
+              <div ng-repeat="week in product.weeks" ng-if="availableStockFor(week.stock) > 0">
+                <div layout="row" style="margin: 5px 0">
+                  <div flex style="padding:1px;line-height:26px;">
+                    {{week.delivery_date | date:'dd/MM'}}
+                  </div>
+                  <input ng-if="whatState(currentCycle) == 'buying' && productAuth(product).state == 2" value="0"
+                         style="width:50px;padding-left: 3px;
 
-              <div layout="row" style="margin: 5px 0">
-                <div flex style="padding:1px;line-height:26px;">
-                  {{week.delivery_date | date:'dd/MM'}}
-                </div>
-                <input ng-if="whatState(currentCycle) == 'buying'" value="0" style="width:40px;padding-left: 3px;
                 border:2px solid rgba(0,0,0,0.54); border-radius:2px;outline: none;
-                margin: 0 1px;" type="number" step="1" min="0" max="30">
+                margin: 0 1px;"
 
-                <div style="padding:1px 5px;line-height:26px;" flex class="text-right">
-                  <small><i>(até {{week.stock.quantity}} {{product.unit}})</i></small>
+                         ng-model="purchases[product.id][week.id]"
+                         type="number" step="1" min="0" max="30">
+                  <div style="padding:1px 5px;line-height:26px;" flex class="text-right">
+                    <small><i>(até {{availableStockFor(week.stock)}} {{product.unit}})</i></small>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div layout="row" ng-if="$scope.currentCycleState == 'supplying'" style="padding-top:20px;">
-              <md-divider></md-divider>
-              <div flex style="line-height:40px;">
-                <b>{{ 123 | currency :'E':2}}</b> + {{ 123 | currency :'€':2}}<br>
-              </div>
-              <div>
-                <md-button style="margin:2px 0"
-                           class="md-primary md-raised md-mini" aria-label="Encomendar"> Encomendar
-                </md-button>
-              </div>
-            </div>
-            </md-whiteframe>
-          </div>
+            </md-card-content>
+            <md-card-actions layout="row">
+              <md-button style="margin:0"
+                         class="md-mini toggle" aria-label="Voltar">
+                <ng-md-icon icon="arrow_back"></ng-md-icon>
+                Voltar
+              </md-button>
+              <span flex></span>
+              <md-button style="margin: 0;" ng-if="whatState(currentCycle) == 'buying' && productAuth(product).state == 2"
+                         ng-click="purchase(product.id)"
+                         class="md-primary md-mini" aria-label="Confirmar"> Confirmar
+              </md-button>
+            </md-card-actions>
+          </md-card>
+
         </div>
       </div>
 
@@ -124,11 +140,11 @@
   </div>
 
   <div layout="column" style="width:300px;max-width:20%" layout-margin>
-    <div ng-if="Group.Prossumer.isActive(prossumerState)">
+    <div ng-if="whatState(currentCycle) == 'supplying'">
       <md-list>
         <h4 style="padding-left:20px;">Meus produtos</h4>
 
-        <p style="padding-left:20px;margin-top:-10px;font-size:12px;"><i>(a incluir neste próximo ciclo)</i></p>
+        <p style="padding-left:20px;"><i>Seleciona aqueles que pretendes disponibilizar neste próximo ciclo.</i></p>
 
         <md-list-item class="md-1-line" ng-repeat="product in prossumerProducts">
           <div class="md-list-item-text" layout="row">
@@ -138,7 +154,7 @@
             </md-checkbox>
           </div>
         </md-list-item>
-        <md-list-item ng-click="addOrEditProduct()">
+        <md-list-item ng-click="saveProduct()">
           <md-item-content md-ink-ripple aria-label="Reverse">
             <b>
               <ng-md-icon icon="add" size="24" style="padding:0 5px;"></ng-md-icon>
@@ -148,8 +164,13 @@
       </md-list>
     </div>
 
-    <md-divider ng-if="Group.Prossumer.isActive(prossumerState)"></md-divider>
-
+    <md-divider ng-if="whatState(currentCycle) == 'supplying'"></md-divider>
+    <md-switch style="margin-bottom:5px;"
+               ng-model="showOnlyMyProducts"
+               aria-label="Enable Indicators">
+      Ver apenas os meus produtos
+    </md-switch>
+    <md-divider></md-divider>
     <md-list>
       <h4 style="padding-left:20px;">Filtrar categorias</h4>
       <md-list-item class="md-1-line" ng-repeat="productCategory in productCategories">

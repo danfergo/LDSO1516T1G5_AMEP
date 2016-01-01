@@ -10,10 +10,16 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    puts ">>>>>>>>>>>> #{params[:prossumer_id]} "
-
     if is_my_resource(params[:prossumer_id])
-      @products = Product.where(prossumer_id: params[:prossumer_id])
+      @products = Product.where(prossumer_id: params[:prossumer_id]).as_json({
+                                                                                 cycle_id: params[:cycle_id],
+                                                                                 include: {
+                                                                                     prossumer: {
+                                                                                         except: [:encrypted_password, :salt, :confirm_hash]
+                                                                                     },
+                                                                                     product_category: {}
+                                                                                 }
+                                                                             })
       render json: @products
     end
   end
@@ -21,18 +27,30 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    if is_my_resource(params[:prossumer_id])
-      render json: @product
+    if is_my_resource(@product.prossumer_id)
+      render json: @product.as_json({
+                                        cycle_id: params[:cycle_id],
+                                        include: {
+                                            prossumer: {
+                                                except: [:encrypted_password, :salt, :confirm_hash]
+                                            },
+                                            product_category: {}
+                                        }
+                                    })
     end
   end
 
   # POST /products
   # POST /products.json
   def create
-    if is_my_resource(params[:prossumer_id])
-      @product = Product.new(product_params)
+    @product = Product.new(product_params)
+    if is_my_resource(@product.prossumer_id)
 
       if @product.save
+        File.open(Rails.root.join('public', 'product_prev', "#{@product.id}"), 'wb') do |file|
+          file.write(params[:file].read)
+        end
+
         render json: @product, status: :created
       else
         render json: @product.errors, status: :unprocessable_entity

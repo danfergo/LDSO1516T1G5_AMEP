@@ -13,7 +13,7 @@ class GroupsProssumersController < ApplicationController
   # GET /groups_prossumers/1
   # GET /groups_prossumers/1.json
   def show
-    render json: @group_prossumer.as_json({include_prossumer: true})
+    render json: @groups_prossumer.as_json({include_prossumer: true})
   end
 
   # POST /groups_prossumers
@@ -62,7 +62,7 @@ class GroupsProssumersController < ApplicationController
 
 
     def set_groups_prossumer
-      @groups_prossumer = GroupsProssumer.find(params[:id])
+      @groups_prossumer = GroupsProssumer.where({group_id: params[:group_id], prossumer_id: params[:id]}).first;
 
     end
 

@@ -38,6 +38,9 @@ config(function ($stateProvider, $urlRouterProvider) {
     resolve: {
       currentCycles: ['Cycle', 'currentGroup', function (Cycle, currentGroup) {
         return Cycle.query({groupId: currentGroup.id}).$promise;
+      }],
+      productAuths: ['Group', 'currentGroup', function (Group, currentGroup) {
+        return Group.ProductAuth  .query({groupId: currentGroup.id}).$promise;
       }]
     },
   }).

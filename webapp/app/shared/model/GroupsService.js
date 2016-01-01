@@ -29,11 +29,22 @@ factory('Group', ['$resource', function ($resource) {
     'update': {method: 'PUT'}
   });
 
+  resource.ProductAuth.findByProductId = function(auths,productId){
+    for(var a in auths){
+      if(auths[a].product_id == productId){
+        return auths[a];
+      }
+    }
+    return undefined;
+  }
+
   resource.Cycle = $resource('/api/v1/groups/:groupId/cycles/:id');
   resource.Cycle.Product = $resource('/api/v1/groups/:groupId/cycles/:cycleId/products/:id', null, {
     'save': {method: 'PUT'},
     'delete': {method: 'DELETE', isArray: true}
   });
+
+
 
   resource.Cycle.Product.productSellingPrice = function (product) {
     for (var w in product.weeks) {
@@ -47,6 +58,7 @@ factory('Group', ['$resource', function ($resource) {
     return undefined;
   }
 
+  resource.Cycle.Order = $resource('/api/v1/groups/:groupId/cycles/:cycleId/orders', null);
 
   resource.Cycle.Week = $resource('/api/v1/groups/:groupId/cycles/:cycleId/weeks');
 

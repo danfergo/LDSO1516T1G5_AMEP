@@ -10,8 +10,8 @@
   <link rel="icon" sizes="16x16" href="shared/assets/img/favicon16.png">
   <link rel="icon" sizes="32x32" href="shared/assets/img/favicon32.png">
   <link rel="icon" sizes="192x192" href="shared/assets/img/favicon192.png">
-  <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
-
+  <!-- <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+  -->
 
   <!-- build:css(.) styles/vendor.css -->
   <!-- bower:css -->
@@ -20,8 +20,8 @@
   <link rel="stylesheet" href="bower_components/angular-horizontal-timeline/angular-horizontal-timeline.css" />
   <link rel="stylesheet" href="bower_components/angular-dropdowns/dist/angular-dropdowns.css" />
   <link rel="stylesheet" href="bower_components/ng-table/dist/ng-table.min.css" />
-  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
   <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
   <!-- endbower -->
   <!-- endbuild -->
 
@@ -54,10 +54,15 @@
   <script src="bower_components/ng-dropdown/dist/js/ng-dropdown.min.js"></script>
   <script src="bower_components/angular-dropdowns/dist/angular-dropdowns.js"></script>
   <script src="bower_components/ng-table/dist/ng-table.min.js"></script>
-  <script src="bower_components/angular-aria/angular-aria.js"></script>
-  <script src="bower_components/angular-material/angular-material.js"></script>
   <script src="bower_components/Chart.js/Chart.js"></script>
   <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+  <script src="bower_components/blob-polyfill/Blob.js"></script>
+  <script src="bower_components/file-saver.js/FileSaver.js"></script>
+  <script src="bower_components/angular-file-saver/dist/angular-file-saver.bundle.js"></script>
+  <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+  <script src="bower_components/ng-file-upload-shim/ng-file-upload-shim.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.js"></script>
+  <script src="bower_components/angular-material/angular-material.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
   <script src="/bower_components/angular-i18n/angular-locale_pt-pt.js"></script>
@@ -100,6 +105,7 @@
 <script src="components/group/showcase/showcaseController.js" type="text/javascript"></script>
 <script src="components/group/groupController.js" type="text/javascript"></script>
 <script src="components/group/cycles/cyclesController.js" type="text/javascript"></script>
+<script src="components/group/cycles/createCycleController.js" type="text/javascript"></script>
 <script src="components/group/about/aboutController.js" type="text/javascript"></script>
 <script src="components/errors/routes.js" type="text/javascript"></script>
 <script src="components/contact/routes.js" type="text/javascript"></script>

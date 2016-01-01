@@ -6,6 +6,7 @@
        layout="column">
     <div class="flipper " flex layout="column">
       <div class="front" layout="column" flex>
+        <form flex name="addOrEditProduct" layout="column">
         <md-card layout="column" flex>
           <div ng-if="$index % 4 != 3" class="md-card-image"
                style="background-image:url('http://a3145z1.americdn.com/wp-content/uploads/2013/03/orange-king-of-fruits.jpg');
@@ -13,56 +14,55 @@
                       background-position:center center;
                       height:150px;float:right;">
           </div>
-
           <md-card-title flex="none">
             <md-card-title-text>
               <md-input-container>
                 <label>Título</label>
-                <input ng-model="currentProduct.title">
+                <input ng-required="true" ng-model="product.title">
               </md-input-container>
             </md-card-title-text>
           </md-card-title>
           <md-card-content flex layout="column" style="overflow-y:auto">
-              <md-input-container flex="none">
+              <md-input-container flex="none" >
                 <label>Descrição</label>
-                  <textarea ng-model="currentProduct.description" columns="1" md-maxlength="300"
+                  <textarea ng-model="product.description" columns="1" md-maxlength="300"
                   placeholder="Descreve  o produto"></textarea>
               </md-input-container>
 
             <div layout="row" flex="none">
               <md-input-container flex="50">
                 <label>Categoria</label>
-                <md-select ng-model="currentProduct.product_category_id">
+                <md-select ng-model="product.product_category_id" ng-required="true">
                   <md-option ng-repeat="productCategory in productCategories" ng-value="productCategory.id">
                     {{productCategory.name}}
                   </md-option>
                 </md-select>
               </md-input-container>
               <md-input-container flex="50"><label>Uni. de medida</label>
-                <input ng-model="currentProduct.unit" ng-required="true" type="text">
+                <input ng-model="product.unit" ng-required="true" type="text">
               </md-input-container>
             </div>
           </md-card-content>
           <md-card-actions flex="none" layout="row" layout-align="end center">
-            <md-button class="md-primary" ng-click="addProduct()">Adicionar</md-button>
+            <md-button class="md-primary" ng-click="!addOrEditProduct.$valid || addProduct()" ng-disabled="!addOrEditProduct.$valid">Adicionar</md-button>
           </md-card-actions>
         </md-card>
+        </form>
       </div>
       <div class="back" layout="column">
         <form name="editProductStock" layout="column" flex>
           <md-card layout="column" flex>
-            <md-card-title flex="none" layout="row">
-              <md-card-title-text>
-                <span class="md-headline" style="padding: 24px 0px 16px;"> <!-- padding fixes bug -->{{currentProduct.title}}</span>
-              </md-card-title-text>
-              <div  style="padding-top: 20px" >
-                <md-button class="md-icon-button toggle" aria-label="Reverse" style="float:right;">
-                  <ng-md-icon icon="rotate_right" size="24"></ng-md-icon>
-                </md-button>
-              </div>
-            </md-card-title>
+            <md-card-header>
+              <md-card-header-text>
+                <span class="md-subhead"> {{product.prossumer.name}} <ng-md-icon icon="keyboard_arrow_right" size="16"></ng-md-icon> {{product.product_category.name}} </span>
+                <span class="md-title">{{product.title}}</span>
+              </md-card-header-text>
+            </md-card-header>
+
             <md-card-content flex>
-              <div  ng-if="!auth.id"  class="text-right" >
+              <p>{{product.description}}</p>
+              <div ng-if="auth.id" layout-margin class="text-right" product-price="product" product-authorized-price="auth"> </div>
+              <div ng-if="!auth.id"  class="text-right">
                 <div layout="row">
                   <div flex></div>
                   <md-input-container  class="md-block" style="margin-bottom:0;max-width:60px">
@@ -73,24 +73,15 @@
                   </md-input-container>
                   <md-input-container class="md-block"  style="margin-bottom:0;max-width:60px">
                     <label>Euros</label>
-                    <input ng-model="auth.euros" ng-required="true" type="number"
+                    <input ng-model="auth.euros" ng-required="true" type="number" step="0.01"
                            min="0" max="99999"
                            class="input-euros" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/">
                   </md-input-container>
                 </div>
-                / {{currentProduct.unit}}
+                / {{product.unit}}
               </div>
-
-              <div ng-if="auth.id" class="text-right" >
-                <b>{{ auth.ecos | currency :'E':2}}</b> +
-                {{ auth.euros | currency :'€':2}}<br> /
-                {{currentProduct.unit}}
-              </div>
-              <div>
-                <br><br>
-              </div>
+              <div class="text-center" style="padding:20px 0 5px;"><b>disponibilidade</b></div>
               <div ng-repeat="week in weeks">
-                <md-divider></md-divider>
 
                 <div layout="row" style="margin: 5px 0">
                   <div flex style="padding:1px;line-height:26px;">
@@ -102,27 +93,30 @@
                            ng-if="weeks[$index].selected"
                            ng-required="true"
                            value="1"
-                           style="width:40px;padding-left: 3px;
+                           placeholder="Qtd."
+                           style="width:60px;padding-left: 3px;
                 border:2px solid rgba(0,0,0,0.54); border-radius:2px;outline: none;
                 margin: 0 1px;" type="number" step="1" min="0" max="30">
                   </div>
-                  <div>
+                  <div style="padding-top:2px">
                     <md-checkbox
                       aria-label="Selecionar semana"
                       ng-model="weeks[$index].selected"
                       class="md-warn">
-                      <b>{{product.title}}</b>
                     </md-checkbox>
                   </div>
                 </div>
               </div>
+
             </md-card-content>
             <md-card-actions layout="row" layout-align="end center">
               <md-button type="submit" class="md-primary"
-                         ng-click="!editProductStock.$valid || addProductToCycle()">Guardar
+                         ng-disabled="!(editProductStock.$valid && moreThanOneWeekSelected())"
+                         ng-click="!(editProductStock.$valid && moreThanOneWeekSelected())|| addProductToCycle()">Adicionar
               </md-button>
             </md-card-actions>
           </md-card>
+
         </form>
       </div>
     </div>

@@ -1,0 +1,45 @@
+<md-dialog aria-label="Novo ciclo" style="min-width:300px;">
+  <md-content class="md-padding">
+    <h1 class="md-title">Novo ciclo</h1>
+    <form name="newCycle">
+      <md-input-container style="width:100%">
+        <label>Título</label>
+        <input ng-model="cycle.title" placeholder="(opcional)">
+      </md-input-container>
+      <md-input-container style="width:100%">
+        <label>Duração</label>
+        <input ng-model="nWeeks" ng-change="genWeeks()" type="number" step="1" placeholder="Número de semanas" required min="1" max="10">
+      </md-input-container>
+
+
+      <h4 ng-if="weeks.length > 0">Semanas</h4>
+      <div layout="row" ng-repeat="week in cycle.weeks">
+        <md-input-container class="md-block" flex>
+          <label>Local de encontro</label>
+          <input ng-model="week.location" placeholder="(opcional)">
+        </md-input-container>
+        <md-datepicker ng-model="week.delivery_date" md-placeholder="Dia de entrega" required>
+        </md-datepicker>
+      </div>
+
+    </form>
+  </md-content>
+  <md-dialog-actions layout="row">
+    <span flex></span>
+    <md-button ng-click="cancel()"> Cancel</md-button>
+    <md-button ng-click="!newCycle.$valid || ok()" class="md-primary"> Save</md-button>
+  </md-dialog-actions>
+</md-dialog>
+
+
+<style>
+  md-datepicker{
+    margin-right:0;
+    padding-right:0;
+    padding-top:14px;
+  }
+
+  .md-datepicker-input-mask{
+    width:308px;
+  }
+</style>
