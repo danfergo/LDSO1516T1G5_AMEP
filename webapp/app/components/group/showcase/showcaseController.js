@@ -104,6 +104,7 @@ controller('groupShowcaseController',
         $mdDialog.show({
             controller: 'addProductToCycleController',
             templateUrl: 'components/group/submit-product/addProductToCycle.html',
+            clickOutsideToClose: true,
             //  targetEvent: ev,
             parent: angular.element(document.body),
             resolve: {

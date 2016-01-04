@@ -8,11 +8,10 @@
       <div class="front" layout="column" flex>
         <form flex name="addOrEditProduct" layout="column">
         <md-card layout="column" flex>
-          <div ng-if="$index % 4 != 3" class="md-card-image"
-               style="background-image:url('http://a3145z1.americdn.com/wp-content/uploads/2013/03/orange-king-of-fruits.jpg');
-                      background-size:cover;
+          <div class="md-card-image" ngf-thumbnail="picFile" ngf-as-background="true"
+               style="background-size:cover;
                       background-position:center center;
-                      height:150px;float:right;">
+                      height:150px;">
           </div>
           <md-card-title flex="none">
             <md-card-title-text>
@@ -42,9 +41,20 @@
                 <input ng-model="product.unit" ng-required="true" type="text">
               </md-input-container>
             </div>
+
+            <div layout="row">
+              <div flex>
+                <input type="file" ngf-select ng-model="picFile" name="file"
+                       accept="image/*" ngf-max-size="3MB" style="width:100%;">
+              </div>
+              <div>
+                <ng-md-icon icon="close" size="20" ng-click="picFile = null" ng-show="picFile" ></ng-md-icon>
+              </div>
+            </div>
+
           </md-card-content>
           <md-card-actions flex="none" layout="row" layout-align="end center">
-            <md-button class="md-primary" ng-click="!addOrEditProduct.$valid || addProduct()" ng-disabled="!addOrEditProduct.$valid">Adicionar</md-button>
+            <md-button class="md-primary" ng-click="!addOrEditProduct.$valid || addProduct(picFile)" ng-disabled="!addOrEditProduct.$valid">Adicionar</md-button>
           </md-card-actions>
         </md-card>
         </form>
