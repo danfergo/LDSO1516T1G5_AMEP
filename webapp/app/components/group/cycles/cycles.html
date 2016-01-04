@@ -13,6 +13,21 @@
 <div>
   <div style="width: 100%;" layout="row">
     <div flex layout="row" layout-sm="column" layout-align="left center" layout-wrap>
+      <md-menu>
+      <md-button class="md-raised md-warn" ng-click="openMenu($mdOpenMenu, $event)">PDF</md-button>
+      <md-menu-content width="3">
+        <md-menu-item>
+          <md-button ng-click="pdfCycleGroup()">
+            Grupo
+          </md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ng-click="pdfCycleMine()">
+            Apenas eu
+          </md-button>
+        </md-menu-item>
+         </md-menu-content>
+       </md-menu>
       <md-button class="md-raised" ng-click="createCycle($event)">Novo ciclo</md-button>
       <md-button class="md-raised md-warn"  ng-click="pdfCycle()">PDF</md-button>
     </div>

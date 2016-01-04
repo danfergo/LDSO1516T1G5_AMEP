@@ -1,4 +1,4 @@
-class AgendaController < ApplicationController
+.class AgendaController < ApplicationController
 
 
   def index
