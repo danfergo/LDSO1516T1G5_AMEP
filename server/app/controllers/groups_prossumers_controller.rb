@@ -1,5 +1,5 @@
 class GroupsProssumersController < ApplicationController
-  before_filter :is_authenticated
+  before_filter :is_authenticated, except: [:index]
   before_filter :is_coordinator, only: [:update]
   before_action :set_groups_prossumer, only: [:show, :update, :destroy]
 

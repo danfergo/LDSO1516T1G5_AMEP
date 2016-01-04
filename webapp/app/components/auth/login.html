@@ -15,25 +15,25 @@
           <label>Palavra-passe</label>
           <input ng-model="password" type="password" name="password" ng-required="true">
         </md-input-container>
-        <md-input-container>
+        <!--       <md-input-container>
 
-          <md-switch style="margin:0;"
-                     ng-model="vm.activated"
-                     ng-change="vm.toggleActivation()"
-                     aria-label="Enable Indicators">
-            Manter sessão iniciada
-          </md-switch>
+                 <md-switch style="margin:0;"
+                            ng-model="vm.activated"
+                            ng-change="vm.toggleActivation()"
+                            aria-label="Enable Indicators">
+                   Manter sessão iniciada
+                 </md-switch>
 
 
-        </md-input-container>
-
+               </md-input-container>
+       -->
         <div flex="none" layout="column">
           <div style="color:#f00;min-height:20px;">{{errorMessage}}</div>
           <md-button style="margin-left:0; margin-right:0;"
                      class="md-raised md-primary"
                      ng-disabled="!loginForm.$valid"
-                     ng-click="login(email,password)"
-                     flex>Iniciar Sessão
+                     ng-click="login(email,password)">
+            Iniciar Sessão
           </md-button>
         </div>
       </form>

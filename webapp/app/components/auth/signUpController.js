@@ -5,10 +5,7 @@ controller('signUpController', ['$scope', 'Prossumer', '$state', '$mdToast',func
 
   $scope.signUp = function (name, email, password, phone) {
     $scope.email = angular.copy(email);
-
     $scope.errorMessages = null;
-
-
     Prossumer.save({name: name, email: email, password: password, phone: phone}, function () {
       console.log($scope.email);
       $scope.showConfirmationMessage = true;

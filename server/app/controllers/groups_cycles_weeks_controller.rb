@@ -1,5 +1,5 @@
 class GroupsCyclesWeeksController < ApplicationController
-  before_filter :is_authenticated
+  before_filter :is_authenticated, except: [:index]
 
   # GET /groups/1/cycles/1/products
   # GET /groups/1/cycles/1/products.json
