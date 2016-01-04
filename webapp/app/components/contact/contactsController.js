@@ -2,6 +2,7 @@ angular.module('amep-contacts').
 controller('contactController', ['$scope', 'currentSession', '$http', '$mdToast', '$state',function ($scope, currentSession, $http, $mdToast, $state) {
   $scope.currentSession = currentSession;
   $scope.error = null;
+  $scope.msg = {};
 
   $scope.contactSend = function (nome, email, tlm, assunto, myMessage) {
     $scope.error = null;
