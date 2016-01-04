@@ -21,7 +21,7 @@ controller('SidebarController', ['$scope', 'Session', '$mdSidenav', function ($s
     },
     {
       state: 'products',
-      title: 'Os meus produtos',
+      title: 'Meus produtos',
       icon: 'local_mall'
     },
     {
