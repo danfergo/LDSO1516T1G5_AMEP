@@ -1,5 +1,5 @@
 angular.module('amep-group').
-controller('groupAboutController', ['$scope', '$mdDialog', '$state', 'prossumerState', 'currentAbout', function ($scope, $mdDialog, $state, prossumerState, currentAbout) {
+controller('groupAboutController', ['$scope', '$mdDialog', '$state', 'Group', 'prossumerState', 'currentAbout', function ($scope, $mdDialog, $state, Group, prossumerState, currentAbout) {
 
   $scope.groupProssumers = currentAbout;
   $scope.coordinator = prossumerState.is_coordinator;
