@@ -24,7 +24,8 @@ class ReportCycle < Prawn::Document
   def initialize(cycle)
     super()
     @cycle = cycle
-    header(@cycle.title)
+    @name = Group.find(@cycle.group_id).name
+    header(@cycle.title,@name)
     move_down 20
     #text_content
     self.font_size(7)
@@ -35,9 +36,11 @@ class ReportCycle < Prawn::Document
     end
   end
 
-  def header(title)
+  def header(title, groupname)
     #This inserts an image in the pdf file and sets the size of the image
     #image "#{Rails.root}/app/assets/images/header.png", width: 530, height: 150
+    text "Grupo " + groupname, size: 17, style: :bold, align: :center
+    move_down 10
     if(title)
       text "Resumo do ciclo " + title, size: 15, style: :bold
     end
@@ -90,7 +93,8 @@ class ReportCycle_by_id < Prawn::Document
     super()
     @cycle = cycle
     @prossumer = Prossumer.find(prossumer_id)
-    header(@prossumer.name , @cycle.title)
+    @Gname = Group.find(@cycle.group_id).name
+    header(@prossumer.name , @cycle.title,@Gname)
     move_down 20
     self.font_size(7)
     @cycle.weeks.each do |week|
@@ -105,13 +109,17 @@ class ReportCycle_by_id < Prawn::Document
   end
 
 
-  def header(name,title)
+  def header(name,title, groupname)
     #This inserts an image in the pdf file and sets the size of the image
     #image "#{Rails.root}/app/assets/images/header.png", width: 530, height: 150
-    text "Prossumer " + name, size: 15, style: :bold
+
+    text "Grupo " + groupname, size: 17, style: :bold, align: :center
+    move_down 10
     if(title)
       text "Resumo do ciclo " + title, size: 15, style: :bold
     end
+    move_down 10
+    text "Prossumidor " + name, size: 15, style: :bold
   end
 
 

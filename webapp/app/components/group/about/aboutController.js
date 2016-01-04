@@ -1,10 +1,11 @@
 angular.module('amep-group').
-controller('groupAboutController', ['$scope', '$mdDialog', '$state', 'currentSession', 'currentAbout', 'Group', function ($scope, $mdDialog, $state, currentSession, currentAbout, Group) {
+controller('groupAboutController', ['$scope', '$mdDialog', '$state', 'currentSession', 'currentAbout', function ($scope, $mdDialog, $state, currentSession, currentAbout) {
 
   $scope.groupProssumers = currentAbout;
   $scope.coordinator = false;
 
-  $scope.currentSessionId = currentSession.id
+  $scope.currentSessionId = currentSession.id;
+
 
   for (id in currentAbout) {
     if (currentAbout[id].prossumer_id == currentSession.id) {
@@ -12,6 +13,7 @@ controller('groupAboutController', ['$scope', '$mdDialog', '$state', 'currentSes
       break;
     }
   }
+
 
   function enableCoordinator (groupId, groupProssumerId) {
     Group.Prossumer.update({groupId: groupId, prossumerId: groupProssumerId, is_coordinator: true});

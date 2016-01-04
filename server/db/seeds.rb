@@ -132,7 +132,7 @@ ProductAuth.create([
                    ])
 
 Cycle.create([
-                 {start_time: (Time.now - 20.day).beginning_of_day(), end_time: (Time.now + 10.day).beginning_of_day(), group_id: 1},
+                 {start_time: (Time.now - 20.day).beginning_of_day(), end_time: (Time.now + 10.day).beginning_of_day(), group_id: 1, title: "Natal"},
              ])
 
 Cycle.create([
