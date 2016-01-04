@@ -43,7 +43,7 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(product_params)
+    @product = Product.new(product_params, actived: true)
     if is_my_resource(@product.prossumer_id)
 
       if @product.save

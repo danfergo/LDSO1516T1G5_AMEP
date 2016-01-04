@@ -1,3 +1,5 @@
+
+<!--
 <div style="position:relative;">
   <md-button class="md-fab"
              aria-label="Criar Ciclo"
@@ -6,13 +8,16 @@
     <ng-md-icon icon="add_to_photos"></ng-md-icon>
   </md-button>
 </div>
+-->
 
 <div>
   <div style="width: 100%;" layout="row">
     <div flex layout="row" layout-sm="column" layout-align="left center" layout-wrap>
+      <md-button class="md-raised" ng-click="createCycle($event)">Novo ciclo</md-button>
       <md-button class="md-raised md-warn"  ng-click="pdfCycle()">PDF</md-button>
     </div>
     <md-select ng-model="cycleSelected" aria-label="seleciona o ciclo" md-on-close="mudaSemana()">
+      <span layout-padding>Data de início</span>
       <md-option ng-value="cycle" ng-repeat="cycle in cycles | orderBy:'-start_time'"> {{cycle.start_time | date:'dd-MM-yyyy'}}</md-option>
     </md-select>
   </div>

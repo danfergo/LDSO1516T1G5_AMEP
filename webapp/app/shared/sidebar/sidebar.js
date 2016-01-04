@@ -8,20 +8,17 @@ controller('SidebarController', ['$scope', 'Session', '$mdSidenav', function ($s
     $scope.session = data; // Session exists , we are logged in :)
   })
 
-  $scope.quickMenu = [
-    {
-      state: 'agenda',
-      title: 'Agenda',
-      icon: 'event'
-    }
-  ];
-
   $scope.groups = function(){
     return $scope.session.groups ? $scope.session.groups : [];
   }
 
 
   $scope.accountMenu = [
+    {
+      state: 'agenda',
+      title: 'Agenda',
+      icon: 'event'
+    },
     {
       state: 'products',
       title: 'Os meus produtos',

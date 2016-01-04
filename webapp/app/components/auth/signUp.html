@@ -30,7 +30,7 @@
           <label>Palavra-passe</label>
           <input ng-model="password" type="password" name="password" ng-required="true">
 
-          <!--Z
+          <!--
           <div class="custom-messages">
             <div ng-repeat="message in errorMessages.password">{{message}}</div>
           </div> -->
@@ -40,13 +40,17 @@
           <label>Repetir Palavra-passe</label>
           <input ng-model="confirm_password" type="password" name="password" ng-required="true">
         </md-input-container>
-        <md-input-container>
-          <label>Telefone ou telemóvel</label>
-          <input ng-model="phone" type="text" name="text" ng-required="true">
 
+
+        <md-input-container>
+          <label>Contacto (opcional)</label>
+          <input ng-model="phone" type="text" name="phone" pattern="[29][0-9]{8}" ng-required="false">
+
+          <!--
           <div class="custom-messages">
             <div ng-repeat="message in errorMessages.phone">{{message}}</div>
           </div>
+          -->
 
         </md-input-container>
         <div layout="column">

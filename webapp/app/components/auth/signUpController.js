@@ -10,7 +10,6 @@ controller('signUpController', ['$scope', 'Prossumer', '$state', '$mdToast',func
 
 
     Prossumer.save({name: name, email: email, password: password, phone: phone}, function () {
-      console.log($scope.email);
       $scope.showConfirmationMessage = true;
       console.log($scope.email);
     }, function (error) {
