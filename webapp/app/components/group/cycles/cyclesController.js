@@ -1,8 +1,8 @@
 "use strict";
 
 angular.module('amep-group').
-controller('groupHistoryController', ['$scope', 'Group', 'Cycle', 'currentGroup', 'currentCycles', 'ngTableParams', '$mdDialog',
-  function ($scope, Group, Cycle, currentGroup, currentCycles, ngTableParams, $mdDialog) {
+controller('groupHistoryController', ['$scope', 'Group', 'Cycle','currentGroup','currentSession', 'currentCycles', 'ngTableParams', '$mdDialog',
+  function ($scope, Group, Cycle, currentGroup,currentSession ,currentCycles, ngTableParams, $mdDialog) {
 
     $scope.whatState = Cycle.whatState;
 
@@ -17,12 +17,25 @@ controller('groupHistoryController', ['$scope', 'Group', 'Cycle', 'currentGroup'
     };
     $scope.mudaSemana();
 
-    $scope.pdfCycle = function () {
+    $scope.pdfCycleGroup = function () {
 
       Cycle.getPdf.pdf({
         groupId: $scope.cycleSelected.group_id,
         cycleId: $scope.cycleSelected.id
       });
+    };
+    
+    $scope.pdfCycleMine = function () {
+
+      Cycle.getPdf.pdf({
+        groupId: $scope.cycleSelected.group_id,
+        cycleId: $scope.cycleSelected.id,
+        prossumerId: currentSession.id
+      });
+    };
+    
+    $scope.openMenu = function($mdOpenMenu, ev) {
+      $mdOpenMenu(ev);
     };
 
     var self = this;
