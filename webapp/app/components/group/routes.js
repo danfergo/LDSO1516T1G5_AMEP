@@ -22,6 +22,13 @@ config(function ($stateProvider, $urlRouterProvider) {
         if (!currentSession.id) return [];
         return Prossumer.Product.query({prossumerId: currentSession.id}).$promise;
       }],
+      prossumerState: ['Group','currentGroup', 'currentSession' ,function(Group, currentGroup,currentSession){
+        if (!currentSession.id) return [];
+        return Group.Prossumer.get({groupId: currentGroup.id, prossumerId: currentSession.id}).$promise;
+      }],
+      currentCycles: ['Cycle', 'currentGroup', function (Cycle, currentGroup) {
+        return Cycle.query({groupId: currentGroup.id}).$promise;
+      }],
       currentAbout: ['Group', 'currentGroup', function (Group, currentGroup) {
         return Group.Prossumer.query({groupId: currentGroup.id}).$promise;
       }]
@@ -39,10 +46,7 @@ config(function ($stateProvider, $urlRouterProvider) {
       tabIndex: 0
     },
     resolve: {
-      currentCycles: ['Cycle', 'currentGroup', function (Cycle, currentGroup) {
-        return Cycle.query({groupId: currentGroup.id}).$promise;
-      }],
-      productAuths: ['Group', 'currentGroup', function (Group, currentGroup) {
+      productAuths: ['Group', 'currentGroup', function (Group, currentGroup, currentSession) {
         return Group.ProductAuth.query({groupId: currentGroup.id}).$promise;
       }]
     }
@@ -53,9 +57,7 @@ config(function ($stateProvider, $urlRouterProvider) {
     controller: 'groupHistoryController',
     templateUrl: 'components/group/cycles/cycles.html',
     resolve: {
-      currentCycles: ['Cycle', 'currentGroup', function (Cycle, currentGroup) {
-        return Cycle.query({groupId: currentGroup.id}).$promise;
-      }]
+
     },
     data: {
       tabIndex: 1

@@ -7,7 +7,7 @@ class GroupsProductsAuthsController < ApplicationController
   # 2 - accepted
   #
 
-  before_filter :is_authenticated
+  before_filter :is_authenticated, except: [:index]
 
   # GET /groups/1/products_auths
   # GET /groups/1/products_auths.json
