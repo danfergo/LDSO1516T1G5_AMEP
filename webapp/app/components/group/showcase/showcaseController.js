@@ -20,7 +20,7 @@ controller('groupShowcaseController',
 
 
       var orders = [];
-      Group.Cycle.Order.query({groupId: currentGroup.id, cycleId: $scope.currentCycle.id}, function (o) {
+      if($scope.currentCycle) Group.Cycle.Order.query({groupId: currentGroup.id, cycleId: $scope.currentCycle.id}, function (o) {
         orders = o;
       });
 
