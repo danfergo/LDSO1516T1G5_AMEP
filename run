@@ -2,4 +2,4 @@
 
 echo "Danfergo launcher script, <3"
 
-cd server/ && rails server & cd webapp/ && sleep 5 && grunt serve && fg
+cd server/ && rails server -b 0.0.0.0 & cd webapp/ && sleep 5 && grunt serve && fg

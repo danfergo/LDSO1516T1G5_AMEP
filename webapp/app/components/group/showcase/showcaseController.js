@@ -13,14 +13,14 @@ controller('groupShowcaseController',
 
       $scope.productSellingPrice = Group.Cycle.Product.productSellingPrice;
 
-
-      Group.Prossumer.get({groupId: currentGroup.id, prossumerId: currentSession.id}, function (state) {
+      $scope.prossumerState == null;
+      if(currentSession.id) Group.Prossumer.get({groupId: currentGroup.id, prossumerId: currentSession.id}, function (state) {
         $scope.prossumerState = state;
       });
 
 
       var orders = [];
-      Group.Cycle.Order.query({groupId: currentGroup.id, cycleId: $scope.currentCycle.id}, function (o) {
+      if($scope.currentCycle) Group.Cycle.Order.query({groupId: currentGroup.id, cycleId: $scope.currentCycle.id}, function (o) {
         orders = o;
       });
 
@@ -104,6 +104,7 @@ controller('groupShowcaseController',
         $mdDialog.show({
             controller: 'addProductToCycleController',
             templateUrl: 'components/group/submit-product/addProductToCycle.html',
+            clickOutsideToClose: true,
             //  targetEvent: ev,
             parent: angular.element(document.body),
             resolve: {

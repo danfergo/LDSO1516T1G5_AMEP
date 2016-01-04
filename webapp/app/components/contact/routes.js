@@ -3,7 +3,7 @@ config(function ($stateProvider) {
   $stateProvider
   .state('contacts', {
     parent: 'loo',
-    url: 'contacts',
+    url: 'contact',
     controller: 'contactController',
     templateUrl: 'components/contact/contacts.html'
   });

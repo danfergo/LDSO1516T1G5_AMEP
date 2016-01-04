@@ -1,6 +1,6 @@
 angular.module('amep-group').
-controller('addProductToCycleController', ['$filter', '$mdToast', '$scope', '$mdDialog', 'weeks', 'data', 'Group', 'Prossumer', 'auth',
-  function ($filter, $mdToast, $scope, $mdDialog, weeks, data, Group, Prossumer, auth) {
+controller('addProductToCycleController', ['$filter', '$mdToast', '$scope', '$mdDialog', 'weeks', 'data', 'Group', 'Prossumer', 'Upload', 'auth',
+  function ($filter, $mdToast, $scope, $mdDialog, weeks, data, Group, Prossumer, Upload, auth) {
     $scope.weeks = angular.copy(weeks);
     $scope.oldAuth = auth ? angular.copy(auth) : {};
     $scope.auth = auth ? angular.copy(auth) : {};
@@ -44,18 +44,32 @@ controller('addProductToCycleController', ['$filter', '$mdToast', '$scope', '$md
       }
     };
 
-    $scope.addProduct = function () {
+    $scope.addProduct = function (file) {
 
-      Prossumer.Product.save({prossumerId: data.prossumerId}, $scope.product, function (product) {
-        $scope.product = product;
-        $mdToast.showSimple(product.title + ' adicionado aos meus produtos');
+      var dat = angular.copy($scope.product);
+      dat.file = file;
+
+      if (!file) {
+        Prossumer.Product.save({prossumerId: data.prossumerId}, $scope.product, function (product) {
+          $scope.flipCard = true;
+          $mdToast.showSimple(product.title + ' adicionado aos meus produtos');
+          $scope.product = product;
+        });
+      } else file.upload = Upload.upload({
+        url: 'api/v1/prossumers/' + data.prossumerId + '/products/',
+        data: dat,
+      }).then(function (product) {
+        console.log(product)
+        $mdToast.showSimple(product.data.title + ' adicionado aos meus produtos');
         $scope.flipCard = true;
+        $scope.product = product.data;
       });
+
 
     };
 
-    $scope.moreThanOneWeekSelected = function(){
-      return  $filter('filter')($scope.weeks, {selected: true}).length;
+    $scope.moreThanOneWeekSelected = function () {
+      return $filter('filter')($scope.weeks, {selected: true}).length;
     }
 
   }]);
