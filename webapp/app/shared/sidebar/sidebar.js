@@ -18,11 +18,12 @@ controller('SidebarController', ['$scope','$state', 'Session', '$mdSidenav', fun
 
   Session.get(function (data) {
     $scope.session = data; // Session exists , we are logged in :)
+
   });
 
   $scope.groups = function(){
     return $scope.session.groups ? $scope.session.groups : [];
-  }
+  };
   $scope.testgroups=[
     {name: 'grupo 1'},
     {name: 'grupo 2'},
