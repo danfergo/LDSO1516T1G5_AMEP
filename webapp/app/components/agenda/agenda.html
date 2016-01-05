@@ -5,7 +5,29 @@
   </md-toolbar>
 </md-whiteframe>
 
+<!--
+<div id="owl-example" class="owl-carousel" owl>
+  <div> Your Content </div>
+  <div> Your Content </div>
+  <div> Your Content </div>
+  <div> Your Content </div>
+  <div> Your Content </div>
+  <div> Your Content </div>
+  <div> Your Content </div>
+</div>
+-->
+<div ng-if="groups.length == 0 && weeks.length == 0" style="font-size:32px; color:#999; text-align:center; max-width:700px;margin:50px auto;">
+    Clica em «Procurar Grupos» na barra lateral para escolheres o grupo ao qual pretendes aderir.
+</div>
+
+<div ng-if="groups.length > 0 && weeks.length == 0" style="font-size:32px; color:#999; text-align:center; max-width:700px;margin:50px auto;">
+    Todas as uma trocas que combines surgirão nesta página, para que nunca te esqueças de nada.
+</div>
+
+
 <md-content style="background-color: inherit">
+
+
   <md-card ng-repeat="week in weeks">
     <div layout-padding layout="row">
       <div flex>

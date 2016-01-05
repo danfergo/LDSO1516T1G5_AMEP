@@ -8,11 +8,11 @@
 
 
   <div layout="column" class="relative" flex  role="main">
-    <md-content class="md-default-theme"  flex="none" style="height:50px;" hide-gt-md ng-if="currentSession.id">
+    <div flex="none" style="height:50px;position: absolute; top:0; left:0;z-index:3;" hide-gt-md ng-if="currentSession.id">
       <md-button ng-click="$mdSidenav('left').toggle()" aria-label="Menu" class="sidenav-left-toggle" >
         <ng-md-icon icon="menu"></ng-md-icon> MENU
       </md-button>
-    </md-content>
+    </div>
     <div class="md-default-theme" flex layout="column" ui-view style="overflow-y:auto"></div>
   </div>
 

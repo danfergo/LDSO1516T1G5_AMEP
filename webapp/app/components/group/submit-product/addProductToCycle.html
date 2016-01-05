@@ -8,11 +8,6 @@
       <div class="front" layout="column" flex>
         <form flex name="addOrEditProduct" layout="column">
         <md-card layout="column" flex>
-          <div class="md-card-image" ngf-thumbnail="picFile" ngf-as-background="true"
-               style="background-size:cover;
-                      background-position:center center;
-                      height:150px;">
-          </div>
           <md-card-title flex="none">
             <md-card-title-text>
               <md-input-container>
@@ -21,6 +16,12 @@
               </md-input-container>
             </md-card-title-text>
           </md-card-title>
+          <div class="md-card-image" ngf-thumbnail="picFile" ngf-as-background="true"
+               style="background-size:cover;
+                      background-position:center center;
+                      height:150px;">
+
+          </div>
           <md-card-content flex layout="column" style="overflow-y:auto">
               <md-input-container flex="none" >
                 <label>Descrição</label>
@@ -45,7 +46,7 @@
             <div layout="row">
               <div flex>
                 <input type="file" ngf-select ng-model="picFile" name="file"
-                       accept="image/*" ngf-max-size="3MB" style="width:100%;">
+                       accept="image/*" ngf-max-size="5MB" style="width:100%;">
               </div>
               <div>
                 <ng-md-icon icon="close" size="20" ng-click="picFile = null" ng-show="picFile" ></ng-md-icon>
@@ -106,7 +107,7 @@
                            placeholder="Qtd."
                            style="width:60px;padding-left: 3px;
                 border:2px solid rgba(0,0,0,0.54); border-radius:2px;outline: none;
-                margin: 0 1px;" type="number" step="1" min="0" max="30">
+                margin: 0 1px;" type="number" step="1" min="1" max="9999">
                   </div>
                   <div style="padding-top:2px">
                     <md-checkbox

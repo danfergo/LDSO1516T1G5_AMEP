@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :prossumers, only: [:create, :update] do
       resources :products, only: [:index, :create]
       resources :agenda, only: [:index]
+      resources :prossumers_groups, path: 'groups', only: [:index]
     end
 
 
