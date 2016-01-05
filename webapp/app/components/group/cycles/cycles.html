@@ -30,7 +30,7 @@
       <md-button ng-if="coordinator" class="md-raised" ng-click="createCycle($event)">Novo ciclo</md-button>
     </div>
     <md-select ng-model="cycleSelected" aria-label="seleciona o ciclo" md-on-close="mudaSemana()">
-      <md-option ng-value="cycle" ng-repeat="cycle in cycles | orderBy:start_time.date"> {{cycle.title}} ({{cycle.start_time |
+      <md-option ng-value="cycle" ng-repeat="cycle in cycles | orderBy:'start_time'"> {{cycle.title}} ({{cycle.start_time |
         date:'dd-MM-yyyy'}})
       </md-option>
     </md-select>
