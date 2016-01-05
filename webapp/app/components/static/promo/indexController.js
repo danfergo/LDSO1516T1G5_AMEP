@@ -5,7 +5,6 @@ controller('indexController', ['$scope', 'Prossumer', '$state', '$mdToast',funct
   $scope.flagReg=false;
 
   $scope.signUp = function (name, email, password, phone) {
-    console.log("AQUI");
     $scope.email = angular.copy(email);
     $scope.errorMessages = null;
     Prossumer.save({name: name, email: email, password: password, phone: phone}, function () {

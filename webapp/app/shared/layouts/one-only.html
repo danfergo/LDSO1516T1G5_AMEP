@@ -9,10 +9,12 @@
 
 
   <div layout="column" class="relative" flex  role="main">
+    <!--
+    <md-toolbar flex="none" amep-toolbar ng-if="!currentSession.id" class="md-hue-2">
 
-
-    <div  flex="none" style="height:50px;position: absolute; top:0; left:0;z-index:3;" hide-gt-md ng-if="currentSession.id">
-
+    </md-toolbar>
+-->
+    <div flex="none" style="height:50px;position: absolute; top:0; left:0;z-index:3;" hide-gt-md ng-if="currentSession.id">
       <md-button ng-click="$mdSidenav('left').toggle()" aria-label="Menu" class="sidenav-left-toggle" >
         <ng-md-icon icon="menu"></ng-md-icon> MENU
       </md-button>
