@@ -1,3 +1,57 @@
+.myWrap{
+  padding-top: 30px;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+.myBodyIndex{
+  padding-top: 120px;
+}
+.myRegister h1{
+  color: #656565;
+  font-size: 70px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200;
+}
+.myRegister h2{
+  color: #656565;
+  font-size: 50px;
+  font-family: 'Helvetica Neue';
+  font-weight: 200;
+}
+.myRegisterForm input{
+  height: 70px;
+  padding-left: 20px;
+  font-family: 'Helvetica Neue';
+  font-weight: 200;
+  margin: 2px;
+  border: none;
+}
+.myRegisterEnd{
+  text-align: center;
+}
+.myAbout{
+  padding-top: 50px;
+  display: block;
+}
+.myAbout h1{
+  font-family: 'Helvetica Neue';
+  font-weight: 500;
+  font-size: 40px;
+}
+.botao1{
+  font-family: 'PT Sans', sans-serif;
+  font-size: 35px;
+  background-color: #1e999d;
+  color: #fff;
+  width: 50%;
+}
+.botao1[disabled]{
+  font-family: 'PT Sans', sans-serif;
+  font-size: 35px;
+  background-color: #1e999d;
+  color: #000;
+  width: 50%;
+}
 .semana-titulo {
   background-color: #324155;
   height: 50px;
