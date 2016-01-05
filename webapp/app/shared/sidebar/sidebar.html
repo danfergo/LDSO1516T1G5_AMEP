@@ -33,6 +33,7 @@
       <hr>
       <menu-link ng-repeat="item in quickMenu">
         <a class="md-button md-ink-ripple" ui-sref-active="active" ui-sref="{{item.state}}"
+<<<<<<< HEAD
         style="margin:0;border-radius: 0;width:100%; color: #545252">
         <md-item-content md-ink-ripple layout="row" layout-align="start center">
           <div class="inset">{{item.title}}
@@ -70,94 +71,95 @@
 </div>
 </div>
 
-<!--
 
-<md-toolbar flex="none" class="md-tall md-hue-2" layout="column">
+  <!--
 
-<div layout="column" flex>
-<div layout-padding flex class="text-center">
-<h1 style="margin:0; line-height:55px;">AMEP</h1>
-</div>
-<md-content layout="row" class="md-toolbar-tools-bottom inset md-hue-3">
-<span style="padding-top: 5px;">Olá {{session.name}}</span>
-<span flex></span>
-<span>
-Sair
-<a ui-sref="logout" style="color:#fff;">
-<ng-md-icon icon="logout" size="24"></ng-md-icon>
-</a>
-</span>
-</md-content>
-</div>
-</md-toolbar>
-<md-content flex="none" flex-gt-sm="auto">
+  <md-toolbar flex="none" class="md-tall md-hue-2" layout="column">
 
-<md-subheader ng-if="groups().length > 0">{{groups().length > 1? "Meus grupos" : "Meu grupo"}}</md-subheader>
+  <div layout="column" flex>
+  <div layout-padding flex class="text-center">
+  <h1 style="margin:0; line-height:55px;">AMEP</h1>
+  </div>
+  <md-content layout="row" class="md-toolbar-tools-bottom inset md-hue-3">
+  <span style="padding-top: 5px;">Olá {{session.name}}</span>
+  <span flex></span>
+  <span>
+  Sair
+  <a ui-sref="logout" style="color:#fff;">
+  <ng-md-icon icon="logout" size="24"></ng-md-icon>
+  </a>
+  </span>
+  </md-content>
+  </div>
+  </md-toolbar>
+  <md-content flex="none" flex-gt-sm="auto">
 
-<menu-link ng-if="groups().length > 0" ng-repeat="group in groups()">
-<a class="md-button md-ink-ripple" ui-sref-active="active" ui-sref="group({groupId: group.id })"
-style="margin:0;border-radius: 0;width:100%;">
-<md-item-content md-ink-ripple layout="row" layout-align="start center">
-<div class="inset">
-<div style="width:24px;"></div>
-</div>
-<div class="inset">{{group.name}}
-</div>
-</md-item-content>
-</a>
-</menu-link>
-<menu-link ng-if="groups().length == 0">
-<a class="md-button md-ink-ripple" ui-sref="groups" style="margin:0;border-radius: 0;width:100%;">
-<md-item-content md-ink-ripple layout="row" layout-align="start center">
-<div class="inset">
-<div style="width:24px;"></div>
-<ng-md-icon icon="search"></ng-md-icon>
-</div>
-<div class="inset">Procurar grupos</div>
-</md-item-content>
-</a>
-</menu-link>
+  <md-subheader ng-if="groups().length > 0">{{groups().length > 1? "Meus grupos" : "Meu grupo"}}</md-subheader>
 
-
-<md-divider></md-divider>
-<md-subheader>Conta pessoal</md-subheader>
-<menu-link ng-repeat="item in quickMenu">
-<a class="md-button md-ink-ripple" ui-sref-active="active" ui-sref="{{item.state}}"
-style="margin:0;border-radius: 0;width:100%;">
-<md-item-content md-ink-ripple layout="row" layout-align="start center">
-<div class="inset">
-<ng-md-icon icon="{{item.icon}}"></ng-md-icon>
-</div>
-<div class="inset">{{item.title}}
-</div>
-</md-item-content>
-</a>
-</menu-link>
-<menu-link ng-repeat="item in accountMenu">
-<a class="md-button md-ink-ripple" ui-sref-active="active" ui-sref="{{item.state}}"
-style="margin:0;border-radius: 0;width:100%;">
-<md-item-content md-ink-ripple layout="row" layout-align="start center">
-<div class="inset">
-<ng-md-icon icon="{{item.icon}}"></ng-md-icon>
-</div>
-<div class="inset">{{item.title}}
-</div>
-</md-item-content>
-</a>
-</menu-link>
-
-</md-content>
+  <menu-link ng-if="groups().length > 0" ng-repeat="group in groups()">
+  <a class="md-button md-ink-ripple" ui-sref-active="active" ui-sref="group({groupId: group.id })"
+  style="margin:0;border-radius: 0;width:100%;">
+  <md-item-content md-ink-ripple layout="row" layout-align="start center">
+  <div class="inset">
+  <div style="width:24px;"></div>
+  </div>
+  <div class="inset">{{group.name}}
+  </div>
+  </md-item-content>
+  </a>
+  </menu-link>
+  <menu-link ng-if="groups().length == 0">
+  <a class="md-button md-ink-ripple" ui-sref="groups" style="margin:0;border-radius: 0;width:100%;">
+  <md-item-content md-ink-ripple layout="row" layout-align="start center">
+  <div class="inset">
+  <div style="width:24px;"></div>
+  <ng-md-icon icon="search"></ng-md-icon>
+  </div>
+  <div class="inset">Procurar grupos</div>
+  </md-item-content>
+  </a>
+  </menu-link>
 
 
-<md-divider></md-divider>
-<footer flex="initial" style="height:150px; max-height:10%;text-align: center;">
-<md-content layout-padding>
-<a ui-sref-active="active" ui-sref="home">Missão</a> &#183;
-<a ui-sref-active="active" ui-sref="contacts">Contactar</a> &#183;
-<a ui-sref-active="active" ui-sref="groups">Pesquisar grupo</a>
-</md-content>
+  <md-divider></md-divider>
+  <md-subheader>Conta pessoal</md-subheader>
+  <menu-link ng-repeat="item in quickMenu">
+  <a class="md-button md-ink-ripple" ui-sref-active="active" ui-sref="{{item.state}}"
+  style="margin:0;border-radius: 0;width:100%;">
+  <md-item-content md-ink-ripple layout="row" layout-align="start center">
+  <div class="inset">
+  <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+  </div>
+  <div class="inset">{{item.title}}
+  </div>
+  </md-item-content>
+  </a>
+  </menu-link>
+  <menu-link ng-repeat="item in accountMenu">
+  <a class="md-button md-ink-ripple" ui-sref-active="active" ui-sref="{{item.state}}"
+  style="margin:0;border-radius: 0;width:100%;">
+  <md-item-content md-ink-ripple layout="row" layout-align="start center">
+  <div class="inset">
+  <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+  </div>
+  <div class="inset">{{item.title}}
+  </div>
+  </md-item-content>
+  </a>
+  </menu-link>
 
-</footer>
+  </md-content>
 
--->
+
+  <md-divider></md-divider>
+  <footer flex="initial" style="height:150px; max-height:10%;text-align: center;">
+  <md-content layout-padding>
+  <a ui-sref-active="active" ui-sref="home">Missão</a> &#183;
+  <a ui-sref-active="active" ui-sref="contacts">Contactar</a> &#183;
+  <a ui-sref-active="active" ui-sref="groups">Pesquisar grupo</a>
+  </md-content>
+
+  </footer>
+
+  -->
 </div>
