@@ -6,6 +6,7 @@ config(function ($stateProvider) {
     parent: 'lt',
     url: '',
     templateUrl: 'components/static/promo/index.html',
+    controller: 'indexController',
     data: {
       permissions: {
         except: ['prossumer'],
