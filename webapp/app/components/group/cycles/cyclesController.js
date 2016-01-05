@@ -9,7 +9,7 @@ controller('groupHistoryController', ['$scope', 'Group', 'prossumerState', 'Cycl
 
     $scope.cycles = currentCycles;
     $scope.cycleSelected = $scope.cycles[0];
-    
+
 
     $scope.mudaSemana = function () {
       $scope.getWeeks = Group.Cycle.Week.query({
@@ -64,9 +64,9 @@ controller('groupHistoryController', ['$scope', 'Group', 'prossumerState', 'Cycl
           });
         });
     };
-    
-    
-    
+
+
+
     $scope.toggle = function (justmecheckbox) {
       if(justmecheckbox)
         $scope.getWeeks = Group.Cycle.Week.query({
@@ -81,9 +81,13 @@ controller('groupHistoryController', ['$scope', 'Group', 'prossumerState', 'Cycl
             var check = false;
             if(temp[i].stocks[j].product.prossumer_id == currentSession.id)
               check = true;
-            for(var k = 0; k < temp[i].stocks[j].orders.length; k = k + 1) {
-              if(temp[i].stocks[j].orders[k].prossumer_id == currentSession.id)
-                check = true;
+            else {
+              for (var k = 0; k < temp[i].stocks[j].orders.length; k = k + 1) {
+                if (temp[i].stocks[j].orders[k].prossumer_id == currentSession.id)
+                  check = true;
+                else
+                  temp[i].stocks[j].orders.splice(k, 1);
+              }
             }
             if(!check) {
               temp[i].stocks.splice(j, 1);
@@ -92,9 +96,9 @@ controller('groupHistoryController', ['$scope', 'Group', 'prossumerState', 'Cycl
           }
         }
         $scope.getWeeks = temp;
-        
+
       }
     };
-    
+
 
   }]);
