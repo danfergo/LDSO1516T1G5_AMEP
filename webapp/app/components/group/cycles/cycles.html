@@ -29,7 +29,6 @@
          </md-menu-content>
        </md-menu>
       <md-button ng-if="coordinator" class="md-raised" ng-click="createCycle($event)">Novo ciclo</md-button>
-      <md-checkbox ng-model="justmecheckbox" ng-click="toggle(justmecheckbox)">Apenas Eu</md-checkbox>
     </div>
     <md-select ng-model="cycleSelected" aria-label="seleciona o ciclo" md-on-close="mudaSemana()">
       <span layout-padding>Data de início</span>
@@ -42,8 +41,10 @@
   <timeline bla="cycleSelected" estado="whatState(cycleSelected)">
   </timeline>
 
-
-<div style="margin-top: 74px;">
+<div layout-padding>
+  <md-checkbox ng-model="justmecheckbox" ng-click="toggle(justmecheckbox)">Apenas Eu</md-checkbox>
+</div>
+<div layout-padding>
   <md-card style="width:98.5%">
     <md-content>
       <div layout="column" layout-align="space-around stretch" ng-repeat="week in getWeeks" ng-if="week.stocks.length != 0">
