@@ -38,7 +38,7 @@
   </menu-link>
   <hr>
   <h4>os meus grupos</h4>
-  <div style="height: 37%; overflow: scroll;">
+  <div style="height: 37%; overflow: auto; overflow-x:hidden;">
   <!-- <menu-link ng-if="groups().length > 0" ng-repeat="group in testgroups"> -->
     <menu-link ng-if="groups().length > 0" ng-repeat="group in groups()">
     <a class="md-button md-ink-ripple" ui-sref-active="active" ui-sref="group({groupId: group.id })"
