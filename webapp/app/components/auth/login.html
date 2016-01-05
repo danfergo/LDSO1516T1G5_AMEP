@@ -1,46 +1,71 @@
+<!--
 <md-content layout-fill layout="column" layout-align="center center" class="md-default-theme">
 
-  <md-card class="md-whiteframe-2dp">
-    <md-card-content layout-padding>
+<md-card class="md-whiteframe-2dp">
+<md-card-content layout-padding>
 
-      <form name="loginForm" layout="column" style="width:250px">
+<form name="loginForm" layout="column" style="width:250px">
 
-        <h1 class="md-title">Iniciar sessão</h1>
-        <md-input-container>
-          <label>Email</label>
-          <input ng-model="email" type="email" name="email" ng-required="true" autofocus  >
-        </md-input-container>
+<h1 class="md-title">Iniciar sessão</h1>
+<md-input-container>
+<label>Email</label>
+<input ng-model="email" type="email" name="email" ng-required="true" autofocus  >
+</md-input-container>
 
-        <md-input-container>
-          <label>Palavra-passe</label>
-          <input ng-model="password" type="password" name="password" ng-required="true">
-        </md-input-container>
-        <!--       <md-input-container>
+<md-input-container>
+<label>Palavra-passe</label>
+<input ng-model="password" type="password" name="password" ng-required="true">
+</md-input-container>
+<div flex="none" layout="column">
+<div style="color:#f00;min-height:20px;">{{errorMessage}}</div>
+<md-button style="margin-left:0; margin-right:0;"
+class="md-raised md-primary"
+ng-disabled="!loginForm.$valid"
+ng-click="login(email,password)">
+Iniciar Sessão
+</md-button>
+</div>
+</form>
+</md-card-content>
+</md-card>
 
-                 <md-switch style="margin:0;"
-                            ng-model="vm.activated"
-                            ng-change="vm.toggleActivation()"
-                            aria-label="Enable Indicators">
-                   Manter sessão iniciada
-                 </md-switch>
+<div style="padding-top:10px;">
+<a ui-sref="signUp">Criar conta</a>
+</div>
+</md-content>
+-->
 
-
-               </md-input-container>
-       -->
-        <div flex="none" layout="column">
-          <div style="color:#f00;min-height:20px;">{{errorMessage}}</div>
-          <md-button style="margin-left:0; margin-right:0;"
-                     class="md-raised md-primary"
-                     ng-disabled="!loginForm.$valid"
-                     ng-click="login(email,password)">
+<div style="width: 100%; height:100%; background-color: #f2f1f1">
+  <div class="myWrap">
+    <div class="myHead" layout="row" layout-align="center center">
+      <div flex style="font-family: 'Lobster', cursive; color: #1e999d; font-size: 45px;" ui-sref="signUp">
+        Amep
+      </div>
+      <div flex="15" style="text-align:right; font-family: 'Quicksand', sans-serif;">
+        <a ui-sref="contacts">contacte-nos</a>
+      </div>
+      <div flex="15" style="text-align:right; font-family: 'Quicksand', sans-serif;">
+        <a ui-sref="login">iniciar sessão</a>
+      </div>
+    </div>
+    <div class="myBodyIndex">
+      <div class="myRegister" layout="row" layout-align="end start">
+        <div flex>
+          <h1>Faça aqui login</h1>
+        </div>
+        <div class="myLoginForm" flex >
+          <form name="loginForm" layout="column" layout-align="space-between stretch">
+            <input placeholder="EMAIL" ng-model="email" type="email" name="email" ng-required="true" autofocus>
+            <input placeholder="PALAVRA-PASSE" ng-model="password" type="password" name="password" ng-required="true">
+            <md-button
+            class="botao1"
+            ng-disabled="!loginForm.$valid"
+            ng-click="login(email,password)">
             Iniciar Sessão
           </md-button>
-        </div>
-      </form>
-    </md-card-content>
-  </md-card>
-
-  <div style="padding-top:10px;">
-    <a ui-sref="signUp">Criar conta</a>
+        </form>
+      </div>
+    </div>
+    <a ui-sref="signUp">se ainda não está registado, crie uma conta</a>
   </div>
-</md-content>
+</div>

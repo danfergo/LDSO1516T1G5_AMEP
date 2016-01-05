@@ -1,89 +1,56 @@
-<div layout-fill layout="column" layout-align="center center" class="md-default-theme" ng-if="!showConfirmationMessage">
-  <md-card class="md-whiteframe-1dp" style="width:350px;">
-    <md-card-content layout-padding>
-      <form name="signUpForm" layout="column">
-        <h1 class="md-title">Criar conta</h1>
-        <md-input-container>
-
-          <label>Nome</label>
-          <input ng-model="name" type="text" name="name" ng-required="true">
-
-          <!--
-          <div class="custom-messages">
-            <div ng-repeat="message in errorMessages.name">{{message}}</div>
-          </div>-->
-
-
-        </md-input-container>
-        <md-input-container>
-          <label>Email</label>
-          <input ng-model="email" type="email" name="email" ng-required="true">
-
-
-          <!--
-          <div class="custom-messages">
-            <div ng-repeat="message in errorMessages.email">{{message}}</div>
-          </div> -->
-
-        </md-input-container>
-        <md-input-container>
-          <label>Palavra-passe</label>
-          <input ng-model="password" type="password" name="password" ng-required="true">
-
-          <!--Z
-          <div class="custom-messages">
-            <div ng-repeat="message in errorMessages.password">{{message}}</div>
-          </div> -->
-
-        </md-input-container>
-        <md-input-container>
-          <label>Repetir Palavra-passe</label>
-          <input ng-model="confirm_password" type="password" name="password" ng-required="true">
-        </md-input-container>
-        <md-input-container>
-          <label>Telefone ou telemóvel</label>
-          <input ng-model="phone" type="text" name="text" ng-required="true">
-
-          <div class="custom-messages">
-            <div ng-repeat="message in errorMessages.phone">{{message}}</div>
-          </div>
-
-        </md-input-container>
-        <div layout="column">
-          <div style="min-height:20px;">
-
-          </div>
-          <md-button style="margin-left:0; margin-right:0;" type="button"
-                     class="md-raised md-primary"
-                     ng-disabled="!signUpForm.$valid"
-                     ng-click="signUp(name,email,password,phone)">
-            Criar conta
-          </md-button>
+<div style="width: 100%; background-color: #f2f1f1">
+  <div class="myWrap">
+    <div class="myHead" layout="row" layout-align="center center">
+      <div flex style="font-family: 'Lobster', cursive; color: #1e999d; font-size: 45px;" href="/">
+        Amep
+      </div>
+      <div flex="15" style="text-align:right; font-family: 'Quicksand', sans-serif;">
+        <a ui-sref="contacts">contacte-nos</a>
+      </div>
+      <div flex="15" style="text-align:right; font-family: 'Quicksand', sans-serif;">
+        <a ui-sref="login">iniciar sessão</a>
+      </div>
+    </div>
+    <div class="myBodyIndex">
+      <div class="myRegister" layout="row" ng-if="!flagReg">
+        <div flex>
+          <h1>Já se registou?</h1>
+          <h2>Registe-se aqui</h2>
         </div>
-      </form>
-    </md-card-content>
-  </md-card>
-  <div style="padding-top:10px;">
-    <a ui-sref="login">Já tenho conta, iniciar sessão</a>
+        <div class="myRegisterForm" flex >
+          <form name="signUpForm" layout="column" layout-align="space-between stretch">
+            <input placeholder="NOME" ng-model="name" type="text" name="name" ng-required="true">
+            <input placeholder="EMAIL" ng-model="email" type="email" name="email" ng-required="true">
+            <div layout="row">
+              <input flex placeholder="PALAVRA-PASSE" ng-model="password" type="password" name="password" ng-required="true">
+              <input flex placeholder="REPETIR PALAVRA-PASSE" ng-model="confirm_password" type="password" name="password" ng-required="true">
+            </div>
+            <div layout="row">
+              <input  style="width:51.8%;" placeholder="CONTACTO TELEFÓNICO" ng-model="phone" type="text" name="text" ng-required="true">
+              <md-button
+              class="botao1"
+              ng-disabled="!signUpForm.$valid"
+              ng-click="signUp(name,email,password,phone)">
+              Registar
+            </md-button>
+          </div>
 
+        </form>
+      </div>
+    </div>
+    <div class="myRegisterEnd" ng-if="flagReg">
+      <img ng-src="registoConcluido.png" width="50%">
+    </div>
+    <div class="myAbout" layout="column">
+      <div flex style="text-align: right">
+        <h1>Um pouco de história</h1>
+        Inspirada nas iniciativas AMAP (Associações para a Manutenção da Agricultura de Proximidade) – nascidas  em França em 2002, com o objectivo de apoiar pequenos produtores que pratiquem e ofereçam produtos de agricultura biológica num contexto de proximidade com o grupo de consumidores -, a AMEP introduz a possibilidade de aquisição de produtos com moeda social em detrimento do euro.
+      </div>
+      <div flex style="text-align: left">
+        <h1>Um pouco de história</h1>
+        Inspirada nas iniciativas AMAP (Associações para a Manutenção da Agricultura de Proximidade) – nascidas  em França em 2002, com o objectivo de apoiar pequenos produtores que pratiquem e ofereçam produtos de agricultura biológica num contexto de proximidade com o grupo de consumidores -, a AMEP introduz a possibilidade de aquisição de produtos com moeda social em detrimento do euro.
+      </div>
+    </div>
   </div>
 </div>
-
-<div layout-fill layout="column" layout-align="center center" class="md-default-theme" ng-if="showConfirmationMessage">
-  <md-card class="md-whiteframe-1dp" style="width:450px;">
-    <md-card-content layout-padding>
-      <h1 class="md-title">Conta criada com sucesso</h1>
-
-      <p>
-        A tua conta encontra-se criada. <br>
-        Por favor consulta o e-mail que acabamos de te enviar na tua caixa de entrada em <b>{{ email }}</b> e clica em
-        <b>Ativar
-          conta</b>.
-      </p>
-
-      <p>
-        Até já!
-      </p>
-    </md-card-content>
-  </md-card>
 </div>

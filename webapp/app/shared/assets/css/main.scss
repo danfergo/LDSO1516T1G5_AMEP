@@ -26,6 +26,22 @@
   margin: 2px;
   border: none;
 }
+.myLoginForm input{
+  height: 70px;
+  padding-left: 20px;
+  font-family: 'Helvetica Neue';
+  font-weight: 200;
+  margin: 2px;
+  border: none;
+}
+.myLoginForm textarea{
+  height: 150px;
+  padding-left: 20px;
+  font-family: 'Helvetica Neue';
+  font-weight: 200;
+  margin: 2px;
+  border: none;
+}
 .myRegisterEnd{
   text-align: center;
 }
@@ -44,6 +60,7 @@
   background-color: #1e999d;
   color: #fff;
   width: 50%;
+  height: 70px;
 }
 .botao1[disabled]{
   font-family: 'PT Sans', sans-serif;
