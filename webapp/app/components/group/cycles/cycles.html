@@ -9,10 +9,12 @@
 </div>
 -->
 
+
+
 <div>
   <div style="width: 100%;" layout="row">
     <div flex layout="row" layout-align="left center" layout-wrap>
-      <md-menu>
+      <md-menu ng-if="cycleSelected">
         <md-button class="md-raised md-warn" ng-click="openMenu($mdOpenMenu, $event)">PDF</md-button>
         <md-menu-content width="3">
           <md-menu-item>
@@ -29,19 +31,24 @@
       </md-menu>
       <md-button ng-if="coordinator" class="md-raised" ng-click="createCycle($event)">Novo ciclo</md-button>
     </div>
-    <md-select ng-model="cycleSelected" aria-label="seleciona o ciclo" md-on-close="mudaSemana()">
-      <md-option ng-value="cycle" ng-repeat="cycle in cycles | orderBy:start_time.date"> {{cycle.title}} ({{cycle.start_time |
+    <md-select ng-if="cycles.length > 0" ng-model="cycleSelected" aria-label="seleciona o ciclo" md-on-close="mudaSemana()">
+      <md-option ng-value="cycle" ng-repeat="cycle in cycles | orderBy:start_time.date"> {{cycle.title}}
+        ({{cycle.start_time |
         date:'dd-MM-yyyy'}})
       </md-option>
     </md-select>
   </div>
 </div>
 
+<div ng-if="cycles.length == 0"
+     style="font-size:32px; color:#999; text-align:center; max-width:700px;margin:50px auto;">
+  Ainda não existem ciclos neste grupo.
+</div>
 
-<timeline bla="cycleSelected" estado="whatState(cycleSelected)">
+<timeline ng-if="cycles.length > 0" bla="cycleSelected" estado="whatState(cycleSelected)">
 </timeline>
 
-<div layout-padding>
+<div layout-padding ng-if="cycles.length > 0">
   <md-checkbox ng-model="justmecheckbox" ng-click="toggle(justmecheckbox)">Ver apenas os meus produtos e as minhas
     encomendas
   </md-checkbox>
@@ -50,10 +57,13 @@
 <div>
   <md-card>
     <md-content>
-      <div layout="column" layout-align="space-around stretch" ng-repeat="week in getWeeks" ng-if="week.stocks.length != 0">
+      <div layout="column" layout-align="space-around stretch" ng-repeat="week in getWeeks"
+           ng-if="week.stocks.length != 0">
         <div class="semana-titulo" layout="row">
           <div flex style="font-family: 'Montserrat', sans-serif; font-size: 20px">SEMANA {{week.number}}</div>
-          <div flex='15' style="text-align: right; font-family: 'PT Sans', sans-serif;">{{week.delivery_date | date: 'dd-MM-yyyy'}}</div>
+          <div flex='15' style="text-align: right; font-family: 'PT Sans', sans-serif;">{{week.delivery_date | date:
+            'dd-MM-yyyy'}}
+          </div>
         </div>
         <div class="tabela-head" layout="row" layout-align="space-around stretch">
           <div flex>
@@ -78,7 +88,8 @@
           </div>
         </div>
 
-        <div class="tabela-body"  ng-repeat="stock in week.stocks | orderBy: 'stock.product.title'" ng-if="stock.orders.length != 0" style="margin-left: 29px; margin-right: 29px;">
+        <div class="tabela-body" ng-repeat="stock in week.stocks | orderBy: 'stock.product.title'"
+             ng-if="stock.orders.length != 0" style="margin-left: 29px; margin-right: 29px;">
           <md-divider></md-divider>
           <div layout="row">
 
@@ -89,11 +100,12 @@
               {{ stock.product.prossumer.name }}
             </div>
             <div flex>
-              {{ stock.unit_price_euros | currency:'€':2 }} + {{ stock.unit_price_ecos | currency:'E':2}} <br> /{{stock.product.unit}}
+              {{ stock.unit_price_euros | currency:'€':2 }} + {{ stock.unit_price_ecos | currency:'E':2}} <br>
+              /{{stock.product.unit}}
             </div>
 
             <div flex='50'>
-              <div layout="column" layout-align="center stretch" ng-repeat="order in stock.orders" >
+              <div layout="column" layout-align="center stretch" ng-repeat="order in stock.orders">
                 <div layout="row" layout-align="center stretch">
                   <div flex>
                     {{ order.prossumer.name }}
@@ -102,7 +114,8 @@
                     {{ order.quantity}}
                   </div>
                   <div flex>
-                    {{ stock.unit_price_euros * order.quantity | currency:'€':2 }} + {{ stock.unit_price_ecos * order.quantity | currency:'E':2}}
+                    {{ stock.unit_price_euros * order.quantity | currency:'€':2 }} + {{ stock.unit_price_ecos *
+                    order.quantity | currency:'E':2}}
                   </div>
                 </div>
               </div>
@@ -113,7 +126,8 @@
 
       </div>
 
-      <div layout="column" layout-align="space-around stretch" ng-repeat="week in getWeeks" ng-if="week.stocks.length == 0">
+      <div layout="column" layout-align="space-around stretch" ng-repeat="week in getWeeks"
+           ng-if="week.stocks.length == 0">
         <div class="semana-titulo" layout="row">
           <div flex style="font-family: 'Montserrat', sans-serif; font-size: 20px">SEMANA {{$index+1}}</div>
           <div flex='15' style="text-align: right">{{week.delivery_date | date: 'dd-MM-yyyy'}}</div>

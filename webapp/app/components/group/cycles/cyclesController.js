@@ -4,6 +4,7 @@ angular.module('amep-group').
 controller('groupHistoryController', ['$scope', 'Group', 'prossumerState', 'Cycle','currentGroup','currentSession', 'currentCycles', 'ngTableParams', '$mdDialog',
   function ($scope, Group, prossumerState, Cycle, currentGroup,currentSession ,currentCycles, ngTableParams, $mdDialog) {
 
+
     $scope.whatState = Cycle.whatState;
     $scope.coordinator = prossumerState.is_coordinator;
 
@@ -18,7 +19,7 @@ controller('groupHistoryController', ['$scope', 'Group', 'prossumerState', 'Cycl
       });
       $scope.justmecheckbox = false;
     };
-    $scope.mudaSemana();
+    if($scope.cycleSelected) $scope.mudaSemana();
 
     $scope.pdfCycleGroup = function () {
 

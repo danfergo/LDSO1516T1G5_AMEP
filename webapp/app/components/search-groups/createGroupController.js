@@ -11,6 +11,9 @@ controller('createGroupController', ['$scope', 'Group', 'City', '$mdDialog', '$m
     $mdDialog.cancel();
   };
   $scope.ok = function () {
+    var group = angular.copy($scope.group);
+    group.city_id = parseInt(group.city_id);
+    console.log(group);
     Group.save($scope.group, function (group) {
       $mdToast.show(
         $mdToast.simple()
