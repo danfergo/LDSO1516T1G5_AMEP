@@ -8,6 +8,7 @@ factory('Prossumer', ['$resource', '$http', function ($resource, $http) {
     }
   });
 
+  resource.Group = $resource('/api/v1/prossumers/:prossumerId/groups/:id');
   resource.Product = $resource('/api/v1/prossumers/:prossumerId/products/:id');
 
   resource.confirmAccount = function (params, successCallback, errorCallback) {

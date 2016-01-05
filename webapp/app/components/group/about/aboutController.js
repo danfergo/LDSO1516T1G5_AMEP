@@ -1,54 +1,49 @@
 angular.module('amep-group').
-controller('groupAboutController', ['$scope','$mdDialog','$state','currentSession', 'currentAbout', 'Group', function ($scope, $mdDialog,$state,currentSession, currentAbout, Group) {
+controller('groupAboutController', ['$scope', '$mdDialog', '$state', 'Group', 'prossumerState', 'currentAbout', function ($scope, $mdDialog, $state, Group, prossumerState, currentAbout) {
 
   $scope.groupProssumers = currentAbout;
-  $scope.coordinator = false;
+  $scope.coordinator = prossumerState.is_coordinator;
+  $scope.currentSessionId = prossumerState.prossumer_id;
 
-  $scope.currentSessionId = currentSession.id
-
-  for(id in currentAbout) {
-    if (currentAbout[id].prossumer_id == currentSession.id) {
-      $scope.coordinator = currentAbout[id].is_coordinator;
-      break;
-    }
-  }
-
-  $scope.enableCoordinator = function(groupId, groupProssumerId) {
+  function enableCoordinator (groupId, groupProssumerId) {
     Group.Prossumer.update({groupId: groupId, prossumerId: groupProssumerId, is_coordinator: true});
   };
 
-  $scope.disableCoordinator = function(groupId, groupProssumerId) {
+  function disableCoordinator (groupId, groupProssumerId) {
     Group.Prossumer.update({groupId: groupId, prossumerId: groupProssumerId, is_coordinator: false});
   };
 
-  $scope.enableProssumer = function(groupId, groupProssumerId) {
+  function enableProssumer (groupId, groupProssumerId) {
     Group.Prossumer.update({groupId: groupId, prossumerId: groupProssumerId, state: 2});
   };
 
-  $scope.disableProssumer = function(groupId, groupProssumerId) {
+  function disableProssumer (groupId, groupProssumerId) {
     Group.Prossumer.update({groupId: groupId, prossumerId: groupProssumerId, state: 0, is_coordinator: false});
   };
 
-
-  $scope.showConfirm = function(ev) {
+  $scope.showConfirm = function (ev) {
     var confirm = $mdDialog.confirm()
-        .title(ev.title + ev.name +  "?")
-        .ariaLabel('Lucky day')
-        .targetEvent(ev)
-        .ok('Sim!')
-        .cancel('Nao');
-    $mdDialog.show(confirm).then(function() {
-      if(ev.type == "enableCoordinator")
-        $scope.enableCoordinator(ev.groupId,ev.groupProssumerId);
-      else if(ev.type == "disableCoordinator")
-        $scope.disableCoordinator(ev.groupId,ev.groupProssumerId);
-      else if(ev.type == "enableProssumer")
-        $scope.enableProssumer(ev.groupId,ev.groupProssumerId);
-      else if(ev.type == "disableProssumer")
-        $scope.disableProssumer(ev.groupId,ev.groupProssumerId);
+      .title(ev.title + ev.name + "?")
+      .ariaLabel('Lucky day')
+      .targetEvent(ev)
+      .ok('Sim')
+      .cancel('Nao');
+    $mdDialog.show(confirm).then(function () {
+      if (ev.type == "enableProssumer")
+        enableProssumer(ev.groupId, ev.groupProssumerId);
+      else if (ev.type == "disableProssumer")
+        disableProssumer(ev.groupId, ev.groupProssumerId);
       $state.reload();
-    }, function() {
+    }, function () {
     });
   };
+
+  $scope.changeCoordinator = function (isCoordinator, groupId, groupProssumerId) {
+    if (isCoordinator)
+      enableCoordinator(groupId, groupProssumerId);
+    else {
+      disableCoordinator(groupId, groupProssumerId);
+    }
+  }
 
 }]);

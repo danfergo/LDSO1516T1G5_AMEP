@@ -12,6 +12,11 @@ config(function ($stateProvider) {
         only: ['prossumer'],
         redirectTo: 'login'
       }
+    },
+    resolve:{
+      prossumerGroups: ['Prossumer','currentSession',function(Prossumer, currentSession){
+        return Prossumer.Group.query({prossumerId: currentSession.id}).$promise;
+      }]
     }
   });
 });

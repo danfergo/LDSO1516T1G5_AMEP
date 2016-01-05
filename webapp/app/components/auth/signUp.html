@@ -53,4 +53,22 @@
     </div>
   </div>
 </div>
+
+<div layout-fill layout="column" layout-align="center center" class="md-default-theme" ng-if="showConfirmationMessage">
+  <md-card class="md-whiteframe-1dp" style="width:450px;">
+    <md-card-content layout-padding>
+      <h1 class="md-title">Conta criada com sucesso</h1>
+
+      <p>
+        A tua conta encontra-se criada. <br>
+        Por favor consulta o e-mail que acabamos de te enviar na tua caixa de entrada em <b>{{ email }}</b> e clica em
+        <b>Ativar
+          conta</b>.
+      </p>
+
+      <p>
+        Até já!
+      </p>
+    </md-card-content>
+  </md-card>
 </div>

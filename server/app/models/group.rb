@@ -12,7 +12,7 @@ class Group < ActiveRecord::Base
 
   def as_json(options={})
     json = super
-    json['city'] = {name: city.name}
+    # json['city'] = {name: city.name}
     json
   end
 

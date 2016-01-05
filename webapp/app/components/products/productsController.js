@@ -26,4 +26,9 @@ controller('productsController', ['$scope', 'Session', 'Prossumer', 'products', 
           });
         });
     }
+
+    $scope.removeProduct = function (event) {
+
+    }
+
   }]);

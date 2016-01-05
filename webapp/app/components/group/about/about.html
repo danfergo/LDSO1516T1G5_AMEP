@@ -1,36 +1,50 @@
 <md-content>
   <md-list>
-    <md-list-item layout-padding class="md-3-line" ng-repeat="groupProssumer in groupProssumers">
+    <md-list-item layout-padding class="md-2-line" ng-repeat="groupProssumer in groupProssumers">
       <div class="md-list-item-text">
-        <h3><strong>{{groupProssumer.prossumer.name}}</strong> {{groupProssumer.is_coordinator? '(coordenador)' : ''}}</h3>
+        <h3><strong>{{groupProssumer.prossumer.name}}</strong></h3>
         <h4>{{groupProssumer.prossumer.email}}</h4>
+        <div style="padding-top: 8px" ng-repeat="ahahah in [0]">
+          <md-checkbox
+            class="md-exclude"
+            ng-model="groupProssumer.is_coordinator"
+            ng-disabled="!(groupProssumer.state == 2 && coordinator) || groupProssumer.prossumer_id == currentSessionId"
+            ng-change="changeCoordinator(groupProssumer.is_coordinator, groupProssumer.group_id, groupProssumer.id)"
+          >Coordenador
+          </md-checkbox>
+        </div>
       </div>
-      <div ng-if="coordinator && groupProssumer.prossumer_id != currentSessionId">
+      <div ng-if="coordinator && groupProssumer.prossumer_id != currentSessionId" layout="row">
         <md-button class="md-primary" ng-if="groupProssumer.state == 1"
-                   ng-click="showConfirm({title: 'Ativar o prossumer ',name: groupProssumer.prossumer.name,
+                   ng-click="showConfirm({title: 'Aceitar o prossumidor ',name: groupProssumer.prossumer.name,
                  type: 'enableProssumer',groupId: groupProssumer.group_id,groupProssumerId: groupProssumer.id})">
           Aceitar
         </md-button>
         <md-button class="md-primary" ng-if="groupProssumer.state == 0"
-                   ng-click="showConfirm({title: 'Ativar o prossumer ',name: groupProssumer.prossumer.name,
+                   ng-click="showConfirm({title: 'Ativar o prossumidor ',name: groupProssumer.prossumer.name,
                  type: 'enableProssumer',groupId: groupProssumer.group_id,groupProssumerId: groupProssumer.id})">
           Ativar
         </md-button>
         <md-button class="md-primary" ng-if="groupProssumer.state == 2"
-                   ng-click="showConfirm({title: 'Remover o prossumer ',name: groupProssumer.prossumer.name,
+                   ng-click="showConfirm({title: 'Remover o prossumidor ',name: groupProssumer.prossumer.name,
                  type: 'disableProssumer',groupId: groupProssumer.group_id,groupProssumerId: groupProssumer.id})">
           Remover
         </md-button>
+
+        <!--
         <md-button class="md-primary" ng-if="!groupProssumer.is_coordinator && groupProssumer.state == 2"
-                   ng-click="showConfirm({title: 'Colocar como coordenador o prossumer ',name: groupProssumer.prossumer.name,
+                   ng-click="showConfirm({title: 'Colocar como coordenador o prossumidor ',name: groupProssumer.prossumer.name,
                  type: 'enableCoordinator',groupId: groupProssumer.group_id,groupProssumerId: groupProssumer.id})">
           Tornar coordenador
         </md-button>
         <md-button class="md-primary" ng-if="groupProssumer.is_coordinator && groupProssumer.state == 2"
-                   ng-click="showConfirm({title: 'Remover como coordenador o prossumer ',name: groupProssumer.prossumer.name,
+                   ng-click="showConfirm({title: 'Remover como coordenador o prossumidor ',name: groupProssumer.prossumer.name,
                    type: 'disableCoordinator',groupId: groupProssumer.group_id,groupProssumerId: groupProssumer.id})">
           Remover coordenador
         </md-button>
+        -->
+
+
       </div>
       <md-divider ng-if="!$last"></md-divider>
     </md-list-item>
