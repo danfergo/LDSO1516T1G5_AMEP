@@ -33,8 +33,7 @@
     </div>
     <md-select ng-if="cycles.length > 0" ng-model="cycleSelected" aria-label="seleciona o ciclo" md-on-close="mudaSemana()">
       <md-option ng-value="cycle" ng-repeat="cycle in cycles | orderBy:start_time.date"> {{cycle.title}}
-        ({{cycle.start_time |
-        date:'dd-MM-yyyy'}})
+        ({{cycle.start_time | date:'dd-MM-yyyy'}})
       </md-option>
     </md-select>
   </div>
