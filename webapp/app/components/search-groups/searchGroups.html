@@ -48,7 +48,7 @@
                 <a ui-sref="group({groupId:item.id})">
                   <div layout="row" style="margin-right: 10%">
                     <div flex="70"><h4>{{item.name}}</h4></div>
-                    <div flex="30" style="padding-top: 7px; text-align:right;">{{item.city.name}}</div>
+                    <div flex="30" style="padding-top: 7px; text-align:right;">{{getCityById(item.city_id).name}}</div>
                   </div>
                 </a>
               </md-item-content>
