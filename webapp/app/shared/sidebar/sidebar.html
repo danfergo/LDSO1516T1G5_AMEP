@@ -8,11 +8,23 @@
     <div layout="row" style="padding-left: 5%;">
       <span flex>{{session.name}}</span>
       <span flex style="text-align: right">
-        <select name="moreSelect" ng-model="data.moreSelect" icon="botao.png" data-ng-change="changeState(escolha)">
-          <option value="sair">sair</option>
-          <option value="def">definições</option>
-        </select>
-      </span>
+        <md-menu>
+        <md-button ng-click="openMenu($mdOpenMenu, $event)">
+          <img src="botao.png"/ width="20px" height="20px">
+        </md-button>
+        <md-menu-content width="3">
+          <md-menu-item>
+            <md-button ng-click="menuSair()">
+              sair
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="menuDef()">
+              definições
+            </md-button>
+          </md-menu-item>
+           </md-menu-content>
+         </md-menu>
     </div>
 
 
@@ -39,20 +51,20 @@
   <hr>
   <h4>os meus grupos</h4>
   <div style="height: 37%; overflow: scroll;">
-  <!-- <menu-link ng-if="groups().length > 0" ng-repeat="group in testgroups"> -->
+    <!-- <menu-link ng-if="groups().length > 0" ng-repeat="group in testgroups"> -->
     <menu-link ng-if="groups().length > 0" ng-repeat="group in groups()">
-    <a class="md-button md-ink-ripple" ui-sref-active="active" ui-sref="group({groupId: group.id })"
-    style="margin:0;border-radius: 0;width:100%;color: #545252">
-    <md-item-content md-ink-ripple layout="row" layout-align="start center">
-      <div class="inset">{{group.name}}
-      </div>
-    </md-item-content>
-  </a>
-</menu-link>
+      <a class="md-button md-ink-ripple" ui-sref-active="active" ui-sref="group({groupId: group.id })"
+      style="margin:0;border-radius: 0;width:100%;color: #545252">
+      <md-item-content md-ink-ripple layout="row" layout-align="start center">
+        <div class="inset">{{group.name}}
+        </div>
+      </md-item-content>
+    </a>
+  </menu-link>
 </div>
 <hr>
 <div style="text-align: center">
-<a ui-sref="contacts">contacte-nos</a>
+  <a ui-sref="contacts">contacte-nos</a>
 </div>
 </div>
 </div>

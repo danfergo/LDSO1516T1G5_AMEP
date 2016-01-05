@@ -3,15 +3,16 @@ controller('SidebarController', ['$scope','$state', 'Session', '$mdSidenav', fun
   $scope.data = {
     moreSelect: null
   };
-  $scope.changeState = function (value){
-    if($scope.data.moreSelect==="sair"){
-      $state.go('logout');
-    }
-    else if($scope.data.moreSelect==="def"){
-      $state.go('settings')
-    }
+  $scope.openMenu = function($mdOpenMenu, ev) {
+    $mdOpenMenu(ev);
   };
 
+  $scope.menuSair= function(){
+    $state.go('logout');
+  };
+  $scope.menuDef=function(){
+    $state.go('settings');
+  };
 
   $scope.$mdSidenav = $mdSidenav;
   $scope.session = false;

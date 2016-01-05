@@ -3,6 +3,7 @@ controller('indexController', ['$scope', 'Prossumer', '$state', '$mdToast',funct
   $scope.showConfirmationMessage = false;
   $scope.email = null;
   $scope.flagReg=false;
+  console.log("ALI");
 
   $scope.signUp = function (name, email, password, phone) {
     console.log("AQUI");
