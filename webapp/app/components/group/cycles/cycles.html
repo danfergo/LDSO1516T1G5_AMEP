@@ -29,6 +29,7 @@
          </md-menu-content>
        </md-menu>
       <md-button ng-if="coordinator" class="md-raised" ng-click="createCycle($event)">Novo ciclo</md-button>
+      <md-checkbox ng-model="justmecheckbox" ng-click="toggle(justmecheckbox)">Apenas Eu</md-checkbox>
     </div>
     <md-select ng-model="cycleSelected" aria-label="seleciona o ciclo" md-on-close="mudaSemana()">
       <span layout-padding>Data de início</span>
