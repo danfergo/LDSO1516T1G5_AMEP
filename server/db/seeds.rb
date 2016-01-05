@@ -156,43 +156,57 @@ Week.create([
 
 
 Stock.create([
-                 {quantity: 1, unit_price_euros: 2.3, unit_price_ecos: 0.4, week_id: 1, product_id: 1}, #1
-                 {quantity: 1, unit_price_euros: 2.3, unit_price_ecos: 0.4, week_id: 2, product_id: 1}, #2
-                 {quantity: 1, unit_price_euros: 2.3, unit_price_ecos: 0.4, week_id: 3, product_id: 1}, #3
-                 {quantity: 1, unit_price_euros: 2.3, unit_price_ecos: 0.4, week_id: 4, product_id: 1}, #4
+                 {quantity: 4, unit_price_euros: 2.3, unit_price_ecos: 0.4, week_id: 1, product_id: 1}, #1
+                 {quantity: 4, unit_price_euros: 2.3, unit_price_ecos: 0.4, week_id: 2, product_id: 1}, #2
+                 {quantity: 4, unit_price_euros: 2.3, unit_price_ecos: 0.4, week_id: 3, product_id: 1}, #3
+                 {quantity: 4, unit_price_euros: 2.3, unit_price_ecos: 0.4, week_id: 4, product_id: 1}, #4
                  {quantity: 4, unit_price_euros: 1.5, unit_price_ecos: 0.4, week_id: 1, product_id: 2}, #5
-                 {quantity: 2, unit_price_euros: 1.5, unit_price_ecos: 0.4, week_id: 3, product_id: 2}, #6
-                 {quantity: 1, unit_price_euros: 1.5, unit_price_ecos: 0.4, week_id: 4, product_id: 2}, #7
-                 {quantity: 1, unit_price_euros: 3.2, unit_price_ecos: 0.4, week_id: 1, product_id: 3}, #8
+                 {quantity: 5, unit_price_euros: 1.5, unit_price_ecos: 0.4, week_id: 3, product_id: 2}, #6
+                 {quantity: 3, unit_price_euros: 1.5, unit_price_ecos: 0.4, week_id: 4, product_id: 2}, #7
+                 {quantity: 3, unit_price_euros: 3.2, unit_price_ecos: 0.4, week_id: 1, product_id: 3}, #8
                  {quantity: 3, unit_price_euros: 5.5, unit_price_ecos: 0.5, week_id: 4, product_id: 4}, #9
-                 {quantity: 1, unit_price_euros: 3, unit_price_ecos: 0.5, week_id: 4, product_id: 5}, #10
+                 {quantity: 2, unit_price_euros: 3, unit_price_ecos: 0.5, week_id: 4, product_id: 5}, #10
                  {quantity: 2, unit_price_euros: 8, unit_price_ecos: 0.5, week_id: 4, product_id: 6}, #11
-                 {quantity: 1, unit_price_euros: 1.5, unit_price_ecos: 0.5, week_id: 4, product_id: 7}, #12
+                 {quantity: 2, unit_price_euros: 1.5, unit_price_ecos: 0.5, week_id: 4, product_id: 7}, #12
                  {quantity: 5, unit_price_euros: 1.5, unit_price_ecos: 1.5, week_id: 2, product_id: 8}, #13
-                 {quantity: 1, unit_price_euros: 1.5, unit_price_ecos: 1.5, week_id: 2, product_id: 9}, #14
-                 {quantity: 2, unit_price_euros: 1.5, unit_price_ecos: 1.5, week_id: 2, product_id: 10}, #15
-                 {quantity: 5, unit_price_euros: 0, unit_price_ecos: 0.8, week_id: 2, product_id: 11}, #16
-                 {quantity: 5, unit_price_euros: 0, unit_price_ecos: 0.8, week_id: 4, product_id: 11}, #17
-                 {quantity: 3, unit_price_euros: 0, unit_price_ecos: 1, week_id: 2, product_id: 12}, #18
-                 {quantity: 2, unit_price_euros: 0, unit_price_ecos: 1, week_id: 4, product_id: 12}, #19
-                 {quantity: 4, unit_price_euros: 1.5, unit_price_ecos: 1.5, week_id: 2, product_id: 13}, #20
-                 {quantity: 4, unit_price_euros: 1.5, unit_price_ecos: 1.5, week_id: 4, product_id: 13}, #21
-                 {quantity: 8, unit_price_euros: 0, unit_price_ecos: 0.5, week_id: 4, product_id: 14}, #22
-                 {quantity: 10, unit_price_euros: 0, unit_price_ecos: 3, week_id: 4, product_id: 15}, #23
+                 {quantity: 3, unit_price_euros: 1.5, unit_price_ecos: 1.5, week_id: 2, product_id: 9}, #14
+                 {quantity: 4, unit_price_euros: 1.5, unit_price_ecos: 1.5, week_id: 2, product_id: 10}, #15
+                 {quantity: 8, unit_price_euros: 0, unit_price_ecos: 0.8, week_id: 2, product_id: 11}, #16
+                 {quantity: 6, unit_price_euros: 0, unit_price_ecos: 0.8, week_id: 4, product_id: 11}, #17
+                 {quantity: 4, unit_price_euros: 0, unit_price_ecos: 1, week_id: 2, product_id: 12}, #18
+                 {quantity: 5, unit_price_euros: 0, unit_price_ecos: 1, week_id: 4, product_id: 12}, #19
+                 {quantity: 5, unit_price_euros: 1.5, unit_price_ecos: 1.5, week_id: 2, product_id: 13}, #20
+                 {quantity: 5, unit_price_euros: 1.5, unit_price_ecos: 1.5, week_id: 4, product_id: 13}, #21
+                 {quantity: 10, unit_price_euros: 0, unit_price_ecos: 0.5, week_id: 4, product_id: 14}, #22
+                 {quantity: 1, unit_price_euros: 0, unit_price_ecos: 3, week_id: 4, product_id: 15}, #23
                  {quantity: 1, unit_price_euros: 1.5, unit_price_ecos: 3, week_id: 4, product_id: 16}, #24
                  {quantity: 3, unit_price_euros: 2.8, unit_price_ecos: 1, week_id: 2, product_id: 17}, #25
                  {quantity: 2, unit_price_euros: 2.8, unit_price_ecos: 1, week_id: 4, product_id: 17}, #26
                  {quantity: 8, unit_price_euros: 0, unit_price_ecos: 0.5, week_id: 1, product_id: 19}, #27
                  {quantity: 9, unit_price_euros: 0, unit_price_ecos: 0.5, week_id: 3, product_id: 19}, #28
-                 {quantity: 1, unit_price_euros: 0.5, unit_price_ecos: 0.5, week_id: 1, product_id: 20}, #29
-                 {quantity: 1, unit_price_euros: 0.5, unit_price_ecos: 0.5, week_id: 2, product_id: 20}, #30
-                 {quantity: 1, unit_price_euros: 0.5, unit_price_ecos: 0.5, week_id: 3, product_id: 20}, #31
-                 {quantity: 1, unit_price_euros: 0.5, unit_price_ecos: 0.5, week_id: 4, product_id: 20} #32
+                 {quantity: 9, unit_price_euros: 0, unit_price_ecos: 0.5, week_id: 3, product_id: 19}, #29
+                 {quantity: 1, unit_price_euros: 0.5, unit_price_ecos: 0.5, week_id: 1, product_id: 20}, #30
+                 {quantity: 1, unit_price_euros: 0.5, unit_price_ecos: 0.5, week_id: 2, product_id: 20}, #31
+                 {quantity: 1, unit_price_euros: 0.5, unit_price_ecos: 0.5, week_id: 3, product_id: 20}, #32
+                 {quantity: 1, unit_price_euros: 0.5, unit_price_ecos: 0.5, week_id: 4, product_id: 20} #33
              ])
 
 
 Order.create([
-                 {quantity: 1, prossumer_id: 1, stock_id: 12}
+                 {quantity: 1, prossumer_id: 1, stock_id: 13},
+                 {quantity: 1, prossumer_id: 1, stock_id: 23},
+                 {quantity: 4, prossumer_id: 1, stock_id: 28},
+                 {quantity: 4, prossumer_id: 1, stock_id: 28},
+                 {quantity: 1, prossumer_id: 2, stock_id: 7},
+                 {quantity: 1, prossumer_id: 3, stock_id: 20},
+                 {quantity: 1, prossumer_id: 7, stock_id: 21},
+                 {quantity: 1, prossumer_id: 7, stock_id: 23},
+                 {quantity: 1, prossumer_id: 7, stock_id: 6},
+                 {quantity: 1, prossumer_id: 7, stock_id: 15},
+                 {quantity: 1, prossumer_id: 8, stock_id: 9},
+                 {quantity: 1, prossumer_id: 8, stock_id: 12},
+                 {quantity: 1, prossumer_id: 8, stock_id: 25},
+                 {quantity: 1, prossumer_id: 8, stock_id: 13}
              ])
 
 

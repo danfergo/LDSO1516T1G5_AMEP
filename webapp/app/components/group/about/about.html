@@ -4,9 +4,9 @@
       <div class="md-list-item-text">
         <h3><strong>{{groupProssumer.prossumer.name}}</strong></h3>
         <h4>{{groupProssumer.prossumer.email}}</h4>
-
-        <div style="padding-top: 8px">
+        <div style="padding-top: 8px" ng-repeat="ahahah in [0]">
           <md-checkbox
+            class="md-exclude"
             ng-model="groupProssumer.is_coordinator"
             ng-disabled="!(groupProssumer.state == 2 && coordinator) || groupProssumer.prossumer_id == currentSessionId"
             ng-change="changeCoordinator(groupProssumer.is_coordinator, groupProssumer.group_id, groupProssumer.id)"
