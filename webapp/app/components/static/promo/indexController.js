@@ -3,10 +3,8 @@ controller('indexController', ['$scope', 'Prossumer', '$state', '$mdToast',funct
   $scope.showConfirmationMessage = false;
   $scope.email = null;
   $scope.flagReg=false;
-  console.log("ALI");
 
   $scope.signUp = function (name, email, password, phone) {
-    console.log("AQUI");
     $scope.email = angular.copy(email);
     $scope.errorMessages = null;
     Prossumer.save({name: name, email: email, password: password, phone: phone}, function () {

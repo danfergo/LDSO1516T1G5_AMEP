@@ -49,8 +49,8 @@ controller('SidebarController', ['$scope','$state', 'Session', '$mdSidenav', fun
       icon: 'local_mall'
     },
     {
-      state: 'history',
-      title: 'Histórico',
+      state: 'groups',
+      title: 'Pesquisar grupo',
       icon: 'history'
     },
     {
