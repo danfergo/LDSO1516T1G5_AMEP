@@ -26,7 +26,7 @@
       </div>
       <div ng-if="whatState(currentCycle) == 'supplying' && cycleShowcaseProducts.length == 0 && filteredShowcaseProducts().length == 0"
            style="font-size:32px; color:#999; text-align:center; max-width:700px;margin:50px auto;">
-        Ainda não inseriste nenhum dos teus produtos neste próximo ciclo.
+        Ainda não inseriste nenhum dos teus produtos para o próximo ciclo.
       </div>
     </div>
 
@@ -139,12 +139,12 @@
     </div>
   </div>
 
-  <div layout="column" style="width:300px;max-width:20%" layout-margin>
+  <div layout="column" style="max-width:25%" layout-margin>
     <div ng-if="whatState(currentCycle) == 'supplying'">
       <md-list>
         <h4 style="padding-left:20px;">Meus produtos</h4>
 
-        <p style="padding-left:20px;"><i>Seleciona aqueles que pretendes disponibilizar neste próximo ciclo.</i></p>
+        <p style="padding-left:20px;"><i>Seleciona aqueles que pretendes disponibilizar no próximo ciclo.</i></p>
 
         <md-list-item class="md-1-line" ng-repeat="product in prossumerProducts">
           <div class="md-list-item-text" layout="row">

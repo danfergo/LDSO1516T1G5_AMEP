@@ -28,6 +28,9 @@ config(function ($stateProvider, $urlRouterProvider) {
       }],
       currentCycles: ['Cycle', 'currentGroup', function (Cycle, currentGroup) {
         return Cycle.query({groupId: currentGroup.id}).$promise;
+      }],
+      currentAbout: ['Group', 'currentGroup', function (Group, currentGroup) {
+        return Group.Prossumer.query({groupId: currentGroup.id}).$promise;
       }]
     },
     data: {
@@ -46,7 +49,7 @@ config(function ($stateProvider, $urlRouterProvider) {
       productAuths: ['Group', 'currentGroup', function (Group, currentGroup, currentSession) {
         return Group.ProductAuth.query({groupId: currentGroup.id}).$promise;
       }]
-    },
+    }
   }).
   state('cycles', {
     parent: 'group',
@@ -65,11 +68,12 @@ config(function ($stateProvider, $urlRouterProvider) {
     url: '/about',
     controller: 'groupAboutController',
     templateUrl: 'components/group/about/about.html',
-    resolve: {
-      currentAbout: ['Group', 'currentGroup', function (Group, currentGroup) {
-        return  Group.Prossumer.query({groupId: currentGroup.id}).$promise;
-      }]
-    },
+    /*
+     resolve: {
+     currentAbout: ['Group', 'currentGroup', function (Group, currentGroup) {
+     return  Group.Prossumer.query({groupId: currentGroup.id}).$promise;
+     }]
+     },*/
     data: {
       tabIndex: 2
     }
