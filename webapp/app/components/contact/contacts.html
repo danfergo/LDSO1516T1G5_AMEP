@@ -59,7 +59,7 @@ Enviar
 
 <div style="width: 100%; height:100%; background-color: #f2f1f1">
   <div class="myWrap">
-    <div class="myHead" layout="row" layout-align="center center">
+    <div class="myHead" layout="row" layout-align="center center" ng-if="!currentSession.id">
       <div flex style="font-family: 'Lobster', cursive; color: #1e999d; font-size: 45px;" ui-sref="signUp">
         Amep
       </div>
@@ -74,11 +74,13 @@ Enviar
       <div class="myRegister" layout="row" layout-align="center center">
         <div flex class="myLoginForm">
           <form name="contactForm" layout="column">
+            <div ng-if="!currentSession.id">
             <input placeholder="NOME" ng-model="msg.nome" type="text" name="nome" ng-required="true"/>
             <div layout="row">
               <input flex placeholder="EMAIL" ng-model="msg.email" type="text" name="email" ng-required="true"/>
               <input flex placeholder="CONTACTO TELEFÓNICO" ng-model="msg.tlm" type="text" name="tlm" ng-required="false"/>
             </div>
+          </div>
             <input placeholder="ASSUNTO" ng-model="msg.assunto" type="text" name="assunto" ng-required="true"/>
             <textarea placeholder="MENSAGEM" ng-model="msg.myMessage" type="text" name="myMessage" columns="1" style="border: none" rows="5"
             ng-required="true"></textarea>

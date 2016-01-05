@@ -18,6 +18,14 @@ directive('userAvatar', function () {
 }).
 config(function ($mdThemingProvider) {
 
+  $mdThemingProvider.definePalette('customBlue', $mdThemingProvider.extendPalette('indigo', {
+    //'500' : 'rgba(152,190,120,0)',
+    'A100' : "ffffff",
+    'A200' : "000000",
+    'A400' : "ffffff",
+    'A700' : "ffffff",
+    '500' : "1e999d"
+  }));
 
 
   $mdThemingProvider.definePalette('customWhite', $mdThemingProvider.extendPalette('indigo', {
@@ -29,7 +37,7 @@ config(function ($mdThemingProvider) {
   }));
 
   $mdThemingProvider.theme('default')
-    .primaryPalette('indigo')
+    .primaryPalette('customBlue')
     .accentPalette('customWhite');
 
 });
