@@ -196,7 +196,6 @@ Order.create([
                  {quantity: 1, prossumer_id: 1, stock_id: 13},
                  {quantity: 1, prossumer_id: 1, stock_id: 23},
                  {quantity: 4, prossumer_id: 1, stock_id: 28},
-                 {quantity: 4, prossumer_id: 1, stock_id: 28},
                  {quantity: 1, prossumer_id: 2, stock_id: 7},
                  {quantity: 1, prossumer_id: 3, stock_id: 20},
                  {quantity: 1, prossumer_id: 7, stock_id: 21},
