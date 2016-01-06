@@ -48,7 +48,7 @@ Group.create([
 ])
 
 Group.create([
-                 {name: 'AMEP Alentejo', city_id: 7}
+                 {name: 'Bracara Augusta ', city_id: 3}
              ])
 
 Prossumer.create(
@@ -128,6 +128,7 @@ Product.create([
 
                ])
 
+
 ProductAuth.create([
                        {state: 2, group_id: 1, product_id: 1, ecos: 0.4, euros: 2.3},
                        {state: 2, group_id: 1, product_id: 2, ecos: 0.4, euros: 1.5},
@@ -166,6 +167,8 @@ Cycle.create([
 Cycle.create([
                  {start_time: (Time.now + 5.day).beginning_of_day(), end_time: (Time.now + 40.day).beginning_of_day(), group_id: 1, title: "Ciclo 3"},
              ])
+
+
 
 
 Week.create([
@@ -300,6 +303,8 @@ Week.create([
 
 
 
+
+
 Stock.create([
                  {quantity: 4, unit_price_euros: 2.3, unit_price_ecos: 0.4, week_id: 9, product_id: 1}, #1
                  {quantity: 4, unit_price_euros: 2.3, unit_price_ecos: 0.4, week_id: 10, product_id: 1}, #2
@@ -335,6 +340,23 @@ Stock.create([
                  {quantity: 1, unit_price_euros: 0.5, unit_price_ecos: 0.5, week_id: 11, product_id: 20}, #32
                  {quantity: 1, unit_price_euros: 0.5, unit_price_ecos: 0.5, week_id: 12, product_id: 20} #33
              ])
+
+ProductAuth.create([
+                       {state: 2, group_id: 2, product_id: 14, ecos: 0.5, euros: 0},
+                       {state: 2, group_id: 2, product_id: 15, ecos: 0.5, euros: 0},
+                       {state: 2, group_id: 2, product_id: 19, ecos: 0.5, euros: 0}
+                   ])
+
+Cycle.create([
+                 {start_time: (Time.now + 10.day).beginning_of_day(), end_time: (Time.now + 40.day).beginning_of_day(), group_id: 2, title: "Ciclo 1"},
+             ])
+
+Week.create([
+                {number: 1, cycle_id: 4, delivery_date: (Time.now + 16.day).change(hour: 18, minute: 30)},#9
+                {number: 2, cycle_id: 4, delivery_date: (Time.now + 25.day).change(hour: 17, minute: 00)},#10
+                {number: 3, cycle_id: 4, delivery_date: (Time.now + 30.day).change(hour: 15, minute: 30)},#11
+                {number: 4, cycle_id: 4, delivery_date: (Time.now + 35.day).change(hour: 18, minute: 15)}#12
+            ])
 
 
 =begin
