@@ -57,6 +57,7 @@
 
             </md-card-content>
             <md-card-footer style="padding-top:0;">
+              Semanas:
               <span class="number-chip" ng-repeat="week in product.weeks" ng-if="availableStockFor(week.stock) > 0">
                   {{week.number}}
               </span>
@@ -82,7 +83,7 @@
               <md-button style="margin: 0;"  ng-if="whatState(currentCycle) != 'buying' || productAuth(product).state == 1"
                          class="md-primary toggle md-mini" aria-label="Disponibilidade"> Disponibilidade
               </md-button>
-              <md-button style="margin: 0;"  ng-if="whatState(currentCycle) == 'buying' && productAuth(product).state == 2"
+              <md-button style="margin: 0;"  ng-if="whatState(currentCycle) == 'buying' && productAuth(product).state == 2 && product.prossumer_id != currentSession.id"
                          class="md-primary toggle md-mini" aria-label="Encomendar"> Encomendar
               </md-button>
             </md-card-actions>

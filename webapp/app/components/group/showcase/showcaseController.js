@@ -10,6 +10,7 @@ controller('groupShowcaseController',
       $scope.whatState = Cycle.whatState;
       $scope.filterCategories = [];
       $scope.purchases = {};
+      $scope.currentSession = currentSession;
 
       $scope.productSellingPrice = Group.Cycle.Product.productSellingPrice;
 
