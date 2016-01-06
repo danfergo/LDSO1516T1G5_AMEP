@@ -12,6 +12,12 @@ controller('createCycleController', ['$scope', 'Group', 'currentGroup','$mdDialo
   }
 
   $scope.ok = function () {
+    for(var w in $scope.cycle.weeks){
+      var deliveryDate =  moment($scope.cycle.weeks[w].delivery_date).hour($scope.cycle.weeks[w].hour);
+      deliveryDate.minutes($scope.cycle.weeks[w].min);
+      $scope.cycle.weeks[w].delivery_date = deliveryDate.toDate();
+      console.log( $scope.cycle.weeks[w].delivery_date );
+    }
     Group.Cycle.save({groupId: currentGroup.id}, $scope.cycle, function (cycle) {
       console.log(cycle);
       $mdDialog.hide();
