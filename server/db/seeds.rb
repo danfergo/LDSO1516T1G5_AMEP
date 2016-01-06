@@ -48,7 +48,7 @@ Group.create([
 ])
 
 Group.create([
-                 {name: 'AMEP Alentejo', city_id: 7}
+                 {name: 'Bracara Augusta ', city_id: 3}
              ])
 
 Prossumer.create(
@@ -128,6 +128,7 @@ Product.create([
 
                ])
 
+
 ProductAuth.create([
                        {state: 2, group_id: 1, product_id: 1, ecos: 0.4, euros: 2.3},
                        {state: 2, group_id: 1, product_id: 2, ecos: 0.4, euros: 1.5},
@@ -156,19 +157,25 @@ ProductAuth.create([
                    ])
 
 Cycle.create([
-                 {start_time: (Time.now - 26.day).beginning_of_day(), end_time: (Time.now - 2.day).beginning_of_day(), group_id: 1, title: "Ciclo 1"},
+                 {start_time: (Time.now - 54.day).beginning_of_day(), end_time: (Time.now - 24.day).beginning_of_day(), group_id: 1, title: "Ciclo 1"},
              ])
 
 Cycle.create([
-                 {start_time: (Time.now + 13.day).beginning_of_day(), end_time: (Time.now + 40.day).beginning_of_day(), group_id: 1, title: "Ciclo 2"},
+                 {start_time: (Time.now - 23.day).beginning_of_day(), end_time: (Time.now + 4.day).beginning_of_day(), group_id: 1, title: "Ciclo 2"},
+             ])
+
+Cycle.create([
+                 {start_time: (Time.now + 5.day).beginning_of_day(), end_time: (Time.now + 40.day).beginning_of_day(), group_id: 1, title: "Ciclo 3"},
              ])
 
 
+
+
 Week.create([
-                {number: 1, cycle_id: 1, delivery_date: (Time.now - 25.day).change(hour: 18, minute: 30)},#1
-                {number: 2, cycle_id: 1, delivery_date: (Time.now - 17.day).change(hour: 17, minute: 00)},#2
-                {number: 3, cycle_id: 1, delivery_date: (Time.now - 11.day).change(hour: 15, minute: 30)},#3
-                {number: 4, cycle_id: 1, delivery_date: (Time.now - 4.day).change(hour: 18, minute: 15)}#4
+                {number: 1, cycle_id: 1, delivery_date: (Time.now - 52.day).change(hour: 18, minute: 30)},#1
+                {number: 2, cycle_id: 1, delivery_date: (Time.now - 45.day).change(hour: 17, minute: 00)},#2
+                {number: 3, cycle_id: 1, delivery_date: (Time.now - 37.day).change(hour: 15, minute: 30)},#3
+                {number: 4, cycle_id: 1, delivery_date: (Time.now - 28.day).change(hour: 18, minute: 15)}#4
             ])
 
 
@@ -227,10 +234,10 @@ Order.create([
              ])
 
 Week.create([
-                {number: 1, cycle_id: 2, delivery_date: (Time.now + 15.day).change(hour: 18, minute: 30)},#5
-                {number: 2, cycle_id: 2, delivery_date: (Time.now + 23.day).change(hour: 17, minute: 00)},#6
-                {number: 3, cycle_id: 2, delivery_date: (Time.now + 30.day).change(hour: 15, minute: 30)},#7
-                {number: 4, cycle_id: 2, delivery_date: (Time.now + 38.day).change(hour: 18, minute: 15)}#8
+                {number: 1, cycle_id: 2, delivery_date: (Time.now - 20.day).change(hour: 18, minute: 30)},#5
+                {number: 2, cycle_id: 2, delivery_date: (Time.now - 10.day).change(hour: 17, minute: 00)},#6
+                {number: 3, cycle_id: 2, delivery_date: (Time.now + 0.day).change(hour: 15, minute: 30)},#7
+                {number: 4, cycle_id: 2, delivery_date: (Time.now + 3.day).change(hour: 18, minute: 15)}#8
             ])
 
 
@@ -269,6 +276,87 @@ Stock.create([
                  {quantity: 1, unit_price_euros: 0.5, unit_price_ecos: 0.5, week_id: 7, product_id: 20}, #32
                  {quantity: 1, unit_price_euros: 0.5, unit_price_ecos: 0.5, week_id: 8, product_id: 20} #33
              ])
+
+Order.create([
+                 {quantity: 2, prossumer_id: 1, stock_id: 46},
+                 {quantity: 1, prossumer_id: 1, stock_id: 56},
+                 {quantity: 1, prossumer_id: 1, stock_id: 61},
+                 {quantity: 2, prossumer_id: 2, stock_id: 40},
+                 {quantity: 1, prossumer_id: 3, stock_id: 53},
+                 {quantity: 1, prossumer_id: 7, stock_id: 54},
+                 {quantity: 1, prossumer_id: 7, stock_id: 56},
+                 {quantity: 2, prossumer_id: 7, stock_id: 39},
+                 {quantity: 1, prossumer_id: 7, stock_id: 48},
+                 {quantity: 1, prossumer_id: 8, stock_id: 42},
+                 {quantity: 2, prossumer_id: 8, stock_id: 45},
+                 {quantity: 1, prossumer_id: 8, stock_id: 58},
+                 {quantity: 1, prossumer_id: 8, stock_id: 46}
+             ])
+
+
+Week.create([
+                {number: 1, cycle_id: 3, delivery_date: (Time.now + 11.day).change(hour: 18, minute: 30)},#9
+                {number: 2, cycle_id: 3, delivery_date: (Time.now + 20.day).change(hour: 17, minute: 00)},#10
+                {number: 3, cycle_id: 3, delivery_date: (Time.now + 25.day).change(hour: 15, minute: 30)},#11
+                {number: 4, cycle_id: 3, delivery_date: (Time.now + 38.day).change(hour: 18, minute: 15)}#12
+            ])
+
+
+
+
+
+Stock.create([
+                 {quantity: 4, unit_price_euros: 2.3, unit_price_ecos: 0.4, week_id: 9, product_id: 1}, #1
+                 {quantity: 4, unit_price_euros: 2.3, unit_price_ecos: 0.4, week_id: 10, product_id: 1}, #2
+                 {quantity: 4, unit_price_euros: 2.3, unit_price_ecos: 0.4, week_id: 11, product_id: 1}, #3
+                 {quantity: 4, unit_price_euros: 2.3, unit_price_ecos: 0.4, week_id: 12, product_id: 1}, #4
+                 {quantity: 4, unit_price_euros: 1.5, unit_price_ecos: 0.4, week_id: 9, product_id: 2}, #5
+                 {quantity: 5, unit_price_euros: 1.5, unit_price_ecos: 0.4, week_id: 11, product_id: 2}, #6
+                 {quantity: 3, unit_price_euros: 1.5, unit_price_ecos: 0.4, week_id: 12, product_id: 2}, #7
+                 {quantity: 3, unit_price_euros: 3.2, unit_price_ecos: 0.4, week_id: 9, product_id: 3}, #8
+                 {quantity: 3, unit_price_euros: 5.5, unit_price_ecos: 0.5, week_id: 12, product_id: 4}, #9
+                 {quantity: 2, unit_price_euros: 3, unit_price_ecos: 0.5, week_id: 12, product_id: 5}, #10
+                 {quantity: 2, unit_price_euros: 8, unit_price_ecos: 0.5, week_id: 12, product_id: 6}, #11
+                 {quantity: 2, unit_price_euros: 1.5, unit_price_ecos: 0.5, week_id: 12, product_id: 7}, #12
+                 {quantity: 5, unit_price_euros: 1.5, unit_price_ecos: 1.5, week_id: 10, product_id: 8}, #13
+                 {quantity: 3, unit_price_euros: 1.5, unit_price_ecos: 1.5, week_id: 12, product_id: 9}, #14
+                 {quantity: 4, unit_price_euros: 1.5, unit_price_ecos: 1.5, week_id: 10, product_id: 10}, #15
+                 {quantity: 8, unit_price_euros: 0, unit_price_ecos: 0.8, week_id: 10, product_id: 11}, #16
+                 {quantity: 6, unit_price_euros: 0, unit_price_ecos: 0.8, week_id: 12, product_id: 11}, #17
+                 {quantity: 4, unit_price_euros: 0, unit_price_ecos: 1, week_id: 10, product_id: 12}, #18
+                 {quantity: 5, unit_price_euros: 0, unit_price_ecos: 1, week_id: 12, product_id: 12}, #19
+                 {quantity: 5, unit_price_euros: 1.5, unit_price_ecos: 1.5, week_id: 10, product_id: 13}, #20
+                 {quantity: 5, unit_price_euros: 1.5, unit_price_ecos: 1.5, week_id: 12, product_id: 13}, #21
+                 {quantity: 10, unit_price_euros: 0, unit_price_ecos: 0.5, week_id: 12, product_id: 14}, #22
+                 {quantity: 1, unit_price_euros: 0, unit_price_ecos: 3, week_id: 12, product_id: 15}, #23
+                 {quantity: 1, unit_price_euros: 1.5, unit_price_ecos: 3, week_id: 12, product_id: 16}, #24
+                 {quantity: 3, unit_price_euros: 2.8, unit_price_ecos: 1, week_id: 10, product_id: 17}, #25
+                 {quantity: 2, unit_price_euros: 2.8, unit_price_ecos: 1, week_id: 10, product_id: 17}, #26
+                 {quantity: 8, unit_price_euros: 0, unit_price_ecos: 0.5, week_id: 9, product_id: 19}, #27
+                 {quantity: 9, unit_price_euros: 0, unit_price_ecos: 0.5, week_id: 11, product_id: 19}, #28
+                 {quantity: 9, unit_price_euros: 0, unit_price_ecos: 0.5, week_id: 11, product_id: 19}, #29
+                 {quantity: 1, unit_price_euros: 0.5, unit_price_ecos: 0.5, week_id: 9, product_id: 20}, #30
+                 {quantity: 1, unit_price_euros: 0.5, unit_price_ecos: 0.5, week_id: 10, product_id: 20}, #31
+                 {quantity: 1, unit_price_euros: 0.5, unit_price_ecos: 0.5, week_id: 11, product_id: 20}, #32
+                 {quantity: 1, unit_price_euros: 0.5, unit_price_ecos: 0.5, week_id: 12, product_id: 20} #33
+             ])
+
+ProductAuth.create([
+                       {state: 2, group_id: 2, product_id: 14, ecos: 0.5, euros: 0},
+                       {state: 2, group_id: 2, product_id: 15, ecos: 0.5, euros: 0},
+                       {state: 2, group_id: 2, product_id: 19, ecos: 0.5, euros: 0}
+                   ])
+
+Cycle.create([
+                 {start_time: (Time.now + 10.day).beginning_of_day(), end_time: (Time.now + 40.day).beginning_of_day(), group_id: 2, title: "Ciclo 1"},
+             ])
+
+Week.create([
+                {number: 1, cycle_id: 4, delivery_date: (Time.now + 16.day).change(hour: 18, minute: 30)},#9
+                {number: 2, cycle_id: 4, delivery_date: (Time.now + 25.day).change(hour: 17, minute: 00)},#10
+                {number: 3, cycle_id: 4, delivery_date: (Time.now + 30.day).change(hour: 15, minute: 30)},#11
+                {number: 4, cycle_id: 4, delivery_date: (Time.now + 35.day).change(hour: 18, minute: 15)}#12
+            ])
 
 
 =begin
