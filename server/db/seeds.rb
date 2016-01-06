@@ -156,19 +156,19 @@ ProductAuth.create([
                    ])
 
 Cycle.create([
-                 {start_time: (Time.now - 17.day).beginning_of_day(), end_time: (Time.now + 7.day).beginning_of_day(), group_id: 1, title: "Ciclo 1"},
+                 {start_time: (Time.now - 26.day).beginning_of_day(), end_time: (Time.now - 2.day).beginning_of_day(), group_id: 1, title: "Ciclo 1"},
              ])
 
 Cycle.create([
-                 {start_time: (Time.now + 13.day).beginning_of_day(), end_time: (Time.now + 22.day).beginning_of_day(), group_id: 1, title: "Ciclo 2"},
+                 {start_time: (Time.now + 13.day).beginning_of_day(), end_time: (Time.now + 40.day).beginning_of_day(), group_id: 1, title: "Ciclo 2"},
              ])
 
 
 Week.create([
-                {number: 1, cycle_id: 1, delivery_date: (Time.now - 17.day).change(hour: 18, minute: 30)},#1
-                {number: 2, cycle_id: 1, delivery_date: (Time.now - 10.day).change(hour: 17, minute: 00)},#2
-                {number: 3, cycle_id: 1, delivery_date: (Time.now + 2.day).change(hour: 15, minute: 30)},#3
-                {number: 4, cycle_id: 1, delivery_date: (Time.now + 7.day).change(hour: 18, minute: 15)}#4
+                {number: 1, cycle_id: 1, delivery_date: (Time.now - 25.day).change(hour: 18, minute: 30)},#1
+                {number: 2, cycle_id: 1, delivery_date: (Time.now - 17.day).change(hour: 17, minute: 00)},#2
+                {number: 3, cycle_id: 1, delivery_date: (Time.now - 11.day).change(hour: 15, minute: 30)},#3
+                {number: 4, cycle_id: 1, delivery_date: (Time.now - 4.day).change(hour: 18, minute: 15)}#4
             ])
 
 
@@ -227,10 +227,10 @@ Order.create([
              ])
 
 Week.create([
-                {number: 1, cycle_id: 2, delivery_date: (Time.now + 13.day).change(hour: 18, minute: 30)},#5
-                {number: 2, cycle_id: 2, delivery_date: (Time.now + 18.day).change(hour: 17, minute: 00)},#6
-                {number: 3, cycle_id: 2, delivery_date: (Time.now + 22.day).change(hour: 15, minute: 30)},#7
-                {number: 4, cycle_id: 1, delivery_date: (Time.now + 7.day).change(hour: 18, minute: 15)}#8
+                {number: 1, cycle_id: 2, delivery_date: (Time.now + 15.day).change(hour: 18, minute: 30)},#5
+                {number: 2, cycle_id: 2, delivery_date: (Time.now + 23.day).change(hour: 17, minute: 00)},#6
+                {number: 3, cycle_id: 2, delivery_date: (Time.now + 30.day).change(hour: 15, minute: 30)},#7
+                {number: 4, cycle_id: 2, delivery_date: (Time.now + 38.day).change(hour: 18, minute: 15)}#8
             ])
 
 

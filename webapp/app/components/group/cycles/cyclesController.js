@@ -9,7 +9,8 @@ controller('groupHistoryController', ['$scope', 'Group', 'prossumerState', 'Cycl
     $scope.coordinator = prossumerState.is_coordinator;
 
     $scope.cycles = currentCycles;
-    $scope.cycleSelected = $scope.cycles[0];
+    if($scope.cycles)
+      $scope.cycleSelected = $scope.cycles[$scope.cycles.length - 1];
 
 
     $scope.mudaSemana = function () {

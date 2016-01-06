@@ -12,7 +12,7 @@
 
 
 <div>
-  <div style="width: 100%;" layout="row">
+  <div style="width: 100%;" layout="row" >
     <div flex layout="row" layout-align="left center" layout-wrap>
       <md-menu ng-if="cycleSelected">
         <md-button class="md-raised md-warn" ng-click="openMenu($mdOpenMenu, $event)">PDF</md-button>
@@ -31,8 +31,8 @@
       </md-menu>
       <md-button ng-if="coordinator" class="md-raised" ng-click="createCycle($event)">Novo ciclo</md-button>
     </div>
-    <md-select ng-if="cycles.length > 0" ng-model="cycleSelected" aria-label="seleciona o ciclo" md-on-close="mudaSemana()">
-      <md-option ng-value="cycle" ng-repeat="cycle in cycles | orderBy:start_time.date"> {{cycle.title}}
+    <md-select  ng-model="$parent.cycleSelected" ng-if="cycles.length > 0" aria-label="seleciona o ciclo" md-on-close="mudaSemana()">
+      <md-option ng-value="cycle" ng-repeat="cycle in cycles | orderBy:'start_time'"> {{cycle.title}}
         ({{cycle.start_time | date:'dd-MM-yyyy'}})
       </md-option>
     </md-select>
